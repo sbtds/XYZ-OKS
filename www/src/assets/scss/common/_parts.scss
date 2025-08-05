@@ -1,0 +1,141 @@
+@use "_variables";
+
+.box {
+  padding: 20px;
+  background: variables.$primary;
+}
+
+.hover-image {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+
+  img {
+    transition: all 0.3s;
+  }
+}
+a:hover,
+.swiper-slide:hover {
+  .hover-image {
+    // background: variables.$primary-dark;
+    img {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+}
+
+.image-radius {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+// link
+.hover-underline {
+  display: inline-block;
+  position: relative;
+  background-image: linear-gradient(variables.$primary, variables.$primary); /* 単色 */
+  background-size: 0 1px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease-out;
+  box-decoration-break: slice;
+  -webkit-box-decoration-break: slice;
+}
+
+a:hover .hover-underline {
+  background-size: 100% 1px;
+  background-position: bottom left;
+}
+
+.hover-underline-white {
+  background-image: linear-gradient(#ffffff, #ffffff); /* 単色 */
+  background-size: 0 1px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease-out;
+  box-decoration-break: slice;
+  -webkit-box-decoration-break: slice;
+}
+
+a:hover .hover-underline-white {
+  background-size: 100% 1px;
+  background-position: bottom left;
+}
+
+.hover-underline-menu {
+  background-image: linear-gradient(variables.$primary-dark, variables.$primary-dark); /* 単色 */
+  background-size: 0 4px;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease-out;
+  box-decoration-break: slice;
+  -webkit-box-decoration-break: slice;
+}
+
+a:hover .hover-underline-menu {
+  background-size: 100% 4px;
+  background-position: bottom left;
+}
+
+.link {
+  color: variables.$primary-dark;
+  text-decoration: underline;
+}
+
+// tab
+
+// accordion
+
+// button
+
+// picture要素のスタイル修正
+picture {
+  display: block;
+  position: relative;
+
+  // w-full h-fullが設定されている場合の高さ確保
+  &.w-full.h-full {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+  }
+
+  // 一般的なpicture要素の設定
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.button {
+  position: relative;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(to right, variables.$secondary-light, variables.$secondary-light);
+  color: white;
+  font-weight: 700;
+  // padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transition: all 400ms;
+
+  // @media (min-width: 1024px) {
+  //   padding: 1rem 5rem;
+  // }
+
+  &:hover {
+    background: linear-gradient(to right, variables.$secondary-light, variables.$secondary-light);
+    transform: scale(0.98);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+}

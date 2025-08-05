@@ -1,0 +1,13 @@
+@use "./common/variables";
+@use "./common/base";
+
+@use "./common/base_footer";
+@use "./common/base_header";
+@use "./common/base_navigation";
+@use "./common/base_global";
+@use "./common/base_trigger";
+
+// @use "./common/_table";
+@use "./common/_parts";
+
+@use "./page/index_hero";

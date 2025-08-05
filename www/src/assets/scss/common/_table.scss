@@ -1,0 +1,142 @@
+@use "_variables";
+
+// テーブル用のSCSSスタイル
+.saran_table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  thead {
+    tr {
+      // background-color: #e5e7eb; // bg-gray-300
+
+      th {
+        width: 33.3333% !important;
+        text-align: left; // text-start
+        text-transform: uppercase;
+        letter-spacing: 0.05em; // tracking-wider
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:not(:last-child) {
+        border-bottom: 1px solid #e5e7eb; // divide-y divide-stone-200
+      }
+
+      td {
+        width: 33.3333% !important;
+
+        white-space: nowrap;
+        font-size: 1rem; // text-base
+      }
+
+      &:nth-child(odd) {
+        td {
+          background-color: #f9fafb; // bg-gray-50
+        }
+      }
+
+      &:nth-child(even) {
+        td {
+          background-color: #fcfdff; // bg-gray-100
+        }
+      }
+    }
+  }
+
+  // 幅調整
+  tr {
+    th,
+    td {
+      box-sizing: border-box;
+      padding: 1rem 2rem;
+      @include variables.res(lg) {
+        // padding: 1.5rem 2.5rem;
+        padding: 1.5rem 5rem;
+      }
+    }
+
+    th:first-child,
+    td:first-child {
+      padding: 1rem 2rem;
+      @include variables.res(lg) {
+        padding: 1.5rem 6rem;
+      }
+    }
+  }
+
+  &.en_table {
+    tr {
+      th,
+      td {
+        width: 30% !important;
+        padding: 1rem 2rem;
+        @include variables.res(lg) {
+          width: 41% !important;
+          padding: 1.5rem 10%;
+        }
+      }
+
+      th:first-child,
+      td:first-child {
+        width: 20% !important;
+        padding: 1rem 2rem;
+        @include variables.res(lg) {
+          width: 18% !important;
+          padding: 1.5rem 8%;
+        }
+      }
+    }
+  }
+
+  sup {
+    .text-blue-600 {
+      color: #2563eb;
+      margin-left: 0.25rem; // ml-1
+    }
+  }
+}
+
+// セクション用のスタイル
+.product-section {
+  background-color: #ffffff; // bg-white
+
+  .section-title {
+    font-size: 1.25rem; // text-xl
+    font-weight: 600; // font-semibold
+    padding: 1.2rem; // px-10 py-10
+    color: #1f2937; // text-gray-800
+    display: flex;
+    align-items: center;
+
+    @include variables.res(lg) {
+      padding: 2.5rem; // px-10 py-10
+    }
+  }
+
+  .section-content {
+    border: 1px solid #f5f5f4; // border border-stone-100
+
+    .table-container {
+      overflow-x: auto; // overflow-x-auto
+
+      .table-wrapper {
+        min-width: 100%; // min-w-full
+        display: inline-block;
+        vertical-align: middle; // align-middle
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .saran_table {
+    sup {
+      .text-blue-400 {
+        color: #60a5fa;
+      }
+    }
+  }
+}

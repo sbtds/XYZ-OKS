@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+
+/* ------------------------------------------------------------ */
+/* base */
+/* ------------------------------------------------------------ */
+
+.container-head {
+  @apply mx-auto px-2 sm:px-6 lg:px-14 w-full max-w-[1680px];
+}
+
+.container-hero {
+  @apply mx-auto lg:px-14 w-full max-w-[1680px];
+}
+
+.container-wide {
+  @apply mx-auto px-6 lg:px-14 w-full max-w-[1680px];
+}
+
+.container-base {
+  @apply mx-auto px-[20px] w-full max-w-[1140px];
+}
+
+.container-min {
+  @apply mx-auto px-6 lg:px-14 w-full max-w-[1040px];
+}
+
+.top-middle {
+  @apply top-[50%] -translate-y-[50%];
+}
+.left-middle {
+  @apply left-[50%] -translate-x-[50%];
+}
+
+/* ------------------------------------------------------------ */
+/* common_header */
+/* ------------------------------------------------------------ */
+
+.common_global {
+  @apply fixed z-[9999999] top-0 right-0 w-full h-full;
+}
+
+.common_trigger {
+  @apply flex z-[999999];
+}
+
+.common_global__inner {
+  @apply pointer-events-auto max-h-full w-full overflow-y-auto pb-[180px];
+}
+
+.common_global__main {
+  @apply w-full max-w-[560px] mx-auto flex flex-col items-center pt-16 pb-16;
+}
+
+.common_global__box {
+  @apply w-full;
+}
+
+.common_global__logo {
+  @apply mb-12 text-center;
+}
+
+.common_global__nav_list {
+  @apply flex flex-col font-bold border-t border-slate-300;
+}
+
+.common_global__nav_item {
+  @apply flex gap-4 border-b border-slate-300;
+}
+
+.common_global__nav_link {
+  @apply w-full flex justify-between px-4 items-center;
+}
+
+.common_global__nav_label {
+  @apply py-4;
+}
+
+.common_global__nav_arrow {
+  @apply bg-primary text-white w-[22px] h-[22px] rounded-full flex items-center justify-center;
+}
+
+.common_global__info {
+  @apply flex flex-col gap-4 px-4 w-full mx-auto mt-10;
+}
+
+.common_global__contact {
+  @apply w-full overflow-hidden inline-flex items-center justify-center bg-primary hover:bg-primary-dark text-white py-5 rounded-full font-bold transition-colors;
+}
+
+.common_global__language {
+  @apply grid grid-cols-2 gap-4 box-border rounded-sm overflow-hidden mt-4;
+}
+
+.common_global__language_item {
+  @apply w-full text-black bg-slate-200 hover:transition px-3 h-[50px] md:h-[25px] flex items-center justify-center;
+}
+
+.common_global__language_item:last-child {
+  @apply bg-slate-100 hover:bg-slate-200;
+}
+
+.common_global__language_item .label {
+  @apply text-xs md:text-base -tracking-wider font-bold;
+}
+
+.common_header {
+  @apply bg-white w-full sticky min-h-[58px] lg:min-h-[70px] top-0 z-[9999999] lg:mt-1 2xl:mt-4 transition-all;
+}
+
+.common_header__container {
+  @apply bg-white py-2 lg:py-3;
+}
+
+.common_header__inner {
+  @apply flex items-center justify-end;
+}
+
+.common_header__logo {
+  @apply flex items-center justify-center mr-auto text-center;
+}
+
+.common_header__nav {
+  @apply hidden lg:flex gap-4 relative font-bold;
+}
+
+.common_header__nav_list {
+  @apply relative flex flex-row items-center xl:px-6 h-[50px] md:h-[50px] rounded-md;
+}
+
+.common_header__nav_separator {
+  @apply block h-[26px] border-l border-slate-300;
+}
+
+.common_header__nav_item {
+  @apply relative;
+}
+
+.common_header__nav_link {
+  @apply h-[46px] md:h-[52px] text-sm xl:text-base px-6 xl:px-8 flex items-center hover:bg-slate-100  transition-colors;
+}
+
+.common_header__contact {
+  @apply xl:ml-4;
+}
+
+.common_header__contact_button {
+  @apply rounded-full flex items-center justify-center text-sm xl:text-base px-8 xl:px-10 h-[46px] md:h-[50px] bg-primary hover:bg-primary text-white transition-colors overflow-hidden;
+}
+
+.common_header__language {
+  @apply flex flex-col box-border rounded-sm overflow-hidden;
+}
+
+.common_header__language_item {
+  @apply bg-slate-200 hover:bg-slate-300 hover:transition  px-3 h-[50px] md:h-[25px] flex items-center justify-center;
+}
+
+.common_header__language_item:last-child {
+  @apply bg-slate-100 hover:bg-slate-200;
+}
+
+.header_toggle {
+  @apply z-[99999] p-10 fixed left-4 top-10 hidden;
+}
+
+.header_overlay {
+  @apply z-[999] hidden;
+}
+
+.common_trigger.lg_hidden {
+  @apply flex lg:hidden w-[70px] h-full  border-2 border-primary-black;
+}
+
+/* ------------------------------------------------------------ */
+/* common_footer */
+/* ------------------------------------------------------------ */
+
+/* ------------------------------------------------------------ */
+/* page_header */
+/* ------------------------------------------------------------ */
+
+/* ------------------------------------------------------------ */
+/* page_top */
+/* ------------------------------------------------------------ */
+
+.common_pagetop {
+  @apply sticky bottom-0 z-[99999] xl:-mb-[50px] opacity-0;
+}
+
+.common_pagetop__link {
+  @apply absolute flex items-center justify-center rounded-full bg-gradient-to-r from-primary-dark to-primary hover:to-primary-dark transition-all duration-300 text-white w-10 h-10 xl:w-14 xl:h-14 right-[0.8rem] lg:right-6 bottom-[0.8rem] lg:bottom-6;
+}
+
+/* ページトップボタンのアニメーション */
+.pagetop-visible {
+  @apply opacity-100 transition-all duration-500 ease-out;
+}
+
+.pagetop-hidden {
+  @apply opacity-0 transition-all duration-500 ease-in pointer-events-none;
+}
+
+@tailwind utilities;

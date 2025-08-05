@@ -1,0 +1,364 @@
+@use "_variables";
+
+$trigger_size: 24px;
+$easing_bezier: cubic-bezier(0.98, -0.01, 0.01, 0.98);
+
+.common_trigger {
+  border: 1px solid #000;
+  // display: flex;
+  // position: relative;
+  position: fixed;
+  right: 0px;
+  // z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  // background: red;
+  width: 70px;
+  height: 70px;
+
+  // background-color: red;
+  // border-left: 1px solid rgba(#ccc, 0.1);
+  // background: red;
+
+  // @include variables.res(sm) {
+  //   width: 80px;
+  //   border-left: none;
+  // }
+
+  // @include md {
+  //   width: 100px;
+  //   height: 60px;
+  // }
+
+  &:focus {
+    // outline: none;
+    outline: invert;
+  }
+
+  .drawer-active &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 80px;
+    border-radius: 100%;
+    // background-color: rgba(black,0.8);
+    transform: scale(0.2) translate(-50%, -50%);
+    transition: all 0.25s 0.25s;
+    transform-origin: left top;
+    // opacity: 0;
+  }
+
+  .drawer-active & {
+    right: 0;
+  }
+
+  &_button {
+    position: relative;
+    width: $trigger_size;
+    height: 16px;
+  }
+
+  // ---------------------------------------------
+  // OPEN
+  // ---------------------------------------------
+
+  // default
+
+  &_button .open {
+    transition: opacity 0.5s 0.5s;
+    opacity: 1;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform-origin: center;
+
+    .fill {
+      transition: all 0.25s 0.2s;
+      position: absolute;
+      height: 2px;
+      display: block;
+      width: 100%;
+      .before,
+      .after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .before {
+        z-index: 1;
+      }
+      .after {
+        z-index: 0;
+      }
+    }
+
+    // position
+
+    .fill:nth-of-type(1),
+    .fill:nth-of-type(2),
+    .fill:nth-of-type(3) {
+      display: block;
+    }
+
+    .fill:nth-of-type(1) {
+      top: 0;
+      transform: scaleX(1) translateY(0);
+    }
+    .fill:nth-of-type(2) {
+      width: 100%;
+      bottom: 0;
+      transform: scaleX(1) translateY(0);
+    }
+    .fill:nth-of-type(3) {
+      width: 100%;
+      top: 50%;
+      transform: scaleX(1) translateY(-50%);
+    }
+
+    // animation
+
+    // .fill:nth-of-type(1) .before,
+    // .fill:nth-of-type(2) .before,
+    // .fill:nth-of-type(3) .before {
+    //   animation-name: trigger_default_animation;
+    //   animation-duration: 4s;
+    //   animation-iteration-count: infinite;
+    //   animation-fill-mode: forwards;
+    //   animation-delay: 0.5s;
+    // }
+    // .fill:nth-of-type(2) .before {
+    //   animation-delay: 1s;
+    // }
+    // .fill:nth-of-type(3) .before {
+    //   animation-delay: 0.75s;
+    // }
+  }
+
+  // hover
+
+  &:hover &_button .open {
+    // background: yellow;
+    .fill:nth-of-type(1) .before,
+    .fill:nth-of-type(2) .before,
+    .fill:nth-of-type(3) .before {
+      opacity: 0.6;
+      animation-name: trigger_hover_animation;
+      animation-duration: 0.5s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      animation-delay: 0.2s;
+    }
+    .fill:nth-of-type(2) .before {
+      animation-delay: 0.6s;
+    }
+    .fill:nth-of-type(3) .before {
+      animation-delay: 0.4s;
+    }
+
+    .fill:nth-of-type(1) .after,
+    .fill:nth-of-type(2) .after,
+    .fill:nth-of-type(3) .after {
+      width: 0;
+    }
+  }
+
+  // drawer open
+
+  .drawer-active &_button .open {
+    opacity: 0;
+    .fill:nth-of-type(1),
+    .fill:nth-of-type(2),
+    .fill:nth-of-type(3) {
+      transform: scaleX(0.5) translateY(-50%);
+      opacity: 0;
+    }
+  }
+
+  // ---------------------------------------------
+  // CLOSE
+  // ---------------------------------------------
+
+  // default
+
+  &_button .close {
+    transition: opacity 0.5s 0.5s;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0;
+    transform-origin: center;
+
+    .fill {
+      transition: all 0.25s 0.2s;
+      position: absolute;
+      display: block;
+      height: 2px;
+      width: 100%;
+
+      .before,
+      .after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .before {
+        z-index: 1;
+      }
+      .after {
+        z-index: 0;
+      }
+    }
+
+    .fill:nth-of-type(1),
+    .fill:nth-of-type(2) {
+      top: 50%;
+      left: 50%;
+      width: 0;
+      transition: all 0.25s 0s;
+      opacity: 0;
+    }
+    .fill:nth-of-type(1) {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .fill:nth-of-type(2) {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    // animation
+
+    // .fill {
+    //   .before {
+    //     animation-name: trigger_default_animation;
+    //     animation-duration: 5s;
+    //     animation-iteration-count: infinite;
+    //     animation-fill-mode: forwards;
+    //     animation-delay: 0.75s;
+    //   }
+    // }
+    // .fill:nth-of-type(1) {
+    //   .before {
+    //     animation-delay: 0.5s;
+    //   }
+    // }
+  }
+
+  // hover
+
+  &:hover &_button .close {
+    .fill .before {
+      animation-name: trigger_hover_animation;
+      animation-duration: 0.5s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      animation-delay: 0.5s;
+    }
+    .fill:nth-of-type(2) .before {
+      animation-delay: 0.7s;
+    }
+  }
+
+  // drawer open
+
+  .drawer-active &_button .close {
+    opacity: 1;
+    .fill:nth-of-type(1),
+    .fill:nth-of-type(2) {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+
+  // ---------------------------------------------
+  // KEYFRAMES
+  // ---------------------------------------------
+
+  @keyframes trigger_default_animation {
+    0% {
+      left: auto;
+      right: 0;
+      width: 100%;
+    }
+    10% {
+      left: auto;
+      right: 0;
+      width: 0;
+    }
+    30% {
+      left: 0;
+      right: auto;
+      width: 0;
+    }
+    40% {
+      left: 0;
+      right: auto;
+      width: 100%;
+    }
+  }
+
+  @keyframes trigger_hover_animation {
+    0% {
+      left: auto;
+      right: 0;
+      width: 100%;
+    }
+    40% {
+      left: auto;
+      right: 0;
+      width: 0;
+    }
+    60% {
+      left: 0;
+      right: auto;
+      width: 0;
+    }
+    100% {
+      left: 0;
+      right: auto;
+      width: 100%;
+    }
+  }
+
+  // ---------------------------------------------
+  // color
+  // ---------------------------------------------
+
+  // .drawer-active &_button span {
+  //   background-color: variables.$primary;
+  // }
+  .drawer-active &_button span .fill .before {
+    background-color: variables.$primary-black;
+  }
+  // .common_menu_scroll &_button span{background-color: black;}
+  // .drawer-active.common_menu_scroll &_button span{background-color: white;}
+
+  // ---------------------------------------------
+  // COLOR
+  // ---------------------------------------------
+
+  &_button .open {
+    .fill {
+      .before {
+        z-index: 1;
+      }
+      .after {
+        z-index: 0;
+      }
+    }
+  }
+}

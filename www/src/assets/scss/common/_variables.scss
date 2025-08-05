@@ -1,0 +1,31 @@
+$primary: #c81b21;
+$primary-light: #5fb7ad;
+$primary-white: #e5f4f2;
+$primary-dark: #047c6e;
+$primary-black: #044586;
+$primary-gray: #6397c3;
+// $primary: #0055ff;
+// $primary-light: #4d88ff;
+// $primary-dark: #06339a;
+// $primary-black: #04297d;
+$secondary: #ed872a;
+$secondary-light: #e7a428;
+$secondary-dark: #cf1717;
+$bg-back: #f4f3ee;
+$bg-back-dark: #ebeae7;
+$gray: #e5e7eb;
+$gray-light: #f6f6f6;
+$contrast: #333333;
+
+$breakpoints: (
+  "sm": "screen and (min-width: 480px)",
+  "md": "screen and (min-width: 840px)",
+  "lg": "screen and (min-width: 1080px)",
+  "xl": "screen and (min-width: 1280px)",
+  "2xl": "screen and (min-width: 1440px)",
+) !default;
+@mixin res($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}

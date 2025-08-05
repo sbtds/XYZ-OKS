@@ -1,0 +1,30 @@
+/* ローディングコンテナのスタイル */
+#loading_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+#loading_container.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* メインコンテナのスタイル */
+#main_container {
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+}
+
+#main_container.fade-in {
+  opacity: 1;
+}

@@ -1,0 +1,65 @@
+@use "../common/_variables";
+
+.hero-002 {
+  position: relative;
+  overflow: hidden;
+  // background-color: black;
+
+  &__copyright {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    writing-mode: vertical-rl;
+  }
+
+  .__frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 2px;
+    background: white;
+
+    &_anime {
+      animation-name: __frame-animation;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+    }
+  }
+
+  @keyframes __frame-animation {
+    0% {
+      width: 0;
+      left: 0;
+      right: auto;
+    }
+    48% {
+      width: 100%;
+      left: 0;
+      right: auto;
+    }
+    52% {
+      width: 100%;
+      left: auto;
+      right: 0;
+    }
+    100% {
+      width: 0%;
+      left: auto;
+      right: 0;
+    }
+  }
+
+  .__title {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+  }
+
+  .__main {
+    position: relative;
+  }
+}

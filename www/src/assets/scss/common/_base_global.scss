@@ -1,0 +1,219 @@
+@use "_variables";
+
+.common_global {
+  position: fixed;
+  z-index: 9999999;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%; // 100vh から 100% に変更
+  height: -webkit-fill-available; // iPhone Safari 対応
+  max-height: 100vh;
+
+  background: #fff;
+  top: 0;
+  right: 0;
+
+  @include variables.res(lg) {
+    display: none !important;
+  }
+
+  &__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+
+    padding: 0 3vw;
+    height: 70px;
+
+    @include variables.res(lg) {
+      height: 170px;
+    }
+  }
+
+  .common_header__logo {
+  }
+
+  &__main {
+    // padding-top: 160px;
+    padding-top: 40px;
+    padding-top: 40px;
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__inner {
+    pointer-events: auto;
+    max-height: 100vh; // 100% から 100vh に変更
+    width: 100%;
+    overflow-y: auto;
+    // padding-bottom: 180px;
+    padding-bottom: 10vw;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // &__container {
+  //   margin-left: auto;
+  //   margin-right: auto;
+  //   padding: 0 40px;
+  //   max-width: 640px;
+  // }
+
+  // &__info {
+  //   display: block;
+  //   width: 100%;
+  //   color: white;
+  //   // margin-left: auto;
+  //   // margin-right: auto;
+  //   // padding: 0 40px;
+  //   // max-width: 860px;
+  // }
+
+  &__list {
+    display: block;
+    width: 100%;
+    list-style: none;
+
+    // @media (max-width: 575.98px) {}
+  }
+
+  &__item {
+    // margin-top: 40px;
+
+    @keyframes char_hover_animation {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      50% {
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    a {
+      display: inline-block;
+      color: inherit;
+      // color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 20px 0;
+      text-align: center;
+      width: 100%;
+      // border: 1px solid red;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .label {
+      display: flex;
+      margin-bottom: 5px;
+      line-height: 1;
+      font-size: 130%;
+      // font-family: 'Montserrat',serif;
+      // font-size: 3.2rem;
+      letter-spacing: 0.1em;
+      overflow: hidden;
+      // font-weight: 500;
+    }
+
+    .caption {
+      display: inline-block;
+      display: flex;
+      align-items: center;
+      // font-size: 0.9rem;
+      font-size: 75%;
+      letter-spacing: 0.1em;
+      transition: all 250ms;
+      color: #000;
+    }
+  }
+
+  &__side {
+    margin-top: 10vw;
+    display: flex;
+    gap: 4vw;
+  }
+}
+
+.common_global {
+  // transition: transform 0s ease 1500ms, opacity 0s ease 1500ms, visibility 0s ease 1500ms;
+  transition: transform 0s ease 500ms, opacity 0s ease 500ms, visibility 0s ease 500ms; // 1500ms → 500ms
+
+  opacity: 0;
+  visibility: hidden;
+
+  // &__overlay{
+  //   transition: opacity 300ms ease 0, visibility 0s ease 0;
+  //   position: fixed;
+  //   z-index: 99;
+  //   left: -100%;
+  //   top: -100%;
+  //   right: -100%;
+  //   bottom: -100%;
+  //   background: rgba(black,0.6);
+  //   opacity: 0;
+  //   visibility: hidden;
+  // }
+
+  &__main {
+    transition: transform 500ms ease-out 0ms, opacity 500ms ease-out 0ms, visibility 500ms ease-out 0ms;
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.drawer-active {
+  overflow: hidden;
+
+  // .main_container{
+  //   filter: blur(6px);
+  // }
+
+  .common_global {
+    // z-index: 999;
+    transform: scale(1);
+    transition-delay: 0s;
+    opacity: 1;
+    visibility: visible;
+
+    &__bg {
+      .bg {
+        .fill {
+          height: 100%;
+
+          @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+              transition-delay: calc(0.08s * $i);
+            }
+          }
+        }
+      }
+    }
+
+    &__main {
+      transition: transform 0s ease 500ms, opacity 0s ease 500ms, visibility 0s ease 500ms; // 1500ms → 500ms
+
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &__overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
