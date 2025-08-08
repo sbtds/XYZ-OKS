@@ -1,0 +1,447 @@
+/**
+ * Job Search Styles
+ */
+
+/* Container */
+.job-search-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Search Form */
+.oks-job-search-form {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.search-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.search-section:last-child {
+    border-bottom: none;
+}
+
+.search-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    border-left: 4px solid #0073aa;
+    padding-left: 10px;
+}
+
+/* Prefecture & City Selection */
+.prefecture-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.prefecture-group {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.prefecture-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px;
+    background: #f0f0f0;
+    border-radius: 3px;
+}
+
+.prefecture-label:hover {
+    background: #e0e0e0;
+}
+
+.prefecture-checkbox {
+    margin-right: 8px;
+}
+
+.prefecture-name {
+    flex: 1;
+}
+
+.toggle-cities {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.city-list {
+    margin-top: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.city-label {
+    display: block;
+    padding: 3px 0 3px 20px;
+    cursor: pointer;
+}
+
+.city-label:hover {
+    background: #f5f5f5;
+}
+
+.city-label input {
+    margin-right: 5px;
+}
+
+/* Job Type Selection */
+.job-type-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.job-type-label {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.job-type-label:hover {
+    background: #f0f0f0;
+}
+
+.job-type-label input {
+    margin-right: 8px;
+}
+
+/* Salary Range */
+.salary-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.salary-select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 150px;
+}
+
+.salary-separator {
+    font-weight: bold;
+    color: #666;
+}
+
+/* Conditions */
+.condition-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+}
+
+.condition-label {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.condition-label:hover {
+    background: #f0f0f0;
+}
+
+.condition-label input {
+    margin-right: 8px;
+}
+
+/* Keyword Search */
+.keyword-search input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Search Buttons */
+.search-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.search-submit, .search-reset {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.search-submit {
+    background: #0073aa;
+    color: white;
+}
+
+.search-submit:hover {
+    background: #005a87;
+}
+
+.search-reset {
+    background: #666;
+    color: white;
+}
+
+.search-reset:hover {
+    background: #555;
+}
+
+/* Results Section */
+.search-results-section {
+    margin-top: 30px;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+.results-summary {
+    font-weight: bold;
+    color: #333;
+}
+
+.results-sort select {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+/* Job Items */
+.job-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s;
+}
+
+.job-item:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.job-header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.job-title {
+    margin: 0 0 5px 0;
+    font-size: 1.3em;
+}
+
+.job-title a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.job-title a:hover {
+    text-decoration: underline;
+}
+
+.job-company {
+    color: #666;
+    font-size: 1.1em;
+}
+
+.job-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.job-details > div {
+    display: flex;
+    align-items: center;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #333;
+    margin-right: 5px;
+    min-width: 60px;
+}
+
+.detail-value {
+    color: #555;
+}
+
+.job-conditions {
+    margin-bottom: 15px;
+}
+
+.condition-tag {
+    display: inline-block;
+    background: #e8f4f8;
+    color: #0073aa;
+    padding: 3px 8px;
+    margin: 2px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.job-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.job-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+.job-updated {
+    color: #888;
+    font-size: 0.9em;
+}
+
+.job-detail-link {
+    background: #0073aa;
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.job-detail-link:hover {
+    background: #005a87;
+}
+
+/* Pagination */
+.pagination-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.pagination {
+    display: inline-flex;
+    gap: 5px;
+}
+
+.pagination a, .pagination span {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #0073aa;
+    border-radius: 3px;
+}
+
+.pagination a:hover {
+    background: #f0f0f0;
+}
+
+.pagination .page-current {
+    background: #0073aa;
+    color: white;
+    border-color: #0073aa;
+}
+
+/* Messages */
+.loading, .no-results, .error-message {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 1.1em;
+}
+
+.error-message {
+    color: #d63638;
+    background: #fcf0f1;
+    border: 1px solid #d63638;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .job-search-page {
+        padding: 10px;
+    }
+    
+    .oks-job-search-form {
+        padding: 20px;
+    }
+    
+    .prefecture-list,
+    .job-type-list,
+    .condition-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .salary-range {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .results-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .job-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .job-footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}

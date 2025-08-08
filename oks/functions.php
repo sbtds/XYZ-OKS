@@ -24,6 +24,16 @@ add_action('after_setup_theme', 'oks_theme_setup');
 
 function oks_enqueue_styles() {
     wp_enqueue_style('oks-style', get_stylesheet_uri(), array(), '1.0.0');
+    
+    // Enqueue single job styles for job detail pages
+    if (is_singular('job')) {
+        wp_enqueue_style(
+            'oks-single-job',
+            get_template_directory_uri() . '/assets/css/single-job.css',
+            array('oks-style'),
+            '1.0.0'
+        );
+    }
 }
 add_action('wp_enqueue_scripts', 'oks_enqueue_styles');
 
@@ -39,3 +49,17 @@ function oks_widgets_init() {
     ));
 }
 add_action('widgets_init', 'oks_widgets_init');
+
+/**
+ * Include CSV Import functionality
+ */
+if (file_exists(get_template_directory() . '/includes/csv-import/csv-import-loader.php')) {
+    require_once get_template_directory() . '/includes/csv-import/csv-import-loader.php';
+}
+
+/**
+ * Include Job Search functionality
+ */
+if (file_exists(get_template_directory() . '/includes/job-search/job-search-loader.php')) {
+    require_once get_template_directory() . '/includes/job-search/job-search-loader.php';
+}

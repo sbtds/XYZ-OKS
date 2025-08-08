@@ -1,0 +1,67 @@
+/**
+ * CSV Import Admin Styles
+ */
+
+.oks-import-container {
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.oks-import-form {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.oks-import-form .form-table th {
+    width: 200px;
+}
+
+.oks-import-notes {
+    margin-top: 30px;
+    background: #f1f1f1;
+    padding: 20px;
+    border-left: 4px solid #0073aa;
+}
+
+.oks-import-notes h3 {
+    margin-top: 0;
+    color: #23282d;
+}
+
+.oks-import-notes ul {
+    margin-left: 20px;
+}
+
+.oks-import-notes ol {
+    margin-left: 20px;
+    column-gap: 20px;
+}
+
+.oks-import-notes ol li {
+    break-inside: avoid;
+    margin-bottom: 5px;
+}
+
+/* Notices */
+.notice {
+    margin: 20px 0 10px 0 !important;
+}
+
+/* File input styling */
+input[type="file"] {
+    padding: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+
+/* Radio buttons */
+.oks-import-form input[type="radio"] {
+    margin-right: 5px;
+}
+
+.oks-import-form label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
