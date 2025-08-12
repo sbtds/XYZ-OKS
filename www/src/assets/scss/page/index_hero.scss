@@ -109,6 +109,7 @@
       // width: calc(100% - 40px);
       margin-left: auto;
       margin-right: auto;
+
       padding-bottom: 40px;
       // @include variables.res(xl) {
       //   padding-top: 120px;
@@ -116,6 +117,7 @@
       @include variables.res(lg) {
         // padding-top: 190px;
         // height: 100%;
+        // padding: 0;
         width: 50%;
         max-width: 926px;
         padding: 0 2%;
@@ -133,6 +135,9 @@
     }
 
     &_title {
+      width: calc(100% - 40px);
+      margin-left: auto;
+      margin-right: auto;
       // width: 92%;
       // max-width: 924px;
       // margin-left: auto;
@@ -140,11 +145,15 @@
       margin-bottom: 20px;
       @include variables.res(lg) {
         margin-left: 0;
+        width: 100%;
         margin-bottom: min(3vw, 25px);
       }
     }
 
     &_text {
+      width: calc(100% - 40px);
+      margin-left: auto;
+      margin-right: auto;
       // width: 92%;
       // margin-left: auto;
       // margin-right: auto;
@@ -158,6 +167,7 @@
       @include variables.res(lg) {
         margin-bottom: 15px;
         margin-left: 0;
+        width: 100%;
         // margin-bottom: min(5vw, 75px);
 
         // font-size: 28px;
@@ -201,7 +211,9 @@
       // width: 92%;
       // margin-left: auto;
       // margin-right: auto;
-      width: 100%;
+      width: calc(100% - 40px);
+      margin-left: auto;
+      margin-right: auto;
       margin-top: 0;
 
       @include variables.res(lg) {
@@ -305,7 +317,7 @@
 
     &_frame03 {
       position: absolute;
-      bottom: 45vw;
+      bottom: 52vw;
       // top: 70vw;
       right: 0vw;
       // width: calc(45 / 375 * 100vw);
