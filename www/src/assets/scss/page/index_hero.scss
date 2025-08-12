@@ -1,65 +1,370 @@
 @use "../common/_variables";
 
-.hero-002 {
-  position: relative;
-  overflow: hidden;
-  // background-color: black;
-
-  &__copyright {
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    writing-mode: vertical-rl;
-  }
-
-  .__frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translateY(-50%);
-    width: 50px;
-    height: 2px;
-    background: white;
-
-    &_anime {
-      animation-name: __frame-animation;
-      animation-duration: 3s;
-      animation-iteration-count: infinite;
-    }
-  }
-
-  @keyframes __frame-animation {
-    0% {
-      width: 0;
-      left: 0;
-      right: auto;
-    }
-    48% {
-      width: 100%;
-      left: 0;
-      right: auto;
-    }
-    52% {
-      width: 100%;
-      left: auto;
-      right: 0;
-    }
-    100% {
-      width: 0%;
-      left: auto;
-      right: 0;
-    }
-  }
-
-  .__title {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translateY(-100%);
-  }
-
-  .__main {
+.index_hero {
+  &__main {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    @include variables.res(lg) {
+      flex-direction: row-reverse;
+    }
+
+    &_visual {
+      position: relative;
+
+      flex: 0 0 calc(100% - 20px);
+      margin-left: 20px;
+      height: 84vw;
+      max-height: auto;
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px;
+
+      @include variables.res(lg) {
+        flex: 0 0 42%;
+        height: 42.5vw;
+        // height: 100%;
+        gap: 10px;
+        margin-left: 0;
+      }
+      @include variables.res(xl) {
+        height: 746px;
+      }
+
+      &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        content: "";
+        width: 100%;
+        height: calc(100% + 10px);
+        background: variables.$primary;
+        border-radius: 0 0 0 40px;
+
+        @include variables.res(lg) {
+          left: 20px;
+          height: calc(100% + 20px);
+        }
+      }
+
+      .image01 {
+        position: relative;
+        z-index: 1;
+        // aspect-ratio: 1.1;
+        box-shadow: 0 0 4px 0 rgba(#000, 0.25);
+        flex: 0 0 calc(50% - 2px);
+        @include variables.res(lg) {
+          // aspect-ratio: initial;
+          // height: calc(50% - 5px);
+          flex: 0 0 calc(50% - 5px);
+          max-height: 368px;
+        }
+      }
+      .image02 {
+        position: relative;
+        z-index: 1;
+        // aspect-ratio: 1.1;
+        box-shadow: 0 0 4px 0 rgba(#000, 0.25);
+        flex: 0 0 calc(50% - 2px);
+        @include variables.res(lg) {
+          // aspect-ratio: initial;
+          // height: calc(50% - 4px);
+          flex: 0 0 calc(50% - 5px);
+          max-height: 368px;
+        }
+      }
+      .image03 {
+        position: relative;
+        z-index: 1;
+        flex: 0 0 100%;
+        // aspect-ratio: 2.2;
+        box-shadow: 0 0 4px 0 rgba(#000, 0.25);
+        border-radius: 0 0 0 40px;
+        overflow: hidden;
+        width: 100%;
+
+        @include variables.res(lg) {
+          max-height: 368px;
+        }
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.index_hero {
+  &__main {
+    &_contents {
+      position: relative;
+      padding-top: 40px;
+      width: 100%;
+      // width: calc(100% - 40px);
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 40px;
+      // @include variables.res(xl) {
+      //   padding-top: 120px;
+      // }
+      @include variables.res(lg) {
+        // padding-top: 190px;
+        // height: 100%;
+        width: 50%;
+        max-width: 926px;
+        padding: 0 2%;
+        display: flex;
+        align-items: center;
+        // height: 746px;
+        height: 42.5vw;
+
+        padding-top: 90px;
+      }
+      @include variables.res(xl) {
+        height: 746px;
+        padding-top: 160px;
+      }
+    }
+
+    &_title {
+      // width: 92%;
+      // max-width: 924px;
+      // margin-left: auto;
+      // margin-right: auto;
+      margin-bottom: 20px;
+      @include variables.res(lg) {
+        margin-left: 0;
+        margin-bottom: min(3vw, 25px);
+      }
+    }
+
+    &_text {
+      // width: 92%;
+      // margin-left: auto;
+      // margin-right: auto;
+      line-height: 1.4;
+      // font-weight: 700;
+      // font-size: min(5.8vw, 28px);
+      // font-size: 5.8vw;
+      margin-bottom: 10px;
+      // font-size: min($numbers: );
+      // font-size: 20px;
+      @include variables.res(lg) {
+        margin-bottom: 15px;
+        margin-left: 0;
+        // margin-bottom: min(5vw, 75px);
+
+        // font-size: 28px;
+        // font-size: min(1.52vw, 28px);
+      }
+
+      // font-size: 5.2vw;
+      // @include variables.res(sm) {
+      //   font-size: 24px;
+      // }
+      // @include variables.res(lg) {
+      //   font-size: 28px;
+      // }
+    }
+
+    &_bg {
+      // overflow: hidden;
+      width: 100%;
+      // border: 1px solid #000;
+      margin-bottom: 15px;
+      @include variables.res(lg) {
+        margin-bottom: 0;
+      }
+
+      img {
+        width: 100%;
+        @include variables.res(lg) {
+          width: 57vw;
+          max-width: initial;
+        }
+        @include variables.res(xl) {
+          width: 1108px;
+          max-width: initial;
+        }
+      }
+    }
+
+    &_button {
+      z-index: 99;
+      position: relative;
+      // width: 92%;
+      // margin-left: auto;
+      // margin-right: auto;
+      width: 100%;
+      margin-top: 0;
+
+      @include variables.res(lg) {
+        width: 92%;
+        max-width: 577px;
+        margin-top: -40px;
+        margin-left: 0;
+      }
+      @include variables.res(xl) {
+        width: 92%;
+        max-width: 577px;
+        margin-top: -70px;
+        margin-left: 0;
+      }
+    }
+
+    &_arrow01 {
+      position: absolute;
+      left: 35px;
+      top: -10px;
+      transform: translateY(-100%);
+      height: 120px;
+      width: 16px;
+    }
+    &_arrow02 {
+      position: absolute;
+      left: -52px;
+      top: 200px;
+      transform: translateX(-100%);
+      height: 16px;
+      width: 120px;
+    }
+    &_arrow03 {
+      position: absolute;
+      right: -20px;
+      top: -40px;
+      // transform: translateX(-100%);
+      height: 16px;
+      width: 120px;
+    }
+  }
+}
+
+.index_hero {
+  &__main {
+    &_frame {
+      // position: absolute;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &_frame01 {
+      position: absolute;
+      top: 6vw;
+      left: -1vw;
+      // width: calc(45 / 375 * 100vw);
+      width: 7vw;
+      z-index: 0;
+
+      @include variables.res(lg) {
+        z-index: 999;
+        top: 42px;
+        left: -1vw;
+        width: 6vw;
+        height: 10vw;
+      }
+      @include variables.res(xl) {
+        top: 42px;
+        left: -47px;
+        width: 150px;
+        height: 250px;
+      }
+    }
+
+    &_frame02 {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(45 / 375 * 100vw);
+      z-index: 999;
+
+      @include variables.res(lg) {
+        display: block;
+        top: 0;
+        left: 50%;
+        transform: translateX(4vw);
+        width: 6vw;
+        height: 7vw;
+      }
+      @include variables.res(xl) {
+        top: 0;
+        left: 50%;
+        transform: translateX(4vw);
+        width: 122px;
+        height: 144px;
+      }
+    }
+
+    &_frame03 {
+      position: absolute;
+      bottom: 45vw;
+      // top: 70vw;
+      right: 0vw;
+      // width: calc(45 / 375 * 100vw);
+      width: 5vw;
+      z-index: 999;
+
+      @include variables.res(lg) {
+        bottom: -10px;
+        right: 0;
+        transform: translateX(2vw);
+        width: 8vw;
+        height: 10vw;
+      }
+      @include variables.res(xl) {
+        bottom: -10px;
+        right: 0;
+        transform: translateX(2vw);
+        width: 122px;
+        height: 144px;
+      }
+    }
+
+    // &_bg {
+    //   position: absolute;
+    //   bottom: 170px;
+    //   left: -50vw;
+    //   // width: 170vw;
+    //   height: 90px;
+    //   width: auto;
+
+    //   img {
+    //     height: 100%;
+    //     width: auto;
+    //     max-width: initial;
+    //   }
+
+    //   @include variables.res(lg) {
+    //     width: 1108px;
+    //     height: auto;
+
+    //     left: 50%;
+    //     bottom: 120px;
+    //     transform: translateX(-840px);
+    //   }
+    // }
+
+    &_arrow01 {
+      position: absolute;
+    }
+    &_arrow02 {
+      position: absolute;
+    }
+    &_arrow03 {
+      position: absolute;
+    }
+  }
+}
+
+.index_hero {
+  &__slide {
   }
 }

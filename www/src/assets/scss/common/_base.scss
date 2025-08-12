@@ -60,3 +60,12 @@ body {
 //     height: 4px;
 //   }
 // }
+
+main.index_main,
+main.page_main {
+  padding-top: 70px;
+
+  @include variables.res(lg) {
+    padding-top: 170px;
+  }
+}

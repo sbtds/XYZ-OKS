@@ -10,7 +10,7 @@
 }
 
 .container-hero {
-  @apply mx-auto lg:px-14 w-full max-w-[1680px];
+  @apply mx-auto w-full max-w-[1680px] relative;
 }
 
 .container-wide {

@@ -1,0 +1,184 @@
+@use "_variables";
+
+// Typography styles based on Figma design
+
+// Font family variables
+$font-family-primary: "Noto Sans JP", sans-serif;
+// $font-family-display: "FV-title", serif;
+$font-family-section: "Ro GSan Serif", serif;
+
+// Font weight variables
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// Typography styles
+.text {
+  // Display fonts
+  // &-fv-title {
+  //   font-family: $font-family-display;
+  //   font-size: 69px;
+  //   line-height: 1.275; // 69/87 ≈ 1.26
+  //   font-weight: 400;
+  // }
+
+  &-section-title {
+    font-family: $font-family-section;
+    font-size: 64px;
+    line-height: 1.844; // 64/118 ≈ 1.84
+    font-weight: 400;
+  }
+
+  // Noto Sans JP styles
+  &-h1 {
+    font-family: $font-family-primary;
+    font-size: 40px;
+    line-height: 1; // 40/Auto
+    font-weight: $font-weight-bold;
+  }
+
+  &-h2 {
+    font-family: $font-family-primary;
+    line-height: 1; // 32/Auto
+    font-weight: $font-weight-medium;
+
+    font-size: min(4.8vw, 24px);
+    // font-size: 20px;
+    @include variables.res(lg) {
+      // font-size: 32px;
+      font-size: min(1.9vw, 32px);
+    }
+  }
+
+  &-h3 {
+    font-family: $font-family-primary;
+    // font-size: 28px;
+    // line-height: 1; // 28/Auto
+    font-weight: $font-weight-medium;
+
+    // font-size: 5.2vw;
+    font-size: min(5.1vw, 24px);
+    @include variables.res(xl) {
+      font-size: 28px;
+    }
+  }
+
+  &-h4 {
+    font-family: $font-family-primary;
+    line-height: 1; // 24/Auto
+    font-weight: $font-weight-bold;
+
+    font-size: min(4.8vw, 20px);
+    @include variables.res(xl) {
+      font-size: 24px;
+    }
+  }
+
+  &-h5 {
+    font-family: $font-family-primary;
+    font-size: 20px;
+    line-height: 1; // 20/Auto
+    font-weight: $font-weight-bold;
+  }
+
+  &-h6 {
+    font-family: $font-family-primary;
+    font-size: 18px;
+    line-height: 1; // 18/Auto
+    font-weight: $font-weight-semibold;
+  }
+
+  // Body text styles
+  &-body-bold {
+    font-family: $font-family-primary;
+    font-size: 18px;
+    line-height: 1; // 18/Auto
+    font-weight: $font-weight-bold;
+  }
+
+  &-body-black {
+    font-family: $font-family-primary;
+    font-size: 16px;
+    line-height: 1; // 16/Auto
+    font-weight: $font-weight-black;
+  }
+
+  &-body-semibold {
+    font-family: $font-family-primary;
+    font-size: 16px;
+    line-height: 1; // 16/Auto
+    font-weight: $font-weight-semibold;
+  }
+
+  &-body-regular {
+    font-family: $font-family-primary;
+    font-size: 16px;
+    line-height: 1.312; // 16/21.2 ≈ 1.32
+    font-weight: $font-weight-regular;
+  }
+
+  &-small {
+    font-family: $font-family-primary;
+    font-size: 14px;
+    line-height: 1; // 14/Auto
+    font-weight: $font-weight-regular;
+  }
+
+  &-small-bold {
+    font-family: $font-family-primary;
+    font-size: 14px;
+    line-height: 1; // 14/Auto
+    font-weight: $font-weight-bold;
+  }
+
+  &-caption {
+    font-family: $font-family-primary;
+    font-size: 12px;
+    line-height: 1; // 12/Auto
+    font-weight: $font-weight-regular;
+  }
+
+  &-caption-black {
+    font-family: $font-family-primary;
+    font-size: 12px;
+    line-height: 1; // 12/Auto
+    font-weight: $font-weight-black;
+  }
+}
+
+// Utility classes
+.font {
+  &-primary {
+    font-family: $font-family-primary;
+  }
+
+  // &-display {
+  //   font-family: $font-family-display;
+  // }
+
+  &-section {
+    font-family: $font-family-section;
+  }
+
+  &-regular {
+    font-weight: $font-weight-regular;
+  }
+
+  &-medium {
+    font-weight: $font-weight-medium;
+  }
+
+  &-semibold {
+    font-weight: $font-weight-semibold;
+  }
+
+  &-bold {
+    font-weight: $font-weight-bold;
+  }
+
+  &-black {
+    font-weight: $font-weight-black;
+  }
+}
