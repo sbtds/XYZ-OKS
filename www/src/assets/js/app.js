@@ -5,6 +5,7 @@ import "./module/navigation-scroll";
 import "./module/navigation-current";
 import "./module/smooth-scroll";
 import "./module/pagetop-control";
+import "./module/swiper";
 
 // FontAwesome
 import "./module/fontawesome";

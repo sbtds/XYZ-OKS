@@ -1,5 +1,6 @@
 @use "../common/_variables";
 
+// Main
 .index_hero {
   &__main {
     position: relative;
@@ -376,7 +377,34 @@
   }
 }
 
+// Slide
 .index_hero {
   &__slide {
+    margin-top: 0;
+    background: variables.$primary;
+
+    @include variables.res(lg) {
+      margin-top: 80px;
+    }
+
+    &_list {
+      padding: 20px 10px;
+    }
+    &_item {
+      padding: 10px;
+
+      a {
+        display: block;
+        width: 100%;
+        aspect-ratio: 600 / 420;
+        overflow: hidden;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
   }
 }
