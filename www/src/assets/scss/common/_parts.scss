@@ -1,9 +1,49 @@
 @use "_variables";
 
-.box {
-  padding: 20px;
-  background: variables.$primary;
+// .box {
+//   padding: 20px;
+//   background: variables.$primary;
+// }
+
+// -------------------------------------------------
+// responsive
+// -------------------------------------------------
+
+.sp-only {
+  display: block;
+  @include variables.res(lg) {
+    display: none;
+  }
 }
+
+.md-only {
+  display: block;
+  @include variables.res(md) {
+    display: none;
+  }
+}
+
+.pc-only {
+  display: none;
+  @include variables.res(lg) {
+    display: block;
+  }
+}
+
+// -------------------------------------------------
+// margin padding
+// -------------------------------------------------
+
+.pt {
+  padding-top: 60px;
+  @include variables.res(lg) {
+    padding-top: 80px;
+  }
+}
+
+// -------------------------------------------------
+// hover img
+// -------------------------------------------------
 
 .hover-image {
   overflow: hidden;
@@ -31,7 +71,10 @@ a:hover,
   border-radius: 10px;
 }
 
-// link
+// -------------------------------------------------
+// hover text
+// -------------------------------------------------
+
 .hover-underline {
   display: inline-block;
   position: relative;
@@ -84,13 +127,18 @@ a:hover .hover-underline-menu {
   text-decoration: underline;
 }
 
+// -------------------------------------------------
 // tab
+// -------------------------------------------------
 
+// -------------------------------------------------
 // accordion
+// -------------------------------------------------
 
-// button
-
+// -------------------------------------------------
 // picture要素のスタイル修正
+// -------------------------------------------------
+
 picture {
   display: block;
   position: relative;
@@ -117,6 +165,56 @@ picture {
   }
 }
 
+// -------------------------------------------------
+// title
+// -------------------------------------------------
+
+.title_section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  // border: 1px sol
+  margin-bottom: 40px;
+  height: 25px;
+  @include variables.res(lg) {
+    margin-bottom: 80px;
+    height: 60px;
+  }
+
+  &.h55 {
+    height: 55px;
+    @include variables.res(lg) {
+      height: 60px;
+    }
+  }
+
+  img {
+    height: 100%;
+    width: auto;
+  }
+
+  .caption {
+    font-size: 1rem;
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+  }
+
+  &.white {
+    color: white;
+  }
+}
+
+// -------------------------------------------------
+// button
+// -------------------------------------------------
+
+.button_section {
+  text-align: center;
+}
 // .button {
 //   position: relative;
 //   align-items: center;
@@ -261,23 +359,104 @@ picture {
   }
 }
 
-.sp-only {
-  display: block;
+.button_more {
+  transition: all 300ms;
+  margin-left: auto;
+  margin-right: auto;
+
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  background: variables.$primary;
+  border: 1px solid variables.$primary;
+  color: white;
+  width: 100%;
+  max-width: initial;
+  height: 50px;
+  line-height: 47.5px;
+  border-radius: 5px;
+  font-weight: bold;
+
   @include variables.res(lg) {
-    display: none;
+    max-width: 310px;
+  }
+
+  &:hover {
+    background-color: white;
+    color: variables.$primary;
+  }
+
+  &.white {
+    background-color: white;
+    color: variables.$primary;
+
+    &:hover {
+      background: variables.$primary;
+      border: 1px solid white;
+      color: white;
+    }
+  }
+
+  .label {
+    font-size: calc(16 / 18 * 1rem);
+    letter-spacing: 0.04em;
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
   }
 }
 
-.md-only {
-  display: block;
-  @include variables.res(md) {
-    display: none;
-  }
-}
+.button_search {
+  transition: all 300ms;
+  margin-left: auto;
+  margin-right: auto;
 
-.pc-only {
-  display: none;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  background: variables.$primary;
+  border: 1px solid variables.$primary;
+  color: white;
+  width: 250px;
+  max-width: initial;
+  height: 75px;
+  line-height: 47.5px;
+  border-radius: 5px;
+  font-weight: bold;
+
   @include variables.res(lg) {
-    display: block;
+    max-width: 310px;
+  }
+
+  &:hover {
+    background-color: white;
+    color: variables.$primary;
+  }
+
+  &.white {
+    background-color: white;
+    color: variables.$primary;
+
+    &:hover {
+      background: variables.$primary;
+      border: 1px solid white;
+      color: white;
+    }
+  }
+
+  .label {
+    font-size: calc(16 / 18 * 1rem);
+    letter-spacing: 0.04em;
+  }
+
+  .icon {
+    // position: absolute;
+    // top: 50%;
+    // left: 20px;
+    // transform: translateY(-50%);
   }
 }

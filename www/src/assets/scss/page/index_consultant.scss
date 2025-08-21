@@ -1,0 +1,154 @@
+@use "../common/_variables";
+
+// Main
+.index_consultant {
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: variables.$primary;
+  color: white;
+
+  @include variables.res(lg) {
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  // &__frame {
+  //   background-color: variables.$primary;
+  //   width: 100%;
+  //   height: 460px;
+  //   position: absolute;
+  //   bottom: 0;
+  //   left: 0;
+  //   z-index: 0;
+  // }
+  &__container {
+    position: relative;
+    z-index: 1;
+    // max-width: 1150px;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__desc {
+    font-size: 0.88rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    padding: 0 0px;
+    margin-bottom: 14vw;
+
+    @include variables.res(lg) {
+      margin-bottom: 80px;
+      width: 740px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16vw;
+    flex-direction: column;
+
+    @include variables.res(lg) {
+      flex-direction: row;
+      gap: 55px;
+    }
+  }
+
+  &__item {
+    box-sizing: border-box;
+    // display: flex;
+    // align-items: stretch;
+    // border-radius: 10px;
+    // overflow: hidden;
+    // width: 100%;
+    // height: 90px;
+    // border: 2px solid variables.$primary;
+
+    @include variables.res(lg) {
+      height: auto;
+    }
+  }
+
+  &__thb {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    @include variables.res(lg) {
+      width: 330px;
+      height: 330px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__main {
+    width: 77vw;
+    padding: 16px;
+    position: relative;
+    z-index: 10;
+    background: white;
+    // width: 94%;
+    margin: -80px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: variables.$contrast;
+    font-weight: bold;
+    font-size: 0.66rem;
+
+    @include variables.res(lg) {
+      width: 295px;
+    }
+
+    .en {
+      color: variables.$primary;
+    }
+
+    .ja {
+      font-size: 1.1rem;
+    }
+
+    .caption {
+      color: variables.$gray-dark;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid variables.$gray;
+    }
+
+    .desc {
+      padding-top: 10px;
+    }
+
+    .link {
+      margin-right: 10px;
+      margin-top: 10px;
+      display: flex;
+      gap: 5px;
+      justify-content: flex-end;
+      color: variables.$primary;
+      text-decoration: none;
+      letter-spacing: 0.12em;
+    }
+  }
+
+  .button_section {
+    margin-top: 16vw;
+    @include variables.res(lg) {
+      margin-top: 50px;
+    }
+  }
+}

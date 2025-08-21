@@ -1,0 +1,199 @@
+@use "../common/_variables";
+
+// Main
+.index_story {
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  // background-color: variables.$gray;
+
+  @include variables.res(lg) {
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  // &__frame {
+  //   background-color: variables.$primary;
+  //   width: 100%;
+  //   height: 460px;
+  //   position: absolute;
+  //   bottom: 0;
+  //   left: 0;
+  //   z-index: 0;
+  // }
+  &__container {
+    position: relative;
+    z-index: 1;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__desc {
+    // margin-top: -8vw;
+    font-size: 0.88rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    padding: 0 0px;
+    margin-bottom: 14vw;
+
+    @include variables.res(lg) {
+      margin-top: -60px;
+      margin-bottom: 80px;
+      width: 740px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12vw;
+    flex-direction: column;
+
+    @include variables.res(lg) {
+      flex-direction: row;
+      gap: 55px;
+    }
+  }
+
+  &__item {
+    position: relative;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+
+    @include variables.res(lg) {
+      height: auto;
+      width: 330px;
+    }
+  }
+
+  &__upper {
+    position: relative;
+  }
+
+  &__thb {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+
+    @include variables.res(lg) {
+      width: 330px;
+      height: 330px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__lead {
+    position: absolute;
+    top: 0;
+    right: 0;
+    writing-mode: vertical-rl;
+    padding: 20px;
+
+    span {
+      display: inline;
+      padding: 8px 2px;
+      line-height: 2;
+      letter-spacing: 0.05em;
+      color: white;
+      background: variables.$primary;
+      // font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+  }
+
+  &__contents {
+    display: flex;
+    margin-top: 6vw;
+    @include variables.res(lg) {
+      margin-top: 30px;
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.66rem;
+    font-weight: bold;
+
+    gap: 1vw;
+    @include variables.res(lg) {
+      gap: 10px;
+    }
+
+    .en {
+      color: variables.$primary;
+    }
+
+    .ja {
+      font-size: 1.3rem;
+    }
+
+    .caption {
+      color: variables.$gray-dark;
+    }
+  }
+
+  hr {
+    margin: 15px 0;
+    border: none;
+    border-top: 1px solid variables.$gray;
+  }
+
+  &__arrow {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .icon {
+      width: 10vw;
+      height: 10vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1000px;
+
+      border: 1px solid variables.$primary;
+      background: variables.$primary;
+      color: white;
+
+      @include variables.res(lg) {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  &__contents:hover &__arrow {
+    .icon {
+      background: white;
+      color: variables.$primary;
+    }
+  }
+
+  &__text {
+    font-size: 0.66rem;
+  }
+
+  .button_section {
+    margin-top: 16vw;
+    @include variables.res(lg) {
+      margin-top: 50px;
+    }
+  }
+}

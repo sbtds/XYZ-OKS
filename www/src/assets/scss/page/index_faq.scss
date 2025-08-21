@@ -1,0 +1,28 @@
+@use "../common/_variables";
+
+// Main
+.index_faq {
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: variables.$primary;
+
+  @include variables.res(lg) {
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  // &__frame {
+  //   background-color: variables.$primary;
+  //   width: 100%;
+  //   height: 460px;
+  //   position: absolute;
+  //   bottom: 0;
+  //   left: 0;
+  //   z-index: 0;
+  // }
+  &__container {
+    position: relative;
+    z-index: 1;
+  }
+}
