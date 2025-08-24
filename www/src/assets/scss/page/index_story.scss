@@ -189,11 +189,4 @@
   &__text {
     font-size: 0.66rem;
   }
-
-  .button_section {
-    margin-top: 16vw;
-    @include variables.res(lg) {
-      margin-top: 50px;
-    }
-  }
 }

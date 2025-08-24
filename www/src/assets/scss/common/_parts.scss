@@ -215,6 +215,13 @@ picture {
 .button_section {
   text-align: center;
 }
+
+.button_section {
+  margin-top: 16vw;
+  @include variables.res(lg) {
+    margin-top: 50px;
+  }
+}
 // .button {
 //   position: relative;
 //   align-items: center;

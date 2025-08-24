@@ -69,3 +69,14 @@ main.page_main {
     padding-top: 170px;
   }
 }
+
+#root {
+  .common_header {
+  }
+  .common_footer {
+  }
+  & > main {
+    position: relative;
+    z-index: 0;
+  }
+}
