@@ -22,13 +22,14 @@
   &__container {
     position: relative;
     z-index: 1;
+    // padding: 0 20px;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 30px 30px;
+    padding: 30px;
     gap: 30px;
     margin-bottom: 0;
     background-color: variables.$primary;
@@ -86,5 +87,13 @@
     color: white;
     // font-size: 16px;
     font-weight: bold;
+  }
+
+  .button_section {
+    padding: 0 20px;
+
+    @include variables.res(lg) {
+      padding: 0;
+    }
   }
 }

@@ -80,7 +80,8 @@ a:hover,
   position: relative;
   background-image: linear-gradient(variables.$primary, variables.$primary); /* 単色 */
   background-size: 0 1px;
-  background-position: bottom right;
+  // background-position: bottom right;
+  background-position: bottom left;
   background-repeat: no-repeat;
   transition: background-size 0.3s ease-out;
   box-decoration-break: slice;
@@ -95,7 +96,8 @@ a:hover .hover-underline {
 .hover-underline-white {
   background-image: linear-gradient(#ffffff, #ffffff); /* 単色 */
   background-size: 0 1px;
-  background-position: bottom right;
+  // background-position: bottom right;
+  background-position: bottom left;
   background-repeat: no-repeat;
   transition: background-size 0.3s ease-out;
   box-decoration-break: slice;

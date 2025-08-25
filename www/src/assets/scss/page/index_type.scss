@@ -99,4 +99,14 @@
     align-items: center;
     justify-content: center;
   }
+
+  &__item:hover {
+    background: variables.$primary;
+    color: white;
+  }
+
+  &__item:hover &__text strong,
+  &__item:hover &__arrow {
+    color: white;
+  }
 }

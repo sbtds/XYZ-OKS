@@ -26,3 +26,278 @@
     z-index: 1;
   }
 }
+
+.index_area {
+  &__contents {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    @include variables.res(lg) {
+      flex-direction: row;
+      gap: 80px;
+    }
+  }
+
+  &__box {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+
+    @include variables.res(lg) {
+      width: 412px;
+      margin: initial;
+    }
+  }
+
+  &__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px;
+    height: 50px;
+    padding: 3px;
+
+    @include variables.res(lg) {
+      width: 68px;
+      height: 68px;
+    }
+
+    &::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      background-color: variables.$primary;
+      position: absolute;
+      border-radius: 1000px;
+      z-index: -1;
+    }
+
+    .icon {
+      position: relative;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      border-radius: 1000px;
+      color: variables.$primary;
+      font-weight: bold;
+      font-size: variables.$fz16;
+
+      @include variables.res(lg) {
+        font-size: variables.$fz20;
+      }
+
+      svg {
+        transform: translateY(-0.3em);
+        position: relative;
+        z-index: 99;
+      }
+    }
+  }
+
+  &__main {
+    // position: relative;
+    // z-index: 10;
+    margin-top: -28px;
+    // position: relative;
+    // z-index: 1;
+    border-radius: 10px;
+    padding: 3px;
+    background-color: variables.$primary;
+
+    @include variables.res(lg) {
+      margin-top: -34px;
+    }
+
+    .inner {
+      position: relative;
+      // z-index: 1;
+      // position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background-color: white;
+      color: variables.$contrast;
+      // border: 3px solid
+      padding: 0 30px 24px;
+    }
+
+    .title {
+      text-align: center;
+      position: relative;
+      z-index: 999;
+      width: 100%;
+      padding-top: 0.2em;
+      font-size: variables.$fz20;
+      color: variables.$primary;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .contents {
+      position: relative;
+      z-index: 1;
+      // display: flex;
+      // flex-wrap: wrap;
+      // display: grid;
+      // grid-template-columns: repeat(3, 94px);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      height: initial;
+      gap: 0;
+      padding-bottom: 10px;
+      @include variables.res(sm) {
+        height: 140px;
+        padding-bottom: 0;
+      }
+    }
+
+    .contents_list {
+      // display: flex;
+      // flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(2, 94px);
+      // align-items: center;
+      row-gap: 16px;
+
+      @include variables.res(sm) {
+        grid-template-columns: repeat(3, 94px);
+      }
+
+      label {
+        // width: 94px;
+        align-items: center;
+        display: flex;
+        font-size: variables.$fz18;
+        font-weight: bold;
+        gap: 4px;
+        cursor: pointer;
+
+        input {
+          display: none;
+        }
+
+        .circle {
+          position: relative;
+          display: block;
+          box-sizing: border-box;
+          width: 25px;
+          height: 25px;
+          border: 2px solid variables.$primary;
+          border-radius: 1000px;
+
+          &::before {
+            content: "";
+            box-sizing: border-box;
+            display: block;
+            width: 17px;
+            height: 17px;
+            background: variables.$primary;
+            border-radius: 1000px;
+            margin: 2px;
+            opacity: 0;
+            transition: all 150ms;
+          }
+        }
+
+        input:checked + .circle::before {
+          opacity: 1;
+        }
+      }
+    }
+
+    .button {
+      position: relative;
+      z-index: 1;
+      margin-top: 10px;
+      text-align: center;
+      .search {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 138px;
+        height: 38px;
+        gap: 8px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: 1px solid variables.$primary;
+        background-color: variables.$primary;
+        color: white;
+        transition: all 300ms;
+
+        &:hover {
+          color: variables.$primary;
+          background-color: white;
+        }
+
+        .icon {
+          font-size: 120%;
+        }
+
+        .label {
+          font-size: variables.$fz14;
+        }
+      }
+    }
+
+    .map {
+      position: absolute;
+      z-index: 0;
+      right: 2%;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 100%;
+      width: auto;
+
+      @include variables.res(sm) {
+        right: -14px;
+      }
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
+
+  &__box.type-green &__icon::after {
+    background-color: variables.$secondary;
+  }
+
+  &__box.type-green &__icon .icon {
+    color: variables.$secondary;
+  }
+
+  &__box.type-green &__main {
+    background-color: variables.$secondary;
+  }
+  &__box.type-green &__main .title {
+    color: variables.$secondary;
+  }
+
+  &__box.type-green &__main .contents label .circle {
+    border-color: variables.$secondary;
+  }
+  &__box.type-green &__main .contents label .circle::before {
+    background-color: variables.$secondary;
+  }
+  &__box.type-green &__main .button .search {
+    border: 1px solid variables.$secondary;
+    background-color: variables.$secondary;
+
+    &:hover {
+      color: variables.$secondary;
+      background-color: white;
+    }
+  }
+}

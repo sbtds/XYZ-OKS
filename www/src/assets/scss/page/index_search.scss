@@ -124,8 +124,9 @@
     margin-right: 0;
     padding: 0 40px;
     background-color: variables.$primary;
+    border: 2px solid variables.$primary;
     color: #fff;
-    border: none;
+    // border: none;
     // border-radius: 40px;
     font-size: variables.$fz18;
     font-weight: 700;
@@ -142,8 +143,10 @@
     }
 
     &:hover {
-      background-color: darken(variables.$primary, 10%);
-      transform: translateY(-2px);
+      // background-color: darken(variables.$primary, 10%);
+      // transform: translateY(-2px);
+      background-color: white;
+      color: variables.$primary;
     }
 
     &:active {
