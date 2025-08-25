@@ -18,6 +18,18 @@ $gray-dark: #ccc;
 $gray-light: #f6f6f6;
 $contrast: #333333;
 
+// Font sizes (rem values based on 18px root)
+$fz12: 0.66rem; // 12px
+$fz14: 0.77rem; // 14px
+$fz16: 0.88rem; // 16px
+$fz18: 1rem; // 18px
+$fz20: 1.11rem; // 20px
+$fz22: 1.22rem; // 22px
+$fz24: 1.33rem; // 24px
+$fz28: 1.55rem; // 28px
+$fz32: 1.77rem; // 32px
+$fz40: 2.22rem; // 40px
+
 $breakpoints: (
   "sm": "screen and (min-width: 480px)",
   "md": "screen and (min-width: 840px)",

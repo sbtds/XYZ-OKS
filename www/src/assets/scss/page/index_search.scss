@@ -71,7 +71,7 @@
       max-width: initial;
       height: 70px;
       padding: 0 50px 0 50px;
-      font-size: 16px;
+      font-size: variables.$fz16;
       font-weight: 500;
       color: variables.$contrast;
       background-color: #fff;
@@ -87,7 +87,7 @@
 
         height: 75px;
         padding: 0 60px 0 50px;
-        font-size: 18px;
+        font-size: variables.$fz18;
       }
 
       &:hover {
@@ -127,7 +127,7 @@
     color: #fff;
     border: none;
     // border-radius: 40px;
-    font-size: 18px;
+    font-size: variables.$fz18;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -155,7 +155,7 @@
     }
 
     .label {
-      font-size: 18px;
+      font-size: variables.$fz18;
       font-weight: 700;
     }
   }

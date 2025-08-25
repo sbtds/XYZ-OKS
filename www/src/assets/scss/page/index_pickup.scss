@@ -1,0 +1,163 @@
+@use "../common/_variables";
+
+// Main
+.index_pickup {
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: variables.$primary;
+  color: white;
+
+  @include variables.res(lg) {
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  // &__frame {
+  //   background-color: variables.$primary;
+  //   width: 100%;
+  //   height: 460px;
+  //   position: absolute;
+  //   bottom: 0;
+  //   left: 0;
+  //   z-index: 0;
+  // }
+  &__container {
+    position: relative;
+    z-index: 1;
+    // max-width: 1150px;
+    padding: 0 20px;
+    // padding: 0 20px;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
+  &__list {
+    // margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    flex-direction: column;
+    justify-content: center;
+
+    @include variables.res(lg) {
+      flex-direction: row;
+      gap: 55px;
+    }
+  }
+
+  &__item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    overflow: hidden;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    color: variables.$contrast;
+    padding: 16px;
+    gap: 10px;
+    // height: 90px;'
+    flex-direction: column;
+    // border: 2px solid variables.$primary;
+
+    @include variables.res(sm) {
+      gap: 0;
+
+      flex-direction: row;
+    }
+    @include variables.res(lg) {
+      flex-direction: row;
+      width: 635px;
+      height: auto;
+      padding: 30px;
+    }
+  }
+
+  &__image {
+    border-radius: 10px;
+
+    flex-shrink: 0;
+    overflow: hidden;
+    height: auto;
+    width: 100%;
+    aspect-ratio: 10/8;
+
+    @include variables.res(sm) {
+      aspect-ratio: auto;
+      width: calc(50% - 8px);
+    }
+
+    @include variables.res(lg) {
+      width: 240px;
+      height: 314px;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    @include variables.res(sm) {
+      width: calc(50% - 8px);
+    }
+
+    @include variables.res(lg) {
+      width: 310px;
+    }
+
+    .name {
+      font-size: variables.$fz16;
+
+      @include variables.res(lg) {
+      }
+    }
+
+    .title {
+      font-size: variables.$fz18;
+      font-weight: bold;
+      color: variables.$primary;
+
+      @include variables.res(lg) {
+      }
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid variables.$gray-dark;
+    }
+
+    .contents {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      font-size: variables.$fz16;
+
+      @include variables.res(lg) {
+      }
+    }
+
+    .link {
+      font-weight: bold;
+      margin-right: 10px;
+      margin-top: 10px;
+      display: flex;
+      gap: 5px;
+      justify-content: flex-end;
+      color: variables.$primary;
+      text-decoration: none;
+      letter-spacing: 0.12em;
+
+      font-size: variables.$fz12;
+    }
+  }
+}

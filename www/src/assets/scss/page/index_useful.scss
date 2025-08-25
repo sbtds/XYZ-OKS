@@ -1,7 +1,7 @@
 @use "../common/_variables";
 
 // Main
-.index_story {
+.index_useful {
   position: relative;
   padding-top: 60px;
   padding-bottom: 60px;
@@ -24,38 +24,29 @@
   &__container {
     position: relative;
     z-index: 1;
-    padding: 0 20px;
+    // padding: 0 20px;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  &__desc {
-    // margin-top: -8vw;
-    font-size: variables.$fz16;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-    padding: 0 0px;
-    margin-bottom: 14vw;
-
-    @include variables.res(lg) {
-      margin-top: -60px;
-      margin-bottom: 80px;
-      width: 740px;
-    }
   }
 
   &__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12vw;
-    flex-direction: column;
+    display: grid;
+    // grid-template-rows: repeat(3, 1fr);
+    // grid-template-rows: repeat(3, 348px);
+    grid-template-columns: repeat(1, 1fr);
+
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    // flex-direction: column;
+    width: 100%;
+    gap: 10vw;
 
     @include variables.res(lg) {
-      flex-direction: row;
-      gap: 55px;
+      grid-template-columns: repeat(3, 1fr);
+      // flex-direction: row;
+      gap: 24px;
+      row-gap: 40px;
     }
   }
 
@@ -67,12 +58,8 @@
 
     @include variables.res(lg) {
       height: auto;
-      width: 330px;
+      width: 348px;
     }
-  }
-
-  &__upper {
-    position: relative;
   }
 
   &__thb {
@@ -82,10 +69,11 @@
     height: 100%;
     border-radius: 10px;
     overflow: hidden;
+    height: auto;
 
     @include variables.res(lg) {
-      width: 330px;
-      height: 330px;
+      width: 100%;
+      height: 240px;
     }
 
     img {
@@ -95,64 +83,17 @@
     }
   }
 
-  &__lead {
-    position: absolute;
-    top: 0;
-    right: 0;
-    writing-mode: vertical-rl;
-    padding: 20px;
-
-    span {
-      display: inline;
-      padding: 8px 2px;
-      line-height: 2;
-      letter-spacing: 0.05em;
-      color: white;
-      background: variables.$primary;
-      // font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      -webkit-box-decoration-break: clone;
-      box-decoration-break: clone;
-    }
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
   }
 
   &__contents {
     display: flex;
-    margin-top: 6vw;
-    @include variables.res(lg) {
-      margin-top: 30px;
-    }
-  }
-
-  &__main {
-    display: flex;
-    flex-direction: column;
-    font-size: variables.$fz12;
-    font-weight: bold;
-
-    gap: 1vw;
-    @include variables.res(lg) {
-      gap: 10px;
-    }
-
-    .en {
-      color: variables.$primary;
-    }
-
-    .ja {
-      font-size: variables.$fz24;
-    }
-
-    .caption {
-      color: variables.$gray-dark;
-    }
-  }
-
-  hr {
-    margin: 15px 0;
-    border: none;
-    border-top: 1px solid variables.$gray;
+    flex-direction: row;
+    gap: 10px;
   }
 
   &__arrow {
@@ -188,7 +129,22 @@
     }
   }
 
+  &__title {
+    font-size: variables.$fz18;
+    color: variables.$primary;
+    font-weight: bold;
+  }
+
+  hr {
+    // margin: 15px 0;
+    border: none;
+    border-top: 1px solid variables.$gray-dark;
+  }
+
   &__text {
-    font-size: variables.$fz12;
+    font-size: variables.$fz16;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }
