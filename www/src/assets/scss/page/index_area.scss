@@ -182,6 +182,11 @@
         font-weight: bold;
         gap: 4px;
         cursor: pointer;
+        transition: all 300ms;
+
+        &:hover {
+          color: variables.$contrast-light;
+        }
 
         input {
           display: none;
