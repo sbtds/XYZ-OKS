@@ -217,6 +217,22 @@ picture {
   }
 }
 
+.page_title {
+  padding: 11vw 0 11vw;
+
+  @include variables.res(lg) {
+    padding: 70px 0 75px;
+  }
+
+  &.bg-primary {
+    background-color: variables.$primary;
+  }
+
+  .title_section {
+    margin-bottom: 0;
+  }
+}
+
 // -------------------------------------------------
 // button
 // -------------------------------------------------
@@ -476,3 +492,7 @@ picture {
     // transform: translateY(-50%);
   }
 }
+
+// -------------------------------------------------
+// Title
+// -------------------------------------------------
