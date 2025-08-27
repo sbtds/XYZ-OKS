@@ -114,6 +114,17 @@
     .caption {
       color: variables.$gray-dark;
     }
+    .area {
+      margin-bottom: 8px;
+      .label {
+        color: variables.$primary;
+        background-color: rgba(variables.$primary, 0.2);
+        display: inline-block;
+        padding: 3px 12px;
+        border-radius: 1000px;
+        font-size: variables.$fz12;
+      }
+    }
 
     hr {
       border: none;

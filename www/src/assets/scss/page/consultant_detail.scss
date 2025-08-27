@@ -1,0 +1,197 @@
+@use "../common/_variables";
+
+// Main
+.consultant_detail {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 16vw 20px;
+  @include variables.res(lg) {
+    padding: 80px 0;
+  }
+}
+
+.consultant_top {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @include variables.res(lg) {
+    flex-direction: row;
+    gap: 80px;
+  }
+
+  &__thb {
+    position: relative;
+    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    @include variables.res(lg) {
+      flex: 0 0 330px;
+      width: 330px;
+      height: 330px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__main {
+    // width: 77vw;
+    padding: 16px;
+    position: relative;
+    z-index: 10;
+    background: white;
+    // width: 94%;
+    margin: 20px 0 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+    color: variables.$contrast;
+    font-weight: bold;
+    font-size: 0.66rem;
+
+    @include variables.res(lg) {
+      // width: 295px;
+      flex: 1 1 100%;
+      margin: 0;
+    }
+
+    .en {
+      color: variables.$primary;
+    }
+
+    .ja {
+      font-size: 1.1rem;
+    }
+
+    .caption {
+      color: variables.$gray-dark;
+    }
+    .area {
+      margin-bottom: 8px;
+      .label {
+        color: variables.$primary;
+        background-color: rgba(variables.$primary, 0.2);
+        display: inline-block;
+        padding: 3px 12px;
+        border-radius: 1000px;
+        font-size: variables.$fz12;
+      }
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid variables.$gray;
+    }
+
+    .desc {
+      padding-top: 10px;
+      padding-bottom: 20px;
+    }
+
+    .link {
+      margin-right: 10px;
+      margin-top: 10px;
+      display: flex;
+      gap: 5px;
+      justify-content: flex-end;
+      color: variables.$primary;
+      text-decoration: none;
+      letter-spacing: 0.12em;
+    }
+  }
+}
+
+.consultant_main {
+  // border: 1px solid variables.$gray;
+  box-shadow: 0 0 4px 0 rgba(black, 0.2);
+  background: white;
+  border-radius: 10px;
+  padding: 24px 16px;
+  margin-top: 24px;
+
+  @include variables.res(lg) {
+    margin-top: 25px;
+    padding: 64px;
+  }
+
+  &__intro {
+    background: variables.$gray;
+    padding: 20px;
+
+    @include variables.res(lg) {
+      padding: 40px;
+    }
+
+    .title {
+      color: variables.$primary;
+      font-size: variables.$fz24;
+      font-weight: bold;
+      margin-bottom: 10px;
+
+      @include variables.res(lg) {
+        font-size: variables.$fz32;
+      }
+    }
+
+    .contents {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: variables.$fz14;
+    }
+  }
+
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+    // background: variables.$gray;
+
+    @include variables.res(lg) {
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .title {
+      color: variables.$primary;
+      font-size: variables.$fz24;
+      font-weight: bold;
+      margin-bottom: 10px;
+
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      @include variables.res(lg) {
+        margin-bottom: 10px;
+        font-size: variables.$fz32;
+
+        gap: 16px;
+      }
+      // &::after {
+      //   content: "";
+      //   width: 120px;
+      //   height: 17px;
+      //   background: url(../../images/page/page_title_arrow.svg) no-repeat left center;
+      //   background-size: 100% auto;
+      // }
+    }
+
+    .contents {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: variables.$fz14;
+    }
+  }
+}
