@@ -429,6 +429,17 @@ picture {
     }
   }
 
+  &.secondary {
+    border-color: variables.$secondary;
+    background-color: variables.$secondary;
+    color: white;
+
+    &:hover {
+      background: white;
+      color: variables.$secondary;
+    }
+  }
+
   .label {
     font-size: variables.$fz16;
     letter-spacing: 0.04em;

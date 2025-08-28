@@ -1,0 +1,461 @@
+@use "../common/_variables";
+
+// Main
+.pickup_detail {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 16vw 20px;
+  @include variables.res(lg) {
+    padding: 80px 0;
+  }
+}
+
+.pickup_top {
+  display: flex;
+  // align-items: center;
+  flex-direction: column;
+
+  @include variables.res(lg) {
+    flex-direction: row;
+    gap: 80px;
+  }
+
+  &__thb {
+    position: relative;
+    // aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    @include variables.res(lg) {
+      flex: 0 0 275px;
+      // width: 275px;
+      height: auto;
+    }
+
+    img {
+      width: 100%;
+      // height: 100%;
+      // object-fit: cover;
+    }
+  }
+
+  &__main {
+    // width: 77vw;
+    padding: 16px;
+    position: relative;
+    z-index: 10;
+    background: white;
+    // width: 94%;
+    margin: 20px 0 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+    color: variables.$contrast;
+    font-weight: bold;
+    font-size: 0.66rem;
+
+    @include variables.res(lg) {
+      // width: 295px;
+      // flex: 1 1 100%;
+      width: 100%;
+      margin: 0;
+    }
+
+    .name {
+      color: variables.$primary;
+
+      font-size: variables.$fz12;
+      @include variables.res(lg) {
+        font-size: variables.$fz12;
+      }
+    }
+
+    .company {
+      font-size: variables.$fz24;
+      @include variables.res(lg) {
+        font-size: variables.$fz32;
+      }
+    }
+
+    .area {
+      margin-bottom: 8px;
+      .label {
+        color: variables.$primary;
+        background-color: rgba(variables.$primary, 0.2);
+        display: inline-block;
+        padding: 3px 12px;
+        border-radius: 1000px;
+        font-size: variables.$fz12;
+      }
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid variables.$gray;
+    }
+
+    .desc {
+      padding-top: 10px;
+      // padding-bottom: 20px;
+    }
+  }
+}
+
+.pickup_main {
+  // border: 1px solid variables.$gray;
+  box-shadow: 0 0 4px 0 rgba(black, 0.2);
+  background: white;
+  border-radius: 10px;
+  padding: 24px 16px;
+  margin-top: 24px;
+
+  @include variables.res(lg) {
+    margin-top: 25px;
+    padding: 64px;
+  }
+
+  &__intro {
+    background: rgba(variables.$primary, 0.05);
+    padding: 20px;
+    overflow: hidden;
+
+    @include variables.res(lg) {
+      padding: 40px;
+    }
+
+    .image {
+      width: 24vw;
+      margin-bottom: 4vw;
+      margin-left: auto;
+      margin-right: auto;
+      @include variables.res(lg) {
+        float: left;
+
+        width: 115px;
+        margin-right: 25px;
+        margin-bottom: 0;
+      }
+    }
+
+    .title {
+      color: variables.$primary;
+      font-size: variables.$fz24;
+      font-weight: bold;
+      margin-bottom: 10px;
+      margin-top: 0;
+
+      @include variables.res(lg) {
+        margin-top: -4px;
+        font-size: variables.$fz32;
+      }
+    }
+
+    .contents {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: variables.$fz14;
+    }
+  }
+
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+    // background: variables.$gray;
+
+    @include variables.res(lg) {
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .title {
+      color: variables.$primary;
+      font-size: variables.$fz24;
+      font-weight: bold;
+      margin-bottom: 10px;
+
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      @include variables.res(lg) {
+        margin-bottom: 10px;
+        font-size: variables.$fz32;
+
+        gap: 16px;
+      }
+      // &::after {
+      //   content: "";
+      //   width: 120px;
+      //   height: 17px;
+      //   background: url(../../images/page/page_title_arrow.svg) no-repeat left center;
+      //   background-size: 100% auto;
+      // }
+    }
+
+    .contents {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: variables.$fz14;
+    }
+  }
+}
+
+.pickup_recruit {
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-color: variables.$primary;
+  color: white;
+
+  @include variables.res(lg) {
+    padding-top: 90px;
+    padding-bottom: 80px;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+    // max-width: 1150px;
+    padding: 0 20px;
+    // padding: 0 20px;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
+  &__list {
+    // margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    flex-direction: column;
+    justify-content: center;
+
+    @include variables.res(lg) {
+      flex-direction: row;
+      gap: 55px;
+    }
+  }
+
+  &__item {
+    box-sizing: border-box;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    overflow: hidden;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    color: variables.$contrast;
+    padding: 16px;
+    gap: 10px;
+    // height: 90px;'
+    flex-direction: column;
+    // border: 2px solid variables.$primary;
+
+    @include variables.res(sm) {
+      gap: 0;
+
+      flex-direction: row;
+    }
+    @include variables.res(lg) {
+      flex-direction: row;
+      width: 375px;
+      height: auto;
+      padding: 30px;
+    }
+  }
+
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 0;
+    @include variables.res(sm) {
+      padding: 16px 0;
+      // width: calc(50% - 8px);
+    }
+
+    @include variables.res(lg) {
+      width: 310px;
+    }
+
+    .caption {
+      margin-bottom: 4px;
+      .label {
+        color: white;
+        background-color: rgba(variables.$primary, 1);
+        display: inline-block;
+        padding: 3px 12px;
+        border-radius: 1000px;
+        font-size: variables.$fz12;
+      }
+    }
+
+    .title {
+      font-size: variables.$fz18;
+      font-weight: bold;
+      color: variables.$primary;
+
+      @include variables.res(lg) {
+      }
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid variables.$gray-dark;
+    }
+
+    .contents {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      font-size: variables.$fz18;
+
+      @include variables.res(lg) {
+      }
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+
+      .item {
+        display: flex;
+        gap: 8px;
+
+        .icon {
+          flex: 0 0 15px;
+          padding-top: 4px;
+        }
+
+        .text {
+          flex: 1 1 100%;
+          font-size: variables.$fz16;
+        }
+      }
+    }
+
+    .link {
+      font-weight: bold;
+      margin-right: 10px;
+      margin-top: 10px;
+      display: flex;
+      gap: 5px;
+      justify-content: flex-end;
+      color: variables.$primary;
+      text-decoration: none;
+      letter-spacing: 0.12em;
+
+      font-size: variables.$fz12;
+    }
+  }
+}
+
+.pickup_outline {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 16vw 20px;
+  @include variables.res(lg) {
+    padding: 80px 0 110px;
+  }
+
+  &__title {
+    color: variables.$primary;
+    font-weight: bold;
+    font-size: variables.$fz24;
+    @include variables.res(lg) {
+      font-size: variables.$fz32;
+    }
+  }
+
+  &__main {
+    // border: 1px solid variables.$gray;
+    box-shadow: 0 0 4px 0 rgba(black, 0.2);
+    background: white;
+    border-radius: 10px;
+    padding: 24px 16px;
+    margin-top: 24px;
+
+    @include variables.res(lg) {
+      margin-top: 25px;
+      padding: 64px;
+    }
+
+    .contents {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: variables.$fz14;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5vw;
+
+    @include variables.res(lg) {
+      gap: 24px;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid variables.$gray;
+  }
+
+  &__item {
+    display: flex;
+    font-size: variables.$fz14;
+    flex-direction: column;
+
+    @include variables.res(lg) {
+      flex-direction: row;
+    }
+
+    dt {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      width: 115px;
+      flex: 0 0 auto;
+
+      @include variables.res(lg) {
+        flex: 0 0 115px;
+      }
+
+      .label {
+        font-weight: bold;
+      }
+
+      .arrow {
+        padding-top: 5px;
+      }
+    }
+
+    dd {
+      display: flex;
+      padding-top: 2vw;
+      padding-left: 0;
+
+      @include variables.res(lg) {
+        padding-top: 1px;
+        padding-left: 25px;
+      }
+    }
+  }
+}
