@@ -129,6 +129,24 @@ a:hover .hover-underline-menu {
   text-decoration: underline;
 }
 
+.link-underline {
+  display: inline-block;
+  position: relative;
+  background-image: linear-gradient(variables.$primary, variables.$primary); /* 単色 */
+  background-size: 100% 1px;
+  // background-position: bottom right;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  transition: background-size 0.1s ease-out;
+  box-decoration-break: slice;
+  -webkit-box-decoration-break: slice;
+}
+
+a:hover .link-underline {
+  background-size: 0 1px;
+  background-position: bottom right;
+}
+
 // -------------------------------------------------
 // tab
 // -------------------------------------------------
@@ -406,6 +424,68 @@ picture {
   max-width: initial;
   height: 50px;
   line-height: 47.5px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  @include variables.res(lg) {
+    max-width: 310px;
+  }
+
+  &:hover {
+    background-color: white;
+    color: variables.$primary;
+  }
+
+  &.white {
+    background-color: white;
+    color: variables.$primary;
+
+    &:hover {
+      background: variables.$primary;
+      border: 1px solid white;
+      color: white;
+    }
+  }
+
+  &.secondary {
+    border-color: variables.$secondary;
+    background-color: variables.$secondary;
+    color: white;
+
+    &:hover {
+      background: white;
+      color: variables.$secondary;
+    }
+  }
+
+  .label {
+    font-size: variables.$fz16;
+    letter-spacing: 0.04em;
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+}
+
+.button_side {
+  transition: all 300ms;
+  margin-left: auto;
+  margin-right: auto;
+
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  background: variables.$primary;
+  border: 1px solid variables.$primary;
+  color: white;
+  width: 100%;
+  max-width: initial;
+  height: 55px;
+  line-height: 52.5px;
   border-radius: 5px;
   font-weight: bold;
 
