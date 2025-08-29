@@ -5,31 +5,31 @@
 }
 
 .useful_contents {
-  max-width: 1200px;
+  max-width: 1240px;
   margin-left: auto;
   margin-right: auto;
 
   display: flex;
+  justify-content: space-between;
+  padding: 16vw 20px;
 
   gap: 0;
   flex-direction: column;
   @include variables.res(lg) {
     flex-direction: row;
-    gap: 120px;
-  }
+    gap: 20px;
 
-  padding: 16vw 20px;
-  @include variables.res(lg) {
-    padding: 80px 0;
+    padding: 80px 20px;
   }
 }
 
+.useful_entry,
 .useful_main {
   width: 100%;
   padding: 0 0 16vw;
 
   @include variables.res(lg) {
-    flex: 0 0 815px;
+    flex: 0 1 815px;
     padding: 0 0 80px;
   }
 }
@@ -136,6 +136,72 @@
             margin-left: auto;
             color: variables.$primary;
             flex: 0 0 12px;
+          }
+        }
+      }
+    }
+  }
+
+  &__bottom {
+    @include variables.res(lg) {
+      padding-top: 20px;
+    }
+    .title {
+      background: variables.$primary;
+      color: white;
+      min-height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 5px;
+      line-height: 1.2;
+      font-weight: bold;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 24px;
+      gap: 24px;
+      @include variables.res(lg) {
+        gap: 24px;
+      }
+
+      .item {
+        .subject {
+          position: relative;
+          padding-left: 10px;
+          font-size: variables.$fz14;
+
+          // border-bottom: 1px solid red;
+          @include variables.res(lg) {
+          }
+
+          &:before {
+            content: "";
+            height: 20px;
+            width: 3px;
+            background: variables.$primary;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 1px;
+          }
+        }
+        .banner {
+          display: block;
+          margin-top: 8px;
+          aspect-ratio: 13/7;
+          width: 100%;
+          overflow: hidden;
+
+          @include variables.res(lg) {
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
           }
         }
       }
