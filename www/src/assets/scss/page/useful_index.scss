@@ -1,8 +1,6 @@
 @use "../common/_variables";
 
 // Main
-.useful_top {
-}
 
 .useful_contents {
   max-width: 1240px;
@@ -209,5 +207,151 @@
   }
 }
 
+.useful_top {
+}
+
 .useful_bottom {
+  background-color: variables.$gray;
+
+  padding: 16vw 20px;
+
+  gap: 0;
+  display: flex;
+  flex-direction: column;
+  @include variables.res(lg) {
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 80px 20px;
+  }
+
+  &__contents {
+    width: 100%;
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 0;
+    gap: 40px;
+
+    @include variables.res(lg) {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 20px;
+
+      padding: 0 0;
+    }
+  }
+
+  &__main {
+    @include variables.res(lg) {
+      flex: 0 1 446px;
+    }
+
+    .index_useful__item {
+      @include variables.res(lg) {
+        width: 100%;
+      }
+    }
+
+    .index_useful__thb {
+      @include variables.res(lg) {
+        height: 300px;
+      }
+    }
+  }
+
+  &__side {
+    @include variables.res(lg) {
+      flex: 0 1 670px;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include variables.res(lg) {
+      gap: 40px;
+    }
+  }
+
+  &__item {
+    a {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+
+      & * {
+        transition: all 300ms;
+      }
+    }
+
+    .thb {
+      flex: 0 0 28vw;
+
+      display: block;
+      aspect-ratio: 7/5;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+
+      @include variables.res(lg) {
+        flex: 0 0 140px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .label {
+      flex: 1 1 100%;
+      font-weight: bold;
+      color: variables.$primary;
+      @include variables.res(lg) {
+        padding-right: 4em;
+      }
+    }
+
+    a:hover .label {
+      color: variables.$contrast;
+    }
+
+    .icon {
+      flex: 0 0 8vw;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 1000px;
+      width: 8vw;
+      height: 8vw;
+      font-size: variables.$fz14;
+
+      border: 1px solid variables.$primary;
+      background-color: variables.$primary;
+      color: white;
+
+      @include variables.res(lg) {
+        font-size: variables.$fz18;
+
+        flex: 0 0 42px;
+
+        width: 42px;
+        height: 42px;
+      }
+    }
+
+    a:hover .icon {
+      background-color: white;
+      color: variables.$primary;
+    }
+  }
 }

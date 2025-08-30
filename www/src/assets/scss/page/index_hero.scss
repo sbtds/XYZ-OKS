@@ -387,11 +387,16 @@
       margin-top: 80px;
     }
 
+    &.mt {
+      margin-top: 0 !important;
+    }
+
     &_list {
       padding: 20px 10px;
     }
     &_item {
       padding: 10px;
+      width: 33.3333%;
 
       a {
         display: block;
