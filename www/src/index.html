@@ -155,25 +155,346 @@
               <img src="./assets/images/index/search_title_sp.svg" class="sp-only" alt="求人を探す" />
               <img src="./assets/images/index/search_title.svg" class="pc-only" alt="求人を探す" />
             </h2>
-            <div class="index_search__contents">
-              <div class="index_search__select">
-                <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
-                <select name="" id="">
-                  <option value="勤務地を選ぶ">勤務地を選ぶ</option>
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                </select>
-                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            <div class="search_select">
+              <div class="search_select__box">
+                <div class="search_select__inner">
+                  <input type="checkbox" class="search_select__check" id="search_select__box01">
+                  <label class="search_select__button" for="search_select__box01">
+                    <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+                    <span class="label">勤務地を選ぶ</span>
+                    <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  </label>
+                  <div class="search_select__menu">
+                    <div class="search_select__menu_list">
+
+                      <div class="search_select__area">
+                        <input type="checkbox" class="search_select__area_check" id="search_select__area01">
+                        <label class="search_select__area_title" for="search_select__area01">
+                          <span class="checkbox"></span>
+                          <span class="label">全国</span>
+                          <span class="count">(987,654件)</span>
+                        </label>
+                      </div>
+
+                      <div class="search_select__area">
+                        <input type="checkbox" class="search_select__area_check" id="search_select__area02">
+                        <label class="search_select__area_title" for="search_select__area02">
+                          <span class="checkbox"></span>
+                          <span class="label">岩手県</span>
+                          <span class="count">(123,456件)</span>
+                          <span class="arrow">
+                            <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                            <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                          </span>
+                        </label>
+                        <div class="search_select__area_menu">
+                          <div class="search_select__area_list">
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">一関市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">西磐井郡平泉町</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="search_select__area">
+                        <input type="checkbox" class="search_select__area_check" id="search_select__area03">
+                        <label class="search_select__area_title" for="search_select__area03">
+                          <span class="checkbox"></span>
+                          <span class="label">宮城県</span>
+                          <span class="count">(123,456件)</span>
+                          <span class="arrow">
+                            <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                            <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                          </span>
+                        </label>
+                        <div class="search_select__area_menu">
+                          <div class="search_select__area_list">
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">仙台市宮城野区</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">仙台市若林区</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">石巻市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">登米市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">栗原市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">東松島市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">大崎市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">富谷市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">宮城郡利府町</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">黒川郡大和町</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">黒川郡大衡村</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">加美郡色麻町</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">加美郡加美町</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">遠田郡美里町</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="search_select__area">
+                        <input type="checkbox" class="search_select__area_check" id="search_select__area04">
+                        <label class="search_select__area_title" for="search_select__area04">
+                          <span class="checkbox"></span>
+                          <span class="label">埼玉県</span>
+                          <span class="count">(123,456件)</span>
+                          <span class="arrow">
+                            <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                            <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                          </span>
+                        </label>
+                        <div class="search_select__area_menu">
+                          <div class="search_select__area_list">
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">鴻巣市</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="search_select__area">
+                        <input type="checkbox" class="search_select__area_check" id="search_select__area05">
+                        <label class="search_select__area_title" for="search_select__area05">
+                          <span class="checkbox"></span>
+                          <span class="label">神奈川県</span>
+                          <span class="count">(123,456件)</span>
+                          <span class="arrow">
+                            <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                            <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                          </span>
+                        </label>
+                        <div class="search_select__area_menu">
+                          <div class="search_select__area_list">
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">横浜市戸塚区</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">横浜市栄区</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">茅ヶ崎市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">秦野市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">藤沢市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">小田原市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">厚木市</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">海老名市</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="search_select__area">
+                        <input type="checkbox" class="search_select__area_check" id="search_select__area06">
+                        <label class="search_select__area_title" for="search_select__area06">
+                          <span class="checkbox"></span>
+                          <span class="label">静岡県</span>
+                          <span class="count">(123,456件)</span>
+                          <span class="arrow">
+                            <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                            <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                          </span>
+                        </label>
+                        <div class="search_select__area_menu">
+                          <div class="search_select__area_list">
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">駿東郡清水町</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
               </div>
-              <p class="index_search__x"><i class="fa-solid fa-xmark"></i></p>
-              <div class="index_search__select">
-                <span class="icon"><i class="fa-solid fa-briefcase"></i></span>
-                <select name="" id="">
-                  <option value="職種を選ぶ">職種を選ぶ</option>
-                  <option value="A">A</option>
-                  <option value="B">B</option>
-                </select>
-                <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+              <p class="search_select__x"><i class="fa-solid fa-xmark"></i></p>
+              <div class="search_select__box">
+                <div class="search_select__inner">
+                  <input type="checkbox" class="search_select__check" id="search_select__box02">
+                  <label class="search_select__button" for="search_select__box02">
+                    <span class="icon"><i class="fa-solid fa-briefcase"></i></span>
+                    <span class="label">職種を選ぶ</span>
+                    <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  </label>
+                  <div class="search_select__menu">
+                    <div class="search_select__menu_list">
+
+                      <div class="search_select__area">
+                        <input type="checkbox" class="search_select__area_check" id="search_select__type01">
+                        <label class="search_select__area_title" for="search_select__type01">
+                          <span class="checkbox"></span>
+                          <span class="label">製造・技術</span>
+                          <span class="count">(123,456件)</span>
+                          <span class="arrow">
+                            <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                            <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                          </span>
+                        </label>
+                        <div class="search_select__area_menu">
+                          <div class="search_select__area_list">
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">機械オペレーター機械オペレーション機械オペレーター機械オペレーション</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">機械オペレーター(機械オペレーション)</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">組立・加工</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">製造（電気・電子・機械）</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">検査・検品</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">製造・技能工（化学・医療・食品）</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">食品製造</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">その他（化学・医療・食品）</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="search_select__area">
+                        <input type="checkbox" class="search_select__area_check" id="search_select__type02">
+                        <label class="search_select__area_title" for="search_select__type02">
+                          <span class="checkbox"></span>
+                          <span class="label">物流・配送・軽作業</span>
+                          <span class="count">(123,456件)</span>
+                          <span class="arrow">
+                            <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                            <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                          </span>
+                        </label>
+                        <div class="search_select__area_menu">
+                          <div class="search_select__area_list">
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">仕分け・梱包・ピッキング</span>
+                            </label>
+                            <label class="search_select__area_item">
+                              <input type="checkbox" class="search_select__check">
+                              <span class="checkbox"></span>
+                              <span class="label">フォークリフト</span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <button class="button_search">
