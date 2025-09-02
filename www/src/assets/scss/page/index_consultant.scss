@@ -17,7 +17,6 @@
     position: relative;
     z-index: 1;
     // max-width: 1150px;
-    padding: 0 20px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -28,8 +27,8 @@
     margin-left: auto;
     margin-right: auto;
     width: auto;
-    padding: 0 0px;
-    margin-bottom: 14vw;
+    padding: 0 20px;
+    margin-bottom: min(80px, 14vw);
 
     @include variables.res(lg) {
       margin-bottom: 80px;
@@ -38,30 +37,48 @@
   }
 
   &__list {
+    padding: 0 20px;
+    max-width: 1190px;
+    margin-left: auto;
+    margin-right: auto;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 16vw;
+    // gap: min(55px, 16vw);
+    gap: 55px;
     flex-direction: column;
 
     @include variables.res(lg) {
       flex-direction: row;
-      gap: 55px;
+      column-gap: 0;
+      row-gap: 55px;
     }
   }
 
   &__item {
     box-sizing: border-box;
-    // display: flex;
-    // align-items: stretch;
-    // border-radius: 10px;
-    // overflow: hidden;
-    // width: 100%;
-    // height: 90px;
-    // border: 2px solid variables.$primary;
+    display: flex;
 
     @include variables.res(lg) {
+      width: 33.3333%;
       height: auto;
+    }
+  }
+
+  &__inner {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    // display: block;
+    // max-width: 580px;
+
+    @include variables.res(lg) {
+      width: 330px;
+      // height: 330px;
     }
   }
 
@@ -72,11 +89,6 @@
     height: 100%;
     overflow: hidden;
 
-    @include variables.res(lg) {
-      width: 330px;
-      height: 330px;
-    }
-
     img {
       width: 100%;
       height: 100%;
@@ -85,12 +97,12 @@
   }
 
   &__main {
-    width: 77vw;
+    // width: 77vw;
+    width: 80%;
     padding: 16px;
     position: relative;
     z-index: 10;
     background: white;
-    // width: 94%;
     margin: -80px 0 0;
     display: flex;
     flex-direction: column;

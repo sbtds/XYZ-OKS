@@ -29,10 +29,18 @@
 
 .index_faq {
   &__list {
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+
     display: flex;
     flex-direction: column;
     gap: 22px;
+
+    font-size: variables.$fz16;
+
     @include variables.res(lg) {
+      max-width: initial;
       gap: 40px;
     }
   }

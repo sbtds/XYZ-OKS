@@ -6,7 +6,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 // HTMLファイルのパターンを取得
-const htmlFiles = ["index.html", "consultant.html", "consultant_detail.html", "pickup.html", "pickup_detail.html", "useful.html", "useful_detail.html", "contact.html"];
+const htmlFiles = ["index.html", "consultant.html", "consultant_detail.html", "featured.html", "featured_detail.html", "useful.html", "useful_detail.html", "faq.html", "contact.html"];
 
 // 英語版HTMLファイル
 const enHtmlFiles = [];

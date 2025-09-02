@@ -10,6 +10,7 @@
 
 // @use "./common/_table";
 @use "./common/_parts";
+@use "./common/search_select";
 
 @use "./page/index_hero";
 @use "./page/index_reason";
@@ -21,12 +22,13 @@
 @use "./page/index_story";
 @use "./page/index_faq";
 @use "./page/index_flow";
-@use "./page/index_pickup";
+@use "./page/index_featured";
 @use "./page/index_useful";
 
 @use "./page/consultant_index";
 @use "./page/consultant_detail";
-@use "./page/pickup_index";
-@use "./page/pickup_detail";
+@use "./page/featured_index";
+@use "./page/featured_detail";
 @use "./page/useful_index";
 @use "./page/useful_detail";
+@use "./page/faq_index";

@@ -24,7 +24,6 @@
   &__container {
     position: relative;
     z-index: 1;
-    padding: 0 20px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -36,10 +35,12 @@
     margin-left: auto;
     margin-right: auto;
     width: auto;
-    padding: 0 0px;
+    padding: 0 20px;
+
     margin-bottom: 14vw;
 
     @include variables.res(lg) {
+      padding: 0;
       margin-top: -60px;
       margin-bottom: 80px;
       width: 740px;
@@ -47,23 +48,46 @@
   }
 
   &__list {
+    // max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12vw;
-    flex-direction: column;
+    gap: min(55px, 12vw);
+    // flex-direction: column;
+    padding: 0 20px;
 
     @include variables.res(lg) {
+      max-width: 1190px;
+
       flex-direction: row;
-      gap: 55px;
+      column-gap: 0;
+      row-gap: 55px;
     }
   }
 
   &__item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @include variables.res(lg) {
+      width: 33.3333%;
+    }
+  }
+
+  &__inner {
+    width: 100%;
     position: relative;
     height: auto;
-    display: block;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
 
     @include variables.res(lg) {
       height: auto;
@@ -119,7 +143,7 @@
 
   &__contents {
     display: flex;
-    margin-top: 6vw;
+    margin-top: min(30px, 6vw);
     @include variables.res(lg) {
       margin-top: 30px;
     }
@@ -131,7 +155,7 @@
     font-size: variables.$fz12;
     font-weight: bold;
 
-    gap: 1vw;
+    gap: min(10px, 1vw);
     @include variables.res(lg) {
       gap: 10px;
     }

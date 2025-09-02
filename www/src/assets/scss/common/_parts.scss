@@ -203,7 +203,8 @@ picture {
   }
 
   img {
-    height: 25px;
+    // height: 25px;
+    height: min(25px, 6.66vw);
     @include variables.res(lg) {
       height: 60px;
     }
@@ -211,16 +212,11 @@ picture {
 
   &.h55 {
     img {
-      height: 55px;
+      height: min(55px, 14vw);
       @include variables.res(lg) {
         height: 60px;
       }
     }
-  }
-
-  img {
-    height: 100%;
-    width: auto;
   }
 
   .caption {
@@ -260,7 +256,8 @@ picture {
 }
 
 .button_section {
-  margin-top: 16vw;
+  padding: 0 20px;
+  margin-top: min(50px, 16vw);
   @include variables.res(lg) {
     margin-top: 50px;
   }
@@ -421,7 +418,8 @@ picture {
   border: 1px solid variables.$primary;
   color: white;
   width: 100%;
-  max-width: initial;
+  max-width: 580px;
+  // max-width: initial;
   height: 50px;
   line-height: 47.5px;
   border-radius: 5px;

@@ -5,6 +5,8 @@
   z-index: 999;
   border-top: 1px solid #f1f1f1;
   padding-top: 65px;
+  font-size: variables.$fz16;
+
   @include variables.res(lg) {
     padding-top: 95px;
   }
@@ -99,11 +101,11 @@
     a {
       display: flex;
       gap: 8px;
-      font-weight: bold;
 
-      padding: 0 20px;
+      padding: 0 10px;
       @include variables.res(lg) {
         padding: 0;
+        font-weight: bold;
       }
 
       .icon {

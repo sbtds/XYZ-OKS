@@ -79,9 +79,13 @@
           border-top: 12px solid white;
           filter: drop-shadow(0 4px 3px rgba(black, 0.15));
           position: absolute;
-          bottom: -12px;
+          bottom: -10px;
           left: 50%;
           transform: translateX(-50%);
+
+          @include variables.res(lg) {
+            bottom: -12px;
+          }
         }
       }
 

@@ -2,13 +2,13 @@
 
 // Main
 .consultant_detail {
-  max-width: 1200px;
+  max-width: 1240px;
   margin-left: auto;
   margin-right: auto;
 
   padding: 16vw 20px;
   @include variables.res(lg) {
-    padding: 80px 0;
+    padding: 80px 20px;
   }
 }
 
@@ -164,7 +164,7 @@
 
     .title {
       color: variables.$primary;
-      font-size: variables.$fz24;
+      font-size: variables.$fz22;
       font-weight: bold;
       margin-bottom: 10px;
 
@@ -185,6 +185,17 @@
       //   background: url(../../images/page/page_title_arrow.svg) no-repeat left center;
       //   background-size: 100% auto;
       // }
+
+      .arrow {
+        width: min(16vw, 120px);
+
+        @include variables.res(lg) {
+          width: 120px;
+        }
+        img {
+          width: 100%;
+        }
+      }
     }
 
     .contents {

@@ -325,14 +325,14 @@
     }
 
     .icon {
-      flex: 0 0 8vw;
+      flex: 0 0 min(8vw, 40px);
 
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 1000px;
-      width: 8vw;
-      height: 8vw;
+      width: min(8vw, 40px);
+      height: min(8vw, 40px);
       font-size: variables.$fz14;
 
       border: 1px solid variables.$primary;
@@ -342,10 +342,10 @@
       @include variables.res(lg) {
         font-size: variables.$fz18;
 
-        flex: 0 0 42px;
+        flex: 0 0 40px;
 
-        width: 42px;
-        height: 42px;
+        width: 40px;
+        height: 40px;
       }
     }
 

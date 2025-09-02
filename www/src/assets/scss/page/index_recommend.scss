@@ -61,7 +61,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    height: 8vw;
+    height: min(36px, 8vw);
     @include variables.res(lg) {
       height: 36px;
     }

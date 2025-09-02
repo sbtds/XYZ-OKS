@@ -41,9 +41,9 @@
     }
 
     .arrow {
-      width: 16vw;
+      width: min(16vw, 72px);
       @include variables.res(lg) {
-        width: auto;
+        width: 72px;
       }
 
       img {

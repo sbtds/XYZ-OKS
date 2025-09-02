@@ -1,0 +1,35 @@
+@use "../common/_variables";
+
+// Main
+.index_faq.faq_index {
+  background-color: white;
+  color: variables.$primary;
+  // max-width: 1240px;
+  // margin-left: auto;
+  // margin-right: auto;
+
+  // padding: 16vw 20px;
+  // @include variables.res(lg) {
+  //   padding: 80px 0;
+  // }
+
+  & .index_faq__item_head {
+    background: variables.$primary;
+    color: white;
+
+    .icon,
+    .arrow {
+      background: white;
+      color: variables.$primary;
+    }
+  }
+
+  & .index_faq__item_body {
+    color: variables.$contrast;
+
+    .icon {
+      background: variables.$primary;
+      color: white;
+    }
+  }
+}
