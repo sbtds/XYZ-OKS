@@ -158,7 +158,8 @@
     }
   }
 
-  &__area {
+  &__area,
+  &__type {
     font-size: variables.$fz16;
     @include variables.res(lg) {
       font-size: variables.$fz16;
@@ -169,7 +170,8 @@
     }
 
     &_title {
-      display: flex;
+      display: inline-flex;
+      width: 100%;
       // align-items: center;
       cursor: pointer;
       // gap: 12px;
@@ -211,6 +213,20 @@
           top: 25%;
           bottom: 5%;
         }
+
+        &::before {
+          content: "";
+          display: block;
+          width: 65%;
+          height: 2px;
+          background: white;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: all 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+          opacity: 0;
+        }
       }
 
       .label {
@@ -223,6 +239,7 @@
       }
 
       .arrow {
+        cursor: pointer;
         color: variables.$primary;
         margin-left: auto;
         .plus {
@@ -238,6 +255,25 @@
     //   color: variables.$contrast-light;
     // }
 
+    &_check:checked ~ &_title {
+      .checkbox {
+        border: 1px solid variables.$primary;
+        background: variables.$primary;
+
+        &::before {
+          opacity: 0 !important;
+        }
+
+        &::after {
+          opacity: 1 !important;
+          border-color: white;
+        }
+      }
+    }
+
+    // ------------------------------------------
+    // show
+    // ------------------------------------------
     &_menu {
       display: none;
       padding-bottom: 20px;
@@ -248,16 +284,11 @@
       }
     }
 
-    &_check:checked + &_title {
-      .checkbox {
-        border: 1px solid variables.$primary;
-        background: variables.$primary;
+    &_show {
+      display: none;
+    }
 
-        &::after {
-          border-color: white;
-        }
-      }
-
+    &_show:checked ~ &_title {
       .arrow {
         .plus {
           display: none;
@@ -268,12 +299,13 @@
       }
     }
 
-    &_check:checked ~ &_menu {
+    &_show:checked ~ &_menu {
       display: block;
     }
   }
 
-  &__area {
+  &__area,
+  &__type {
     &_list {
       margin-top: 14px;
       padding-left: 31px;
@@ -287,7 +319,7 @@
     }
 
     &_item {
-      display: flex;
+      display: inline-flex;
       // align-items: center;
       cursor: pointer;
       // gap: 12px;
@@ -350,8 +382,161 @@
       }
     }
 
-    &_item:hover {
-      color: variables.$contrast-light;
+    &_item_check {
+      display: none;
     }
+
+    &_item_check:checked ~ .checkbox {
+      border: 1px solid variables.$primary;
+      background: variables.$primary;
+
+      &::after {
+        border-color: white;
+      }
+    }
+
+    // title [-]
+
+    &_title.has-partial-checked {
+      .checkbox {
+        border: 1px solid variables.$primary;
+        background: variables.$primary;
+
+        &::after {
+          opacity: 0;
+        }
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+
+    // &_item_check:checked ~ &_menu {
+    //   .search_select__area_item {
+    //     .checkbox {
+    //       border: 1px solid variables.$primary;
+    //       background: variables.$primary;
+
+    //       &::after {
+    //         border-color: white;
+    //       }
+    //     }
+    //   }
+    // }
+
+    // // item01
+    // #search_select__area01_01:checked ~ &_menu label[for="search_select__area01_01"],
+    // #search_select__area01_02:checked ~ &_menu label[for="search_select__area01_02"],
+    // #search_select__area01_03:checked ~ &_menu label[for="search_select__area01_03"],
+    // #search_select__area01_04:checked ~ &_menu label[for="search_select__area01_04"],
+    // #search_select__area01_05:checked ~ &_menu label[for="search_select__area01_05"],
+    // // item02
+    // #search_select__area02_01:checked ~ &_menu label[for="search_select__area02_01"],
+    // #search_select__area02_02:checked ~ &_menu label[for="search_select__area02_02"],
+    // #search_select__area02_03:checked ~ &_menu label[for="search_select__area02_03"],
+    // #search_select__area02_04:checked ~ &_menu label[for="search_select__area02_04"],
+    // #search_select__area02_05:checked ~ &_menu label[for="search_select__area02_05"],
+    // #search_select__area02_06:checked ~ &_menu label[for="search_select__area02_06"],
+    // #search_select__area02_07:checked ~ &_menu label[for="search_select__area02_07"],
+    // #search_select__area02_08:checked ~ &_menu label[for="search_select__area02_08"],
+    // #search_select__area02_09:checked ~ &_menu label[for="search_select__area02_09"],
+    // #search_select__area02_10:checked ~ &_menu label[for="search_select__area02_10"],
+    // #search_select__area02_11:checked ~ &_menu label[for="search_select__area02_11"],
+    // #search_select__area02_12:checked ~ &_menu label[for="search_select__area02_12"],
+    // #search_select__area02_13:checked ~ &_menu label[for="search_select__area02_13"],
+    // #search_select__area02_14:checked ~ &_menu label[for="search_select__area02_14"],
+    // #search_select__area02_15:checked ~ &_menu label[for="search_select__area02_15"],
+    // // item03
+    // #search_select__area03_01:checked ~ &_menu label[for="search_select__area03_01"],
+    // #search_select__area03_02:checked ~ &_menu label[for="search_select__area03_02"],
+    // #search_select__area03_03:checked ~ &_menu label[for="search_select__area03_03"],
+    // #search_select__area03_04:checked ~ &_menu label[for="search_select__area03_04"],
+    // #search_select__area03_05:checked ~ &_menu label[for="search_select__area03_05"],
+    // // item04
+    // #search_select__area04_01:checked ~ &_menu label[for="search_select__area04_01"],
+    // #search_select__area04_02:checked ~ &_menu label[for="search_select__area04_02"],
+    // #search_select__area04_03:checked ~ &_menu label[for="search_select__area04_03"],
+    // #search_select__area04_04:checked ~ &_menu label[for="search_select__area04_04"],
+    // #search_select__area04_05:checked ~ &_menu label[for="search_select__area04_05"],
+    // #search_select__area04_06:checked ~ &_menu label[for="search_select__area04_06"],
+    // #search_select__area04_07:checked ~ &_menu label[for="search_select__area04_07"],
+    // #search_select__area04_08:checked ~ &_menu label[for="search_select__area04_08"],
+    // #search_select__area04_09:checked ~ &_menu label[for="search_select__area04_09"],
+    // #search_select__area04_10:checked ~ &_menu label[for="search_select__area04_10"],
+    // // item05
+    // #search_select__area05_01:checked ~ &_menu label[for="search_select__area05_01"],
+    // #search_select__area05_02:checked ~ &_menu label[for="search_select__area05_02"],
+    // #search_select__area05_03:checked ~ &_menu label[for="search_select__area05_03"],
+    // #search_select__area05_04:checked ~ &_menu label[for="search_select__area05_04"],
+    // #search_select__area05_05:checked ~ &_menu label[for="search_select__area05_05"] {
+    //   .checkbox {
+    //     border: 1px solid variables.$primary;
+    //     background: variables.$primary;
+
+    //     &::after {
+    //       border-color: white;
+    //     }
+    //   }
+    // }
+
+    // title [-]
+
+    // //item01
+    // #search_select__area01_01:checked ~ &_title[for="search_select__area01"],
+    // #search_select__area01_02:checked ~ &_title[for="search_select__area01"],
+    // #search_select__area01_03:checked ~ &_title[for="search_select__area01"],
+    // #search_select__area01_04:checked ~ &_title[for="search_select__area01"],
+    // #search_select__area01_05:checked ~ &_title[for="search_select__area01"],
+    // //item02
+    // #search_select__area02_01:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_02:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_03:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_04:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_05:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_06:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_07:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_08:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_09:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_10:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_11:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_12:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_13:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_14:checked ~ &_title[for="search_select__area02"],
+    // #search_select__area02_15:checked ~ &_title[for="search_select__area02"],
+    // //item03
+    // #search_select__area03_01:checked ~ &_title[for="search_select__area03"],
+    // #search_select__area03_02:checked ~ &_title[for="search_select__area03"],
+    // #search_select__area03_03:checked ~ &_title[for="search_select__area03"],
+    // #search_select__area03_04:checked ~ &_title[for="search_select__area03"],
+    // #search_select__area03_05:checked ~ &_title[for="search_select__area03"],
+    // //item04
+    // #search_select__area04_01:checked ~ &_title[for="search_select__area04"],
+    // #search_select__area04_02:checked ~ &_title[for="search_select__area04"],
+    // #search_select__area04_03:checked ~ &_title[for="search_select__area04"],
+    // #search_select__area04_04:checked ~ &_title[for="search_select__area04"],
+    // #search_select__area04_05:checked ~ &_title[for="search_select__area04"],
+    // #search_select__area04_06:checked ~ &_title[for="search_select__area04"],
+    // #search_select__area04_07:checked ~ &_title[for="search_select__area04"],
+    // #search_select__area04_08:checked ~ &_title[for="search_select__area04"],
+    // #search_select__area04_09:checked ~ &_title[for="search_select__area04"],
+    // #search_select__area04_10:checked ~ &_title[for="search_select__area04"],
+    // //item05
+    // #search_select__area05_01:checked ~ &_title[for="search_select__area05"],
+    // #search_select__area05_02:checked ~ &_title[for="search_select__area05"],
+    // #search_select__area05_03:checked ~ &_title[for="search_select__area05"],
+    // #search_select__area05_04:checked ~ &_title[for="search_select__area05"],
+    // #search_select__area05_05:checked ~ &_title[for="search_select__area05"] {
+    //   .checkbox {
+    //     border: 1px solid variables.$primary;
+    //     background: variables.$primary;
+
+    //     &::after {
+    //       opacity: 0;
+    //     }
+    //     &::before {
+    //       opacity: 1;
+    //     }
+    //   }
+    // }
   }
 }
