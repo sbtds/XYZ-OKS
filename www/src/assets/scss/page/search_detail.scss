@@ -1,0 +1,13 @@
+@use "../common/_variables";
+
+// Main
+.search_detail {
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 16vw 20px;
+  @include variables.res(lg) {
+    padding: 80px 20px;
+  }
+}
