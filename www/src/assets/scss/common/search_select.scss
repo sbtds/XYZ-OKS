@@ -163,7 +163,8 @@
   }
 
   &__area,
-  &__type {
+  &__type,
+  &__conditions {
     font-size: variables.$fz16;
     @include variables.res(lg) {
       font-size: variables.$fz16;
@@ -309,7 +310,8 @@
   }
 
   &__area,
-  &__type {
+  &__type,
+  &__conditions {
     &_list {
       margin-top: 14px;
       padding-left: 31px;
