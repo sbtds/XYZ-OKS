@@ -1,13 +1,297 @@
 @use "../common/_variables";
 
 // Main
-.search_detail {
-  max-width: 1240px;
-  margin-left: auto;
-  margin-right: auto;
+.search_title {
+  display: flex;
+  align-items: center;
+  background: variables.$primary;
+  color: white;
 
-  padding: 16vw 20px;
+  padding: 40px 0 40px;
   @include variables.res(lg) {
-    padding: 80px 20px;
+    padding: 52px 0 58px;
+    min-height: 240px;
+  }
+
+  &__container {
+    max-width: 1240px;
+    width: 100%;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    @include variables.res(lg) {
+      gap: 60px;
+    }
+
+    .arrow {
+      flex: 0 0 8px;
+
+      @include variables.res(lg) {
+        flex: 0 0 16px;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .main {
+      flex: 1 1 100%;
+      max-width: 1080px;
+      margin-left: auto;
+      margin-right: auto;
+
+      // padding: 0 20px;
+
+      .caption {
+        text-align: center;
+        font-size: variables.$fz12;
+        @include variables.res(lg) {
+        }
+      }
+
+      .title {
+        font-weight: bold;
+        margin-top: 10px;
+        @include variables.res(lg) {
+          margin-top: 10px;
+          font-size: variables.$fz24;
+          line-height: 1.2;
+        }
+      }
+
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: variables.$fz12;
+        margin-top: 15px;
+        @include variables.res(lg) {
+          justify-content: center;
+          margin-top: 15px;
+        }
+        &_item {
+          a {
+            display: block;
+            // border: 1px solid variables.$primary;
+            border: 1px solid white;
+            // color: variables.$primary;
+            color: white;
+            border-radius: 1000px;
+            padding: 4px 8px;
+            line-height: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.search_point {
+  position: relative;
+  background-color: #eeeeee;
+  /* Polygon 2 */
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 48px;
+    bottom: -48px;
+    background: linear-gradient(to top right, transparent 50%, #eeeeee 50%), linear-gradient(to top left, transparent 50%, #eeeeee 50%);
+    background-size: 50% 100%;
+    background-position: left, right;
+    background-repeat: no-repeat;
+
+    @include variables.res(lg) {
+      height: 64px;
+      bottom: -64px;
+    }
+  }
+
+  &__container {
+    max-width: 880px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include variables.res(lg) {
+      padding: 80px 20px;
+      gap: 24px;
+    }
+  }
+
+  &__title {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    @include variables.res(lg) {
+      gap: 24px;
+    }
+  }
+
+  &__item {
+    background: white;
+    border-radius: 1000px;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    gap: 16px;
+    @include variables.res(lg) {
+      gap: 16px;
+    }
+
+    .badge {
+      flex: 0 0 min(86px, 22vw);
+      width: min(86px, 22vw);
+      height: min(86px, 22vw);
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: variables.$fz14;
+      font-weight: bold;
+      background-color: variables.$primary;
+      @include variables.res(lg) {
+        font-size: variables.$fz16;
+      }
+    }
+
+    .contents {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: variables.$fz14;
+      padding: 10px 10px 10px 0;
+    }
+  }
+}
+
+.search_outline {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  @include variables.res(lg) {
+    gap: 40px;
+  }
+  .featured_outline__container {
+  }
+}
+
+.search_banner {
+  padding: 0 20px;
+  @include variables.res(lg) {
+  }
+  &__container {
+    overflow: hidden;
+
+    min-height: 340px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    position: relative;
+    border: 1px solid variables.$primary;
+    border-radius: 10px;
+  }
+
+  &__image {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+
+    &::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      background-color: rgba(white, 0.8);
+    }
+  }
+
+  &__main {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 42px 0;
+    gap: 32px;
+
+    @include variables.res(lg) {
+      padding: 68px 0;
+      gap: 32px;
+    }
+
+    .title {
+      display: inline-block;
+      max-width: 310px;
+      margin-left: auto;
+      margin-right: auto;
+      @include variables.res(lg) {
+        width: auto;
+        // height: 40px;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+
+        @include variables.res(lg) {
+          width: initial;
+        }
+      }
+    }
+
+    .contents {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: variables.$fz14;
+
+      width: 100%;
+      @include variables.res(lg) {
+        max-width: 740px;
+      }
+    }
   }
 }

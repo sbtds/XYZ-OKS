@@ -569,6 +569,13 @@
         gap: 20px;
       }
 
+      &.block-last {
+        padding-bottom: 24px;
+        @include variables.res(lg) {
+          padding-bottom: 24px;
+        }
+      }
+
       .search_select__area,
       .search_select__type,
       .search_select__conditions {

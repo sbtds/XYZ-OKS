@@ -73,6 +73,13 @@ main.page_main {
   }
 }
 
+main.page_main {
+  padding-bottom: 80px;
+  @include variables.res(lg) {
+    padding-bottom: 160px;
+  }
+}
+
 #root {
   .common_header {
   }

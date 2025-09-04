@@ -457,8 +457,12 @@ picture {
   }
 
   .label {
-    font-size: variables.$fz16;
+    font-size: variables.$fz14;
     letter-spacing: 0.04em;
+
+    @include variables.res(sm) {
+      font-size: variables.$fz16;
+    }
   }
 
   .icon {
