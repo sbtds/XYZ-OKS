@@ -37,14 +37,6 @@ const plugins = [
           ignore: ["**/.DS_Store"],
         },
       },
-      {
-        from: "src/assets/images/mobile",
-        to: "assets/images/mobile",
-        noErrorOnMissing: true,
-        globOptions: {
-          ignore: ["**/.DS_Store"],
-        },
-      },
     ],
   }),
 ];
@@ -151,6 +143,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "assets/js/bundle.js",
+    publicPath: "", // 相対パスで出力
     clean: {
       keep: /\.(php|jpg|jpeg|png|gif|svg|webp|ico)$/,
     },
@@ -199,7 +192,12 @@ module.exports = {
                   }
                 }
 
-                return processedContent;
+                // 絶対パスを相対パスに変換
+                let finalContent = processedContent;
+                finalContent = finalContent.replace(/(src|href)="\/(?!\/|https?:\/\/|#)([^"]*)"/g, '$1="$2"');
+                finalContent = finalContent.replace(/(src|href)='\/(?!\/|https?:\/\/|#)([^']*)'/g, "$1='$2'");
+
+                return finalContent;
               },
             },
           },
@@ -233,7 +231,14 @@ module.exports = {
         test: /\.(ico|png|jpg|jpeg|gif|svg|webp)$/i,
         type: "asset/resource",
         generator: {
-          filename: "assets/images/[name][ext]",
+          filename: (pathData) => {
+            // src/assets/images/以下のパス構造を維持
+            const relativePath = path.relative(
+              path.resolve(__dirname, "src"),
+              pathData.filename
+            );
+            return relativePath;
+          },
         },
       },
     ],

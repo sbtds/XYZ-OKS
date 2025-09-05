@@ -84,7 +84,7 @@
           transform: translateX(-50%);
 
           @include variables.res(lg) {
-            bottom: -12px;
+            bottom: -10px;
           }
         }
       }

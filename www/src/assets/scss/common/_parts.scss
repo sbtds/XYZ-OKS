@@ -386,10 +386,12 @@ picture {
   .icon {
     font-size: 5.2vw;
     @include variables.res(md) {
-      font-size: 24px;
+      // font-size: 24px;
+      font-size: variables.$fz24;
     }
     @include variables.res(lg) {
-      font-size: 28px;
+      // font-size: 28px;
+      font-size: variables.$fz28;
     }
   }
 
