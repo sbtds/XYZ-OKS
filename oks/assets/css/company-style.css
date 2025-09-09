@@ -1,0 +1,25 @@
+/* 注目企業用スタイル */
+
+/* エリア名のリンクスタイル */
+.featured_index__title .label {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.featured_index__title .label:hover {
+  color: #007cba;
+  text-decoration: underline;
+}
+
+/* 詳細ページでのエリアリンクスタイル */
+.featured_top__main .area a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.featured_top__main .area a:hover {
+  color: #007cba;
+  text-decoration: underline;
+}
