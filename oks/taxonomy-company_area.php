@@ -27,9 +27,24 @@ $term = get_queried_object(); // 現在のタームを取得
           <span class="arrow"><img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/section_title_arrow.svg" alt=""></span>
         </h2>
         
-        <?php if (have_posts()) : ?>
+        <?php 
+        // company投稿タイプのみに制限するためのカスタムクエリ
+        $args = array(
+          'post_type' => 'company',
+          'tax_query' => array(
+            array(
+              'taxonomy' => 'company_area',
+              'field'    => 'slug',
+              'terms'    => $term->slug,
+            ),
+          ),
+          'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
+        );
+        $company_query = new WP_Query($args);
+        
+        if ($company_query->have_posts()) : ?>
           <div class="featured_index__list">
-            <?php while (have_posts()) : the_post(); 
+            <?php while ($company_query->have_posts()) : $company_query->the_post(); 
               $company_top = get_field('company_top');
             ?>
               <a class="featured_index__item" href="<?php the_permalink(); ?>">
@@ -66,16 +81,25 @@ $term = get_queried_object(); // 現在のタームを取得
           <!-- ページネーション -->
           <div class="pagination">
             <?php
-            the_posts_pagination(array(
+            // カスタムクエリ用のページネーション
+            $pagination = paginate_links(array(
+              'total' => $company_query->max_num_pages,
+              'current' => max(1, get_query_var('paged')),
               'mid_size' => 2,
               'prev_text' => '<i class="fa-solid fa-chevron-left"></i>',
               'next_text' => '<i class="fa-solid fa-chevron-right"></i>',
+              'type' => 'list',
             ));
+            echo $pagination;
             ?>
           </div>
         <?php else : ?>
           <p>現在、<?php echo esc_html($term->name); ?>の注目企業はありません。</p>
-        <?php endif; ?>
+        <?php endif; 
+        
+        // クエリをリセット
+        wp_reset_postdata();
+        ?>
         
         <div class="button_section">
           <a class="button_more" href="<?php echo get_post_type_archive_link('company'); ?>">

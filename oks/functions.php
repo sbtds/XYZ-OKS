@@ -35,15 +35,6 @@ function oks_enqueue_styles() {
         );
     }
 
-    // Enqueue company styles for company pages
-    if (is_singular('company') || is_post_type_archive('company') || is_tax('company_area')) {
-        wp_enqueue_style(
-            'oks-company',
-            get_template_directory_uri() . '/assets/css/company-style.css',
-            array('oks-style'),
-            '1.0.0'
-        );
-    }
 
     // Enqueue dist styles for all pages
     wp_enqueue_style(

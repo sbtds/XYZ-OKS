@@ -4,11 +4,16 @@
   position: relative;
   z-index: 999;
   border-top: 1px solid #f1f1f1;
-  padding-top: 65px;
+  background-color: white;
+  color: variables.$contrast;
   font-size: variables.$fz16;
 
+  text-align: left;
+  padding: 65px 0 0;
+  margin-top: 0;
+
   @include variables.res(lg) {
-    padding-top: 95px;
+    padding: 95px 0 0;
   }
 
   &__container {
