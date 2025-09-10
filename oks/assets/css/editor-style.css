@@ -1,0 +1,215 @@
+/**
+ * Gutenbergエディタ用スタイル
+ * フロントエンドのデザインをエディタ内でも反映
+ */
+
+/* エディタ全体の基本設定 */
+.editor-styles-wrapper {
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+  color: #333;
+  line-height: 1.8;
+}
+
+/* 見出しスタイル - postタイプのみに適用 */
+.post-type-post-editor .editor-styles-wrapper h2,
+.post-type-post-editor .editor-styles-wrapper h3,
+.post-type-post-editor .editor-styles-wrapper h4,
+.post-type-post-editor .editor-styles-wrapper h5,
+.post-type-post-editor .editor-styles-wrapper h6 {
+  position: relative;
+  color: #c81b21;
+  font-weight: bold;
+  padding-left: 26px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+/* 見出しの三角形装飾 - postタイプのみ */
+.post-type-post-editor .editor-styles-wrapper h2::before,
+.post-type-post-editor .editor-styles-wrapper h3::before,
+.post-type-post-editor .editor-styles-wrapper h4::before,
+.post-type-post-editor .editor-styles-wrapper h5::before,
+.post-type-post-editor .editor-styles-wrapper h6::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  border-style: solid;
+  border-width: 5px 0 5px 9px;
+  border-color: transparent transparent transparent #c81b21;
+  vertical-align: middle;
+}
+
+/* h2のスタイル - postタイプのみ */
+.post-type-post-editor .editor-styles-wrapper h2 {
+  font-size: 32px;
+}
+
+.post-type-post-editor .editor-styles-wrapper h2::before {
+  border-width: 9px 0 9px 12px;
+}
+
+/* h3のスタイル - postタイプのみ */
+.post-type-post-editor .editor-styles-wrapper h3 {
+  font-size: 28px;
+}
+
+.post-type-post-editor .editor-styles-wrapper h3::before {
+  border-width: 9px 0 9px 12px;
+}
+
+/* h4のスタイル - postタイプのみ */
+.post-type-post-editor .editor-styles-wrapper h4 {
+  font-size: 24px;
+}
+
+.post-type-post-editor .editor-styles-wrapper h4::before {
+  border-width: 9px 0 9px 12px;
+}
+
+/* h5, h6のスタイル - postタイプのみ */
+.post-type-post-editor .editor-styles-wrapper h5,
+.post-type-post-editor .editor-styles-wrapper h6 {
+  font-size: 18px;
+}
+
+.post-type-post-editor .editor-styles-wrapper h5::before,
+.post-type-post-editor .editor-styles-wrapper h6::before {
+  margin-top: -3px;
+  margin-right: 16px;
+  border-width: 9px 0 9px 12px;
+}
+
+/* 段落 */
+.editor-styles-wrapper p {
+  margin: 0 0 20px;
+  line-height: 1.8;
+}
+
+/* リスト */
+.editor-styles-wrapper ul {
+  margin: 0 0 20px;
+  padding-left: 30px;
+}
+
+.editor-styles-wrapper ul li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+.editor-styles-wrapper ol {
+  margin: 0 0 20px;
+  padding-left: 30px;
+}
+
+.editor-styles-wrapper ol li {
+  margin-bottom: 8px;
+  line-height: 1.8;
+}
+
+/* 画像 - フロントと同じく幅100% */
+.editor-styles-wrapper img {
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+}
+
+/* 引用 */
+.editor-styles-wrapper blockquote {
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 5px solid #c81b21;
+  background: #f8f9fa;
+  font-style: italic;
+}
+
+/* テーブル */
+.editor-styles-wrapper table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+}
+
+.editor-styles-wrapper table th {
+  background: #c81b21;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.editor-styles-wrapper table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.editor-styles-wrapper table tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* リンク */
+.editor-styles-wrapper a {
+  color: #c81b21;
+  text-decoration: underline;
+}
+
+.editor-styles-wrapper a:hover {
+  color: #0052a3;
+}
+
+/* コード */
+.editor-styles-wrapper code {
+  background: #f5f5f5;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.9em;
+}
+
+.editor-styles-wrapper pre {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 20px 0;
+}
+
+.editor-styles-wrapper pre code {
+  background: none;
+  padding: 0;
+}
+
+/* ボタンブロック */
+.editor-styles-wrapper .wp-block-button__link {
+  background: #c81b21;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.editor-styles-wrapper .wp-block-button__link:hover {
+  background: #0052a3;
+}
+
+/* セパレーター */
+.editor-styles-wrapper hr {
+  margin: 30px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+/* レスポンシブ対応 - 大画面では三角形の位置を調整（postタイプのみ） */
+@media (min-width: 768px) {
+  .post-type-post-editor .editor-styles-wrapper h2::before,
+  .post-type-post-editor .editor-styles-wrapper h3::before,
+  .post-type-post-editor .editor-styles-wrapper h4::before,
+  .post-type-post-editor .editor-styles-wrapper h5::before,
+  .post-type-post-editor .editor-styles-wrapper h6::before {
+    top: 0.8em;
+  }
+}
