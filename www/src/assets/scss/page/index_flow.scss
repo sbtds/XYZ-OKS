@@ -27,6 +27,103 @@
   }
 }
 
+// .index_flow {
+//   &__head {
+//     position: relative;
+//     display: flex;
+//     justify-content: space-between;
+//     flex-direction: column;
+//     align-items: center;
+//     gap: 40px;
+
+//     @include variables.res(lg) {
+//       flex-direction: row;
+//     }
+
+//     &_item {
+//       position: relative;
+//       width: 100%;
+//       max-width: 60vw;
+//       min-width: 210px;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       gap: 30px;
+
+//       @include variables.res(lg) {
+//         width: 210px;
+//         max-width: initial;
+//         min-width: initial;
+//       }
+
+//       .label {
+//         position: relative;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         text-align: center;
+//         width: 100%;
+//         height: 66px;
+//         font-weight: bold;
+//         color: variables.$primary;
+//         background: white;
+//         border-radius: 1000px;
+//         box-shadow: 0 2px 4px 0 rgba(black, 0.15);
+
+//         &:after {
+//           content: "";
+//           width: 0;
+//           height: 0;
+//           border-left: 16px solid transparent;
+//           border-right: 16px solid transparent;
+//           border-top: 12px solid white;
+//           filter: drop-shadow(0 4px 3px rgba(black, 0.15));
+//           position: absolute;
+//           bottom: -10px;
+//           left: 50%;
+//           transform: translateX(-50%);
+
+//           @include variables.res(lg) {
+//             bottom: -10px;
+//           }
+//         }
+//       }
+
+//       .number {
+//         position: relative;
+//         z-index: 1;
+//         display: none;
+//         background: variables.$primary;
+//         color: white;
+//         text-align: center;
+//         font-size: 1.11rem;
+//         border-radius: 1000px;
+//         width: 40px;
+//         height: 40px;
+//         line-height: 40px;
+
+//         @include variables.res(lg) {
+//           display: block;
+//         }
+//       }
+
+//       .sep {
+//         z-index: 0;
+//         position: absolute;
+//         bottom: 20px;
+//         height: 1px;
+//         background-color: variables.$primary;
+//         width: 300px;
+//         left: 50%;
+//         display: none;
+
+//         @include variables.res(lg) {
+//           display: block;
+//         }
+//       }
+//     }
+//   }
+// }
 .index_flow {
   &__head {
     position: relative;
@@ -44,13 +141,15 @@
       position: relative;
       width: 100%;
       max-width: 60vw;
-      min-width: 210px;
+      // min-width: 210px;
+      min-width: 260px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row-reverse;
       align-items: center;
       gap: 30px;
 
       @include variables.res(lg) {
+        flex-direction: column;
         width: 210px;
         max-width: initial;
         min-width: initial;
@@ -92,12 +191,13 @@
       .number {
         position: relative;
         z-index: 1;
-        display: none;
+        // display: none;
         background: variables.$primary;
         color: white;
         text-align: center;
         font-size: 1.11rem;
         border-radius: 1000px;
+        flex: 0 0 40px;
         width: 40px;
         height: 40px;
         line-height: 40px;
@@ -110,61 +210,66 @@
       .sep {
         z-index: 0;
         position: absolute;
-        bottom: 20px;
-        height: 1px;
+        top: 2em;
+        left: 20px;
+        width: 1px;
+        height: 180%;
         background-color: variables.$primary;
-        width: 300px;
-        left: 50%;
-        display: none;
+        // display: none;
 
         @include variables.res(lg) {
-          display: block;
+          // display: block;
+          top: auto;
+          bottom: 20px;
+          left: 50%;
+          height: 1px;
+          width: 300px;
         }
       }
     }
   }
 }
 
-.index_flow {
-  &__step {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 40px;
-    margin-top: 30px;
+// .index_flow {
+//   &__step {
+//     position: relative;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     height: 40px;
+//     margin-top: 30px;
 
-    @include variables.res(lg) {
-      display: none;
-    }
+//     @include variables.res(lg) {
+//       display: none;
+//     }
 
-    .number {
-      position: relative;
-      z-index: 1;
-      display: block;
-      background: variables.$primary;
-      color: white;
-      text-align: center;
-      font-size: 1.11rem;
-      border-radius: 1000px;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
-    }
+//     .number {
+//       position: relative;
+//       z-index: 1;
+//       display: block;
+//       background: variables.$primary;
+//       color: white;
+//       text-align: center;
+//       font-size: 1.11rem;
+//       border-radius: 1000px;
+//       width: 40px;
+//       height: 40px;
+//       line-height: 40px;
+//     }
 
-    .sep {
-      z-index: 0;
-      position: absolute;
-      bottom: 20px;
-      height: 1px;
-      background-color: variables.$primary;
-      width: 200%;
-      left: 50%;
-      transform: translateX(-50%);
-      display: block;
-    }
-  }
-}
+//     .sep {
+//       z-index: 0;
+//       position: absolute;
+//       bottom: 20px;
+//       height: 1px;
+//       background-color: variables.$primary;
+//       width: 200%;
+//       left: 50%;
+//       transform: translateX(-50%);
+//       display: block;
+//     }
+//   }
+// }
 
 .index_flow {
   &__body {
@@ -222,6 +327,7 @@
     // gap: 50px;
     gap: 5px;
     flex-direction: column;
+    width: 100%;
 
     @include variables.res(lg) {
       // gap: 50px;

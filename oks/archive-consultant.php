@@ -29,8 +29,8 @@ get_header(); ?>
           $areas = get_the_terms(get_the_ID(), 'company_area');
         ?>
         <div class="index_consultant__item">
-          <div class="index_consultant__inner">
-            <p class="index_consultant__thb">
+          <a class="index_consultant__inner" href="<?php the_permalink(); ?>">
+            <p class="index_consultant__thb hover-image">
               <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('medium'); ?>
               <?php else : ?>
@@ -65,13 +65,11 @@ get_header(); ?>
               <?php endif; ?>
 
               <p class="link">
-                <a href="<?php the_permalink(); ?>">
-                  <span class="label hover-underline">READ MORE</span>
-                  <span class="icon"><i class="fa-solid fa-arrow-right"></i></span>
-                </a>
+                <span class="label hover-underline">READ MORE</span>
+                <span class="icon"><i class="fa-solid fa-arrow-right"></i></span>
               </p>
             </div>
-          </div>
+          </a>
         </div>
         <?php endwhile; ?>
       </div>
