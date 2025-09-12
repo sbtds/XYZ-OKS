@@ -1,5 +1,15 @@
 @use "../common/_variables";
 
+// Keyframes
+@keyframes slideLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-20%);
+  }
+}
+
 // Main
 .index_hero {
   &__main {
@@ -184,8 +194,23 @@
       // }
     }
 
+    &_cv {
+      position: relative;
+      padding-top: 20vw;
+
+      @include variables.res(lg) {
+        padding-top: 40px;
+      }
+      @include variables.res(xl) {
+        padding-top: 70px;
+      }
+    }
+
     &_bg {
       // overflow: hidden;
+      position: absolute;
+      top: 0;
+
       width: 100%;
       // border: 1px solid #000;
       margin-bottom: 15px;
@@ -195,6 +220,7 @@
 
       img {
         width: 100%;
+        animation: slideLeft 3s ease-in-out forwards;
         @include variables.res(lg) {
           width: 57vw;
           max-width: initial;
@@ -220,13 +246,14 @@
       @include variables.res(lg) {
         width: 92%;
         max-width: 577px;
-        margin-top: -40px;
+        // margin-top: -40px;
+        margin-top: 0;
         margin-left: 0;
       }
       @include variables.res(xl) {
         width: 92%;
         max-width: 577px;
-        margin-top: -70px;
+        // margin-top: -70px;
         margin-left: 0;
       }
     }
