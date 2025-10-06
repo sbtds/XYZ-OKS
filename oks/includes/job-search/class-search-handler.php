@@ -53,24 +53,24 @@ class OKS_Search_Handler {
             );
         }
 
-        // 年収範囲
-        if (!empty($params['salary_min']) || !empty($params['salary_max'])) {
+        // 年収範囲（HTMLのselect nameが空なので、別の方法で取得）
+        if (!empty($params['salary_min_select']) || !empty($params['salary_max_select'])) {
             $salary_query = array(
                 'key' => 'annual_income',
                 'type' => 'NUMERIC'
             );
 
-            if (!empty($params['salary_min']) && !empty($params['salary_max'])) {
+            if (!empty($params['salary_min_select']) && !empty($params['salary_max_select'])) {
                 $salary_query['value'] = array(
-                    intval($params['salary_min']),
-                    intval($params['salary_max'])
+                    intval($params['salary_min_select']),
+                    intval($params['salary_max_select'])
                 );
                 $salary_query['compare'] = 'BETWEEN';
-            } elseif (!empty($params['salary_min'])) {
-                $salary_query['value'] = intval($params['salary_min']);
+            } elseif (!empty($params['salary_min_select'])) {
+                $salary_query['value'] = intval($params['salary_min_select']);
                 $salary_query['compare'] = '>=';
-            } elseif (!empty($params['salary_max'])) {
-                $salary_query['value'] = intval($params['salary_max']);
+            } elseif (!empty($params['salary_max_select'])) {
+                $salary_query['value'] = intval($params['salary_max_select']);
                 $salary_query['compare'] = '<=';
             }
 
@@ -79,12 +79,134 @@ class OKS_Search_Handler {
 
         // こだわり条件（チェックされた全ての条件を満たす）
         if (!empty($params['conditions']) && is_array($params['conditions'])) {
-            foreach ($params['conditions'] as $condition) {
-                $args['meta_query'][] = array(
-                    'key' => $condition,
-                    'value' => '1',
-                    'compare' => '='
-                );
+            $condition_mapping = array(
+                '土日祝休み' => 'weekend_holiday',
+                '残業少なめ' => 'low_overtime',
+                'リモートワーク' => 'remote_work',
+                '未経験OK' => 'inexperienced_ok',
+                '寮・社宅あり' => 'company_housing',
+                'マイカー通勤OK' => 'car_commute',
+                '紹介予定派遣' => 'trial_employment',
+                '直接雇用実績あり' => 'direct_hire_experience',
+                '新着' => 'new_job',
+                '年間休日120日以上' => 'weekend_120',
+                '土日祝日休み' => 'weekend_holiday',
+                '早朝勤務' => 'early_shift',
+                '朝ゆっくり' => 'late_start',
+                '夕方開始' => 'afternoon_start',
+                '深夜勤務' => 'night_shift',
+                '残業なし' => 'no_overtime',
+                '残業多め' => 'high_overtime',
+                '転勤なし' => 'no_transfer',
+                '社員登用あり' => 'employee_conversion',
+                '長期' => 'long_term',
+                '単発' => 'short_term',
+                '期間限定' => 'limited_period',
+                '日勤固定' => 'day_shift_only',
+                '夜勤固定' => 'night_shift_only',
+                '２交替・３交替' => 'shift_work',
+                '平日休み' => 'weekday_off',
+                '高収入' => 'high_income',
+                '賞与あり' => 'bonus_available',
+                '給与前払い制度あり' => 'advance_payment',
+                '交通費支給' => 'transportation_fee',
+                '育児・介護休暇あり' => 'childcare_leave',
+                '研修・教育制度充実' => 'training_system',
+                '資格取得支援あり' => 'qualification_support',
+                '女性が活躍' => 'women_active',
+                '男性が活躍' => 'men_active',
+                '20代活躍中' => 'active_20s',
+                '30代活躍中' => 'active_30s',
+                'ミドル活躍中' => 'active_middle',
+                'シニア活躍中' => 'active_senior',
+                '主婦・主夫活躍中' => 'active_homemaker',
+                'フリーター歓迎' => 'freeter_welcome',
+                'オフィスカジュアル' => 'office_casual',
+                '制服あり' => 'uniform_required',
+                '髪型・髪色自由' => 'free_hairstyle',
+                '髭OK' => 'beard_ok',
+                'ネイル・ピアスOK' => 'nail_pierce_ok',
+                '長期休暇あり' => 'long_vacation',
+                '資格・スキルが活かせる' => 'skill_utilization',
+                '座り仕事' => 'sitting_work',
+                '立ち仕事' => 'standing_work',
+                '食堂' => 'canteen',
+                '喫煙所あり' => 'smoking_area',
+                '場内全面禁煙' => 'no_smoking',
+                '空調完備' => 'air_conditioning',
+                'アクティブワーク' => 'active_work',
+                'コツコツ・モクモク集中' => 'focused_work',
+                '副業・ＷワークOK' => 'side_job_ok',
+                '急募' => 'urgent',
+                '即日勤務OK' => 'same_day_work',
+                '職場見学可' => 'workplace_visit',
+                'リモート面接OK' => 'remote_interview',
+                '面接時マスク着用' => 'mask_required',
+                '新卒採用' => 'new_graduate',
+                '第2新卒歓迎' => 'second_new_graduate',
+                '中途採用' => 'mid_career',
+                '固定残業代なし' => 'no_fixed_overtime',
+                '完全週休2日制' => 'two_day_weekend',
+                '学歴不問' => 'no_education_required',
+                '正社員' => 'full_time',
+                '管理職・マネージャー' => 'management',
+                '設立10年以上の会社' => 'established_company',
+                'ベンチャー企業' => 'venture_company',
+                '車通勤可' => 'car_commute',
+                '上場企業' => 'listed_company',
+                'インセンティブあり' => 'incentive',
+                'UIターン支援あり' => 'ui_turn_support',
+                'ストックオプションあり' => 'stock_option',
+                '企業年金あり' => 'company_pension',
+                '健康診断あり' => 'health_check',
+                'メンタルケアあり' => 'mental_care',
+                '社内レクリエーションあり' => 'recreation',
+                'リフレッシュ休暇あり' => 'refresh_leave',
+                '誕生日休暇あり' => 'birthday_leave',
+                '有給インターンあり' => 'paid_intern',
+                'トライアル雇用あり' => 'trial_employment',
+                '障害者への配慮あり' => 'handicapped_support',
+                'LGBTフレンドリー' => 'lgbt_friendly',
+                '成長企業' => 'growing_company',
+                'グローバル企業' => 'global_company',
+                'IT企業' => 'it_company',
+                '製造業' => 'manufacturing',
+                'サービス業' => 'service_industry',
+                '医療・福祉' => 'medical_welfare',
+                '教育' => 'education',
+                '官公庁' => 'government',
+                'NPO・NGO' => 'npo_ngo',
+                '農業' => 'agriculture',
+                '伝統産業' => 'traditional_industry',
+                'クリエイティブ系' => 'creative_work',
+                '営業系' => 'sales_work',
+                '事務系' => 'office_work',
+                '安定企業' => 'stable_company',
+                '外資系企業' => 'foreign_company',
+                '評価制度あり' => 'evaluation_system',
+                '研修制度充実' => 'training_system',
+                '退職金制度あり' => 'retirement_money',
+                '育児支援あり' => 'childcare_support',
+                '託児所あり' => 'nursery',
+                '産休・育休取得実績あり' => 'maternity_leave',
+                'フレックスタイム制度あり' => 'flextime',
+                '受動喫煙対策あり' => 'passive_smoking',
+                '自転車通勤可' => 'bike_commute',
+                '契約期間あり' => 'contract_period',
+                '試用期間あり' => 'probation_period',
+                '裁量労働制あり' => 'discretionary_work',
+                '固定残業代あり' => 'fixed_overtime_pay',
+            );
+
+            foreach ($params['conditions'] as $condition_label) {
+                if (isset($condition_mapping[$condition_label])) {
+                    $field_name = $condition_mapping[$condition_label];
+                    $args['meta_query'][] = array(
+                        'key' => $field_name,
+                        'value' => '1',
+                        'compare' => '='
+                    );
+                }
             }
         }
 

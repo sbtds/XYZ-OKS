@@ -1,0 +1,1668 @@
+<?php
+/**
+ * Template Name: 求人検索ページ
+ * Template for Job Search Page
+ *
+ * @package OKS
+ */
+
+get_header(); ?>
+<main class="page_main">
+  <div class="page_title bg-primary">
+    <p class="title_section h55">
+      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/search_title02_sp.svg"
+        class="sp-only" alt="求人を探す">
+      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/search_title02.svg" class="pc-only"
+        alt="求人を探す">
+    </p>
+  </div>
+
+  <section class="search_index">
+    <div class="search_container">
+      <div class="search_main">
+        <div class="search_main__container">
+          <!-- top -->
+          <div class="search_main__top">
+            <p class="count">求人情報<span class="number">50</span>件</p>
+            <div class="order">
+              <p class="label">表示件数</p>
+              <p class="select">
+                <select name="" id="">
+                  <option value="10">10件</option>
+                  <option value="20">20件</option>
+                </select>
+              </p>
+            </div>
+          </div>
+          <!-- //top -->
+          <!-- panel -->
+          <div class="search_main__panel">
+            <input type="checkbox" id="search_main__panel_check" />
+            <label class="search_main__panel_title" for="search_main__panel_check">
+              <span class="label">現在の検索条件</span>
+              <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+            </label>
+            <form class="search_main__panel_body">
+              <div class="search_main__panel_result">
+                <p class="title">現在の検索条件</p>
+                <div class="contents">
+                  <dl>
+                    <dt>勤務地</dt>
+                    <dd>テキストテキストテキスト</dd>
+                  </dl>
+                  <dl>
+                    <dt>職種</dt>
+                    <dd>テキストテキストテキスト</dd>
+                  </dl>
+                  <dl>
+                    <dt>給与</dt>
+                    <dd>000万円〜000万円</dd>
+                  </dl>
+                  <dl>
+                    <dt>特徴</dt>
+                    <dd>土日祝休み</dd>
+                  </dl>
+                  <dl>
+                    <dt>キーワード</dt>
+                    <dd>テキストテキストテキスト</dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="search_main__panel_list">
+                <!-- item -->
+                <div class="search_main__panel_item">
+                  <input type="checkbox" id="search_main__panel_subject01" />
+                  <label class="search_main__panel_subject" for="search_main__panel_subject01">
+                    <span class="icon"><img src="./assets/images/page/common_icon_area.svg" alt="" /></span>
+                    <span class="label">勤務地</span>
+                    <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  </label>
+                  <div class="search_main__panel_block">
+                    <!-- select_area -->
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show01__" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__area01" />
+                      <label class="search_select__area_title" for="search_select__area01">
+                        <span class="checkbox"></span>
+                        <span class="label">岩手県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__area_show01__">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="一関市" />
+                            <span class="checkbox"></span>
+                            <span class="label">一関市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="西磐井郡平泉町" />
+                            <span class="checkbox"></span>
+                            <span class="label">西磐井郡平泉町</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show02__" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__area02" />
+                      <label class="search_select__area_title" for="search_select__area02">
+                        <span class="checkbox"></span>
+                        <span class="label">宮城県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__area_show02__">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="仙台市宮城野区" />
+                            <span class="checkbox"></span>
+                            <span class="label">仙台市宮城野区</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="仙台市若林区" />
+                            <span class="checkbox"></span>
+                            <span class="label">仙台市若林区</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="石巻市" />
+                            <span class="checkbox"></span>
+                            <span class="label">石巻市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="登米市" />
+                            <span class="checkbox"></span>
+                            <span class="label">登米市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="栗原市" />
+                            <span class="checkbox"></span>
+                            <span class="label">栗原市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="東松島市" />
+                            <span class="checkbox"></span>
+                            <span class="label">東松島市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="大崎市" />
+                            <span class="checkbox"></span>
+                            <span class="label">大崎市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="富谷市" />
+                            <span class="checkbox"></span>
+                            <span class="label">富谷市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="宮城郡利府町" />
+                            <span class="checkbox"></span>
+                            <span class="label">宮城郡利府町</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="黒川郡大和町" />
+                            <span class="checkbox"></span>
+                            <span class="label">黒川郡大和町</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="黒川郡大衡村" />
+                            <span class="checkbox"></span>
+                            <span class="label">黒川郡大衡村</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="加美郡色麻町" />
+                            <span class="checkbox"></span>
+                            <span class="label">加美郡色麻町</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="加美郡加美町" />
+                            <span class="checkbox"></span>
+                            <span class="label">加美郡加美町</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="遠田郡美里町" />
+                            <span class="checkbox"></span>
+                            <span class="label">遠田郡美里町</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show03__" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__area03" />
+                      <label class="search_select__area_title" for="search_select__area03">
+                        <span class="checkbox"></span>
+                        <span class="label">埼玉県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__area_show03__">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="鴻巣市" />
+                            <span class="checkbox"></span>
+                            <span class="label">鴻巣市</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show04__" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__area04" />
+                      <label class="search_select__area_title" for="search_select__area04">
+                        <span class="checkbox"></span>
+                        <span class="label">神奈川県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__area_show04__">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="横浜市戸塚区" />
+                            <span class="checkbox"></span>
+                            <span class="label">横浜市戸塚区</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="横浜市栄区" />
+                            <span class="checkbox"></span>
+                            <span class="label">横浜市栄区</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="茅ヶ崎市" />
+                            <span class="checkbox"></span>
+                            <span class="label">茅ヶ崎市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="秦野市" />
+                            <span class="checkbox"></span>
+                            <span class="label">秦野市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="藤沢市" />
+                            <span class="checkbox"></span>
+                            <span class="label">藤沢市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="小田原市" />
+                            <span class="checkbox"></span>
+                            <span class="label">小田原市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="厚木市" />
+                            <span class="checkbox"></span>
+                            <span class="label">厚木市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="海老名市" />
+                            <span class="checkbox"></span>
+                            <span class="label">海老名市</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show05__" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__area05" />
+                      <label class="search_select__area_title" for="search_select__area05">
+                        <span class="checkbox"></span>
+                        <span class="label">静岡県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__area_show05__">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="駿東郡清水町" />
+                            <span class="checkbox"></span>
+                            <span class="label">駿東郡清水町</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- //select_area -->
+                  </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="search_main__panel_item">
+                  <input type="checkbox" id="search_main__panel_subject02" />
+                  <label class="search_main__panel_subject" for="search_main__panel_subject02">
+                    <span class="icon"><img src="./assets/images/page/common_icon_type.svg" alt="" /></span>
+                    <span class="label">職種</span>
+                    <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  </label>
+                  <div class="search_main__panel_block">
+                    <!-- type -->
+                    <div class="search_select__type">
+                      <input type="checkbox" class="search_select__type_show" id="search_select__type_show01__" />
+                      <input type="checkbox" class="search_select__type_check" id="search_select__type01" name="type"
+                        value="製造・技術" />
+                      <label class="search_select__type_title" for="search_select__type01">
+                        <span class="checkbox"></span>
+                        <span class="label">製造・技術</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__type_show01__">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__type_menu">
+                        <div class="search_select__type_list">
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="機械オペレーター機械オペレーション機械オペレーター機械オペレーション" />
+                            <span class="checkbox"></span>
+                            <span class="label">機械オペレーター機械オペレーション機械オペレーター機械オペレーション</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="機械オペレーター(機械オペレーション)" />
+                            <span class="checkbox"></span>
+                            <span class="label">機械オペレーター(機械オペレーション)</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type" value="組立・加工" />
+                            <span class="checkbox"></span>
+                            <span class="label">組立・加工</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="製造（電気・電子・機械）" />
+                            <span class="checkbox"></span>
+                            <span class="label">製造（電気・電子・機械）</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type" value="検査・検品" />
+                            <span class="checkbox"></span>
+                            <span class="label">検査・検品</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="製造・技能工（化学・医療・食品）" />
+                            <span class="checkbox"></span>
+                            <span class="label">製造・技能工（化学・医療・食品）</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type" value="食品製造" />
+                            <span class="checkbox"></span>
+                            <span class="label">食品製造</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="その他（化学・医療・食品）" />
+                            <span class="checkbox"></span>
+                            <span class="label">その他（化学・医療・食品）</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="search_select__type">
+                      <input type="checkbox" class="search_select__type_show" id="search_select__type_show02__" />
+                      <input type="checkbox" class="search_select__type_check" id="search_select__type02" name="type"
+                        value="物流・配送・軽作業" />
+                      <label class="search_select__type_title" for="search_select__type02">
+                        <span class="checkbox"></span>
+                        <span class="label">物流・配送・軽作業</span>
+                        <span class="count">(456件)</span>
+                        <label class="arrow" for="search_select__type_show02__">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__type_menu">
+                        <div class="search_select__type_list">
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="仕分け・梱包・ピッキング" />
+                            <span class="checkbox"></span>
+                            <span class="label">仕分け・梱包・ピッキング</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type" value="フォークリフト" />
+                            <span class="checkbox"></span>
+                            <span class="label">フォークリフト</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- // type -->
+                  </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="search_main__panel_item">
+                  <input type="checkbox" id="search_main__panel_subject03" />
+                  <label class="search_main__panel_subject" for="search_main__panel_subject03">
+                    <span class="icon"><img src="./assets/images/page/common_icon_income.svg" alt="" /></span>
+                    <span class="label">給与</span>
+                    <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  </label>
+                  <div class="search_main__panel_block">
+                    <!-- type -->
+                    <div class="search_select__type">
+                      <input type="checkbox" class="search_select__type_show" id="search_select__type_show01__" />
+                      <input type="checkbox" class="search_select__type_check" id="search_select__income01"
+                        name="income" value="時給" />
+                      <label class="search_select__type_title" for="search_select__income01">
+                        <span class="checkbox"></span>
+                        <span class="label">時給</span>
+                        <!-- <span class="count">(123,456件)</span> -->
+                        <label class="arrow" for="search_select__type_show01__">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__type_menu">
+                        <div class="search_select__type_list">
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="1,300円未満" />
+                            <span class="checkbox"></span>
+                            <span class="label">1,300円未満</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="1,300円以上" />
+                            <span class="checkbox"></span>
+                            <span class="label">1,300円以上</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="search_select__type">
+                      <input type="checkbox" class="search_select__type_show" id="search_select__type_show02__" />
+                      <input type="checkbox" class="search_select__type_check" id="search_select__income02"
+                        name="income" value="月給" />
+                      <label class="search_select__type_title" for="search_select__income02">
+                        <span class="checkbox"></span>
+                        <span class="label">月給</span>
+                        <!-- <span class="count">(456件)</span> -->
+                        <label class="arrow" for="search_select__type_show02__">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__type_menu">
+                        <div class="search_select__type_list">
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="18万円未満" />
+                            <span class="checkbox"></span>
+                            <span class="label">18万円未満</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="19万円以上" />
+                            <span class="checkbox"></span>
+                            <span class="label">19万円以上</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="20万円以上" />
+                            <span class="checkbox"></span>
+                            <span class="label">20万円以上</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="21万円以上" />
+                            <span class="checkbox"></span>
+                            <span class="label">21万円以上</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="22万円以上" />
+                            <span class="checkbox"></span>
+                            <span class="label">22万円以上</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="23万円以上" />
+                            <span class="checkbox"></span>
+                            <span class="label">23万円以上</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="24万円以上" />
+                            <span class="checkbox"></span>
+                            <span class="label">24万円以上</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="income"
+                              value="25万円以上" />
+                            <span class="checkbox"></span>
+                            <span class="label">25万円以上</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- // type -->
+                  </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="search_main__panel_item">
+                  <input type="checkbox" id="search_main__panel_subject04" />
+                  <label class="search_main__panel_subject" for="search_main__panel_subject04">
+                    <span class="icon"><img src="./assets/images/page/common_icon_feature.svg" alt="" /></span>
+                    <span class="label">特徴</span>
+                    <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  </label>
+                  <div class="search_main__panel_block block-last">
+                    <div class="search_select__conditions">
+                      <p class="search_select__conditions_title">人気の特徴</p>
+                      <div class="search_select__conditions_list">
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="未経験OK" />
+                          <span class="checkbox"></span>
+                          <span class="label">未経験OK</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="寮・社宅あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">寮・社宅あり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="マイカー通勤OK" />
+                          <span class="checkbox"></span>
+                          <span class="label">マイカー通勤OK</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="紹介予定派遣" />
+                          <span class="checkbox"></span>
+                          <span class="label">紹介予定派遣</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="直接雇用実績あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">直接雇用実績あり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="新着" />
+                          <span class="checkbox"></span>
+                          <span class="label">新着</span>
+                        </label>
+                      </div>
+
+                      <p class="search_select__conditions_title">勤務形態</p>
+                      <div class="search_select__conditions_list">
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="土日祝日休み" />
+                          <span class="checkbox"></span>
+                          <span class="label">土日祝日休み</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="早朝勤務" />
+                          <span class="checkbox"></span>
+                          <span class="label">早朝勤務</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="朝ゆっくり" />
+                          <span class="checkbox"></span>
+                          <span class="label">朝ゆっくり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="夕方開始" />
+                          <span class="checkbox"></span>
+                          <span class="label">夕方開始</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="深夜勤務" />
+                          <span class="checkbox"></span>
+                          <span class="label">深夜勤務</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="残業なし" />
+                          <span class="checkbox"></span>
+                          <span class="label">残業なし</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="残業少なめ" />
+                          <span class="checkbox"></span>
+                          <span class="label">残業少なめ</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="残業多め" />
+                          <span class="checkbox"></span>
+                          <span class="label">残業多め</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="転勤なし" />
+                          <span class="checkbox"></span>
+                          <span class="label">転勤なし</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="社員登用あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">社員登用あり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="長期" />
+                          <span class="checkbox"></span>
+                          <span class="label">長期</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="単発" />
+                          <span class="checkbox"></span>
+                          <span class="label">単発</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="期間限定" />
+                          <span class="checkbox"></span>
+                          <span class="label">期間限定</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="日勤固定" />
+                          <span class="checkbox"></span>
+                          <span class="label">日勤固定</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="夜勤固定" />
+                          <span class="checkbox"></span>
+                          <span class="label">夜勤固定</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="２交替・３交替" />
+                          <span class="checkbox"></span>
+                          <span class="label">２交替・３交替</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="平日休み" />
+                          <span class="checkbox"></span>
+                          <span class="label">平日休み</span>
+                        </label>
+                      </div>
+
+                      <p class="search_select__conditions_title">福利厚生・待遇</p>
+                      <div class="search_select__conditions_list">
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="高収入" />
+                          <span class="checkbox"></span>
+                          <span class="label">高収入</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="賞与あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">賞与あり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="給与前払い制度あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">給与前払い制度あり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="交通費支給" />
+                          <span class="checkbox"></span>
+                          <span class="label">交通費支給</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="育児・介護休暇あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">育児・介護休暇あり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="研修・教育制度充実" />
+                          <span class="checkbox"></span>
+                          <span class="label">研修・教育制度充実</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="資格取得支援あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">資格取得支援あり</span>
+                        </label>
+                      </div>
+
+                      <p class="search_select__conditions_title">職場環境</p>
+                      <div class="search_select__conditions_list">
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="女性が活躍" />
+                          <span class="checkbox"></span>
+                          <span class="label">女性が活躍</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="男性が活躍" />
+                          <span class="checkbox"></span>
+                          <span class="label">男性が活躍</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="20代活躍中" />
+                          <span class="checkbox"></span>
+                          <span class="label">20代活躍中</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="30代活躍中" />
+                          <span class="checkbox"></span>
+                          <span class="label">30代活躍中</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="ミドル活躍中" />
+                          <span class="checkbox"></span>
+                          <span class="label">ミドル活躍中</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="シニア活躍中" />
+                          <span class="checkbox"></span>
+                          <span class="label">シニア活躍中</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="主婦・主夫活躍中" />
+                          <span class="checkbox"></span>
+                          <span class="label">主婦・主夫活躍中</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="フリーター歓迎" />
+                          <span class="checkbox"></span>
+                          <span class="label">フリーター歓迎</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="オフィスカジュアル" />
+                          <span class="checkbox"></span>
+                          <span class="label">オフィスカジュアル</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="制服あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">制服あり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="髪型・髪色自由" />
+                          <span class="checkbox"></span>
+                          <span class="label">髪型・髪色自由</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="髭OK" />
+                          <span class="checkbox"></span>
+                          <span class="label">髭OK</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="ネイル・ピアスOK" />
+                          <span class="checkbox"></span>
+                          <span class="label">ネイル・ピアスOK</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="長期休暇あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">長期休暇あり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="資格・スキルが活かせる" />
+                          <span class="checkbox"></span>
+                          <span class="label">資格・スキルが活かせる</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="座り仕事" />
+                          <span class="checkbox"></span>
+                          <span class="label">座り仕事</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="立ち仕事" />
+                          <span class="checkbox"></span>
+                          <span class="label">立ち仕事</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="食堂" />
+                          <span class="checkbox"></span>
+                          <span class="label">食堂</span>/仕出し弁当/売店が利用可
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="喫煙所あり" />
+                          <span class="checkbox"></span>
+                          <span class="label">喫煙所あり</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="場内全面禁煙" />
+                          <span class="checkbox"></span>
+                          <span class="label">場内全面禁煙</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="空調完備" />
+                          <span class="checkbox"></span>
+                          <span class="label">空調完備</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="アクティブワーク" />
+                          <span class="checkbox"></span>
+                          <span class="label">アクティブワーク</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="コツコツ・モクモク集中" />
+                          <span class="checkbox"></span>
+                          <span class="label">コツコツ・モクモク集中</span>
+                        </label>
+                      </div>
+
+                      <p class="search_select__conditions_title">その他特徴</p>
+                      <div class="search_select__conditions_list">
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="副業・ＷワークOK" />
+                          <span class="checkbox"></span>
+                          <span class="label">副業・ＷワークOK</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="急募" />
+                          <span class="checkbox"></span>
+                          <span class="label">急募</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="即日勤務OK" />
+                          <span class="checkbox"></span>
+                          <span class="label">即日勤務OK</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="職場見学可" />
+                          <span class="checkbox"></span>
+                          <span class="label">職場見学可</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="リモート面接OK" />
+                          <span class="checkbox"></span>
+                          <span class="label">リモート面接OK</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="面接時マスク着用" />
+                          <span class="checkbox"></span>
+                          <span class="label">面接時マスク着用</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="新卒採用" />
+                          <span class="checkbox"></span>
+                          <span class="label">新卒採用</span>
+                        </label>
+                        <label class="search_select__conditions_item">
+                          <input type="checkbox" class="search_select__conditions_item_check" name="conditions"
+                            value="第2新卒歓迎" />
+                          <span class="checkbox"></span>
+                          <span class="label">第2新卒歓迎</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- //item -->
+                <!-- item -->
+                <div class="search_main__panel_item">
+                  <input type="checkbox" id="" checked />
+                  <div class="search_main__panel_block">
+                    <p class="search_select__conditions_title">キーワード</p>
+
+                    <p class="search_select__keyword_input">
+                      <input type="text" value="" placeholder="入力してください" />
+                    </p>
+                  </div>
+                </div>
+                <!-- //item -->
+                <div class="search_main__panel_button">
+                  <a class="button_more secondary" href="/search.html">
+                    <span class="label">再検索</span>
+                    <span class="icon"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
+                        data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
+                        </path>
+                      </svg><!-- <i class="fa-solid fa-angle-right"></i> Font Awesome fontawesome.com --></span>
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- //panel -->
+          <!-- list -->
+          <div class="search_main__list">
+            <div class="search_main__item">
+              <p class="caption">業種／職種／株式非公開</p>
+              <h2 class="title">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h2>
+              <ul class="badges">
+                <li class="badges_item"><a href="#">車通勤可</a></li>
+                <li class="badges_item"><a href="#">設立10年以上の会社</a></li>
+                <li class="badges_item"><a href="#">管理職・マネージャー</a></li>
+                <li class="badges_item"><a href="#">正社員</a></li>
+                <li class="badges_item"><a href="#">転勤なし</a></li>
+              </ul>
+              <div class="contents">
+                <dl>
+                  <dt>応募資格</dt>
+                  <dd>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</dd>
+                </dl>
+                <dl>
+                  <dt>仕事内容</dt>
+                  <dd>
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                  </dd>
+                </dl>
+                <dl>
+                  <dt>想定年収</dt>
+                  <dd>000万円〜000万円</dd>
+                </dl>
+                <dl>
+                  <dt>勤務地</dt>
+                  <dd>○○県△△市</dd>
+                </dl>
+              </div>
+              <div class="buttons">
+                <p class="button">
+                  <a class="button_more" href="#">
+                    <span class="label">この求人を問い合わせる</span>
+                    <span class="icon"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
+                        data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
+                        </path>
+                      </svg><!-- <i class="fa-solid fa-angle-right"></i> Font Awesome fontawesome.com --></span>
+                  </a>
+                </p>
+                <p class="button">
+                  <a class="button_more secondary" href="/search_detail.html">
+                    <span class="label">この求人の詳細をみる</span>
+                    <span class="icon"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
+                        data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
+                        </path>
+                      </svg><!-- <i class="fa-solid fa-angle-right"></i> Font Awesome fontawesome.com --></span>
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div class="search_main__item">
+              <p class="caption">業種／職種／株式非公開</p>
+              <h2 class="title">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h2>
+              <ul class="badges">
+                <li class="badges_item"><a href="#">車通勤可</a></li>
+                <li class="badges_item"><a href="#">設立10年以上の会社</a></li>
+                <li class="badges_item"><a href="#">管理職・マネージャー</a></li>
+                <li class="badges_item"><a href="#">正社員</a></li>
+                <li class="badges_item"><a href="#">転勤なし</a></li>
+              </ul>
+              <div class="contents">
+                <dl>
+                  <dt>応募資格</dt>
+                  <dd>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</dd>
+                </dl>
+                <dl>
+                  <dt>仕事内容</dt>
+                  <dd>
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                  </dd>
+                </dl>
+                <dl>
+                  <dt>想定年収</dt>
+                  <dd>000万円〜000万円</dd>
+                </dl>
+                <dl>
+                  <dt>勤務地</dt>
+                  <dd>○○県△△市</dd>
+                </dl>
+              </div>
+              <div class="buttons">
+                <p class="button">
+                  <a class="button_more" href="#">
+                    <span class="label">この求人を問い合わせる</span>
+                    <span class="icon"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
+                        data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
+                        </path>
+                      </svg><!-- <i class="fa-solid fa-angle-right"></i> Font Awesome fontawesome.com --></span>
+                  </a>
+                </p>
+                <p class="button">
+                  <a class="button_more secondary" href="/search_detail.html">
+                    <span class="label">この求人の詳細をみる</span>
+                    <span class="icon"><svg class="svg-inline--fa fa-angle-right" aria-hidden="true" focusable="false"
+                        data-prefix="fas" data-icon="angle-right" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512" data-fa-i2svg="">
+                        <path fill="currentColor"
+                          d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z">
+                        </path>
+                      </svg><!-- <i class="fa-solid fa-angle-right"></i> Font Awesome fontawesome.com --></span>
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- //list -->
+          <div class="search_main__nav">
+            <div class="search_main__nav_list">
+              <p class="search_main__nav_item active">
+                <a href="#">1</a>
+              </p>
+              <p class="search_main__nav_item">
+                <a href="#">2</a>
+              </p>
+              <p class="search_main__nav_item">
+                <a href="#">3</a>
+              </p>
+              <p class="search_main__nav_item next">
+                <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="search_side">
+        <div class="search_side__container">
+          <p class="search_side__title">条件を変更する</p>
+          <form class="search_select" action="./search.html">
+            <div class="search_select__box">
+              <div class="search_select__inner">
+                <input type="checkbox" class="search_select__check" id="search_select__box01" />
+                <label class="search_select__button" for="search_select__box01">
+                  <!-- index -->
+                  <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+                  <span class="label">勤務地を選ぶ</span>
+                  <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  <!-- //index -->
+                  <!-- search -->
+                  <p class="search_side__button">
+                    <span class="search_side__button_label">勤務地</span>
+                    <span class="search_side__button_icon">
+                      <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                      <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                    </span>
+                    <span class="search_side__button_caption">勤務地を変更</span>
+                  </p>
+                  <!-- //search -->
+                </label>
+                <div class="search_select__menu">
+                  <div class="search_select__menu_list">
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_check" id="search_select__area00" />
+                      <label class="search_select__area_title" for="search_select__area00">
+                        <span class="checkbox"></span>
+                        <span class="label">全国</span>
+                        <span class="count">(987,654件)</span>
+                      </label>
+                    </div>
+
+                    <!-- select_area -->
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show01" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__side01" />
+                      <label class="search_select__area_title" for="search_select__side01">
+                        <span class="checkbox"></span>
+                        <span class="label">岩手県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__area_show01">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="一関市" />
+                            <span class="checkbox"></span>
+                            <span class="label">一関市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="西磐井郡平泉町" />
+                            <span class="checkbox"></span>
+                            <span class="label">西磐井郡平泉町</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show02" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__side02" />
+                      <label class="search_select__area_title" for="search_select__side02">
+                        <span class="checkbox"></span>
+                        <span class="label">宮城県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__area_show02">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="仙台市宮城野区" />
+                            <span class="checkbox"></span>
+                            <span class="label">仙台市宮城野区</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="仙台市若林区" />
+                            <span class="checkbox"></span>
+                            <span class="label">仙台市若林区</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="石巻市" />
+                            <span class="checkbox"></span>
+                            <span class="label">石巻市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="登米市" />
+                            <span class="checkbox"></span>
+                            <span class="label">登米市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="栗原市" />
+                            <span class="checkbox"></span>
+                            <span class="label">栗原市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="東松島市" />
+                            <span class="checkbox"></span>
+                            <span class="label">東松島市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="大崎市" />
+                            <span class="checkbox"></span>
+                            <span class="label">大崎市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="富谷市" />
+                            <span class="checkbox"></span>
+                            <span class="label">富谷市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="宮城郡利府町" />
+                            <span class="checkbox"></span>
+                            <span class="label">宮城郡利府町</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="黒川郡大和町" />
+                            <span class="checkbox"></span>
+                            <span class="label">黒川郡大和町</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="黒川郡大衡村" />
+                            <span class="checkbox"></span>
+                            <span class="label">黒川郡大衡村</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="加美郡色麻町" />
+                            <span class="checkbox"></span>
+                            <span class="label">加美郡色麻町</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="加美郡加美町" />
+                            <span class="checkbox"></span>
+                            <span class="label">加美郡加美町</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="遠田郡美里町" />
+                            <span class="checkbox"></span>
+                            <span class="label">遠田郡美里町</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show03" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__side03" />
+                      <label class="search_select__area_title" for="search_select__side03">
+                        <span class="checkbox"></span>
+                        <span class="label">埼玉県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__area_show03">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="鴻巣市" />
+                            <span class="checkbox"></span>
+                            <span class="label">鴻巣市</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show04" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__side04" />
+                      <label class="search_select__area_title" for="search_select__side04">
+                        <span class="checkbox"></span>
+                        <span class="label">神奈川県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__area_show04">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="横浜市戸塚区" />
+                            <span class="checkbox"></span>
+                            <span class="label">横浜市戸塚区</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="横浜市栄区" />
+                            <span class="checkbox"></span>
+                            <span class="label">横浜市栄区</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="茅ヶ崎市" />
+                            <span class="checkbox"></span>
+                            <span class="label">茅ヶ崎市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="秦野市" />
+                            <span class="checkbox"></span>
+                            <span class="label">秦野市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="藤沢市" />
+                            <span class="checkbox"></span>
+                            <span class="label">藤沢市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="小田原市" />
+                            <span class="checkbox"></span>
+                            <span class="label">小田原市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="厚木市" />
+                            <span class="checkbox"></span>
+                            <span class="label">厚木市</span>
+                          </label>
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="海老名市" />
+                            <span class="checkbox"></span>
+                            <span class="label">海老名市</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="search_select__area">
+                      <input type="checkbox" class="search_select__area_show" id="search_select__show05" />
+                      <input type="checkbox" class="search_select__area_check" id="search_select__side05" />
+                      <label class="search_select__area_title" for="search_select__side05">
+                        <span class="checkbox"></span>
+                        <span class="label">静岡県</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__show05">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__area_menu">
+                        <div class="search_select__area_list">
+                          <label class="search_select__area_item">
+                            <input type="checkbox" class="search_select__area_item_check" value="駿東郡清水町" />
+                            <span class="checkbox"></span>
+                            <span class="label">駿東郡清水町</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- //select_area -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="search_select__x"><i class="fa-solid fa-xmark"></i></p>
+            <div class="search_select__box">
+              <div class="search_select__inner">
+                <input type="checkbox" class="search_select__check" id="search_select__box02" />
+                <label class="search_select__button" for="search_select__box02">
+                  <!-- index -->
+                  <span class="icon"><i class="fa-solid fa-location-dot"></i></span>
+                  <span class="label">職種を選ぶ</span>
+                  <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                  <!-- //index -->
+                  <!-- search -->
+                  <p class="search_side__button">
+                    <span class="search_side__button_label">職種</span>
+                    <span class="search_side__button_icon">
+                      <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                      <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                    </span>
+                    <span class="search_side__button_caption">職種を変更</span>
+                  </p>
+                  <!-- //search -->
+                </label>
+                <div class="search_select__menu">
+                  <div class="search_select__menu_list">
+                    <div class="search_select__type">
+                      <input type="checkbox" class="search_select__type_show" id="search_select__type_show01" />
+                      <input type="checkbox" class="search_select__type_check" id="search_select__type01" name="type"
+                        value="製造・技術" />
+                      <label class="search_select__type_title" for="search_select__type01">
+                        <span class="checkbox"></span>
+                        <span class="label">製造・技術</span>
+                        <span class="count">(123,456件)</span>
+                        <label class="arrow" for="search_select__type_show01">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__type_menu">
+                        <div class="search_select__type_list">
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="機械オペレーター機械オペレーション機械オペレーター機械オペレーション" />
+                            <span class="checkbox"></span>
+                            <span class="label">機械オペレーター機械オペレーション機械オペレーター機械オペレーション</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="機械オペレーター(機械オペレーション)" />
+                            <span class="checkbox"></span>
+                            <span class="label">機械オペレーター(機械オペレーション)</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type" value="組立・加工" />
+                            <span class="checkbox"></span>
+                            <span class="label">組立・加工</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="製造（電気・電子・機械）" />
+                            <span class="checkbox"></span>
+                            <span class="label">製造（電気・電子・機械）</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type" value="検査・検品" />
+                            <span class="checkbox"></span>
+                            <span class="label">検査・検品</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="製造・技能工（化学・医療・食品）" />
+                            <span class="checkbox"></span>
+                            <span class="label">製造・技能工（化学・医療・食品）</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type" value="食品製造" />
+                            <span class="checkbox"></span>
+                            <span class="label">食品製造</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="その他（化学・医療・食品）" />
+                            <span class="checkbox"></span>
+                            <span class="label">その他（化学・医療・食品）</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="search_select__type">
+                      <input type="checkbox" class="search_select__type_show" id="search_select__type_show02" />
+                      <input type="checkbox" class="search_select__type_check" id="search_select__type02" name="type"
+                        value="物流・配送・軽作業" />
+                      <label class="search_select__type_title" for="search_select__type02">
+                        <span class="checkbox"></span>
+                        <span class="label">物流・配送・軽作業</span>
+                        <span class="count">(456件)</span>
+                        <label class="arrow" for="search_select__type_show02">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__type_menu">
+                        <div class="search_select__type_list">
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type"
+                              value="仕分け・梱包・ピッキング" />
+                            <span class="checkbox"></span>
+                            <span class="label">仕分け・梱包・ピッキング</span>
+                          </label>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="type" value="フォークリフト" />
+                            <span class="checkbox"></span>
+                            <span class="label">フォークリフト</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- search -->
+            <div class="search_select__income">
+              <div class="search_select__income_title">
+                <p class="search_side__subject">年収</p>
+              </div>
+              <div class="search_select__income_select">
+                <select name="" id="">
+                  <option value="">指定しない</option>
+                  <option value="1000000">100万</option>
+                  <option value="2000000">200万</option>
+                  <option value="3000000">300万</option>
+                  <option value="4000000">400万</option>
+                  <option value="5000000">500万</option>
+                  <option value="6000000">600万</option>
+                  <option value="7000000">700万</option>
+                  <option value="8000000">800万</option>
+                  <option value="9000000">900万</option>
+                  <option value="10000000">1000万</option>
+                </select>
+              </div>
+            </div>
+            <div class="search_select__keyword">
+              <div class="search_select__keyword_title">
+                <p class="search_side__subject">キーワード</p>
+              </div>
+              <p class="search_select__keyword_input">
+                <input type="text" value="" placeholder="入力してください" />
+              </p>
+            </div>
+            <div class="search_select__conditions">
+              <div class="search_select__conditions_title">
+                <p class="search_side__subject">こだわり条件</p>
+              </div>
+              <div class="search_select__conditions_list">
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="年間休日120日以上" />
+                  <span class="checkbox"></span>
+                  <span class="label">年間休日120日以上</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="寮・社宅・住宅手当あり" />
+                  <span class="checkbox"></span>
+                  <span class="label">寮・社宅・住宅手当あり</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="退職金制度" />
+                  <span class="checkbox"></span>
+                  <span class="label">退職金制度</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="資格取得支援制度" />
+                  <span class="checkbox"></span>
+                  <span class="label">資格取得支援制度</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions"
+                    value="産休・育休・介護休暇取得実績あり" />
+                  <span class="checkbox"></span>
+                  <span class="label">産休・育休・介護休暇取得実績あり</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="女性が活躍" />
+                  <span class="checkbox"></span>
+                  <span class="label">女性が活躍</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="男性が活躍" />
+                  <span class="checkbox"></span>
+                  <span class="label">男性が活躍</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="インセンティブあり" />
+                  <span class="checkbox"></span>
+                  <span class="label">インセンティブあり</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="UIターン支援あり" />
+                  <span class="checkbox"></span>
+                  <span class="label">UIターン支援あり</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="リモート面接OK" />
+                  <span class="checkbox"></span>
+                  <span class="label">リモート面接OK</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="ミドル活躍中" />
+                  <span class="checkbox"></span>
+                  <span class="label">ミドル活躍中</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="シニア活躍中" />
+                  <span class="checkbox"></span>
+                  <span class="label">シニア活躍中</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="新卒採用" />
+                  <span class="checkbox"></span>
+                  <span class="label">新卒採用</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="第２新卒採用" />
+                  <span class="checkbox"></span>
+                  <span class="label">第２新卒採用</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="中途採用" />
+                  <span class="checkbox"></span>
+                  <span class="label">中途採用</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="固定残業代なし" />
+                  <span class="checkbox"></span>
+                  <span class="label">固定残業代なし</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="交通費支給" />
+                  <span class="checkbox"></span>
+                  <span class="label">交通費支給</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="完全週休2日制" />
+                  <span class="checkbox"></span>
+                  <span class="label">完全週休2日制</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="土日祝休み" />
+                  <span class="checkbox"></span>
+                  <span class="label">土日祝休み</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions"
+                    value="残業少なめ(20時間未満)" />
+                  <span class="checkbox"></span>
+                  <span class="label">残業少なめ(20時間未満)</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions"
+                    value="リモートワーク・在宅勤務制度あり" />
+                  <span class="checkbox"></span>
+                  <span class="label">リモートワーク・在宅勤務制度あり</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="転勤なし" />
+                  <span class="checkbox"></span>
+                  <span class="label">転勤なし</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="学歴不問" />
+                  <span class="checkbox"></span>
+                  <span class="label">学歴不問</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="正社員" />
+                  <span class="checkbox"></span>
+                  <span class="label">正社員</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="管理職・マネージャー" />
+                  <span class="checkbox"></span>
+                  <span class="label">管理職・マネージャー</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="設立10年以上の会社" />
+                  <span class="checkbox"></span>
+                  <span class="label">設立10年以上の会社</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="ベンチャー企業" />
+                  <span class="checkbox"></span>
+                  <span class="label">ベンチャー企業</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="車通勤可" />
+                  <span class="checkbox"></span>
+                  <span class="label">車通勤可</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="未経験でも可" />
+                  <span class="checkbox"></span>
+                  <span class="label">未経験でも可</span>
+                </label>
+                <label class="search_select__area_item">
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions" value="上場企業" />
+                  <span class="checkbox"></span>
+                  <span class="label">上場企業</span>
+                </label>
+              </div>
+            </div>
+            <!-- //search -->
+
+            <button class="button_search">
+              <!-- index -->
+              <span class="icon"><i class="fa-solid fa-search"></i></span>
+              <span class="label">検索</span>
+              <!-- //index -->
+              <!-- search -->
+              <span class="search">この条件で検索</span>
+              <span class="arrow"><i class="fa-solid fa-chevron-right"></i></span>
+              <!-- //search -->
+            </button>
+          </form>
+        </div>
+        <!--#include virtual="./includes/side_banner.html" -->
+      </aside>
+    </div>
+  </section>
+</main>
+<?php get_footer(); ?>

@@ -42,11 +42,11 @@ class OKS_Job_Search_Loader {
 
     /**
      * Define constants
-     */
-    private function define_constants() {
-        define('OKS_JOB_SEARCH_DIR', get_template_directory() . '/includes/search/');
-        define('OKS_JOB_SEARCH_URL', get_template_directory_uri() . '/includes/search/');
-    }
+      */
+     private function define_constants() {
+         define('OKS_JOB_SEARCH_DIR', get_template_directory() . '/includes/job-search/');
+         define('OKS_JOB_SEARCH_URL', get_template_directory_uri() . '/includes/job-search/');
+     }
 
     /**
      * Include required files
