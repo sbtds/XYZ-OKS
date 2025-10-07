@@ -36,21 +36,86 @@ class OKS_Search_Handler {
         );
 
         // 都道府県・市区町村
+        $location_query = array('relation' => 'OR');
+
+        if (!empty($params['prefecture']) && is_array($params['prefecture'])) {
+            $location_query[] = array(
+                'key' => 'prefecture_2',
+                'value' => $params['prefecture'],
+                'compare' => 'IN'
+            );
+        }
+
         if (!empty($params['city']) && is_array($params['city'])) {
-            $args['meta_query'][] = array(
+            $location_query[] = array(
                 'key' => 'city',
                 'value' => $params['city'],
                 'compare' => 'IN'
             );
         }
 
-        // 職種
-        if (!empty($params['job_type']) && is_array($params['job_type'])) {
+        if (count($location_query) > 1) {
+            $args['meta_query'][] = $location_query;
+        }
+
+        // 業界
+        if (!empty($params['industry']) && is_array($params['industry'])) {
+            $args['meta_query'][] = array(
+                'key' => 'industry',
+                'value' => $params['industry'],
+                'compare' => 'IN'
+            );
+        }
+
+        // 職種（業界付き）の処理を優先
+        if (!empty($params['job_type_with_industry']) && is_array($params['job_type_with_industry'])) {
+            $job_types = array();
+            
+            foreach ($params['job_type_with_industry'] as $industry_job_type) {
+                // 業界と職種を分離
+                $parts = explode('|', $industry_job_type);
+                if (count($parts) == 2) {
+                    $job_type = $parts[1];
+                    // 職種を配列に追加（重複を避ける）
+                    if (!in_array($job_type, $job_types)) {
+                        $job_types[] = $job_type;
+                    }
+                }
+            }
+            
+            // 職種でフィルタリング
+            if (!empty($job_types)) {
+                $args['meta_query'][] = array(
+                    'key' => 'job_type',
+                    'value' => $job_types,
+                    'compare' => 'IN'
+                );
+            }
+        } elseif (!empty($params['job_type']) && is_array($params['job_type'])) {
+            // 旧形式の職種パラメータ（後方互換性のため）
             $args['meta_query'][] = array(
                 'key' => 'job_type',
                 'value' => $params['job_type'],
                 'compare' => 'IN'
             );
+        }
+
+        // 給与（income）- カスタム判定ロジック
+        if (!empty($params['income']) && is_array($params['income'])) {
+            // 給与条件に該当する投稿IDを取得
+            $matching_post_ids = $this->get_posts_by_salary_conditions($params['income']);
+            
+            if (!empty($matching_post_ids)) {
+                if (isset($args['post__in'])) {
+                    // 既にpost__inが設定されている場合は積集合を取る
+                    $args['post__in'] = array_intersect($args['post__in'], $matching_post_ids);
+                } else {
+                    $args['post__in'] = $matching_post_ids;
+                }
+            } else {
+                // 条件に該当する投稿がない場合は空の結果を返す
+                $args['post__in'] = array(0);
+            }
         }
 
         // 年収範囲（HTMLのselect nameが空なので、別の方法で取得）
@@ -281,7 +346,8 @@ class OKS_Search_Handler {
                     'id' => $post_id,
                     'title' => get_the_title(),
                     'company' => get_field('company', $post_id),
-                    'prefecture' => get_field('prefecture', $post_id),
+                    'industry' => get_field('industry', $post_id),
+                    'prefecture' => get_field('prefecture_2', $post_id),
                     'city' => get_field('city', $post_id),
                     'job_type' => get_field('job_type', $post_id),
                     'annual_income' => get_field('annual_income', $post_id),
@@ -350,56 +416,149 @@ class OKS_Search_Handler {
      * Get search summary
      */
     public function get_search_summary($params) {
-        $summary_parts = array();
+        $summary_html = '';
 
         // 勤務地
-        if (!empty($params['city'])) {
-            $cities = is_array($params['city']) ? $params['city'] : array($params['city']);
-            $summary_parts[] = '勤務地: ' . implode('、', $cities);
+        $location_text = $this->format_location_summary($params);
+        if (!empty($location_text)) {
+            $summary_html .= '<dl><dt>勤務地</dt><dd>' . $location_text . '</dd></dl>';
         }
 
-        // 職種
-        if (!empty($params['job_type'])) {
+        // 職種（業界付きを優先）
+        if (!empty($params['job_type_with_industry'])) {
+            $job_types_with_industry = is_array($params['job_type_with_industry']) ? $params['job_type_with_industry'] : array($params['job_type_with_industry']);
+            $formatted_job_types = array();
+            
+            foreach ($job_types_with_industry as $industry_job_type) {
+                $parts = explode('|', $industry_job_type);
+                if (count($parts) == 2) {
+                    $formatted_job_types[] = $parts[1] . '（' . $parts[0] . '）';
+                }
+            }
+            
+            if (!empty($formatted_job_types)) {
+                $summary_html .= '<dl><dt>職種</dt><dd>' . esc_html(implode('、', $formatted_job_types)) . '</dd></dl>';
+            }
+        } elseif (!empty($params['job_type'])) {
             $job_types = is_array($params['job_type']) ? $params['job_type'] : array($params['job_type']);
-            $summary_parts[] = '職種: ' . implode('、', $job_types);
+            $summary_html .= '<dl><dt>職種</dt><dd>' . esc_html(implode('、', $job_types)) . '</dd></dl>';
+        }
+
+        // 給与
+        if (!empty($params['income']) && is_array($params['income'])) {
+            $summary_html .= '<dl><dt>給与</dt><dd>' . esc_html(implode('、', $params['income'])) . '</dd></dl>';
         }
 
         // 年収
         if (!empty($params['salary_min']) || !empty($params['salary_max'])) {
-            $salary_text = '年収: ';
+            $salary_text = '';
             if (!empty($params['salary_min']) && !empty($params['salary_max'])) {
-                $salary_text .= number_format($params['salary_min']) . '円 〜 ' . number_format($params['salary_max']) . '円';
+                $salary_text = number_format($params['salary_min']) . '円〜' . number_format($params['salary_max']) . '円';
             } elseif (!empty($params['salary_min'])) {
-                $salary_text .= number_format($params['salary_min']) . '円以上';
+                $salary_text = number_format($params['salary_min']) . '円以上';
             } else {
-                $salary_text .= number_format($params['salary_max']) . '円以下';
+                $salary_text = number_format($params['salary_max']) . '円以下';
             }
-            $summary_parts[] = $salary_text;
+            $summary_html .= '<dl><dt>年収</dt><dd>' . esc_html($salary_text) . '</dd></dl>';
         }
 
-        // こだわり条件
-        if (!empty($params['conditions'])) {
-            $search_data = new OKS_Search_Data();
-            $condition_labels = $search_data->get_conditions();
-            $selected_conditions = array();
-
-            foreach ($params['conditions'] as $condition) {
-                if (isset($condition_labels[$condition])) {
-                    $selected_conditions[] = $condition_labels[$condition];
-                }
-            }
-
-            if (!empty($selected_conditions)) {
-                $summary_parts[] = 'こだわり条件: ' . implode('、', $selected_conditions);
-            }
+        // 特徴（こだわり条件）
+        if (!empty($params['conditions']) && is_array($params['conditions'])) {
+            $summary_html .= '<dl><dt>特徴</dt><dd>' . esc_html(implode('、', $params['conditions'])) . '</dd></dl>';
         }
 
         // キーワード
         if (!empty($params['keyword'])) {
-            $summary_parts[] = 'キーワード: ' . esc_html($params['keyword']);
+            $summary_html .= '<dl><dt>キーワード</dt><dd>' . esc_html($params['keyword']) . '</dd></dl>';
         }
 
-        return implode(' | ', $summary_parts);
+        return $summary_html;
+    }
+
+    /**
+     * Format location summary with prefecture and city combined
+     */
+    private function format_location_summary($params) {
+        global $wpdb;
+        
+        $prefectures = array();
+        $cities = array();
+        
+        if (!empty($params['prefecture'])) {
+            $prefectures = is_array($params['prefecture']) ? $params['prefecture'] : array($params['prefecture']);
+        }
+        if (!empty($params['city'])) {
+            $cities = is_array($params['city']) ? $params['city'] : array($params['city']);
+        }
+        
+        // 都道府県のみ選択されている場合
+        $prefecture_only = array();
+        
+        // 市区町村と都道府県のマッピングを作成
+        $city_to_prefecture_map = array();
+        if (!empty($cities)) {
+            // 各市区町村がどの都道府県に属するか調べる
+            foreach ($cities as $city) {
+                $prefecture = $wpdb->get_var($wpdb->prepare("
+                    SELECT DISTINCT pm_pref.meta_value
+                    FROM {$wpdb->posts} p
+                    INNER JOIN {$wpdb->postmeta} pm_city ON p.ID = pm_city.post_id
+                    INNER JOIN {$wpdb->postmeta} pm_pref ON p.ID = pm_pref.post_id
+                    WHERE p.post_type = 'job'
+                    AND p.post_status = 'publish'
+                    AND pm_city.meta_key = 'city'
+                    AND pm_city.meta_value = %s
+                    AND pm_pref.meta_key = 'prefecture_2'
+                    LIMIT 1
+                ", $city));
+                
+                if ($prefecture) {
+                    if (!isset($city_to_prefecture_map[$prefecture])) {
+                        $city_to_prefecture_map[$prefecture] = array();
+                    }
+                    $city_to_prefecture_map[$prefecture][] = $city;
+                }
+            }
+        }
+        
+        // 都道府県のみ（市区町村が選択されていない）を判定
+        foreach ($prefectures as $prefecture) {
+            if (!isset($city_to_prefecture_map[$prefecture])) {
+                $prefecture_only[] = $prefecture;
+            }
+        }
+        
+        // 地域順（北から南）でソート
+        $prefecture_order = array(
+            '北海道',
+            '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
+            '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県',
+            '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県', '静岡県', '愛知県',
+            '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県',
+            '鳥取県', '島根県', '岡山県', '広島県', '山口県',
+            '徳島県', '香川県', '愛媛県', '高知県',
+            '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県',
+            '沖縄県'
+        );
+        
+        // 結果を格納する配列
+        $formatted_locations = array();
+        
+        // 地域順で処理
+        foreach ($prefecture_order as $pref) {
+            // 市区町村が選択されている場合
+            if (isset($city_to_prefecture_map[$pref])) {
+                $pref_cities = $city_to_prefecture_map[$pref];
+                $escaped_cities = array_map('esc_html', $pref_cities);
+                $formatted_locations[] = esc_html($pref) . implode('・', $escaped_cities);
+            }
+            // 都道府県のみ選択されている場合
+            elseif (in_array($pref, $prefecture_only)) {
+                $formatted_locations[] = esc_html($pref);
+            }
+        }
+        
+        return implode('<br />', $formatted_locations);
     }
 
     /**
@@ -410,10 +569,11 @@ class OKS_Search_Handler {
 
         $search_terms = explode(' ', $keyword);
         $searchable_meta_keys = array(
-            'company', 'job_type', 'prefecture', 'city', 'job_description',
-            'work_location', 'industry', 'employment_type', 'benefits',
-            'salary_details', 'working_hours', 'holidays', 'access',
-            'required_conditions', 'welcome_conditions', 'recruitment_background'
+            'company', 'job_type', 'prefecture_2', 'city', 'job_description',
+            'work_location', 'work_location_details', 'industry', 'employment_type', 
+            'benefits', 'salary_details', 'working_hours', 'holidays', 'access',
+            'required_conditions', 'welcome_conditions_2', 'recruitment_background',
+            'display_title', 'annual_income', 'salary'
         );
 
         $post_ids = array();
@@ -464,5 +624,299 @@ class OKS_Search_Handler {
         }
 
         return $post_ids;
+    }
+
+    /**
+     * Get unique prefectures from job posts
+     */
+    public function get_unique_prefectures() {
+        global $wpdb;
+
+        $prefectures = $wpdb->get_col($wpdb->prepare("
+            SELECT DISTINCT pm.meta_value
+            FROM {$wpdb->posts} p
+            INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+            WHERE p.post_type = 'job'
+            AND p.post_status = 'publish'
+            AND pm.meta_key = 'prefecture_2'
+            AND pm.meta_value != ''
+            AND pm.meta_value IS NOT NULL
+            ORDER BY pm.meta_value ASC
+        "));
+
+        return $prefectures;
+    }
+
+    /**
+     * Get unique cities by prefecture from job posts
+     */
+    public function get_unique_cities_by_prefecture($prefecture = null) {
+        global $wpdb;
+
+        if ($prefecture) {
+            // Return cities for specific prefecture
+            $query = "
+                SELECT DISTINCT pm_city.meta_value as city
+                FROM {$wpdb->posts} p
+                INNER JOIN {$wpdb->postmeta} pm_pref ON p.ID = pm_pref.post_id AND pm_pref.meta_key = 'prefecture_2'
+                INNER JOIN {$wpdb->postmeta} pm_city ON p.ID = pm_city.post_id AND pm_city.meta_key = 'city'
+                WHERE p.post_type = 'job'
+                AND p.post_status = 'publish'
+                AND pm_city.meta_value != ''
+                AND pm_city.meta_value IS NOT NULL
+                AND pm_pref.meta_value = %s
+                ORDER BY pm_city.meta_value ASC
+            ";
+
+            $cities = $wpdb->get_col($wpdb->prepare($query, $prefecture));
+            return $cities;
+        } else {
+            // Return all cities grouped by prefecture
+            $query = "
+                SELECT DISTINCT pm_pref.meta_value as prefecture, pm_city.meta_value as city
+                FROM {$wpdb->posts} p
+                INNER JOIN {$wpdb->postmeta} pm_pref ON p.ID = pm_pref.post_id AND pm_pref.meta_key = 'prefecture_2'
+                INNER JOIN {$wpdb->postmeta} pm_city ON p.ID = pm_city.post_id AND pm_city.meta_key = 'city'
+                WHERE p.post_type = 'job'
+                AND p.post_status = 'publish'
+                AND pm_city.meta_value != ''
+                AND pm_city.meta_value IS NOT NULL
+                AND pm_pref.meta_value != ''
+                AND pm_pref.meta_value IS NOT NULL
+                ORDER BY pm_pref.meta_value ASC, pm_city.meta_value ASC
+            ";
+
+            $results = $wpdb->get_results($query);
+
+            // Group cities by prefecture
+            $cities_by_prefecture = array();
+            foreach ($results as $result) {
+                if (!isset($cities_by_prefecture[$result->prefecture])) {
+                    $cities_by_prefecture[$result->prefecture] = array();
+                }
+                $cities_by_prefecture[$result->prefecture][] = $result->city;
+            }
+
+            return $cities_by_prefecture;
+        }
+    }
+
+    /**
+     * Get unique industries from job posts
+     */
+    public function get_unique_industries() {
+        global $wpdb;
+
+        $industries = $wpdb->get_col($wpdb->prepare("
+            SELECT DISTINCT pm.meta_value
+            FROM {$wpdb->posts} p
+            INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+            WHERE p.post_type = 'job'
+            AND p.post_status = 'publish'
+            AND pm.meta_key = 'industry'
+            AND pm.meta_value != ''
+            AND pm.meta_value IS NOT NULL
+            ORDER BY pm.meta_value ASC
+        "));
+
+        return $industries;
+    }
+
+    /**
+     * Get unique job types by industry from job posts
+     */
+    public function get_unique_job_types_by_industry($industry = null) {
+        global $wpdb;
+
+        if ($industry) {
+            // Return job types for specific industry
+            $query = "
+                SELECT DISTINCT pm_job.meta_value as job_type
+                FROM {$wpdb->posts} p
+                INNER JOIN {$wpdb->postmeta} pm_ind ON p.ID = pm_ind.post_id AND pm_ind.meta_key = 'industry'
+                INNER JOIN {$wpdb->postmeta} pm_job ON p.ID = pm_job.post_id AND pm_job.meta_key = 'job_type'
+                WHERE p.post_type = 'job'
+                AND p.post_status = 'publish'
+                AND pm_job.meta_value != ''
+                AND pm_job.meta_value IS NOT NULL
+                AND pm_ind.meta_value = %s
+                ORDER BY pm_job.meta_value ASC
+            ";
+
+            $job_types = $wpdb->get_col($wpdb->prepare($query, $industry));
+            return $job_types;
+        } else {
+            // Return all job types grouped by industry
+            $query = "
+                SELECT DISTINCT pm_ind.meta_value as industry, pm_job.meta_value as job_type
+                FROM {$wpdb->posts} p
+                INNER JOIN {$wpdb->postmeta} pm_ind ON p.ID = pm_ind.post_id AND pm_ind.meta_key = 'industry'
+                INNER JOIN {$wpdb->postmeta} pm_job ON p.ID = pm_job.post_id AND pm_job.meta_key = 'job_type'
+                WHERE p.post_type = 'job'
+                AND p.post_status = 'publish'
+                AND pm_job.meta_value != ''
+                AND pm_job.meta_value IS NOT NULL
+                AND pm_ind.meta_value != ''
+                AND pm_ind.meta_value IS NOT NULL
+                ORDER BY pm_ind.meta_value ASC, pm_job.meta_value ASC
+            ";
+
+            $results = $wpdb->get_results($query);
+            
+            // Group job types by industry
+            $job_types_by_industry = array();
+            foreach ($results as $result) {
+                if (!isset($job_types_by_industry[$result->industry])) {
+                    $job_types_by_industry[$result->industry] = array();
+                }
+                $job_types_by_industry[$result->industry][] = $result->job_type;
+            }
+
+            return $job_types_by_industry;
+        }
+    }
+
+    /**
+     * Get unique salary types from job posts
+     */
+    public function get_unique_salary_types() {
+        global $wpdb;
+
+        $salary_types = $wpdb->get_col($wpdb->prepare("
+            SELECT DISTINCT pm.meta_value
+            FROM {$wpdb->posts} p
+            INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+            WHERE p.post_type = 'job'
+            AND p.post_status = 'publish'
+            AND pm.meta_key = 'salary_type'
+            AND pm.meta_value != ''
+            AND pm.meta_value IS NOT NULL
+            ORDER BY pm.meta_value ASC
+        "));
+
+        return $salary_types;
+    }
+
+    /**
+     * Get posts that match salary conditions
+     */
+    private function get_posts_by_salary_conditions($income_conditions) {
+        global $wpdb;
+        
+        // 給与条件の定義（時給と月給の境界値）
+        $hourly_conditions = array(
+            '1,300円未満' => array('type' => 'hourly', 'max' => 1300),
+            '1,300円以上' => array('type' => 'hourly', 'min' => 1300)
+        );
+        
+        $monthly_conditions = array(
+            '18万円未満' => array('type' => 'monthly', 'max' => 180000),
+            '19万円以上' => array('type' => 'monthly', 'min' => 190000),
+            '20万円以上' => array('type' => 'monthly', 'min' => 200000),
+            '21万円以上' => array('type' => 'monthly', 'min' => 210000),
+            '22万円以上' => array('type' => 'monthly', 'min' => 220000),
+            '23万円以上' => array('type' => 'monthly', 'min' => 230000),
+            '24万円以上' => array('type' => 'monthly', 'min' => 240000),
+            '25万円以上' => array('type' => 'monthly', 'min' => 250000)
+        );
+        
+        $all_conditions = array_merge($hourly_conditions, $monthly_conditions);
+        
+        // 全ての求人の給与データを取得
+        $salary_data = $wpdb->get_results("
+            SELECT p.ID, pm.meta_value as salary
+            FROM {$wpdb->posts} p
+            INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+            WHERE p.post_type = 'job'
+            AND p.post_status = 'publish'
+            AND pm.meta_key = 'salary'
+            AND pm.meta_value != ''
+            AND pm.meta_value IS NOT NULL
+        ");
+        
+        $matching_post_ids = array();
+        
+        foreach ($salary_data as $row) {
+            $salary_value = $row->salary;
+            $post_id = $row->ID;
+            
+            // 給与値を解析（例: "206,000円 ～ 238,000円"）
+            $salary_range = $this->parse_salary_value($salary_value);
+            
+            if (!$salary_range) continue;
+            
+            foreach ($income_conditions as $condition) {
+                if (!isset($all_conditions[$condition])) continue;
+                
+                $condition_def = $all_conditions[$condition];
+                
+                // 条件に合致するかチェック
+                if ($this->salary_matches_condition($salary_range, $condition_def)) {
+                    $matching_post_ids[] = $post_id;
+                    break; // 一つでも条件に合致すれば追加
+                }
+            }
+        }
+        
+        return array_unique($matching_post_ids);
+    }
+    
+    /**
+     * Parse salary value and extract range
+     */
+    private function parse_salary_value($salary_value) {
+        // 数字とカンマを抽出
+        preg_match_all('/[\d,]+/', $salary_value, $matches);
+        
+        if (empty($matches[0])) return false;
+        
+        $numbers = array();
+        foreach ($matches[0] as $match) {
+            $number = intval(str_replace(',', '', $match));
+            if ($number > 0) {
+                $numbers[] = $number;
+            }
+        }
+        
+        if (empty($numbers)) return false;
+        
+        // 時給か月給かを判定（1万円未満なら時給、以上なら月給）
+        $type = ($numbers[0] < 10000) ? 'hourly' : 'monthly';
+        
+        return array(
+            'type' => $type,
+            'min' => min($numbers),
+            'max' => max($numbers)
+        );
+    }
+    
+    /**
+     * Check if salary range matches condition
+     */
+    private function salary_matches_condition($salary_range, $condition_def) {
+        // 給与形態が一致しない場合はfalse
+        if ($salary_range['type'] !== $condition_def['type']) {
+            return false;
+        }
+        
+        // 最小値の条件チェック（例：20万円以上）
+        if (isset($condition_def['min'])) {
+            // 給与の最小値が条件の最小値以上である必要がある
+            // 例：206,000円 ～ 238,000円 の場合、最小値206,000円が200,000円以上なので該当
+            if ($salary_range['min'] < $condition_def['min']) {
+                return false;
+            }
+        }
+        
+        // 最大値の条件チェック（例：18万円未満）
+        if (isset($condition_def['max'])) {
+            // 給与の最大値が条件の最大値未満である必要がある
+            // 例：150,000円 ～ 170,000円 の場合、最大値170,000円が180,000円未満なので該当
+            if ($salary_range['max'] >= $condition_def['max']) {
+                return false;
+            }
+        }
+        
+        return true;
     }
 }

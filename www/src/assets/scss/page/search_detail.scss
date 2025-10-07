@@ -57,6 +57,7 @@
       }
 
       .title {
+        text-align: center;
         font-weight: bold;
         margin-top: 10px;
         @include variables.res(lg) {

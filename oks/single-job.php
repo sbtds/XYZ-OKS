@@ -13,7 +13,7 @@ get_header(); ?>
           src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_title_arrow.svg" alt="" /></p>
       <div class="main">
         <p class="caption">経理/財務/株式公開</p>
-        <h1 class="title">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</h1>
+        <h1 class="title"><?php echo get_field('display_title'); ?></h1>
         <ul class="badges">
           <li class="badges_item">
             <a href="#">車通勤可</a>
