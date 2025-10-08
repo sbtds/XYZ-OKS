@@ -45,6 +45,13 @@ class OKS_Job_Importer {
         $data = $this->csv_processor->read_csv($file_path);
         if ($data === false) {
             $result['message'] = 'CSVファイルの読み込みに失敗しました。ファイル形式を確認してください。';
+            
+            // Get detailed error information from CSV processor
+            $detailed_errors = $this->csv_processor->get_last_errors();
+            if (!empty($detailed_errors)) {
+                $result['details'] = $detailed_errors;
+            }
+            
             return $result;
         }
         
@@ -141,7 +148,7 @@ class OKS_Job_Importer {
             'post_type' => 'job',
             'post_status' => 'publish',
             'post_title' => $post_title,
-            'post_content' => $data['job_description'] ?? ''
+            'post_content' => ''
         );
         
         // Insert post
@@ -168,7 +175,7 @@ class OKS_Job_Importer {
         $post_data = array(
             'ID' => $post_id,
             'post_title' => $post_title,
-            'post_content' => $data['job_description'] ?? ''
+            'post_content' => ''
         );
         
         // Update post

@@ -78,7 +78,8 @@
           margin-top: 15px;
         }
         &_item {
-          a {
+          a,
+          span {
             display: block;
             // border: 1px solid variables.$primary;
             border: 1px solid white;

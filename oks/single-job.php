@@ -12,30 +12,41 @@ get_header(); ?>
       <p class="arrow"><img
           src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_title_arrow.svg" alt="" /></p>
       <div class="main">
-        <p class="caption">経理/財務/株式公開</p>
+        <p class="caption"><?php echo get_field('job_type'); ?></p>
         <h1 class="title"><?php echo get_field('display_title'); ?></h1>
         <ul class="badges">
+          <?php if(get_field('car_commute')): ?>
           <li class="badges_item">
-            <a href="#">車通勤可</a>
+            <span>車通勤可</span>
           </li>
+          <?php endif; ?>
+          <?php if(get_field('established_10years')): ?>
           <li class="badges_item">
-            <a href="#">設立10年以上の会社</a>
+            <span>設立10年以上の会社</span>
           </li>
+          <?php endif; ?>
+          <?php if(get_field('application_category')): ?>
           <li class="badges_item">
-            <a href="#">管理職・マネージャー</a>
+            <span><?php echo get_field('application_category'); ?></span>
           </li>
+          <?php endif; ?>
+          <?php if(get_field('employment_type')): ?>
           <li class="badges_item">
-            <a href="#">正社員</a>
+            <span><?php echo get_field('employment_type'); ?></span>
           </li>
+          <?php endif; ?>
+          <?php if(get_field('transfer_possibility')): ?>
           <li class="badges_item">
-            <a href="#">転勤なし</a>
+            <span>転勤なし</span>
           </li>
+          <?php endif; ?>
         </ul>
       </div>
       <p class="arrow"><img
           src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_title_arrow.svg" alt="" /></p>
     </div>
   </section>
+  <?php if(get_field('recommend_point_1')): ?>
   <section class="search_point">
     <div class="search_point__container">
       <h2 class="search_point__title">
@@ -45,27 +56,40 @@ get_header(); ?>
           class="pc-only" alt="この求人のおすすめポイント" />
       </h2>
       <ul class="search_point__list">
+        <?php if(get_field('recommend_point_1')): ?>
         <li class="search_point__item">
           <p class="badge"><span class="label">POINT 1</span></p>
           <div class="contents">
-            <p>未経験歓迎！充実の研修制度◎</p>
+            <p>
+              <?php echo get_field('recommend_point_1'); ?>
+            </p>
           </div>
         </li>
+        <?php endif; ?>
+        <?php if(get_field('recommend_point_2')): ?>
         <li class="search_point__item">
           <p class="badge"><span class="label">POINT 2</span></p>
           <div class="contents">
-            <p>和気藹々とした雰囲気の職場◎</p>
+            <p>
+              <?php echo get_field('recommend_point_2'); ?>
+            </p>
           </div>
         </li>
+        <?php endif; ?>
+        <?php if(get_field('recommend_point_3')): ?>
         <li class="search_point__item">
-          <p class="badge"><span class="label">POINT 1</span></p>
+          <p class="badge"><span class="label">POINT 3</span></p>
           <div class="contents">
-            <p>食堂・食事補助あり♪</p>
+            <p>
+              <?php echo get_field('recommend_point_3'); ?>
+            </p>
           </div>
         </li>
+        <?php endif; ?>
       </ul>
     </div>
   </section>
+  <?php endif; ?>
 
   <section class="featured_outline search_outline">
     <div class="featured_outline__container">
@@ -86,6 +110,7 @@ get_header(); ?>
             </dd>
           </dl>
           <hr />
+          <?php if(get_field('required_conditions') || get_field('welcome_conditions_2')): ?>
           <dl class="featured_outline__item">
             <dt>
               <span class="label">応募資格</span>
@@ -107,6 +132,7 @@ get_header(); ?>
             </dd>
           </dl>
           <hr />
+          <?php endif; ?>
           <dl class="featured_outline__item">
             <dt>
               <span class="label">契約期間<br />の有無</span>
@@ -446,6 +472,19 @@ get_header(); ?>
               </div>
             </dd>
           </dl>
+          <hr />
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">募集要項</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+              </div>
+            </dd>
+          </dl>
         </div>
         <div class="button_section">
           <a class="button_more" href="#">
@@ -455,44 +494,12 @@ get_header(); ?>
         </div>
       </div>
     </div>
-    <div class="featured_outline__container">
-      <h3 class="featured_outline__title">募集要項</h3>
-      <div class="featured_outline__main">
-        <br />
-      </div>
-    </div>
+
     <div class="featured_outline__container">
       <h3 class="featured_outline__title">企業情報</h3>
       <div class="featured_outline__main">
         <div class="featured_outline__list">
-          <dl class="featured_outline__item">
-            <dt>
-              <span class="label">業種</span>
-              <span class="arrow"><img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
-                  alt="" /></span>
-            </dt>
-            <dd>
-              <div class="contents">
-                <p>食品</p>
-              </div>
-            </dd>
-          </dl>
-          <hr />
-          <dl class="featured_outline__item">
-            <dt>
-              <span class="label">事業内容</span>
-              <span class="arrow"><img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
-                  alt="" /></span>
-            </dt>
-            <dd>
-              <div class="contents">
-                <p>高級食料品、嗜好品、飲料の輸入・生産・販売、酒類及び酒類原料の輸入・販売</p>
-              </div>
-            </dd>
-          </dl>
-          <hr />
+          <?php if(get_field('h_employee_count')): ?>
           <dl class="featured_outline__item">
             <dt>
               <span class="label">従業員数</span>
@@ -502,39 +509,29 @@ get_header(); ?>
             </dt>
             <dd>
               <div class="contents">
-                <p>310人</p>
+                <p><?php echo get_field('h_employee_count'); ?></p>
               </div>
             </dd>
           </dl>
           <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_head_office_address')): ?>
           <dl class="featured_outline__item">
             <dt>
-              <span class="label">企業名</span>
+              <span class="label">本社住所</span>
               <span class="arrow"><img
                   src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
                   alt="" /></span>
             </dt>
             <dd>
               <div class="contents">
-                <p>片岡物産株式会社</p>
+                <p><?php echo get_field('h_head_office_address'); ?></p>
               </div>
             </dd>
           </dl>
           <hr />
-          <dl class="featured_outline__item">
-            <dt>
-              <span class="label">本社<br />所在地</span>
-              <span class="arrow"><img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
-                  alt="" /></span>
-            </dt>
-            <dd>
-              <div class="contents">
-                <p>東京都港区新橋6-21-6</p>
-              </div>
-            </dd>
-          </dl>
-          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_url')): ?>
           <dl class="featured_outline__item">
             <dt>
               <span class="label">URL</span>
@@ -544,11 +541,13 @@ get_header(); ?>
             </dt>
             <dd>
               <div class="contents">
-                <p><a href="https://www.kataoka.com/company/" target="_blank">https://www.kataoka.com/company/</a></p>
+                <p><a href="<?php echo get_field('h_url'); ?>" target="_blank"><?php echo get_field('h_url'); ?></a></p>
               </div>
             </dd>
           </dl>
           <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_established_date')): ?>
           <dl class="featured_outline__item">
             <dt>
               <span class="label">設立年月</span>
@@ -558,10 +557,188 @@ get_header(); ?>
             </dt>
             <dd>
               <div class="contents">
-                <p>0000年00月</p>
+                <p><?php echo get_field('h_established_date'); ?></p>
               </div>
             </dd>
           </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_stock_public')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">株式公開</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <p><?php echo get_field('h_stock_public'); ?></p>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_job_content')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">仕事内容</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <?php echo get_field('h_job_content'); ?>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_application_requirements')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">応募資格</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <?php echo get_field('h_application_requirements'); ?>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_expected_salary')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">想定年収</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <p><?php echo get_field('h_expected_salary'); ?></p>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_salary_details')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">給与詳細</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <?php echo get_field('h_salary_details'); ?>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_work_location')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">勤務地</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <p><?php echo get_field('h_work_location'); ?></p>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_work_location_details')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">勤務地詳細</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <?php echo get_field('h_work_location_details'); ?>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_access')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">アクセス</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <?php echo get_field('h_access'); ?>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_allowances')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">諸手当</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <?php echo get_field('h_allowances'); ?>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_holidays')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">休日休暇</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <?php echo get_field('h_holidays'); ?>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+          <?php if(get_field('h_working_hours')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">勤務時間</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <?php echo get_field('h_working_hours'); ?>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
         </div>
       </div>
     </div>

@@ -704,7 +704,8 @@
       font-size: variables.$fz12;
 
       &_item {
-        a {
+        a,
+        span {
           display: block;
           border: 1px solid variables.$primary;
           border-radius: 1000px;

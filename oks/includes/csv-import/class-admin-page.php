@@ -147,6 +147,11 @@ class OKS_CSV_Import_Admin_Page {
             }
         } else {
             $this->show_notice('error', $result['message']);
+            
+            // Display detailed error information if available
+            if (isset($result['details']) && !empty($result['details'])) {
+                $this->show_detailed_errors($result['details']);
+            }
         }
     }
     
@@ -156,5 +161,25 @@ class OKS_CSV_Import_Admin_Page {
     private function show_notice($type, $message) {
         $class = 'notice notice-' . $type;
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
+    }
+    
+    /**
+     * Show detailed error information
+     */
+    private function show_detailed_errors($details) {
+        echo '<div class="notice notice-error" style="margin-top: 10px;">';
+        echo '<h4>詳細エラー情報:</h4>';
+        echo '<div style="background: #f8f8f8; padding: 10px; border-left: 4px solid #dc3232; font-family: monospace; white-space: pre-wrap;">';
+        
+        if (is_array($details)) {
+            foreach ($details as $detail) {
+                echo esc_html($detail) . "\n";
+            }
+        } else {
+            echo esc_html($details);
+        }
+        
+        echo '</div>';
+        echo '</div>';
     }
 }

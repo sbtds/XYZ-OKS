@@ -1,7 +1,7 @@
 <?php
 /**
  * CSV Processor
- * 
+ *
  * @package OKS
  * @subpackage CSV_Import
  */
@@ -15,7 +15,12 @@ if (!defined('ABSPATH')) {
  * CSV Processor Class
  */
 class OKS_CSV_Processor {
-    
+
+    /**
+     * Last errors array
+     */
+    private $last_errors = array();
+
     /**
      * Expected columns
      */
@@ -49,7 +54,7 @@ class OKS_CSV_Processor {
         'H_仕事内容', 'H_応募資格', 'H_想定年収', 'H_給与詳細', 'H_勤務地',
         'H_勤務地詳細', 'H_アクセス', 'H_諸手当', 'H_休日休暇', 'H_勤務時間'
     );
-    
+
     /**
      * Field mapping
      */
@@ -195,14 +200,15 @@ class OKS_CSV_Processor {
         'H_休日休暇' => 'h_holidays',
         'H_勤務時間' => 'h_working_hours'
     );
-    
+
     /**
      * Boolean fields
      */
     private $boolean_fields = array(
         'deletion_flag', 'recruiting_status', 'company_name_display', 'fixed_overtime_pay',
         'discretionary_work', 'car_commute', 'bike_commute', 'passive_smoking',
-        'contract_period', 'probation_period', 'a_company_name_public', 'a_media_public',
+        'contract_period', 'probation_period', 'transfer_possibility', 'contract_renewal', 'renewal_limit',
+        'a_company_name_public', 'a_media_public',
         'annual_holidays_120', 'housing_allowance', 'retirement_benefits', 'qualification_support',
         'maternity_leave_record', 'women_active', 'men_active', 'incentive_available',
         'ui_turn_support', 'remote_interview_ok', 'middle_active', 'senior_active',
@@ -211,7 +217,7 @@ class OKS_CSV_Processor {
         'established_10years', 'venture_company', 'job_inexperienced_ok', 'industry_inexperienced_ok',
         'work_experience_unnecessary', 'it_skill_unnecessary'
     );
-    
+
     /**
      * Number fields
      */
@@ -219,7 +225,7 @@ class OKS_CSV_Processor {
         'min_salary', 'max_salary', 'hiring_number',
         'a_recruitment_number', 'a_reward_rate', 'a_reward_amount'
     );
-    
+
     /**
      * Textarea fields (multiline text)
      */
@@ -238,7 +244,7 @@ class OKS_CSV_Processor {
         // おすすめPOINT項目
         'recommend_point_1', 'recommend_point_2', 'recommend_point_3'
     );
-    
+
     /**
      * Text fields (single line text)
      */
@@ -252,8 +258,8 @@ class OKS_CSV_Processor {
         'admin_title', 'a_job_db_display_title', 'display_title', 'industry', 'job_type',
         'display_expected_salary', 'salary_type', 'salary', 'salary_increase', 'bonus',
         'working_hours', 'break_time', 'avg_overtime_hours', 'holidays', 'prefecture', 'city',
-        'work_location', 'access', 'work_location_change', 'transfer_possibility',
-        'application_category', 'employment_type', 'contract_renewal', 'renewal_limit',
+        'work_location', 'access', 'work_location_change',
+        'application_category', 'employment_type',
         'probation_duration', 'insurance', 'work_attire', 'a_employment_period_report',
         'a_business_category_2024', 'a_validity_period', 'a_reward_pattern',
         'a_refund_fee', 'a_req_age', 'a_req_gender', 'a_req_nationality',
@@ -262,93 +268,146 @@ class OKS_CSV_Processor {
         'h_employee_count', 'h_head_office_address', 'h_url', 'h_stock_public',
         'h_expected_salary', 'h_work_location', 'h_access', 'h_working_hours'
     );
-    
+
     /**
      * Read CSV file
      */
     public function read_csv($file_path) {
+        // Clear previous errors
+        $this->last_errors = array();
         $data = array();
-        
+
         if (!file_exists($file_path) || !is_readable($file_path)) {
+            $error_msg = "CSV file not found or not readable: " . $file_path;
+            error_log($error_msg);
+            $this->last_errors[] = $error_msg;
             return false;
         }
-        
+
         $handle = fopen($file_path, 'r');
         if ($handle === false) {
+            $error_msg = "Failed to open CSV file: " . $file_path;
+            error_log($error_msg);
+            $this->last_errors[] = $error_msg;
             return false;
         }
-        
+
         // Remove BOM if exists
         $bom = fread($handle, 3);
         if ($bom !== "\xEF\xBB\xBF") {
             rewind($handle);
         }
-        
+
         // Read header
         $headers = fgetcsv($handle);
         if (!$headers) {
             fclose($handle);
+            $error_msg = "Failed to read CSV headers from: " . $file_path;
+            error_log($error_msg);
+            $this->last_errors[] = $error_msg;
             return false;
         }
-        
+
+        error_log("CSV headers count: " . count($headers));
+
         // Validate headers
         if (!$this->validate_headers($headers)) {
             fclose($handle);
+            $error_msg = "CSV headers validation failed. Expected: " . count($this->expected_columns) . ", Got: " . count($headers);
+            error_log($error_msg);
+            $this->last_errors[] = $error_msg;
             return false;
         }
-        
+
         // Read data rows
         $row_number = 2; // Start from 2 (header is 1)
         while (($row = fgetcsv($handle)) !== false) {
             if (count($row) !== count($headers)) {
+                error_log("CSV Row $row_number: Expected " . count($headers) . " columns, got " . count($row) . " columns");
                 continue; // Skip invalid rows
             }
-            
+
+            // Process multiline text fields by unescaping newlines
+            foreach ($row as $key => $value) {
+                $row[$key] = str_replace('\\n', "\n", $value);
+            }
+
             $row_data = array_combine($headers, $row);
             $row_data['_row_number'] = $row_number;
             $data[] = $row_data;
             $row_number++;
         }
-        
+
         fclose($handle);
+
+        if (empty($data)) {
+            $error_msg = "No valid data rows found in CSV file: " . $file_path;
+            error_log($error_msg);
+            $this->last_errors[] = $error_msg;
+            return false;
+        }
+
+        error_log("Successfully parsed CSV file with " . count($data) . " rows");
         return $data;
     }
-    
+
     /**
      * Validate headers
      */
     private function validate_headers($headers) {
         // Check if all expected columns exist
         $missing_columns = array_diff($this->expected_columns, $headers);
+        $extra_columns = array_diff($headers, $this->expected_columns);
+
         if (!empty($missing_columns)) {
+            $error_msg = "Missing CSV columns: " . implode(', ', $missing_columns);
+            error_log($error_msg);
+            $this->last_errors[] = $error_msg;
             return false;
         }
-        
+
+        if (!empty($extra_columns)) {
+            $error_msg = "Extra CSV columns: " . implode(', ', $extra_columns);
+            error_log($error_msg);
+            $this->last_errors[] = $error_msg;
+            return false;
+        }
+
+        // Compare each header for exact match
+        for ($i = 0; $i < count($this->expected_columns); $i++) {
+            if (!isset($headers[$i]) || trim($headers[$i]) !== trim($this->expected_columns[$i])) {
+                $error_msg = "Header mismatch at position $i. Expected: '" . $this->expected_columns[$i] . "', Got: '" . (isset($headers[$i]) ? $headers[$i] : 'NULL') . "'";
+                error_log($error_msg);
+                $this->last_errors[] = $error_msg;
+                return false;
+            }
+        }
+
         return true;
     }
-    
+
     /**
      * Process row data
      */
     public function process_row_data($row_data) {
         $processed = array();
-        
+
         foreach ($row_data as $key => $value) {
             if ($key === '_row_number') {
                 continue;
             }
-            
+
             if (isset($this->field_mapping[$key])) {
                 $field_name = $this->field_mapping[$key];
                 $processed[$field_name] = $this->process_field_value($field_name, $value);
             }
         }
-        
+
         // No duplicate fields in the new format
-        
+
         return $processed;
     }
-    
+
     /**
      * Process field value
      */
@@ -357,14 +416,16 @@ class OKS_CSV_Processor {
         if (in_array($field_name, $this->boolean_fields)) {
             return $this->convert_to_boolean($value);
         }
-        
+
         // Number fields
         if (in_array($field_name, $this->number_fields)) {
-            return intval($value);
+            // Extract numeric value from strings like "3人"
+            $numeric_value = preg_replace('/[^\d]/', '', $value);
+            return intval($numeric_value);
         }
-        
+
         // Date fields - keep as text but validate format
-        if (in_array($field_name, array('a_recruitment_start_date', 'a_recruitment_end_date', 
+        if (in_array($field_name, array('a_recruitment_start_date', 'a_recruitment_end_date',
                                        'salary_closing_date', 'salary_payment_date', 'h_established_date'))) {
             // Convert date format if needed
             if (!empty($value) && strtotime($value)) {
@@ -372,18 +433,18 @@ class OKS_CSV_Processor {
             }
             return '';
         }
-        
+
         // Default: return as string
         return trim($value);
     }
-    
+
     /**
      * Convert value to boolean
      */
     private function convert_to_boolean($value) {
         // Trim and convert to lowercase for comparison
         $value = trim(strtolower($value));
-        
+
         // Define true values
         $true_values = array(
             '1',
@@ -394,7 +455,7 @@ class OKS_CSV_Processor {
             'y',
             'yes'
         );
-        
+
         // Define false values
         $false_values = array(
             '0',
@@ -406,18 +467,25 @@ class OKS_CSV_Processor {
             'no',
             ''
         );
-        
+
         // Check if value is in true values
         if (in_array($value, $true_values)) {
             return 1;
         }
-        
+
         // Check if value is in false values or default to false
         if (in_array($value, $false_values) || empty($value)) {
             return 0;
         }
-        
+
         // If value doesn't match any pattern, default to false
         return 0;
+    }
+
+    /**
+     * Get last errors
+     */
+    public function get_last_errors() {
+        return $this->last_errors;
     }
 }

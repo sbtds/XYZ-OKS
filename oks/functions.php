@@ -22,6 +22,20 @@ function oks_theme_setup() {
 }
 add_action('after_setup_theme', 'oks_theme_setup');
 
+// Enable ACF local JSON sync
+add_filter('acf/settings/save_json', 'oks_acf_json_save_point');
+function oks_acf_json_save_point($path) {
+    $path = get_stylesheet_directory() . '/acf-json';
+    return $path;
+}
+
+add_filter('acf/settings/load_json', 'oks_acf_json_load_point');
+function oks_acf_json_load_point($paths) {
+    unset($paths[0]);
+    $paths[] = get_stylesheet_directory() . '/acf-json';
+    return $paths;
+}
+
 function oks_enqueue_styles() {
     wp_enqueue_style('oks-style', get_stylesheet_uri(), array(), '1.0.0');
 
