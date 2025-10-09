@@ -781,7 +781,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 </div>
                 <!-- //item -->
                 <!-- item -->
-                <div class="search_main__panel_item">
+                <div class="search_main__panel_item" id="search_main_keyword">
                   <input type="checkbox" id="" checked />
                   <div class="search_main__panel_block">
                     <p class="search_select__conditions_title">キーワード</p>
@@ -896,7 +896,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 echo '<p>建設・不動産の記事が見つかりません。</p>';
             }
             ?>
-            
+
             <h4>min_salaryフィールドの値一覧</h4>
             <?php
             // min_salaryの全ての値を取得
@@ -910,7 +910,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 AND pm.meta_value != ''
                 ORDER BY CAST(pm.meta_value AS UNSIGNED) DESC
             ");
-            
+
             if (!empty($min_salaries)) {
                 echo '<table style="background: white; width: 100%; border-collapse: collapse; margin-top: 10px;">';
                 echo '<tr style="background: #ddd;">';
@@ -919,11 +919,11 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 echo '<th style="border: 1px solid #ccc; padding: 5px;">min_salary (生データ)</th>';
                 echo '<th style="border: 1px solid #ccc; padding: 5px;">金額表示</th>';
                 echo '</tr>';
-                
+
                 foreach ($min_salaries as $job) {
                     $salary_int = intval($job->min_salary);
                     $formatted_salary = '';
-                    
+
                     if ($salary_int >= 10000000) {
                         $formatted_salary = number_format($salary_int / 10000000, 0) . ',000万円';
                     } elseif ($salary_int >= 10000) {
@@ -931,7 +931,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                     } else {
                         $formatted_salary = number_format($salary_int) . '円';
                     }
-                    
+
                     echo '<tr>';
                     echo '<td style="border: 1px solid #ccc; padding: 5px;">' . $job->ID . '</td>';
                     echo '<td style="border: 1px solid #ccc; padding: 5px;">' . esc_html($job->post_title) . '</td>';
@@ -940,10 +940,10 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                     echo '</tr>';
                 }
                 echo '</table>';
-                
+
                 // 統計情報
                 $stats = $wpdb->get_row("
-                    SELECT 
+                    SELECT
                         COUNT(*) as total_count,
                         MIN(CAST(meta_value AS UNSIGNED)) as min_value,
                         MAX(CAST(meta_value AS UNSIGNED)) as max_value,
@@ -954,7 +954,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                     AND meta_value != ''
                     AND meta_value REGEXP '^[0-9]+$'
                 ");
-                
+
                 if ($stats) {
                     echo '<div style="background: #e0e0e0; padding: 10px; margin-top: 10px;">';
                     echo '<h5>min_salary 統計情報</h5>';
@@ -1056,7 +1056,8 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
       <aside class="search_side">
         <div class="search_side__container">
           <p class="search_side__title">条件を変更する</p>
-          <form class="search_select" id="search_side_form" method="GET" action="<?php echo esc_url(get_permalink()); ?>">
+          <form class="search_select" id="search_side_form" method="GET"
+            action="<?php echo esc_url(get_permalink()); ?>">
             <div class="search_select__box" id="search_side_area">
               <div class="search_select__inner">
                 <input type="checkbox" class="search_select__check" id="search_select__box01" />
@@ -1293,14 +1294,14 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                       AND pm.meta_value REGEXP '^[0-9]+$'
                       ORDER BY salary_hundred ASC
                   ");
-                  
+
                   if (!empty($salary_hundreds)) {
                       foreach ($salary_hundreds as $hundred) {
                           $min_range = $hundred * 1000000;
                           $max_range = ($hundred + 1) * 1000000 - 1;
                           $range_value = $min_range . '-' . $max_range;
                           $selected = (isset($search_params['salary_range']) && $search_params['salary_range'] == $range_value) ? 'selected' : '';
-                          
+
                           if ($hundred >= 10) {
                               // 1000万以上の表示
                               echo '<option value="' . $range_value . '" ' . $selected . '>' . number_format($hundred / 10, 1) . ',000万円台</option>';
@@ -1312,11 +1313,11 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                   } else {
                       // デフォルトの選択肢（データがない場合）
                       ?>
-                      <option value="2000000-2999999">200万円台</option>
-                      <option value="3000000-3999999">300万円台</option>
-                      <option value="4000000-4999999">400万円台</option>
-                      <option value="5000000-5999999">500万円台</option>
-                      <?php
+                  <option value="2000000-2999999">200万円台</option>
+                  <option value="3000000-3999999">300万円台</option>
+                  <option value="4000000-4999999">400万円台</option>
+                  <option value="5000000-5999999">500万円台</option>
+                  <?php
                   }
                   ?>
                 </select>
@@ -1327,7 +1328,9 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 <p class="search_side__subject">キーワード</p>
               </div>
               <p class="search_select__keyword_input">
-                <input type="text" name="keyword" value="<?php echo isset($search_params['keyword']) ? esc_attr($search_params['keyword']) : ''; ?>" placeholder="入力してください" />
+                <input type="text" name="keyword"
+                  value="<?php echo isset($search_params['keyword']) ? esc_attr($search_params['keyword']) : ''; ?>"
+                  placeholder="入力してください" />
               </p>
             </div>
             <div class="search_select__conditions" id="search_side_conditions">
@@ -1586,35 +1589,36 @@ jQuery(document).ready(function($) {
   // サイドバー検索ボタンのクリックイベント
   $('#search_side_submit').on('click', function(e) {
     e.preventDefault();
-    
+
     // メインフォームの全データをクリア
     var $mainForm = $('.search_main__panel_body');
     $mainForm.find('input[type="checkbox"]').prop('checked', false).prop('indeterminate', false);
     $mainForm.find('input[type="text"]').val('');
     $mainForm.find('select').val('');
-    
+
     // サイドフォームのデータをメインフォームにコピー
     var $sideForm = $('#search_side_form');
-    
+
     // 都道府県のコピー
     $sideForm.find('input[name="prefecture[]"]:checked').each(function() {
       var prefecture = $(this).val();
       $mainForm.find('input[name="prefecture[]"][value="' + prefecture + '"]').prop('checked', true);
     });
-    
+
     // 市区町村のコピー
     $sideForm.find('input[name="city[]"]:checked').each(function() {
       var city = $(this).val();
       $mainForm.find('input[name="city[]"][value="' + city + '"]').prop('checked', true);
     });
-    
+
     // 職種のコピー（もし実装されている場合）
-    $sideForm.find('input[name="industry[]"]:checked, input[name="job_type_with_industry[]"]:checked').each(function() {
-      var value = $(this).val();
-      var name = $(this).attr('name');
-      $mainForm.find('input[name="' + name + '"][value="' + value + '"]').prop('checked', true);
-    });
-    
+    $sideForm.find('input[name="industry[]"]:checked, input[name="job_type_with_industry[]"]:checked').each(
+      function() {
+        var value = $(this).val();
+        var name = $(this).attr('name');
+        $mainForm.find('input[name="' + name + '"][value="' + value + '"]').prop('checked', true);
+      });
+
     // 年収のコピー
     var salaryRange = $sideForm.find('select[name="salary_range"]').val();
     if (salaryRange) {
@@ -1625,19 +1629,19 @@ jQuery(document).ready(function($) {
         $mainForm.find('input[name="salary_range"]').val(salaryRange);
       }
     }
-    
+
     // キーワードのコピー
     var keyword = $sideForm.find('input[name="keyword"]').val();
     if (keyword) {
       $mainForm.find('input[name="keyword"]').val(keyword);
     }
-    
+
     // こだわり条件のコピー
     $sideForm.find('input[name="conditions[]"]:checked').each(function() {
       var condition = $(this).val();
       $mainForm.find('input[name="conditions[]"][value="' + condition + '"]').prop('checked', true);
     });
-    
+
     // メインフォームを送信
     $mainForm.closest('form').submit();
   });
