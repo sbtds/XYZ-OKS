@@ -46,16 +46,16 @@ $prefecture_order = array(
 usort($unique_prefectures, function($a, $b) use ($prefecture_order) {
     $pos_a = array_search($a, $prefecture_order);
     $pos_b = array_search($b, $prefecture_order);
-    
+
     // If both prefectures are in the order array, sort by their position
     if ($pos_a !== false && $pos_b !== false) {
         return $pos_a - $pos_b;
     }
-    
+
     // If only one is in the order array, it comes first
     if ($pos_a !== false) return -1;
     if ($pos_b !== false) return 1;
-    
+
     // If neither is in the order array, sort alphabetically
     return strcmp($a, $b);
 });
@@ -119,7 +119,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
               </div>
               <div class="search_main__panel_list">
                 <!-- item -->
-                <div class="search_main__panel_item">
+                <div class="search_main__panel_item" id="search_main_area">
                   <input type="checkbox" id="search_main__panel_subject01" />
                   <label class="search_main__panel_subject" for="search_main__panel_subject01">
                     <span class="icon"><img src="./assets/images/page/common_icon_area.svg" alt="" /></span>
@@ -191,7 +191,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 </div>
                 <!-- //item -->
                 <!-- item -->
-                <div class="search_main__panel_item">
+                <div class="search_main__panel_item" id="search_main_type">
                   <input type="checkbox" id="search_main__panel_subject02" />
                   <label class="search_main__panel_subject" for="search_main__panel_subject02">
                     <span class="icon"><img src="./assets/images/page/common_icon_type.svg" alt="" /></span>
@@ -207,10 +207,10 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                         foreach ($unique_industries as $industry) :
                             $type_id = sprintf('search_select__type_%02d', $type_index);
                             $show_id = sprintf('search_select__type_show%02d__', $type_index);
-                            
+
                             // Get job types for this industry
                             $industry_job_types = isset($unique_job_types[$industry]) ? $unique_job_types[$industry] : array();
-                            
+
                             // Count jobs in this industry
                             $industry_count = $wpdb->get_var($wpdb->prepare("
                                 SELECT COUNT(DISTINCT p.ID)
@@ -240,13 +240,13 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                       <div class="search_select__type_menu">
                         <div class="search_select__type_list">
                           <?php foreach ($industry_job_types as $job_type) : ?>
-                          <?php 
+                          <?php
                           // Create a unique value combining industry and job_type
                           $unique_job_type_value = $industry . '|' . $job_type;
                           ?>
                           <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="job_type_with_industry[]"
-                              value="<?php echo esc_attr($unique_job_type_value); ?>"
+                            <input type="checkbox" class="search_select__type_item_check"
+                              name="job_type_with_industry[]" value="<?php echo esc_attr($unique_job_type_value); ?>"
                               <?php if (isset($search_params['job_type_with_industry']) && in_array($unique_job_type_value, $search_params['job_type_with_industry'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label"><?php echo esc_html($job_type); ?></span>
@@ -266,7 +266,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 </div>
                 <!-- //item -->
                 <!-- item -->
-                <div class="search_main__panel_item">
+                <div class="search_main__panel_item" id="search_main_income">
                   <input type="checkbox" id="search_main__panel_subject03" />
                   <label class="search_main__panel_subject" for="search_main__panel_subject03">
                     <span class="icon"><img src="./assets/images/page/common_icon_income.svg" alt="" /></span>
@@ -326,57 +326,49 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                       <div class="search_select__type_menu">
                         <div class="search_select__type_list">
                           <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="income[]"
-                              value="18万円未満"
+                            <input type="checkbox" class="search_select__type_item_check" name="income[]" value="18万円未満"
                               <?php if (isset($search_params['income']) && in_array('18万円未満', $search_params['income'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label">18万円未満</span>
                           </label>
                           <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="income[]"
-                              value="19万円以上"
+                            <input type="checkbox" class="search_select__type_item_check" name="income[]" value="19万円以上"
                               <?php if (isset($search_params['income']) && in_array('19万円以上', $search_params['income'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label">19万円以上</span>
                           </label>
                           <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="income[]"
-                              value="20万円以上"
+                            <input type="checkbox" class="search_select__type_item_check" name="income[]" value="20万円以上"
                               <?php if (isset($search_params['income']) && in_array('20万円以上', $search_params['income'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label">20万円以上</span>
                           </label>
                           <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="income[]"
-                              value="21万円以上"
+                            <input type="checkbox" class="search_select__type_item_check" name="income[]" value="21万円以上"
                               <?php if (isset($search_params['income']) && in_array('21万円以上', $search_params['income'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label">21万円以上</span>
                           </label>
                           <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="income[]"
-                              value="22万円以上"
+                            <input type="checkbox" class="search_select__type_item_check" name="income[]" value="22万円以上"
                               <?php if (isset($search_params['income']) && in_array('22万円以上', $search_params['income'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label">22万円以上</span>
                           </label>
                           <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="income[]"
-                              value="23万円以上"
+                            <input type="checkbox" class="search_select__type_item_check" name="income[]" value="23万円以上"
                               <?php if (isset($search_params['income']) && in_array('23万円以上', $search_params['income'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label">23万円以上</span>
                           </label>
                           <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="income[]"
-                              value="24万円以上"
+                            <input type="checkbox" class="search_select__type_item_check" name="income[]" value="24万円以上"
                               <?php if (isset($search_params['income']) && in_array('24万円以上', $search_params['income'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label">24万円以上</span>
                           </label>
                           <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="income[]"
-                              value="25万円以上"
+                            <input type="checkbox" class="search_select__type_item_check" name="income[]" value="25万円以上"
                               <?php if (isset($search_params['income']) && in_array('25万円以上', $search_params['income'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label">25万円以上</span>
@@ -389,7 +381,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 </div>
                 <!-- //item -->
                 <!-- item -->
-                <div class="search_main__panel_item">
+                <div class="search_main__panel_item" id="search_main_conditions">
                   <input type="checkbox" id="search_main__panel_subject04" />
                   <label class="search_main__panel_subject" for="search_main__panel_subject04">
                     <span class="icon"><img src="./assets/images/page/common_icon_feature.svg" alt="" /></span>
@@ -402,7 +394,8 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                       <div class="search_select__conditions_list">
                         <label class="search_select__conditions_item">
                           <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]"
-                            value="未経験OK" <?php if (isset($search_params['conditions']) && in_array('未経験OK', $search_params['conditions'])) echo 'checked'; ?> />
+                            value="未経験OK"
+                            <?php if (isset($search_params['conditions']) && in_array('未経験OK', $search_params['conditions'])) echo 'checked'; ?> />
                           <span class="checkbox"></span>
                           <span class="label">未経験OK</span>
                         </label>
@@ -794,7 +787,9 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                     <p class="search_select__conditions_title">キーワード</p>
 
                     <p class="search_select__keyword_input">
-                      <input type="text" name="keyword" value="<?php echo isset($search_params['keyword']) ? esc_attr($search_params['keyword']) : ''; ?>" placeholder="入力してください" />
+                      <input type="text" name="keyword"
+                        value="<?php echo isset($search_params['keyword']) ? esc_attr($search_params['keyword']) : ''; ?>"
+                        placeholder="入力してください" />
                     </p>
                   </div>
                 </div>
@@ -815,16 +810,16 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
             </form>
           </div>
           <!-- //panel -->
-          
+
           <!-- テスト表示: デバッグ情報 -->
           <div style="background: #f0f0f0; padding: 20px; margin: 20px 0; border: 2px solid #ccc;">
             <h3>デバッグ情報</h3>
-            
+
             <h4>検索パラメータ:</h4>
             <pre style="background: white; padding: 10px; overflow: auto;">
 <?php print_r($search_params); ?>
             </pre>
-            
+
             <h4>カスタムフィールド「industry」の値一覧</h4>
             <?php
             global $wpdb;
@@ -838,7 +833,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 AND pm.meta_value != ''
                 ORDER BY pm.meta_value
             ");
-            
+
             if (!empty($industries)) {
                 echo '<ul>';
                 foreach ($industries as $industry) {
@@ -853,9 +848,9 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                         AND pm.meta_value = %s
                         ORDER BY p.ID
                     ", $industry));
-                    
+
                     $count = count($post_ids);
-                    
+
                     echo '<li>';
                     echo '<strong>' . esc_html($industry) . '</strong> (' . $count . '件)';
                     if (!empty($post_ids)) {
@@ -868,12 +863,12 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 echo '<p>industryデータが見つかりません。</p>';
             }
             ?>
-            
+
             <h4>job_typeフィールドの実際の値（サンプル）</h4>
             <?php
             // 建設・不動産のjob記事を確認
             $construction_jobs = $wpdb->get_results("
-                SELECT p.ID, p.post_title, 
+                SELECT p.ID, p.post_title,
                        pm1.meta_value as industry,
                        pm2.meta_value as job_type
                 FROM {$wpdb->posts} p
@@ -884,7 +879,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 AND pm1.meta_value LIKE '%建設%'
                 LIMIT 5
             ");
-            
+
             if (!empty($construction_jobs)) {
                 echo '<table style="background: white; width: 100%; border-collapse: collapse;">';
                 echo '<tr style="background: #ddd;"><th style="border: 1px solid #ccc; padding: 5px;">ID</th><th style="border: 1px solid #ccc; padding: 5px;">タイトル</th><th style="border: 1px solid #ccc; padding: 5px;">industry</th><th style="border: 1px solid #ccc; padding: 5px;">job_type</th></tr>';
@@ -903,7 +898,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
             ?>
           </div>
           <!-- //テスト表示 -->
-          
+
           <!-- list -->
           <div class="search_main__list">
             <?php if (!empty($search_results['posts'])): ?>
@@ -987,8 +982,8 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
       <aside class="search_side">
         <div class="search_side__container">
           <p class="search_side__title">条件を変更する</p>
-          <form class="search_select" action="./search.html">
-            <div class="search_select__box">
+          <form class="search_select" id="search_side_form" method="GET" action="<?php echo esc_url(get_permalink()); ?>">
+            <div class="search_select__box" id="search_side_area">
               <div class="search_select__inner">
                 <input type="checkbox" class="search_select__check" id="search_select__box01" />
                 <label class="search_select__button" for="search_select__box01">
@@ -1010,272 +1005,56 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 </label>
                 <div class="search_select__menu">
                   <div class="search_select__menu_list">
+                    <!-- 全国 checkbox -->
                     <div class="search_select__area">
                       <input type="checkbox" class="search_select__area_check" id="search_select__area00" />
                       <label class="search_select__area_title" for="search_select__area00">
                         <span class="checkbox"></span>
                         <span class="label">全国</span>
-                        <span class="count">(987,654件)</span>
+                        <span class="count">(<?php echo number_format($search_results['found_posts']); ?>件)</span>
                       </label>
                     </div>
 
-                    <!-- select_area -->
-                    <div class="search_select__area">
-                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show01" />
-                      <input type="checkbox" class="search_select__area_check" id="search_select__side01" />
-                      <label class="search_select__area_title" for="search_select__side01">
-                        <span class="checkbox"></span>
-                        <span class="label">岩手県</span>
-                        <span class="count">(123,456件)</span>
-                        <label class="arrow" for="search_select__area_show01">
-                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                        </label>
-                      </label>
-
-                      <div class="search_select__area_menu">
-                        <div class="search_select__area_list">
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="一関市" />
-                            <span class="checkbox"></span>
-                            <span class="label">一関市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="西磐井郡平泉町" />
-                            <span class="checkbox"></span>
-                            <span class="label">西磐井郡平泉町</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="search_select__area">
-                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show02" />
-                      <input type="checkbox" class="search_select__area_check" id="search_select__side02" />
-                      <label class="search_select__area_title" for="search_select__side02">
-                        <span class="checkbox"></span>
-                        <span class="label">宮城県</span>
-                        <span class="count">(123,456件)</span>
-                        <label class="arrow" for="search_select__area_show02">
-                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                        </label>
-                      </label>
-                      <div class="search_select__area_menu">
-                        <div class="search_select__area_list">
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="仙台市宮城野区" />
-                            <span class="checkbox"></span>
-                            <span class="label">仙台市宮城野区</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="仙台市若林区" />
-                            <span class="checkbox"></span>
-                            <span class="label">仙台市若林区</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="石巻市" />
-                            <span class="checkbox"></span>
-                            <span class="label">石巻市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="登米市" />
-                            <span class="checkbox"></span>
-                            <span class="label">登米市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="栗原市" />
-                            <span class="checkbox"></span>
-                            <span class="label">栗原市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="東松島市" />
-                            <span class="checkbox"></span>
-                            <span class="label">東松島市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="大崎市" />
-                            <span class="checkbox"></span>
-                            <span class="label">大崎市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="富谷市" />
-                            <span class="checkbox"></span>
-                            <span class="label">富谷市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="宮城郡利府町" />
-                            <span class="checkbox"></span>
-                            <span class="label">宮城郡利府町</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="黒川郡大和町" />
-                            <span class="checkbox"></span>
-                            <span class="label">黒川郡大和町</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="黒川郡大衡村" />
-                            <span class="checkbox"></span>
-                            <span class="label">黒川郡大衡村</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="加美郡色麻町" />
-                            <span class="checkbox"></span>
-                            <span class="label">加美郡色麻町</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="加美郡加美町" />
-                            <span class="checkbox"></span>
-                            <span class="label">加美郡加美町</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="遠田郡美里町" />
-                            <span class="checkbox"></span>
-                            <span class="label">遠田郡美里町</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="search_select__area">
-                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show03" />
-                      <input type="checkbox" class="search_select__area_check" id="search_select__side03" />
-                      <label class="search_select__area_title" for="search_select__side03">
-                        <span class="checkbox"></span>
-                        <span class="label">埼玉県</span>
-                        <span class="count">(123,456件)</span>
-                        <label class="arrow" for="search_select__area_show03">
-                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                        </label>
-                      </label>
-                      <div class="search_select__area_menu">
-                        <div class="search_select__area_list">
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="鴻巣市" />
-                            <span class="checkbox"></span>
-                            <span class="label">鴻巣市</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="search_select__area">
-                      <input type="checkbox" class="search_select__area_show" id="search_select__area_show04" />
-                      <input type="checkbox" class="search_select__area_check" id="search_select__side04" />
-                      <label class="search_select__area_title" for="search_select__side04">
-                        <span class="checkbox"></span>
-                        <span class="label">神奈川県</span>
-                        <span class="count">(123,456件)</span>
-                        <label class="arrow" for="search_select__area_show04">
-                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                        </label>
-                      </label>
-                      <div class="search_select__area_menu">
-                        <div class="search_select__area_list">
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="横浜市戸塚区" />
-                            <span class="checkbox"></span>
-                            <span class="label">横浜市戸塚区</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="横浜市栄区" />
-                            <span class="checkbox"></span>
-                            <span class="label">横浜市栄区</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="茅ヶ崎市" />
-                            <span class="checkbox"></span>
-                            <span class="label">茅ヶ崎市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="秦野市" />
-                            <span class="checkbox"></span>
-                            <span class="label">秦野市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="藤沢市" />
-                            <span class="checkbox"></span>
-                            <span class="label">藤沢市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="小田原市" />
-                            <span class="checkbox"></span>
-                            <span class="label">小田原市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="厚木市" />
-                            <span class="checkbox"></span>
-                            <span class="label">厚木市</span>
-                          </label>
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]" value="海老名市" />
-                            <span class="checkbox"></span>
-                            <span class="label">海老名市</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="search_select__area">
-                      <input type="checkbox" class="search_select__area_show" id="search_select__show05" />
-                      <input type="checkbox" class="search_select__area_check" id="search_select__side05"
-                        name="prefecture[]" value="静岡県"
-                        <?php if (isset($search_params['prefecture']) && in_array('静岡県', $search_params['prefecture'])) echo 'checked'; ?> />
-                      <label class="search_select__area_title" for="search_select__side05">
-                        <span class="checkbox"></span>
-                        <span class="label">静岡県</span>
-                        <span class="count">(123,456件)</span>
-                        <label class="arrow" for="search_select__show05">
-                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                        </label>
-                      </label>
-                      <div class="search_select__area_menu">
-                        <div class="search_select__area_list">
-                          <label class="search_select__area_item">
-                            <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                              value="駿東郡清水町" />
-                            <span class="checkbox"></span>
-                            <span class="label">駿東郡清水町</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
                     <!-- Dynamic prefectures from job posts -->
-                    <?php if (!empty($unique_prefectures)): ?>
-                    <?php foreach ($unique_prefectures as $prefecture): ?>
+                    <?php
+                    if (!empty($unique_prefectures)) :
+                        $side_area_index = 1;
+                        foreach ($unique_prefectures as $prefecture) :
+                            $side_area_id = sprintf('search_side__area_%02d', $side_area_index);
+                            $side_show_id = sprintf('search_side__area_show%02d__', $side_area_index);
+
+                            // Get cities for this prefecture
+                            $prefecture_cities = isset($unique_cities[$prefecture]) ? $unique_cities[$prefecture] : array();
+
+                            // Count jobs in this prefecture
+                            $prefecture_count = $wpdb->get_var($wpdb->prepare("
+                                SELECT COUNT(DISTINCT p.ID)
+                                FROM {$wpdb->posts} p
+                                INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+                                WHERE p.post_type = 'job'
+                                AND p.post_status = 'publish'
+                                AND pm.meta_key = 'prefecture'
+                                AND pm.meta_value = %s
+                            ", $prefecture));
+                    ?>
                     <div class="search_select__area">
-                      <input type="checkbox" class="search_select__area_show"
-                        id="search_select__area_show_<?php echo esc_attr($prefecture); ?>" />
-                      <input type="checkbox" class="search_select__area_check"
-                        id="search_select__area_<?php echo esc_attr($prefecture); ?>" name="prefecture[]"
-                        value="<?php echo esc_attr($prefecture); ?>"
+                      <input type="checkbox" class="search_select__area_show" id="<?php echo $side_show_id; ?>" />
+                      <input type="checkbox" class="search_select__area_check" id="<?php echo $side_area_id; ?>"
+                        name="prefecture[]" value="<?php echo esc_attr($prefecture); ?>"
                         <?php if (isset($search_params['prefecture']) && in_array($prefecture, $search_params['prefecture'])) echo 'checked'; ?> />
-                      <label class="search_select__area_title"
-                        for="search_select__area_<?php echo esc_attr($prefecture); ?>">
+                      <label class="search_select__area_title" for="<?php echo $side_area_id; ?>">
                         <span class="checkbox"></span>
                         <span class="label"><?php echo esc_html($prefecture); ?></span>
-                        <span
-                          class="count">(<?php echo count($search_handler->get_unique_cities_by_prefecture($prefecture)); ?>件)</span>
-                        <label class="arrow" for="search_select__area_show_<?php echo esc_attr($prefecture); ?>">
+                        <span class="count">(<?php echo number_format($prefecture_count); ?>件)</span>
+                        <label class="arrow" for="<?php echo $side_show_id; ?>">
                           <span class="plus"><i class="fa-solid fa-plus"></i></span>
                           <span class="minus"><i class="fa-solid fa-minus"></i></span>
                         </label>
                       </label>
+                      <?php if (!empty($prefecture_cities)) : ?>
                       <div class="search_select__area_menu">
                         <div class="search_select__area_list">
-                          <?php
-                                $cities = $search_handler->get_unique_cities_by_prefecture($prefecture);
-                                foreach ($cities as $city):
-                                ?>
+                          <?php foreach ($prefecture_cities as $city) : ?>
                           <label class="search_select__area_item">
                             <input type="checkbox" class="search_select__area_item_check" name="city[]"
                               value="<?php echo esc_attr($city); ?>"
@@ -1286,16 +1065,20 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                           <?php endforeach; ?>
                         </div>
                       </div>
+                      <?php endif; ?>
                     </div>
-                    <?php endforeach; ?>
-                    <?php endif; ?>
+                    <?php
+                        $side_area_index++;
+                        endforeach;
+                    endif;
+                    ?>
                     <!-- //select_area -->
                   </div>
                 </div>
               </div>
             </div>
             <p class="search_select__x"><i class="fa-solid fa-xmark"></i></p>
-            <div class="search_select__box">
+            <div class="search_select__box" id="search_side_type">
               <div class="search_select__inner">
                 <input type="checkbox" class="search_select__check" id="search_select__box02" />
                 <label class="search_select__button" for="search_select__box02">
@@ -1416,7 +1199,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
             </div>
 
             <!-- search -->
-            <div class="search_select__income">
+            <div class="search_select__income" id="search_side_income">
               <div class="search_select__income_title">
                 <p class="search_side__subject">年収</p>
               </div>
@@ -1436,7 +1219,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 </select>
               </div>
             </div>
-            <div class="search_select__keyword">
+            <div class="search_select__keyword" id="search_side_keyword">
               <div class="search_select__keyword_title">
                 <p class="search_side__subject">キーワード</p>
               </div>
@@ -1444,18 +1227,20 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 <input type="text" value="" placeholder="入力してください" />
               </p>
             </div>
-            <div class="search_select__conditions">
+            <div class="search_select__conditions" id="search_side_conditions">
               <div class="search_select__conditions_title">
                 <p class="search_side__subject">こだわり条件</p>
               </div>
               <div class="search_select__conditions_list">
                 <label class="search_select__area_item">
-                  <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="年間休日120日以上" />
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions[]"
+                    value="年間休日120日以上" />
                   <span class="checkbox"></span>
                   <span class="label">年間休日120日以上</span>
                 </label>
                 <label class="search_select__area_item">
-                  <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="寮・社宅・住宅手当あり" />
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions[]"
+                    value="寮・社宅・住宅手当あり" />
                   <span class="checkbox"></span>
                   <span class="label">寮・社宅・住宅手当あり</span>
                 </label>
@@ -1573,12 +1358,14 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                   <span class="label">正社員</span>
                 </label>
                 <label class="search_select__area_item">
-                  <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="管理職・マネージャー" />
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions[]"
+                    value="管理職・マネージャー" />
                   <span class="checkbox"></span>
                   <span class="label">管理職・マネージャー</span>
                 </label>
                 <label class="search_select__area_item">
-                  <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="設立10年以上の会社" />
+                  <input type="checkbox" class="search_select__area_item_check" name="conditions[]"
+                    value="設立10年以上の会社" />
                   <span class="checkbox"></span>
                   <span class="label">設立10年以上の会社</span>
                 </label>
@@ -1606,7 +1393,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
             </div>
             <!-- //search -->
 
-            <button class="button_search">
+            <button class="button_search" id="search_side_submit">
               <!-- index -->
               <span class="icon"><i class="fa-solid fa-search"></i></span>
               <span class="label">検索</span>
@@ -1623,4 +1410,130 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
     </div>
   </section>
 </main>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  // 全国チェックボックスの処理
+  $('#search_select__area00').on('change', function() {
+    var isChecked = $(this).is(':checked');
+    // 全ての都道府県チェックボックスを選択/解除
+    $('#search_side_area .search_select__area_check').not('#search_select__area00').prop('checked', isChecked);
+    // 全ての市区町村チェックボックスを選択/解除
+    $('#search_side_area .search_select__area_item_check').prop('checked', isChecked);
+  });
+
+  // 都道府県チェックボックスの処理
+  $('#search_side_area').on('change', '.search_select__area_check:not(#search_select__area00)', function() {
+    var $this = $(this);
+    var isChecked = $this.is(':checked');
+    var $container = $this.closest('.search_select__area');
+
+    // その都道府県の全ての市区町村を選択/解除
+    $container.find('.search_select__area_item_check').prop('checked', isChecked);
+
+    // 全国チェックボックスの状態を更新
+    updateNationalCheckbox();
+  });
+
+  // 市区町村チェックボックスの処理
+  $('#search_side_area').on('change', '.search_select__area_item_check', function() {
+    var $container = $(this).closest('.search_select__area');
+    var $prefectureCheckbox = $container.find('.search_select__area_check');
+    var $cityCheckboxes = $container.find('.search_select__area_item_check');
+    var checkedCities = $cityCheckboxes.filter(':checked').length;
+    var totalCities = $cityCheckboxes.length;
+
+    // 都道府県チェックボックスの状態を更新
+    if (checkedCities === 0) {
+      $prefectureCheckbox.prop('checked', false).prop('indeterminate', false);
+    } else if (checkedCities === totalCities) {
+      $prefectureCheckbox.prop('checked', true).prop('indeterminate', false);
+    } else {
+      $prefectureCheckbox.prop('checked', false).prop('indeterminate', true);
+    }
+
+    // 全国チェックボックスの状態を更新
+    updateNationalCheckbox();
+  });
+
+  // 全国チェックボックスの状態を更新する関数
+  function updateNationalCheckbox() {
+    var $prefectureCheckboxes = $('#search_side_area .search_select__area_check').not('#search_select__area00');
+    var checkedPrefectures = $prefectureCheckboxes.filter(':checked').length;
+    var indeterminatePrefectures = $prefectureCheckboxes.filter(function() {
+      return $(this).prop('indeterminate');
+    }).length;
+    var totalPrefectures = $prefectureCheckboxes.length;
+
+    if (checkedPrefectures === totalPrefectures && indeterminatePrefectures === 0) {
+      // 全ての都道府県が完全にチェックされている
+      $('#search_select__area00').prop('checked', true).prop('indeterminate', false);
+    } else if (checkedPrefectures === 0 && indeterminatePrefectures === 0) {
+      // 何もチェックされていない
+      $('#search_select__area00').prop('checked', false).prop('indeterminate', false);
+    } else {
+      // 一部がチェックされている
+      $('#search_select__area00').prop('checked', false).prop('indeterminate', true);
+    }
+  }
+
+  // 初期状態の設定（ページ読み込み時にチェック状態を確認）
+  updateNationalCheckbox();
+
+  // サイドバー検索ボタンのクリックイベント
+  $('#search_side_submit').on('click', function(e) {
+    e.preventDefault();
+    
+    // メインフォームの全データをクリア
+    var $mainForm = $('.search_main__panel_body');
+    $mainForm.find('input[type="checkbox"]').prop('checked', false).prop('indeterminate', false);
+    $mainForm.find('input[type="text"]').val('');
+    $mainForm.find('select').val('');
+    
+    // サイドフォームのデータをメインフォームにコピー
+    var $sideForm = $('#search_side_form');
+    
+    // 都道府県のコピー
+    $sideForm.find('input[name="prefecture[]"]:checked').each(function() {
+      var prefecture = $(this).val();
+      $mainForm.find('input[name="prefecture[]"][value="' + prefecture + '"]').prop('checked', true);
+    });
+    
+    // 市区町村のコピー
+    $sideForm.find('input[name="city[]"]:checked').each(function() {
+      var city = $(this).val();
+      $mainForm.find('input[name="city[]"][value="' + city + '"]').prop('checked', true);
+    });
+    
+    // 職種のコピー（もし実装されている場合）
+    $sideForm.find('input[name="industry[]"]:checked, input[name="job_type_with_industry[]"]:checked').each(function() {
+      var value = $(this).val();
+      var name = $(this).attr('name');
+      $mainForm.find('input[name="' + name + '"][value="' + value + '"]').prop('checked', true);
+    });
+    
+    // 年収のコピー（もし実装されている場合）
+    var annualIncome = $sideForm.find('select[name="annual_income"]').val();
+    if (annualIncome) {
+      $mainForm.find('select[name="annual_income"]').val(annualIncome);
+    }
+    
+    // キーワードのコピー
+    var keyword = $sideForm.find('input[name="keyword"]').val();
+    if (keyword) {
+      $mainForm.find('input[name="keyword"]').val(keyword);
+    }
+    
+    // こだわり条件のコピー
+    $sideForm.find('input[name="conditions[]"]:checked').each(function() {
+      var condition = $(this).val();
+      $mainForm.find('input[name="conditions[]"][value="' + condition + '"]').prop('checked', true);
+    });
+    
+    // メインフォームを送信
+    $mainForm.closest('form').submit();
+  });
+});
+</script>
+
 <?php get_footer(); ?>
