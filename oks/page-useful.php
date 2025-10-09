@@ -7,6 +7,6 @@
 
 get_header();
 
-get_template_part('includes/useful-archive');
+get_template_part('template-parts/useful-archive');
 
 get_footer();

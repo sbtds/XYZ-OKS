@@ -70,7 +70,7 @@ get_header(); ?>
       </div>
     </div>
 
-    <?php get_template_part('includes/useful_side'); ?>
+    <?php get_template_part('template-parts/useful-sidebar'); ?>
   </section>
   <?php endwhile; endif; ?>
 </main>

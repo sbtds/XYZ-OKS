@@ -134,7 +134,7 @@
         ?>
       </div>
     </div>
-    <?php get_template_part('includes/useful_side'); ?>
+    <?php get_template_part('template-parts/useful-sidebar'); ?>
   </section>
   <?php if (is_page('useful')) : ?>
   <section class="useful_bottom">

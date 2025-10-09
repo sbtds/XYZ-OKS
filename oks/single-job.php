@@ -96,6 +96,7 @@ get_header(); ?>
       <!-- <h3 class="featured_outline__title">会社概要</h3> -->
       <div class="featured_outline__main">
         <div class="featured_outline__list">
+          <?php if(get_field('h_job_content')): ?>
           <dl class="featured_outline__item">
             <dt>
               <span class="label">仕事内容</span>
@@ -105,12 +106,13 @@ get_header(); ?>
             </dt>
             <dd>
               <div class="contents">
-                <?php echo get_field('job_description'); ?>
+                <?php echo get_field('h_job_content'); ?>
               </div>
             </dd>
           </dl>
           <hr />
-          <?php if(get_field('required_conditions') || get_field('welcome_conditions_2')): ?>
+          <?php endif; ?>
+          <?php if(get_field('h_application_requirements')): ?>
           <dl class="featured_outline__item">
             <dt>
               <span class="label">応募資格</span>
@@ -120,14 +122,7 @@ get_header(); ?>
             </dt>
             <dd>
               <div class="contents">
-                <p>
-                  ■必須条件<br>
-                  <?php echo get_field('required_conditions'); ?>
-                </p>
-                <p>
-                  ■歓迎条件<br>
-                  <?php echo get_field('welcome_conditions_2'); ?>
-                </p>
+                <?php echo get_field('h_application_requirements'); ?>
               </div>
             </dd>
           </dl>
@@ -579,70 +574,7 @@ get_header(); ?>
           </dl>
           <hr />
           <?php endif; ?>
-          <?php if(get_field('h_job_content')): ?>
-          <dl class="featured_outline__item">
-            <dt>
-              <span class="label">仕事内容</span>
-              <span class="arrow"><img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
-                  alt="" /></span>
-            </dt>
-            <dd>
-              <div class="contents">
-                <?php echo get_field('h_job_content'); ?>
-              </div>
-            </dd>
-          </dl>
-          <hr />
-          <?php endif; ?>
-          <?php if(get_field('h_application_requirements')): ?>
-          <dl class="featured_outline__item">
-            <dt>
-              <span class="label">応募資格</span>
-              <span class="arrow"><img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
-                  alt="" /></span>
-            </dt>
-            <dd>
-              <div class="contents">
-                <?php echo get_field('h_application_requirements'); ?>
-              </div>
-            </dd>
-          </dl>
-          <hr />
-          <?php endif; ?>
-          <?php if(get_field('h_expected_salary')): ?>
-          <dl class="featured_outline__item">
-            <dt>
-              <span class="label">想定年収</span>
-              <span class="arrow"><img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
-                  alt="" /></span>
-            </dt>
-            <dd>
-              <div class="contents">
-                <p><?php echo get_field('h_expected_salary'); ?></p>
-              </div>
-            </dd>
-          </dl>
-          <hr />
-          <?php endif; ?>
-          <?php if(get_field('h_salary_details')): ?>
-          <dl class="featured_outline__item">
-            <dt>
-              <span class="label">給与詳細</span>
-              <span class="arrow"><img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
-                  alt="" /></span>
-            </dt>
-            <dd>
-              <div class="contents">
-                <?php echo get_field('h_salary_details'); ?>
-              </div>
-            </dd>
-          </dl>
-          <hr />
-          <?php endif; ?>
+
           <?php if(get_field('h_work_location')): ?>
           <dl class="featured_outline__item">
             <dt>
@@ -744,26 +676,35 @@ get_header(); ?>
     </div>
   </section>
 
-  <section class="search_banner">
-    <div class="search_banner__container">
-      <p class="search_banner__image">
-        <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_image.jpg" alt="" />
-      </p>
-      <div class="search_banner__main">
-        <h3 class="title">
-          <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_title.svg"
-            class="" alt="求人探しにお困りの方へ" />
-        </h3>
-        <div class="contents">
-          <p>
-            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-          </p>
+  <section class="search_index">
+    <div class="search_container">
+      <div class="search_main">
+        <div class="search_main__container">
+          <section class="search_banner">
+            <div class="search_banner__container">
+              <p class="search_banner__image">
+                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_image.jpg" alt="" />
+              </p>
+              <div class="search_banner__main">
+                <h3 class="title">
+                  <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_title.svg"
+                    class="" alt="求人探しにお困りの方へ" />
+                </h3>
+                <div class="contents">
+                  <p>
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+                  </p>
+                </div>
+                <a class="button_more" href="#">
+                  <span class="label">非公開求人を紹介してもらう</span>
+                  <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
+                </a>
+              </div>
+            </div>
+          </section>
         </div>
-        <a class="button_more" href="#">
-          <span class="label">非公開求人を紹介してもらう</span>
-          <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
-        </a>
       </div>
+      <?php get_template_part('template-parts/search-sidebar'); ?>
     </div>
   </section>
 </main>

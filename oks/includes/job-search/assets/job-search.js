@@ -202,9 +202,7 @@ var OKS_Job_Search = {
                 
                 // Salary range
                 var salaryRange = '';
-                if (job.annual_income) {
-                    salaryRange = OKS_Job_Search.formatSalary(job.annual_income);
-                } else if (job.min_salary && job.max_salary) {
+                if (job.min_salary && job.max_salary) {
                     salaryRange = OKS_Job_Search.formatSalary(job.min_salary) + ' 〜 ' + OKS_Job_Search.formatSalary(job.max_salary);
                 } else if (job.min_salary) {
                     salaryRange = OKS_Job_Search.formatSalary(job.min_salary) + '以上';

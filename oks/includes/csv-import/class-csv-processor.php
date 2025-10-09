@@ -299,7 +299,7 @@ class OKS_CSV_Processor {
         }
 
         // Read header
-        $headers = fgetcsv($handle);
+        $headers = fgetcsv($handle, 0, ',', '"', '"');
         if (!$headers) {
             fclose($handle);
             $error_msg = "Failed to read CSV headers from: " . $file_path;
@@ -321,14 +321,17 @@ class OKS_CSV_Processor {
 
         // Read data rows
         $row_number = 2; // Start from 2 (header is 1)
-        while (($row = fgetcsv($handle)) !== false) {
+        while (($row = fgetcsv($handle, 0, ',', '"', '"')) !== false) {
             if (count($row) !== count($headers)) {
                 error_log("CSV Row $row_number: Expected " . count($headers) . " columns, got " . count($row) . " columns");
                 continue; // Skip invalid rows
             }
 
-            // Process multiline text fields by unescaping newlines
+            // Process multiline text fields
+            // CSVファイル内で改行を\nとしてエスケープしている場合の処理
+            // ダブルクォート内の実際の改行はfgetcsvが自動的に処理する
             foreach ($row as $key => $value) {
+                // \n（文字列）を実際の改行文字に変換
                 $row[$key] = str_replace('\\n', "\n", $value);
             }
 
