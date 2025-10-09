@@ -40,7 +40,7 @@ class OKS_Search_Handler {
 
         if (!empty($params['prefecture']) && is_array($params['prefecture'])) {
             $location_query[] = array(
-                'key' => 'prefecture_2',
+                'key' => 'prefecture',
                 'value' => $params['prefecture'],
                 'compare' => 'IN'
             );
@@ -347,7 +347,7 @@ class OKS_Search_Handler {
                     'title' => get_the_title(),
                     'company' => get_field('company', $post_id),
                     'industry' => get_field('industry', $post_id),
-                    'prefecture' => get_field('prefecture_2', $post_id),
+                    'prefecture' => get_field('prefecture', $post_id),
                     'city' => get_field('city', $post_id),
                     'job_type' => get_field('job_type', $post_id),
                     'annual_income' => get_field('annual_income', $post_id),
@@ -508,7 +508,7 @@ class OKS_Search_Handler {
                     AND p.post_status = 'publish'
                     AND pm_city.meta_key = 'city'
                     AND pm_city.meta_value = %s
-                    AND pm_pref.meta_key = 'prefecture_2'
+                    AND pm_pref.meta_key = 'prefecture'
                     LIMIT 1
                 ", $city));
                 
@@ -569,7 +569,7 @@ class OKS_Search_Handler {
 
         $search_terms = explode(' ', $keyword);
         $searchable_meta_keys = array(
-            'company', 'job_type', 'prefecture_2', 'city', 'job_description',
+            'company', 'job_type', 'prefecture', 'city', 'job_description',
             'work_location', 'work_location_details', 'industry', 'employment_type', 
             'benefits', 'salary_details', 'working_hours', 'holidays', 'access',
             'required_conditions', 'welcome_conditions_2', 'recruitment_background',
@@ -638,7 +638,7 @@ class OKS_Search_Handler {
             INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
             WHERE p.post_type = 'job'
             AND p.post_status = 'publish'
-            AND pm.meta_key = 'prefecture_2'
+            AND pm.meta_key = 'prefecture'
             AND pm.meta_value != ''
             AND pm.meta_value IS NOT NULL
             ORDER BY pm.meta_value ASC
@@ -658,7 +658,7 @@ class OKS_Search_Handler {
             $query = "
                 SELECT DISTINCT pm_city.meta_value as city
                 FROM {$wpdb->posts} p
-                INNER JOIN {$wpdb->postmeta} pm_pref ON p.ID = pm_pref.post_id AND pm_pref.meta_key = 'prefecture_2'
+                INNER JOIN {$wpdb->postmeta} pm_pref ON p.ID = pm_pref.post_id AND pm_pref.meta_key = 'prefecture'
                 INNER JOIN {$wpdb->postmeta} pm_city ON p.ID = pm_city.post_id AND pm_city.meta_key = 'city'
                 WHERE p.post_type = 'job'
                 AND p.post_status = 'publish'
@@ -675,7 +675,7 @@ class OKS_Search_Handler {
             $query = "
                 SELECT DISTINCT pm_pref.meta_value as prefecture, pm_city.meta_value as city
                 FROM {$wpdb->posts} p
-                INNER JOIN {$wpdb->postmeta} pm_pref ON p.ID = pm_pref.post_id AND pm_pref.meta_key = 'prefecture_2'
+                INNER JOIN {$wpdb->postmeta} pm_pref ON p.ID = pm_pref.post_id AND pm_pref.meta_key = 'prefecture'
                 INNER JOIN {$wpdb->postmeta} pm_city ON p.ID = pm_city.post_id AND pm_city.meta_key = 'city'
                 WHERE p.post_type = 'job'
                 AND p.post_status = 'publish'

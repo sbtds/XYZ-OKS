@@ -147,7 +147,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                                 INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
                                 WHERE p.post_type = 'job'
                                 AND p.post_status = 'publish'
-                                AND pm.meta_key = 'prefecture_2'
+                                AND pm.meta_key = 'prefecture'
                                 AND pm.meta_value = %s
                             ", $prefecture));
                     ?>
