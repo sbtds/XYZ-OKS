@@ -896,6 +896,80 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 echo '<p>建設・不動産の記事が見つかりません。</p>';
             }
             ?>
+            
+            <h4>min_salaryフィールドの値一覧</h4>
+            <?php
+            // min_salaryの全ての値を取得
+            $min_salaries = $wpdb->get_results("
+                SELECT p.ID, p.post_title, pm.meta_value as min_salary
+                FROM {$wpdb->posts} p
+                INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+                WHERE p.post_type = 'job'
+                AND p.post_status = 'publish'
+                AND pm.meta_key = 'min_salary'
+                AND pm.meta_value != ''
+                ORDER BY CAST(pm.meta_value AS UNSIGNED) DESC
+            ");
+            
+            if (!empty($min_salaries)) {
+                echo '<table style="background: white; width: 100%; border-collapse: collapse; margin-top: 10px;">';
+                echo '<tr style="background: #ddd;">';
+                echo '<th style="border: 1px solid #ccc; padding: 5px;">ID</th>';
+                echo '<th style="border: 1px solid #ccc; padding: 5px;">タイトル</th>';
+                echo '<th style="border: 1px solid #ccc; padding: 5px;">min_salary (生データ)</th>';
+                echo '<th style="border: 1px solid #ccc; padding: 5px;">金額表示</th>';
+                echo '</tr>';
+                
+                foreach ($min_salaries as $job) {
+                    $salary_int = intval($job->min_salary);
+                    $formatted_salary = '';
+                    
+                    if ($salary_int >= 10000000) {
+                        $formatted_salary = number_format($salary_int / 10000000, 0) . ',000万円';
+                    } elseif ($salary_int >= 10000) {
+                        $formatted_salary = number_format($salary_int / 10000) . '万円';
+                    } else {
+                        $formatted_salary = number_format($salary_int) . '円';
+                    }
+                    
+                    echo '<tr>';
+                    echo '<td style="border: 1px solid #ccc; padding: 5px;">' . $job->ID . '</td>';
+                    echo '<td style="border: 1px solid #ccc; padding: 5px;">' . esc_html($job->post_title) . '</td>';
+                    echo '<td style="border: 1px solid #ccc; padding: 5px; text-align: right;">' . esc_html($job->min_salary) . '</td>';
+                    echo '<td style="border: 1px solid #ccc; padding: 5px; text-align: right;">' . $formatted_salary . '</td>';
+                    echo '</tr>';
+                }
+                echo '</table>';
+                
+                // 統計情報
+                $stats = $wpdb->get_row("
+                    SELECT 
+                        COUNT(*) as total_count,
+                        MIN(CAST(meta_value AS UNSIGNED)) as min_value,
+                        MAX(CAST(meta_value AS UNSIGNED)) as max_value,
+                        AVG(CAST(meta_value AS UNSIGNED)) as avg_value
+                    FROM {$wpdb->postmeta}
+                    WHERE post_id IN (SELECT ID FROM {$wpdb->posts} WHERE post_type = 'job' AND post_status = 'publish')
+                    AND meta_key = 'min_salary'
+                    AND meta_value != ''
+                    AND meta_value REGEXP '^[0-9]+$'
+                ");
+                
+                if ($stats) {
+                    echo '<div style="background: #e0e0e0; padding: 10px; margin-top: 10px;">';
+                    echo '<h5>min_salary 統計情報</h5>';
+                    echo '<ul>';
+                    echo '<li>総数: ' . $stats->total_count . '件</li>';
+                    echo '<li>最小値: ' . number_format($stats->min_value) . '円 (' . number_format($stats->min_value / 10000) . '万円)</li>';
+                    echo '<li>最大値: ' . number_format($stats->max_value) . '円 (' . number_format($stats->max_value / 10000) . '万円)</li>';
+                    echo '<li>平均値: ' . number_format($stats->avg_value) . '円 (' . number_format($stats->avg_value / 10000) . '万円)</li>';
+                    echo '</ul>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p>min_salaryデータが見つかりません。</p>';
+            }
+            ?>
           </div>
           <!-- //テスト表示 -->
 
@@ -1204,18 +1278,47 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 <p class="search_side__subject">年収</p>
               </div>
               <div class="search_select__income_select">
-                <select name="" id="">
+                <select name="salary_range" id="search_side_salary_range">
                   <option value="">指定しない</option>
-                  <option value="1000000">100万</option>
-                  <option value="2000000">200万</option>
-                  <option value="3000000">300万</option>
-                  <option value="4000000">400万</option>
-                  <option value="5000000">500万</option>
-                  <option value="6000000">600万</option>
-                  <option value="7000000">700万</option>
-                  <option value="8000000">800万</option>
-                  <option value="9000000">900万</option>
-                  <option value="10000000">1000万</option>
+                  <?php
+                  // 実際のmin_salaryの値から100万円台を抽出
+                  $salary_hundreds = $wpdb->get_col("
+                      SELECT DISTINCT FLOOR(CAST(pm.meta_value AS UNSIGNED) / 1000000) as salary_hundred
+                      FROM {$wpdb->posts} p
+                      INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+                      WHERE p.post_type = 'job'
+                      AND p.post_status = 'publish'
+                      AND pm.meta_key = 'min_salary'
+                      AND pm.meta_value != ''
+                      AND pm.meta_value REGEXP '^[0-9]+$'
+                      ORDER BY salary_hundred ASC
+                  ");
+                  
+                  if (!empty($salary_hundreds)) {
+                      foreach ($salary_hundreds as $hundred) {
+                          $min_range = $hundred * 1000000;
+                          $max_range = ($hundred + 1) * 1000000 - 1;
+                          $range_value = $min_range . '-' . $max_range;
+                          $selected = (isset($search_params['salary_range']) && $search_params['salary_range'] == $range_value) ? 'selected' : '';
+                          
+                          if ($hundred >= 10) {
+                              // 1000万以上の表示
+                              echo '<option value="' . $range_value . '" ' . $selected . '>' . number_format($hundred / 10, 1) . ',000万円台</option>';
+                          } else {
+                              // 1000万未満の表示
+                              echo '<option value="' . $range_value . '" ' . $selected . '>' . $hundred . '00万円台</option>';
+                          }
+                      }
+                  } else {
+                      // デフォルトの選択肢（データがない場合）
+                      ?>
+                      <option value="2000000-2999999">200万円台</option>
+                      <option value="3000000-3999999">300万円台</option>
+                      <option value="4000000-4999999">400万円台</option>
+                      <option value="5000000-5999999">500万円台</option>
+                      <?php
+                  }
+                  ?>
                 </select>
               </div>
             </div>
@@ -1224,7 +1327,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 <p class="search_side__subject">キーワード</p>
               </div>
               <p class="search_select__keyword_input">
-                <input type="text" value="" placeholder="入力してください" />
+                <input type="text" name="keyword" value="<?php echo isset($search_params['keyword']) ? esc_attr($search_params['keyword']) : ''; ?>" placeholder="入力してください" />
               </p>
             </div>
             <div class="search_select__conditions" id="search_side_conditions">
@@ -1512,10 +1615,15 @@ jQuery(document).ready(function($) {
       $mainForm.find('input[name="' + name + '"][value="' + value + '"]').prop('checked', true);
     });
     
-    // 年収のコピー（もし実装されている場合）
-    var annualIncome = $sideForm.find('select[name="annual_income"]').val();
-    if (annualIncome) {
-      $mainForm.find('select[name="annual_income"]').val(annualIncome);
+    // 年収のコピー
+    var salaryRange = $sideForm.find('select[name="salary_range"]').val();
+    if (salaryRange) {
+      // メインフォームに年収範囲フィールドがない場合は、隠しフィールドとして追加
+      if ($mainForm.find('input[name="salary_range"]').length === 0) {
+        $mainForm.append('<input type="hidden" name="salary_range" value="' + salaryRange + '">');
+      } else {
+        $mainForm.find('input[name="salary_range"]').val(salaryRange);
+      }
     }
     
     // キーワードのコピー

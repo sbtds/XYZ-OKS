@@ -142,6 +142,22 @@ class OKS_Search_Handler {
             $args['meta_query'][] = $salary_query;
         }
 
+        // 年収範囲（サイドバーからの選択）
+        if (!empty($params['salary_range'])) {
+            $range_parts = explode('-', $params['salary_range']);
+            if (count($range_parts) == 2) {
+                $min_salary = intval($range_parts[0]);
+                $max_salary = intval($range_parts[1]);
+                
+                $args['meta_query'][] = array(
+                    'key' => 'min_salary',
+                    'value' => array($min_salary, $max_salary),
+                    'type' => 'NUMERIC',
+                    'compare' => 'BETWEEN'
+                );
+            }
+        }
+
         // こだわり条件（チェックされた全ての条件を満たす）
         if (!empty($params['conditions']) && is_array($params['conditions'])) {
             $condition_mapping = array(
@@ -460,6 +476,23 @@ class OKS_Search_Handler {
                 $salary_text = number_format($params['salary_max']) . '円以下';
             }
             $summary_html .= '<dl><dt>年収</dt><dd>' . esc_html($salary_text) . '</dd></dl>';
+        }
+
+        // 年収範囲（サイドバーからの選択）
+        if (!empty($params['salary_range'])) {
+            $range_parts = explode('-', $params['salary_range']);
+            if (count($range_parts) == 2) {
+                $min_salary = intval($range_parts[0]);
+                $max_salary = intval($range_parts[1]);
+                $hundred_million = floor($min_salary / 1000000);
+                
+                if ($hundred_million >= 10) {
+                    $salary_text = number_format($hundred_million / 10, 1) . ',000万円台';
+                } else {
+                    $salary_text = $hundred_million . '00万円台';
+                }
+                $summary_html .= '<dl><dt>年収</dt><dd>' . esc_html($salary_text) . '</dd></dl>';
+            }
         }
 
         // 特徴（こだわり条件）
