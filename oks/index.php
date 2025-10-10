@@ -5,6 +5,58 @@
  * @package OKS
  */
 
+// Include search handler for getting prefecture data
+require_once get_template_directory() . '/includes/job-search/job-search-loader.php';
+require_once get_template_directory() . '/includes/location-checkboxes.php';
+
+// Initialize search handler
+$search_handler = new OKS_Search_Handler();
+
+// Get unique prefectures and cities from job posts
+$unique_prefectures = $search_handler->get_unique_prefectures();
+$unique_cities = $search_handler->get_unique_cities_by_prefecture();
+
+// Get total job count
+global $wpdb;
+$total_job_count = $wpdb->get_var("
+    SELECT COUNT(*)
+    FROM {$wpdb->posts}
+    WHERE post_type = 'job'
+    AND post_status = 'publish'
+");
+
+// Define custom prefecture order (from north to south)
+$prefecture_order = array(
+    '北海道',
+    '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
+    '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県',
+    '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県', '静岡県', '愛知県',
+    '三重県', '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県',
+    '鳥取県', '島根県', '岡山県', '広島県', '山口県',
+    '徳島県', '香川県', '愛媛県', '高知県',
+    '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県',
+    '沖縄県'
+);
+
+// Sort prefectures according to the custom order
+usort($unique_prefectures, function($a, $b) use ($prefecture_order) {
+    $pos_a = array_search($a, $prefecture_order);
+    $pos_b = array_search($b, $prefecture_order);
+
+    if ($pos_a === false) $pos_a = 999;
+    if ($pos_b === false) $pos_b = 999;
+
+    return $pos_a - $pos_b;
+});
+
+// Handle search params if form is submitted
+$search_params = array();
+if (!empty($_GET)) {
+    $search_params = $_GET;
+} elseif (!empty($_POST)) {
+    $search_params = $_POST;
+}
+
 get_header(); ?>
 
 <main class="index_main">
@@ -212,7 +264,7 @@ get_header(); ?>
         <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/search_title.svg" class="pc-only"
           alt="求人を探す">
       </h2>
-      <form class="search_select" action="./search.html">
+      <form class="search_select" action="<?php echo home_url('/search/'); ?>" method="get">
         <div class="search_select__box">
           <div class="search_select__inner">
             <input type="checkbox" class="search_select__check" id="search_select__box01">
@@ -234,237 +286,17 @@ get_header(); ?>
 
             </label>
             <div class="search_select__menu">
-              <div class="search_select__menu_list">
-                <div class="search_select__area">
-                  <input type="checkbox" class="search_select__area_check" id="search_select__area00">
-                  <label class="search_select__area_title" for="search_select__area00">
-                    <span class="checkbox"></span>
-                    <span class="label">全国</span>
-                    <span class="count">(987,654件)</span>
-                  </label>
-                </div>
-
-                <div class="search_select__area">
-                  <input type="checkbox" class="search_select__area_show" id="search_select__area_show01">
-                  <input type="checkbox" class="search_select__area_check" id="search_select__area01">
-                  <label class="search_select__area_title" for="search_select__area01">
-                    <span class="checkbox"></span>
-                    <span class="label">岩手県</span>
-                    <span class="count">(123,456件)</span>
-                    <label class="arrow" for="search_select__area_show01">
-                      <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                      <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                    </label>
-                  </label>
-
-                  <div class="search_select__area_menu">
-                    <div class="search_select__area_list">
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="一関市">
-                        <span class="checkbox"></span>
-                        <span class="label">一関市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="西磐井郡平泉町">
-                        <span class="checkbox"></span>
-                        <span class="label">西磐井郡平泉町</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="search_select__area">
-                  <input type="checkbox" class="search_select__area_show" id="search_select__area_show02">
-                  <input type="checkbox" class="search_select__area_check" id="search_select__area02">
-                  <label class="search_select__area_title" for="search_select__area02">
-                    <span class="checkbox"></span>
-                    <span class="label">宮城県</span>
-                    <span class="count">(123,456件)</span>
-                    <label class="arrow" for="search_select__area_show02">
-                      <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                      <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                    </label>
-                  </label>
-                  <div class="search_select__area_menu">
-                    <div class="search_select__area_list">
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="仙台市宮城野区">
-                        <span class="checkbox"></span>
-                        <span class="label">仙台市宮城野区</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="仙台市若林区">
-                        <span class="checkbox"></span>
-                        <span class="label">仙台市若林区</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="石巻市">
-                        <span class="checkbox"></span>
-                        <span class="label">石巻市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="登米市">
-                        <span class="checkbox"></span>
-                        <span class="label">登米市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="栗原市">
-                        <span class="checkbox"></span>
-                        <span class="label">栗原市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="東松島市">
-                        <span class="checkbox"></span>
-                        <span class="label">東松島市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="大崎市">
-                        <span class="checkbox"></span>
-                        <span class="label">大崎市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="富谷市">
-                        <span class="checkbox"></span>
-                        <span class="label">富谷市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="宮城郡利府町">
-                        <span class="checkbox"></span>
-                        <span class="label">宮城郡利府町</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="黒川郡大和町">
-                        <span class="checkbox"></span>
-                        <span class="label">黒川郡大和町</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="黒川郡大衡村">
-                        <span class="checkbox"></span>
-                        <span class="label">黒川郡大衡村</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="加美郡色麻町">
-                        <span class="checkbox"></span>
-                        <span class="label">加美郡色麻町</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="加美郡加美町">
-                        <span class="checkbox"></span>
-                        <span class="label">加美郡加美町</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="遠田郡美里町">
-                        <span class="checkbox"></span>
-                        <span class="label">遠田郡美里町</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="search_select__area">
-                  <input type="checkbox" class="search_select__area_show" id="search_select__area_show03">
-                  <input type="checkbox" class="search_select__area_check" id="search_select__area03">
-                  <label class="search_select__area_title" for="search_select__area03">
-                    <span class="checkbox"></span>
-                    <span class="label">埼玉県</span>
-                    <span class="count">(123,456件)</span>
-                    <label class="arrow" for="search_select__area_show03">
-                      <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                      <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                    </label>
-                  </label>
-                  <div class="search_select__area_menu">
-                    <div class="search_select__area_list">
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="鴻巣市">
-                        <span class="checkbox"></span>
-                        <span class="label">鴻巣市</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="search_select__area">
-                  <input type="checkbox" class="search_select__area_show" id="search_select__area_show04">
-                  <input type="checkbox" class="search_select__area_check" id="search_select__area04">
-                  <label class="search_select__area_title" for="search_select__area04">
-                    <span class="checkbox"></span>
-                    <span class="label">神奈川県</span>
-                    <span class="count">(123,456件)</span>
-                    <label class="arrow" for="search_select__area_show04">
-                      <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                      <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                    </label>
-                  </label>
-                  <div class="search_select__area_menu">
-                    <div class="search_select__area_list">
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="横浜市戸塚区">
-                        <span class="checkbox"></span>
-                        <span class="label">横浜市戸塚区</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="横浜市栄区">
-                        <span class="checkbox"></span>
-                        <span class="label">横浜市栄区</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="茅ヶ崎市">
-                        <span class="checkbox"></span>
-                        <span class="label">茅ヶ崎市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="秦野市">
-                        <span class="checkbox"></span>
-                        <span class="label">秦野市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="藤沢市">
-                        <span class="checkbox"></span>
-                        <span class="label">藤沢市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="小田原市">
-                        <span class="checkbox"></span>
-                        <span class="label">小田原市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="厚木市">
-                        <span class="checkbox"></span>
-                        <span class="label">厚木市</span>
-                      </label>
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="海老名市">
-                        <span class="checkbox"></span>
-                        <span class="label">海老名市</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="search_select__area">
-                  <input type="checkbox" class="search_select__area_show" id="search_select__show05">
-                  <input type="checkbox" class="search_select__area_check" id="search_select__area05">
-                  <label class="search_select__area_title" for="search_select__area05">
-                    <span class="checkbox"></span>
-                    <span class="label">静岡県</span>
-                    <span class="count">(123,456件)</span>
-                    <label class="arrow" for="search_select__show05">
-                      <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                      <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                    </label>
-                  </label>
-                  <div class="search_select__area_menu">
-                    <div class="search_select__area_list">
-                      <label class="search_select__area_item">
-                        <input type="checkbox" class="search_select__area_item_check" value="駿東郡清水町">
-                        <span class="checkbox"></span>
-                        <span class="label">駿東郡清水町</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <?php
+              // Render location checkboxes using the shared function
+              oks_render_location_checkboxes( array(
+                  'unique_prefectures' => $unique_prefectures,
+                  'unique_cities' => $unique_cities,
+                  'total_job_count' => $total_job_count,
+                  'search_params' => $search_params,
+                  'id_prefix' => 'search_select__area',
+                  'class_prefix' => 'search_select',
+              ) );
+              ?>
             </div>
           </div>
         </div>
@@ -1437,7 +1269,7 @@ get_header(); ?>
         </div>
       </div>
       <div class="button_section">
-        <a class="button_more white" href="<?php echo home_url('/featured/'); ?>">
+        <a class="button_more white" href="<?php echo home_url('/company/'); ?>">
           <span class="label">もっと見る</span>
           <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
         </a>

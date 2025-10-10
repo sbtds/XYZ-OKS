@@ -9,6 +9,7 @@
 
 // Include search handler
 require_once get_template_directory() . '/includes/job-search/job-search-loader.php';
+require_once get_template_directory() . '/includes/location-checkboxes.php';
 
 // Handle search params
 $search_params = array();
@@ -93,76 +94,18 @@ $total_job_count = $wpdb->get_var("
             <!-- //search -->
           </label>
           <div class="search_select__menu">
-            <div class="search_select__menu_list">
-              <!-- 全国 checkbox -->
-              <div class="search_select__area">
-                <input type="checkbox" class="search_select__area_check" id="search_select__area00" />
-                <label class="search_select__area_title" for="search_select__area00">
-                  <span class="checkbox"></span>
-                  <span class="label">全国</span>
-                  <span class="count">(<?php echo number_format($total_job_count); ?>件)</span>
-                </label>
-              </div>
-
-              <!-- Dynamic prefectures from job posts -->
-              <?php
-                if (!empty($unique_prefectures)) :
-                    $side_area_index = 1;
-                    foreach ($unique_prefectures as $prefecture) :
-                        $side_area_id = sprintf('search_side__area_%02d', $side_area_index);
-                        $side_show_id = sprintf('search_side__area_show%02d__', $side_area_index);
-
-                        // Get cities for this prefecture
-                        $prefecture_cities = isset($unique_cities[$prefecture]) ? $unique_cities[$prefecture] : array();
-
-                        // Count jobs in this prefecture
-                        $prefecture_count = $wpdb->get_var($wpdb->prepare("
-                            SELECT COUNT(DISTINCT p.ID)
-                            FROM {$wpdb->posts} p
-                            INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
-                            WHERE p.post_type = 'job'
-                            AND p.post_status = 'publish'
-                            AND pm.meta_key = 'prefecture'
-                            AND pm.meta_value = %s
-                        ", $prefecture));
-                ?>
-              <div class="search_select__area">
-                <input type="checkbox" class="search_select__area_show" id="<?php echo $side_show_id; ?>" />
-                <input type="checkbox" class="search_select__area_check" id="<?php echo $side_area_id; ?>"
-                  name="prefecture[]" value="<?php echo esc_attr($prefecture); ?>"
-                  <?php if (isset($search_params['prefecture']) && in_array($prefecture, $search_params['prefecture'])) echo 'checked'; ?> />
-                <label class="search_select__area_title" for="<?php echo $side_area_id; ?>">
-                  <span class="checkbox"></span>
-                  <span class="label"><?php echo esc_html($prefecture); ?></span>
-                  <span class="count">(<?php echo number_format($prefecture_count); ?>件)</span>
-                  <label class="arrow" for="<?php echo $side_show_id; ?>">
-                    <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                    <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                  </label>
-                </label>
-                <?php if (!empty($prefecture_cities)) : ?>
-                <div class="search_select__area_menu">
-                  <div class="search_select__area_list">
-                    <?php foreach ($prefecture_cities as $city) : ?>
-                    <label class="search_select__area_item">
-                      <input type="checkbox" class="search_select__area_item_check" name="city[]"
-                        value="<?php echo esc_attr($city); ?>"
-                        <?php if (isset($search_params['city']) && in_array($city, $search_params['city'])) echo 'checked'; ?> />
-                      <span class="checkbox"></span>
-                      <span class="label"><?php echo esc_html($city); ?></span>
-                    </label>
-                    <?php endforeach; ?>
-                  </div>
-                </div>
-                <?php endif; ?>
-              </div>
-              <?php
-                    $side_area_index++;
-                    endforeach;
-                endif;
-                ?>
-              <!-- //select_area -->
-            </div>
+            <?php
+            // Render location checkboxes using the shared function
+            oks_render_location_checkboxes( array(
+                'unique_prefectures' => $unique_prefectures,
+                'unique_cities' => $unique_cities,
+                'total_job_count' => $total_job_count,
+                'search_params' => $search_params,
+                'id_prefix' => 'search_side__area',
+                'class_prefix' => 'search_select',
+                'show_side_button' => true,
+            ) );
+            ?>
           </div>
         </div>
       </div>
