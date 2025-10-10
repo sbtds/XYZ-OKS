@@ -682,7 +682,6 @@ get_header(); ?>
               <h3 class="title">東北</h3>
               <div class="contents">
                 <div class="contents_list">
-
                   <label>
                     <input type="radio" name="area" id="" value="宮城">
                     <span class="circle"></span>
@@ -1225,48 +1224,83 @@ get_header(); ?>
         <span class="caption">テキストが入りますテキストが入りますテキストが入りますテキストが入ります</span>
       </h2>
       <div class="index_featured__list">
+        <?php
+        // Get the home page
+        $home_page = get_page_by_path('home');
+        if (!$home_page) {
+            // Fallback: try getting the front page
+            $home_page_id = get_option('page_on_front');
+            if ($home_page_id) {
+                $home_page = get_post($home_page_id);
+            }
+        }
+
+        // Get the featured companies from ACF field
+        $featured_companies = array();
+        if ($home_page) {
+            $featured_companies = get_field('index_featured', $home_page->ID);
+        }
+
+        // Display up to 2 featured companies
+        if ($featured_companies && is_array($featured_companies)) {
+            $count = 0;
+            foreach ($featured_companies as $company_post) {
+                if ($count >= 2) break;
+
+                // Set up post data for the company
+                $company_id = $company_post->ID;
+                $company_title = get_the_title($company_id);
+                $company_top_group = get_field('company_top', $company_id);
+                $company_top_name = $company_top_group['name'] ?? '';
+                $company_top_text = $company_top_group['text'] ?? '';
+                $company_consultant_group = get_field('company_consultant', $company_id);
+                $company_consultant_text = $company_consultant_group['text'] ?? '';
+                $company_permalink = get_permalink($company_id);
+                $company_thumbnail = get_the_post_thumbnail($company_id, 'large');
+
+                // Get company name from ACF or use title as fallback
+                $company_name = get_field('company_name', $company_id);
+                if (!$company_name) {
+                    $company_name = $company_title;
+                }
+                ?>
         <div class="index_featured__item">
           <p class="index_featured__image">
-            <img class="" src="https://placehold.co/480x630" alt="">
+            <?php if ($company_thumbnail) : ?>
+            <?php echo $company_thumbnail; ?>
+            <?php else : ?>
+            <img src="https://placehold.co/480x630" alt="<?php echo esc_attr($company_name); ?>">
+            <?php endif; ?>
           </p>
           <div class="index_featured__contents">
-            <p class="name">○○○○○○○○○○○○○○様</p>
-            <h3 class="title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイ</h3>
+            <p class="name"><?php echo esc_html($company_top_name); ?>様</p>
+            <h3 class="title"><?php echo esc_html($company_top_text); ?></h3>
             <hr>
             <div class="contents">
-              <p>
-                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              </p>
+              <?php if ($company_consultant_text) : ?>
+              <p><?php echo esc_html($company_consultant_text); ?></p>
+              <?php else : ?>
+              <p><?php echo esc_html(get_the_content($company_id)); ?></p>
+              <?php endif; ?>
             </div>
             <p class="link">
-              <a href="./featured_detail.html">
+              <a href="<?php echo esc_url($company_permalink); ?>">
                 <span class="label hover-underline">READ MORE</span>
                 <span class="icon"><i class="fa-solid fa-arrow-right"></i></span>
               </a>
             </p>
           </div>
         </div>
-        <div class="index_featured__item">
-          <p class="index_featured__image">
-            <img class="" src="https://placehold.co/480x630" alt="">
-          </p>
-          <div class="index_featured__contents">
-            <p class="name">○○○○○○○○○○○○○○様</p>
-            <h3 class="title">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトルタイ</h3>
-            <hr>
-            <div class="contents">
-              <p>
-                テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-              </p>
-            </div>
-            <p class="link">
-              <a href="./featured_detail.html">
-                <span class="label hover-underline">READ MORE</span>
-                <span class="icon"><i class="fa-solid fa-arrow-right"></i></span>
-              </a>
-            </p>
-          </div>
-        </div>
+        <?php
+                $count++;
+            }
+        } else {
+            // Fallback: show placeholder content if no featured companies are set
+            ?>
+
+        <?php
+        }
+        ?>
       </div>
       <div class="button_section">
         <a class="button_more white" href="<?php echo home_url('/company/'); ?>">
