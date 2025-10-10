@@ -57,6 +57,14 @@ usort($unique_prefectures, function($a, $b) use ($prefecture_order) {
 });
 
 global $wpdb;
+
+// Get total count of all job posts
+$total_job_count = $wpdb->get_var("
+    SELECT COUNT(*)
+    FROM {$wpdb->posts}
+    WHERE post_type = 'job'
+    AND post_status = 'publish'
+");
 ?>
 
 <aside class="search_side">
@@ -92,7 +100,7 @@ global $wpdb;
                 <label class="search_select__area_title" for="search_select__area00">
                   <span class="checkbox"></span>
                   <span class="label">全国</span>
-                  <span class="count">(<?php echo number_format($search_results['found_posts']); ?>件)</span>
+                  <span class="count">(<?php echo number_format($total_job_count); ?>件)</span>
                 </label>
               </div>
 

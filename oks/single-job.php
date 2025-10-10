@@ -5,7 +5,59 @@
  * @package OKS
  */
 
-get_header(); ?>
+get_header();
+
+// Function to get job conditions dynamically
+function get_single_job_conditions($post_id) {
+    $conditions = array();
+
+    // Boolean condition fields
+    $condition_fields = array(
+        'weekend_holiday' => '土日祝休み',
+        'low_overtime' => '残業少なめ',
+        'remote_work' => 'リモートワーク可',
+        'car_commute' => '車通勤可',
+        'bike_commute' => '自転車通勤可',
+        'fixed_overtime_pay' => '固定残業代あり',
+        'discretionary_work' => '裁量労働制',
+        'passive_smoking' => '受動喫煙対策',
+        'contract_period' => '契約期間あり',
+        'probation_period' => '試用期間あり',
+        'established_10years' => '設立10年以上の会社',
+        'transfer_possibility' => '転勤なし'
+    );
+
+    // Check each boolean field
+    foreach ($condition_fields as $field => $label) {
+        if (get_field($field, $post_id)) {
+            $conditions[] = $label;
+        }
+    }
+
+    // Special fields that need custom handling
+
+    // Application category
+    $app_category = get_field('application_category', $post_id);
+    if ($app_category) {
+        if ($app_category === '新卒') {
+            $conditions[] = '新卒採用';
+        } elseif ($app_category === '第二新卒') {
+            $conditions[] = '第二新卒採用';
+        } elseif ($app_category === '中途') {
+            $conditions[] = '中途採用';
+        }
+    }
+
+    // Employment type
+    $employment_type = get_field('employment_type', $post_id);
+    if ($employment_type) {
+        $conditions[] = $employment_type;
+    }
+
+    return $conditions;
+}
+
+?>
 <main class="page_main">
   <section class="search_title">
     <div class="search_title__container">
@@ -15,30 +67,13 @@ get_header(); ?>
         <p class="caption"><?php echo get_field('job_type'); ?></p>
         <h1 class="title"><?php echo get_field('display_title'); ?></h1>
         <ul class="badges">
-          <?php if(get_field('car_commute')): ?>
-          <li class="badges_item">
-            <span>車通勤可</span>
-          </li>
-          <?php endif; ?>
-          <?php if(get_field('established_10years')): ?>
-          <li class="badges_item">
-            <span>設立10年以上の会社</span>
-          </li>
-          <?php endif; ?>
-          <?php if(get_field('application_category')): ?>
-          <li class="badges_item">
-            <span><?php echo get_field('application_category'); ?></span>
-          </li>
-          <?php endif; ?>
-          <?php if(get_field('employment_type')): ?>
-          <li class="badges_item">
-            <span><?php echo get_field('employment_type'); ?></span>
-          </li>
-          <?php endif; ?>
-          <?php if(get_field('transfer_possibility')): ?>
-          <li class="badges_item">
-            <span>転勤なし</span>
-          </li>
+          <?php
+          $conditions = get_single_job_conditions(get_the_ID());
+          if (!empty($conditions)):
+          ?>
+          <?php foreach ($conditions as $condition): ?>
+          <li class="badges_item"><span><?php echo esc_html($condition); ?></span></li>
+          <?php endforeach; ?>
           <?php endif; ?>
         </ul>
       </div>
@@ -676,35 +711,26 @@ get_header(); ?>
     </div>
   </section>
 
-  <section class="search_index">
-    <div class="search_container">
-      <div class="search_main">
-        <div class="search_main__container">
-          <section class="search_banner">
-            <div class="search_banner__container">
-              <p class="search_banner__image">
-                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_image.jpg" alt="" />
-              </p>
-              <div class="search_banner__main">
-                <h3 class="title">
-                  <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_title.svg"
-                    class="" alt="求人探しにお困りの方へ" />
-                </h3>
-                <div class="contents">
-                  <p>
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                  </p>
-                </div>
-                <a class="button_more" href="#">
-                  <span class="label">非公開求人を紹介してもらう</span>
-                  <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
-                </a>
-              </div>
-            </div>
-          </section>
+  <section class="search_banner">
+    <div class="search_banner__container">
+      <p class="search_banner__image">
+        <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_image.jpg" alt="" />
+      </p>
+      <div class="search_banner__main">
+        <h3 class="title">
+          <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_title.svg"
+            class="" alt="求人探しにお困りの方へ" />
+        </h3>
+        <div class="contents">
+          <p>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+          </p>
         </div>
+        <a class="button_more" href="#">
+          <span class="label">非公開求人を紹介してもらう</span>
+          <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
+        </a>
       </div>
-      <?php get_template_part('template-parts/search-sidebar'); ?>
     </div>
   </section>
 </main>
