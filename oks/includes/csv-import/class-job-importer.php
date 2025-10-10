@@ -148,7 +148,8 @@ class OKS_Job_Importer {
             'post_type' => 'job',
             'post_status' => 'publish',
             'post_title' => $post_title,
-            'post_content' => ''
+            'post_content' => '',
+            'post_name' => sanitize_title($data['internal_job_id']) // Set slug from internal_job_id
         );
         
         // Insert post
@@ -175,7 +176,8 @@ class OKS_Job_Importer {
         $post_data = array(
             'ID' => $post_id,
             'post_title' => $post_title,
-            'post_content' => ''
+            'post_content' => '',
+            'post_name' => sanitize_title($data['internal_job_id']) // Set slug from internal_job_id
         );
         
         // Update post
