@@ -5,6 +5,9 @@
  * @package OKS
  */
 
+// Include area mapping system
+require_once get_template_directory() . '/includes/area-mapping.php';
+
 /**
  * Generate location checkboxes with dynamic data
  *
@@ -143,6 +146,9 @@ function oks_enqueue_location_checkboxes_script() {
     ?>
     <script>
     jQuery(document).ready(function($) {
+        // Prefecture to area mapping
+        var prefectureAreaMapping = <?php echo json_encode( oks_get_prefecture_area_mapping() ); ?>;
+        
         // Handle 全国 (Select All) checkbox
         $('.js-select-all-areas').on('change', function() {
             var isChecked = $(this).prop('checked');
@@ -222,6 +228,87 @@ function oks_enqueue_location_checkboxes_script() {
         // Initialize states on page load
         $('.search_select__menu_list, .search_side__menu_list').each(function() {
             updateSelectAllState($(this));
+        });
+        
+        // Handle form submission to convert prefecture/city selections to area IDs
+        $('form.search_select').on('submit', function(e) {
+            e.preventDefault();
+            
+            var form = $(this);
+            var selectedPrefectures = [];
+            var selectedCities = [];
+            var areaIds = [];
+            var cityOnlySelections = []; // Cities selected without their prefecture
+            
+            // Get selected prefectures
+            form.find('input[name="prefecture[]"]:checked').each(function() {
+                selectedPrefectures.push($(this).val());
+            });
+            
+            // Get selected cities
+            form.find('input[name="city[]"]:checked').each(function() {
+                var city = $(this).val();
+                var prefecture = $(this).data('prefecture');
+                
+                // Only include city if its prefecture is not selected
+                if (!selectedPrefectures.includes(prefecture)) {
+                    cityOnlySelections.push(city);
+                }
+            });
+            
+            // Convert prefectures to area IDs
+            selectedPrefectures.forEach(function(prefecture) {
+                if (prefectureAreaMapping[prefecture]) {
+                    areaIds.push(prefectureAreaMapping[prefecture]);
+                }
+            });
+            
+            // Remove duplicates
+            areaIds = [...new Set(areaIds)];
+            
+            // Build new URL
+            var baseUrl = form.attr('action');
+            var params = new URLSearchParams();
+            
+            // Add area parameter if any areas are selected
+            if (areaIds.length > 0) {
+                if (areaIds.length === 1) {
+                    params.append('area', areaIds[0]);
+                } else {
+                    areaIds.forEach(function(areaId) {
+                        params.append('area[]', areaId);
+                    });
+                }
+            }
+            
+            // Add cities only if they're selected without their prefecture
+            if (cityOnlySelections.length > 0) {
+                cityOnlySelections.forEach(function(city) {
+                    params.append('city[]', city);
+                });
+            }
+            
+            // Add other form fields (excluding prefecture/city arrays)
+            form.find('input[type="text"], input[type="hidden"], select').each(function() {
+                var name = $(this).attr('name');
+                var value = $(this).val();
+                if (name && value && name !== 'prefecture[]' && name !== 'city[]') {
+                    params.append(name, value);
+                }
+            });
+            
+            // Add other checked inputs (except prefecture/city which we already handled)
+            form.find('input[type="checkbox"]:checked, input[type="radio"]:checked').each(function() {
+                var name = $(this).attr('name');
+                var value = $(this).val();
+                if (name && value && name !== 'prefecture[]' && name !== 'city[]') {
+                    params.append(name, value);
+                }
+            });
+            
+            // Redirect to new URL
+            var newUrl = baseUrl + '?' + params.toString();
+            window.location.href = newUrl;
         });
     });
     </script>

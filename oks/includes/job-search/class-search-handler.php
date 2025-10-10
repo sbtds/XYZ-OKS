@@ -11,6 +11,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Include area mapping functions
+require_once get_template_directory() . '/includes/area-mapping.php';
+
 /**
  * Search Handler Class
  */
@@ -41,13 +44,31 @@ class OKS_Search_Handler {
             )
         );
 
-        // 都道府県・市区町村
+        // 都道府県・市区町村・エリア
         $location_query = array('relation' => 'OR');
-
+        
+        // Handle area parameter (convert to prefectures)
+        $prefectures_from_area = array();
+        if (!empty($params['area'])) {
+            $prefectures_from_area = oks_convert_area_to_prefectures($params['area']);
+        }
+        
+        // Combine prefecture parameter with prefectures from area
+        $all_prefectures = array();
         if (!empty($params['prefecture']) && is_array($params['prefecture'])) {
+            $all_prefectures = array_merge($all_prefectures, $params['prefecture']);
+        }
+        if (!empty($prefectures_from_area)) {
+            $all_prefectures = array_merge($all_prefectures, $prefectures_from_area);
+        }
+        
+        // Remove duplicates
+        $all_prefectures = array_unique($all_prefectures);
+        
+        if (!empty($all_prefectures)) {
             $location_query[] = array(
                 'key' => 'prefecture',
-                'value' => $params['prefecture'],
+                'value' => $all_prefectures,
                 'compare' => 'IN'
             );
         }
@@ -510,6 +531,19 @@ class OKS_Search_Handler {
         
         $prefectures = array();
         $cities = array();
+        $areas = array();
+        
+        // Handle area parameter
+        if (!empty($params['area'])) {
+            $area_ids = is_array($params['area']) ? $params['area'] : array($params['area']);
+            $area_names = oks_get_area_name_mapping();
+            
+            foreach ($area_ids as $area_id) {
+                if (isset($area_names[$area_id])) {
+                    $areas[] = $area_names[$area_id];
+                }
+            }
+        }
         
         if (!empty($params['prefecture'])) {
             $prefectures = is_array($params['prefecture']) ? $params['prefecture'] : array($params['prefecture']);
@@ -583,6 +617,12 @@ class OKS_Search_Handler {
             elseif (in_array($pref, $prefecture_only)) {
                 $formatted_locations[] = esc_html($pref);
             }
+        }
+        
+        // エリア情報を先頭に追加
+        if (!empty($areas)) {
+            $area_text = implode('・', array_map('esc_html', $areas));
+            array_unshift($formatted_locations, $area_text);
         }
         
         return implode('<br />', $formatted_locations);

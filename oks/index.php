@@ -156,44 +156,87 @@ get_header(); ?>
       </div>
     </div>
     <div class="index_hero__slide">
+      <?php
+      // Get carousel data from home page ACF field
+      $home_page = get_page_by_path('home');
+      if (!$home_page) {
+          // Fallback: try getting the front page
+          $home_page_id = get_option('page_on_front');
+          if ($home_page_id) {
+              $home_page = get_post($home_page_id);
+          }
+      }
+      
+      $carousel_data = array();
+      if ($home_page) {
+          $carousel_data = get_field('index_carousel', $home_page->ID);
+      }
+      ?>
       <div class="index_hero__slide_list carousel swiper" data-carousel-per-view="3" data-carousel-between="0"
         data-carousel-delay="5000">
         <div class="swiper-wrapper">
-          <div class="index_hero__slide_item swiper-slide">
-            <a href="featured.html">
-              <p class="hover-image">
-                <img class="" src="https://placehold.co/1100x840" alt="">
-              </p>
-            </a>
-          </div>
-          <div class="index_hero__slide_item swiper-slide">
-            <a href="featured.html">
-              <p class="hover-image">
-                <img class="" src="https://placehold.co/1200x640" alt="">
-              </p>
-            </a>
-          </div>
-          <div class="index_hero__slide_item swiper-slide">
-            <a href="featured.html">
-              <p class="hover-image">
-                <img class="" src="https://placehold.co/1000x1000" alt="">
-              </p>
-            </a>
-          </div>
-          <div class="index_hero__slide_item swiper-slide">
-            <a href="featured.html">
-              <p class="hover-image">
-                <img class="" src="https://placehold.co/1400x840" alt="">
-              </p>
-            </a>
-          </div>
-          <div class="index_hero__slide_item swiper-slide">
-            <a href="featured.html">
-              <p class="hover-image">
-                <img class="" src="https://placehold.co/1200x840" alt="">
-              </p>
-            </a>
-          </div>
+          <?php
+          if ($carousel_data && is_array($carousel_data)) {
+              // Loop through item01 to item06
+              for ($i = 1; $i <= 6; $i++) {
+                  $item_key = sprintf('item%02d', $i);
+                  
+                  if (isset($carousel_data[$item_key]) && !empty($carousel_data[$item_key])) {
+                      $item_data = $carousel_data[$item_key];
+                      $image = isset($item_data['img']) ? $item_data['img'] : null;
+                      $link = isset($item_data['url']) ? $item_data['url'] : null;
+                      
+                      if ($image || $link) {
+                          // Handle different ACF image field return formats
+                          $image_url = '';
+                          $image_alt = 'Carousel Image';
+                          
+                          if ($image) {
+                              if (is_array($image)) {
+                                  // Image returned as array
+                                  $image_url = isset($image['url']) ? $image['url'] : '';
+                                  $image_alt = isset($image['alt']) ? $image['alt'] : (isset($image['title']) ? $image['title'] : 'Carousel Image');
+                              } elseif (is_numeric($image)) {
+                                  // Image returned as ID
+                                  $image_url = wp_get_attachment_image_url($image, 'large');
+                                  $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true) ?: 'Carousel Image';
+                              }
+                          }
+                          ?>
+                          <div class="index_hero__slide_item swiper-slide">
+                            <?php if ($link && !empty($link['url'])) : ?>
+                              <a href="<?php echo esc_url($link['url']); ?>" 
+                                 <?php if (isset($link['target']) && $link['target']) echo 'target="' . esc_attr($link['target']) . '"'; ?>>
+                            <?php endif; ?>
+                              <p class="hover-image">
+                                <?php if ($image_url) : ?>
+                                  <img src="<?php echo esc_url($image_url); ?>" 
+                                       alt="<?php echo esc_attr($image_alt); ?>">
+                                <?php else : ?>
+                                  <img src="https://placehold.co/1100x840" alt="Placeholder">
+                                <?php endif; ?>
+                              </p>
+                            <?php if ($link && !empty($link['url'])) : ?>
+                              </a>
+                            <?php endif; ?>
+                          </div>
+                          <?php
+                      }
+                  }
+              }
+          } else {
+              // Fallback: show placeholder content if no carousel data is set
+              ?>
+              <div class="index_hero__slide_item swiper-slide">
+                <a href="#">
+                  <p class="hover-image">
+                    <img src="https://placehold.co/1100x840" alt="カルーセル画像が設定されていません">
+                  </p>
+                </a>
+              </div>
+              <?php
+          }
+          ?>
         </div>
       </div>
     </div>
@@ -672,7 +715,7 @@ get_header(); ?>
           alt="勤務地から探す">
       </h2>
       <div class="index_area__contents">
-        <form class="index_area__box" action="./search.html">
+        <form class="index_area__box" action="<?php echo home_url('/search/'); ?>" method="get">
           <p class="index_area__icon">
             <span class="icon"><i class="fa-solid fa-search"></i></span>
           </p>
@@ -683,32 +726,32 @@ get_header(); ?>
               <div class="contents">
                 <div class="contents_list">
                   <label>
-                    <input type="radio" name="area" id="" value="宮城">
+                    <input type="radio" name="area" id="" value="4">
                     <span class="circle"></span>
                     <span class="label">宮城</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="岩手">
+                    <input type="radio" name="area" id="" value="3">
                     <span class="circle"></span>
                     <span class="label">岩手</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="秋田">
+                    <input type="radio" name="area" id="" value="5">
                     <span class="circle"></span>
                     <span class="label">秋田</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="青森">
+                    <input type="radio" name="area" id="" value="2">
                     <span class="circle"></span>
                     <span class="label">青森</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="山形">
+                    <input type="radio" name="area" id="" value="6">
                     <span class="circle"></span>
                     <span class="label">山形</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="福島">
+                    <input type="radio" name="area" id="" value="7">
                     <span class="circle"></span>
                     <span class="label">福島</span>
                   </label>
@@ -726,7 +769,7 @@ get_header(); ?>
           </div>
         </form>
 
-        <form class="index_area__box type-green" action="./search.html">
+        <form class="index_area__box type-green" action="<?php echo home_url('/search/'); ?>" method="get">
           <p class="index_area__icon">
             <span class="icon"><i class="fa-solid fa-search"></i></span>
           </p>
@@ -738,37 +781,37 @@ get_header(); ?>
                 <div class="contents_list">
 
                   <label>
-                    <input type="radio" name="area" id="" value="神奈川">
+                    <input type="radio" name="area" id="" value="14">
                     <span class="circle"></span>
                     <span class="label">神奈川</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="東京">
+                    <input type="radio" name="area" id="" value="13">
                     <span class="circle"></span>
                     <span class="label">東京</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="埼玉">
+                    <input type="radio" name="area" id="" value="11">
                     <span class="circle"></span>
                     <span class="label">埼玉</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="群馬">
+                    <input type="radio" name="area" id="" value="10">
                     <span class="circle"></span>
                     <span class="label">群馬</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="栃木">
+                    <input type="radio" name="area" id="" value="9">
                     <span class="circle"></span>
                     <span class="label">栃木</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="茨城">
+                    <input type="radio" name="area" id="" value="8">
                     <span class="circle"></span>
                     <span class="label">茨城</span>
                   </label>
                   <label>
-                    <input type="radio" name="area" id="" value="千葉">
+                    <input type="radio" name="area" id="" value="12">
                     <span class="circle"></span>
                     <span class="label">千葉</span>
                   </label>
