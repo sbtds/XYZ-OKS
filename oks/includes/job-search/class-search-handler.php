@@ -25,10 +25,16 @@ class OKS_Search_Handler {
      * Search jobs
      */
     public function search($params) {
+        // Handle posts per page parameter
+        $posts_per_page = isset($params['posts_per_page']) ? intval($params['posts_per_page']) : 20;
+        if ($posts_per_page <= 0 || $posts_per_page > 100) {
+            $posts_per_page = 20; // Default fallback
+        }
+        
         $args = array(
             'post_type' => 'job',
             'post_status' => 'publish',
-            'posts_per_page' => 20,
+            'posts_per_page' => $posts_per_page,
             'paged' => isset($params['paged']) ? intval($params['paged']) : 1,
             'meta_query' => array(
                 'relation' => 'AND',

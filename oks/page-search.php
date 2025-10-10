@@ -19,6 +19,14 @@ if (!empty($_GET)) {
     $search_params = $_POST;
 }
 
+// Handle pagination from URL path (e.g., /search/page/2/)
+if (!isset($search_params['paged'])) {
+    $current_url = $_SERVER['REQUEST_URI'];
+    if (preg_match('/\/page\/(\d+)\/?/', $current_url, $matches)) {
+        $search_params['paged'] = intval($matches[1]);
+    }
+}
+
 $search_handler = new OKS_Search_Handler();
 $search_results = $search_handler->search($search_params);
 
@@ -87,7 +95,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
             <div class="order">
               <p class="label">表示件数</p>
               <p class="select">
-                <select name="posts_per_page" id="">
+                <select name="posts_per_page" id="posts_per_page_select" onchange="changePostsPerPage(this.value)">
                   <option value="10"
                     <?php selected(isset($search_params['posts_per_page']) ? $search_params['posts_per_page'] : 20, 10); ?>>
                     10件</option>
@@ -931,22 +939,43 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
             <?php
               $current_page = $search_results['current_page'];
               $max_pages = $search_results['max_num_pages'];
-              $base_url = add_query_arg(array('paged' => false), $_SERVER['REQUEST_URI']);
+              
+              // Get current page URL without paged parameter
+              $current_url = $_SERVER['REQUEST_URI'];
+              // Remove existing page and paged parameters
+              $current_url = preg_replace('/\/page\/\d+\//', '/', $current_url);
+              $current_url = remove_query_arg('paged', $current_url);
+              
+              // Ensure URL ends with /
+              if (substr($current_url, -1) !== '/') {
+                  $current_url .= '/';
+              }
 
               // Previous button
               if ($current_page > 1) {
-                  echo '<p class="search_main__nav_item prev"><a href="' . esc_url(add_query_arg('paged', $current_page - 1, $base_url)) . '"><i class="fa-solid fa-chevron-left"></i></a></p>';
+                  if ($current_page == 2) {
+                      $prev_url = $current_url;
+                  } else {
+                      $prev_url = rtrim($current_url, '/') . '/page/' . ($current_page - 1) . '/';
+                  }
+                  echo '<p class="search_main__nav_item prev"><a href="' . esc_url($prev_url) . '"><i class="fa-solid fa-chevron-left"></i></a></p>';
               }
 
               // Page numbers
               for ($i = max(1, $current_page - 2); $i <= min($max_pages, $current_page + 2); $i++) {
                   $class = ($i == $current_page) ? ' active' : '';
-                  echo '<p class="search_main__nav_item' . $class . '"><a href="' . esc_url(add_query_arg('paged', $i, $base_url)) . '">' . $i . '</a></p>';
+                  if ($i == 1) {
+                      $page_url = $current_url;
+                  } else {
+                      $page_url = rtrim($current_url, '/') . '/page/' . $i . '/';
+                  }
+                  echo '<p class="search_main__nav_item' . $class . '"><a href="' . esc_url($page_url) . '">' . $i . '</a></p>';
               }
 
               // Next button
               if ($current_page < $max_pages) {
-                  echo '<p class="search_main__nav_item next"><a href="' . esc_url(add_query_arg('paged', $current_page + 1, $base_url)) . '"><i class="fa-solid fa-chevron-right"></i></a></p>';
+                  $next_url = rtrim($current_url, '/') . '/page/' . ($current_page + 1) . '/';
+                  echo '<p class="search_main__nav_item next"><a href="' . esc_url($next_url) . '"><i class="fa-solid fa-chevron-right"></i></a></p>';
               }
               ?>
           </div>
@@ -959,5 +988,25 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
   </section>
 </main>
 
+
+<script>
+function changePostsPerPage(value) {
+    // Get current URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Update posts_per_page parameter
+    urlParams.set('posts_per_page', value);
+    
+    // Remove paged parameter to go back to page 1
+    urlParams.delete('paged');
+    
+    // Build new URL
+    const currentPath = window.location.pathname.replace(/\/page\/\d+\/?/, '/');
+    const newUrl = currentPath + (urlParams.toString() ? '?' + urlParams.toString() : '');
+    
+    // Navigate to new URL
+    window.location.href = newUrl;
+}
+</script>
 
 <?php get_footer(); ?>
