@@ -7,8 +7,6 @@
  * @package OKS
  */
 
-// Include search handler
-require_once get_template_directory() . '/includes/job-search/job-search-loader.php';
 require_once get_template_directory() . '/includes/location-checkboxes.php';
 
 // Handle search params

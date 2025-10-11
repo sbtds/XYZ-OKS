@@ -5,8 +5,7 @@
  * @package OKS
  */
 
-// Include search handler for getting prefecture data
-require_once get_template_directory() . '/includes/job-search/job-search-loader.php';
+// Include location checkboxes
 require_once get_template_directory() . '/includes/location-checkboxes.php';
 
 // Initialize search handler

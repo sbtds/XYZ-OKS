@@ -6,10 +6,37 @@
  * @package OKS
  */
 
-get_header();
+// 検索ページの動的タイトル設定（シンプル版）
+add_filter('document_title_parts', function($title_parts) {
+    $custom_title = '';
+    
+    // prefecture（都道府県）パラメータ
+    if (!empty($_GET['prefecture'])) {
+        $prefectures = is_array($_GET['prefecture']) ? $_GET['prefecture'] : array($_GET['prefecture']);
+        
+        if (count($prefectures) == 1) {
+            $custom_title = $prefectures[0] . 'の求人';
+        } elseif (count($prefectures) >= 40) {
+            $custom_title = '全国の求人';
+        } else {
+            $custom_title = '求人検索結果';
+        }
+    }
+    
+    // keyword（キーワード）パラメータ
+    if (!empty($_GET['keyword']) && empty($custom_title)) {
+        $custom_title = esc_html($_GET['keyword']) . 'の求人';
+    }
+    
+    // カスタムタイトルが設定されている場合
+    if (!empty($custom_title)) {
+        $title_parts['title'] = $custom_title;
+    }
+    
+    return $title_parts;
+}, 99999);
 
-// Include search handler
-require_once get_template_directory() . '/includes/job-search/job-search-loader.php';
+get_header();
 
 // Handle search
 $search_params = array();
@@ -18,6 +45,7 @@ if (!empty($_GET)) {
 } elseif (!empty($_POST)) {
     $search_params = $_POST;
 }
+
 
 // Handle pagination from URL path (e.g., /search/page/2/)
 if (!isset($search_params['paged'])) {
@@ -207,101 +235,15 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                     <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
                   </label>
                   <div class="search_main__panel_block">
-                    <!-- type -->
-                    <div class="search_select__type">
-                      <input type="checkbox" class="search_select__type_show" id="search_select__type_show01__" />
-                      <input type="checkbox" class="search_select__type_check" id="search_select__type01" name="type"
-                        value="製造・技術" />
-                      <label class="search_select__type_title" for="search_select__type01">
-                        <span class="checkbox"></span>
-                        <span class="label">製造・技術</span>
-                        <span class="count">(123,456件)</span>
-                        <label class="arrow" for="search_select__type_show01__">
-                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                        </label>
-                      </label>
-                      <div class="search_select__type_menu">
-                        <div class="search_select__type_list">
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type"
-                              value="機械オペレーター機械オペレーション機械オペレーター機械オペレーション" />
-                            <span class="checkbox"></span>
-                            <span class="label">機械オペレーター機械オペレーション機械オペレーター機械オペレーション</span>
-                          </label>
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type"
-                              value="機械オペレーター(機械オペレーション)" />
-                            <span class="checkbox"></span>
-                            <span class="label">機械オペレーター(機械オペレーション)</span>
-                          </label>
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type" value="組立・加工" />
-                            <span class="checkbox"></span>
-                            <span class="label">組立・加工</span>
-                          </label>
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type"
-                              value="製造（電気・電子・機械）" />
-                            <span class="checkbox"></span>
-                            <span class="label">製造（電気・電子・機械）</span>
-                          </label>
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type" value="検査・検品" />
-                            <span class="checkbox"></span>
-                            <span class="label">検査・検品</span>
-                          </label>
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type"
-                              value="製造・技能工（化学・医療・食品）" />
-                            <span class="checkbox"></span>
-                            <span class="label">製造・技能工（化学・医療・食品）</span>
-                          </label>
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type" value="食品製造" />
-                            <span class="checkbox"></span>
-                            <span class="label">食品製造</span>
-                          </label>
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type"
-                              value="その他（化学・医療・食品）" />
-                            <span class="checkbox"></span>
-                            <span class="label">その他（化学・医療・食品）</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="search_select__type">
-                      <input type="checkbox" class="search_select__type_show" id="search_select__type_show02__" />
-                      <input type="checkbox" class="search_select__type_check" id="search_select__type02" name="type"
-                        value="物流・配送・軽作業" />
-                      <label class="search_select__type_title" for="search_select__type02">
-                        <span class="checkbox"></span>
-                        <span class="label">物流・配送・軽作業</span>
-                        <span class="count">(456件)</span>
-                        <label class="arrow" for="search_select__type_show02__">
-                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                        </label>
-                      </label>
-                      <div class="search_select__type_menu">
-                        <div class="search_select__type_list">
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type"
-                              value="仕分け・梱包・ピッキング" />
-                            <span class="checkbox"></span>
-                            <span class="label">仕分け・梱包・ピッキング</span>
-                          </label>
-                          <label class="search_select__type_item">
-                            <input type="checkbox" class="search_select__type_item_check" name="type" value="フォークリフト" />
-                            <span class="checkbox"></span>
-                            <span class="label">フォークリフト</span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- // type -->
+                    <?php
+                    // TODO: 職種の動的表示
+                    // 現在はデータがないため、職種検索機能を一時的に非表示にしています。
+                    // 実装時は $unique_industries と $unique_job_types_by_industry を使用して
+                    // 勤務地と同様の動的な職種選択機能を実装してください。
+                    ?>
+                    <p style="padding: 20px; text-align: center; color: #666;">
+                      職種検索機能は準備中です
+                    </p>
                   </div>
                 </div>
                 <!-- //item -->
@@ -704,170 +646,6 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
           </div>
           <!-- //panel -->
 
-          <!-- テスト表示: デバッグ情報 (一時的に非表示) -->
-          <?php /*
-          <div style="background: #f0f0f0; padding: 20px; margin: 20px 0; border: 2px solid #ccc;">
-            <h3>デバッグ情報</h3>
-
-            <h4>検索パラメータ:</h4>
-            <pre style="background: white; padding: 10px; overflow: auto;">
-<?php print_r($search_params); ?>
-          </pre>
-
-          <h4>カスタムフィールド「industry」の値一覧</h4>
-          <?php
-            global $wpdb;
-            $industries = $wpdb->get_col("
-                SELECT DISTINCT pm.meta_value
-                FROM {$wpdb->posts} p
-                INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
-                WHERE p.post_type = 'job'
-                AND p.post_status = 'publish'
-                AND pm.meta_key = 'industry'
-                AND pm.meta_value != ''
-                ORDER BY pm.meta_value
-            ");
-
-            if (!empty($industries)) {
-                echo '<ul>';
-                foreach ($industries as $industry) {
-                    // 各industryの投稿IDを取得
-                    $post_ids = $wpdb->get_col($wpdb->prepare("
-                        SELECT DISTINCT p.ID
-                        FROM {$wpdb->posts} p
-                        INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
-                        WHERE p.post_type = 'job'
-                        AND p.post_status = 'publish'
-                        AND pm.meta_key = 'industry'
-                        AND pm.meta_value = %s
-                        ORDER BY p.ID
-                    ", $industry));
-
-                    $count = count($post_ids);
-
-                    echo '<li>';
-                    echo '<strong>' . esc_html($industry) . '</strong> (' . $count . '件)';
-                    if (!empty($post_ids)) {
-                        echo '<br>記事ID: ' . implode(', ', $post_ids);
-                    }
-                    echo '</li>';
-                }
-                echo '</ul>';
-            } else {
-                echo '<p>industryデータが見つかりません。</p>';
-            }
-            ?>
-
-          <h4>job_typeフィールドの実際の値（サンプル）</h4>
-          <?php
-            // 建設・不動産のjob記事を確認
-            $construction_jobs = $wpdb->get_results("
-                SELECT p.ID, p.post_title,
-                       pm1.meta_value as industry,
-                       pm2.meta_value as job_type
-                FROM {$wpdb->posts} p
-                LEFT JOIN {$wpdb->postmeta} pm1 ON p.ID = pm1.post_id AND pm1.meta_key = 'industry'
-                LEFT JOIN {$wpdb->postmeta} pm2 ON p.ID = pm2.post_id AND pm2.meta_key = 'job_type'
-                WHERE p.post_type = 'job'
-                AND p.post_status = 'publish'
-                AND pm1.meta_value LIKE '%建設%'
-                LIMIT 5
-            ");
-
-            if (!empty($construction_jobs)) {
-                echo '<table style="background: white; width: 100%; border-collapse: collapse;">';
-                echo '<tr style="background: #ddd;"><th style="border: 1px solid #ccc; padding: 5px;">ID</th><th style="border: 1px solid #ccc; padding: 5px;">タイトル</th><th style="border: 1px solid #ccc; padding: 5px;">industry</th><th style="border: 1px solid #ccc; padding: 5px;">job_type</th></tr>';
-                foreach ($construction_jobs as $job) {
-                    echo '<tr>';
-                    echo '<td style="border: 1px solid #ccc; padding: 5px;">' . $job->ID . '</td>';
-                    echo '<td style="border: 1px solid #ccc; padding: 5px;">' . esc_html($job->post_title) . '</td>';
-                    echo '<td style="border: 1px solid #ccc; padding: 5px;">' . esc_html($job->industry) . '</td>';
-                    echo '<td style="border: 1px solid #ccc; padding: 5px;">' . esc_html($job->job_type) . '</td>';
-                    echo '</tr>';
-                }
-                echo '</table>';
-            } else {
-                echo '<p>建設・不動産の記事が見つかりません。</p>';
-            }
-            ?>
-
-          <h4>min_salaryフィールドの値一覧</h4>
-          <?php
-            // min_salaryの全ての値を取得
-            $min_salaries = $wpdb->get_results("
-                SELECT p.ID, p.post_title, pm.meta_value as min_salary
-                FROM {$wpdb->posts} p
-                INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
-                WHERE p.post_type = 'job'
-                AND p.post_status = 'publish'
-                AND pm.meta_key = 'min_salary'
-                AND pm.meta_value != ''
-                ORDER BY CAST(pm.meta_value AS UNSIGNED) DESC
-            ");
-
-            if (!empty($min_salaries)) {
-                echo '<table style="background: white; width: 100%; border-collapse: collapse; margin-top: 10px;">';
-                echo '<tr style="background: #ddd;">';
-                echo '<th style="border: 1px solid #ccc; padding: 5px;">ID</th>';
-                echo '<th style="border: 1px solid #ccc; padding: 5px;">タイトル</th>';
-                echo '<th style="border: 1px solid #ccc; padding: 5px;">min_salary (生データ)</th>';
-                echo '<th style="border: 1px solid #ccc; padding: 5px;">金額表示</th>';
-                echo '</tr>';
-
-                foreach ($min_salaries as $job) {
-                    $salary_int = intval($job->min_salary);
-                    $formatted_salary = '';
-
-                    if ($salary_int >= 10000000) {
-                        $formatted_salary = number_format($salary_int / 10000000, 0) . ',000万円';
-                    } elseif ($salary_int >= 10000) {
-                        $formatted_salary = number_format($salary_int / 10000) . '万円';
-                    } else {
-                        $formatted_salary = number_format($salary_int) . '円';
-                    }
-
-                    echo '<tr>';
-                    echo '<td style="border: 1px solid #ccc; padding: 5px;">' . $job->ID . '</td>';
-                    echo '<td style="border: 1px solid #ccc; padding: 5px;">' . esc_html($job->post_title) . '</td>';
-                    echo '<td style="border: 1px solid #ccc; padding: 5px; text-align: right;">' . esc_html($job->min_salary) . '</td>';
-                    echo '<td style="border: 1px solid #ccc; padding: 5px; text-align: right;">' . $formatted_salary . '</td>';
-                    echo '</tr>';
-                }
-                echo '</table>';
-
-                // 統計情報
-                $stats = $wpdb->get_row("
-                    SELECT
-                        COUNT(*) as total_count,
-                        MIN(CAST(meta_value AS UNSIGNED)) as min_value,
-                        MAX(CAST(meta_value AS UNSIGNED)) as max_value,
-                        AVG(CAST(meta_value AS UNSIGNED)) as avg_value
-                    FROM {$wpdb->postmeta}
-                    WHERE post_id IN (SELECT ID FROM {$wpdb->posts} WHERE post_type = 'job' AND post_status = 'publish')
-                    AND meta_key = 'min_salary'
-                    AND meta_value != ''
-                    AND meta_value REGEXP '^[0-9]+$'
-                ");
-
-                if ($stats) {
-                    echo '<div style="background: #e0e0e0; padding: 10px; margin-top: 10px;">';
-                    echo '<h5>min_salary 統計情報</h5>';
-                    echo '<ul>';
-                    echo '<li>総数: ' . $stats->total_count . '件</li>';
-                    echo '<li>最小値: ' . number_format($stats->min_value) . '円 (' . number_format($stats->min_value / 10000) . '万円)</li>';
-                    echo '<li>最大値: ' . number_format($stats->max_value) . '円 (' . number_format($stats->max_value / 10000) . '万円)</li>';
-                    echo '<li>平均値: ' . number_format($stats->avg_value) . '円 (' . number_format($stats->avg_value / 10000) . '万円)</li>';
-                    echo '</ul>';
-                    echo '</div>';
-                }
-            } else {
-                echo '<p>min_salaryデータが見つかりません。</p>';
-            }
-            ?>
-        </div>
-        */ ?>
-        <!-- //テスト表示 -->
-
         <!-- list -->
         <div class="search_main__list">
           <?php if (!empty($search_results['posts'])): ?>
@@ -1007,6 +785,7 @@ function changePostsPerPage(value) {
     // Navigate to new URL
     window.location.href = newUrl;
 }
+
 </script>
 
 <?php get_footer(); ?>

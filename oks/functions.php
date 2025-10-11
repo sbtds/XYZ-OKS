@@ -39,17 +39,6 @@ function oks_acf_json_load_point($paths) {
 function oks_enqueue_styles() {
     wp_enqueue_style('oks-style', get_stylesheet_uri(), array(), '1.0.0');
 
-    // Enqueue single job styles for job detail pages
-    if (is_singular('job')) {
-        wp_enqueue_style(
-            'oks-single-job',
-            get_template_directory_uri() . '/assets/css/single-job.css',
-            array('oks-style'),
-            '1.0.0'
-        );
-    }
-
-
     // Enqueue dist styles for all pages
     wp_enqueue_style(
         'oks-dist-style',
@@ -95,8 +84,8 @@ if (file_exists(get_template_directory() . '/includes/csv-import/csv-import-load
 /**
  * Include Job Search functionality
  */
-if (file_exists(get_template_directory() . '/includes/search/job-search-loader.php')) {
-    require_once get_template_directory() . '/includes/search/job-search-loader.php';
+if (file_exists(get_template_directory() . '/includes/job-search/job-search-loader.php')) {
+    require_once get_template_directory() . '/includes/job-search/job-search-loader.php';
 }
 
 /**
@@ -314,3 +303,41 @@ function oks_add_id_to_h2_tags($content) {
     return $content;
 }
 add_filter('the_content', 'oks_add_id_to_h2_tags');
+
+
+/**
+ * 検索ページのメタディスクリプション設定
+ */
+function oks_search_meta_description() {
+    // 検索ページかどうかを判定
+    $is_search_page = false;
+    
+    if (is_page('search') || is_page_template('page-search.php') || strpos($_SERVER['REQUEST_URI'], '/search') !== false) {
+        $is_search_page = true;
+    }
+    
+    if ($is_search_page) {
+        // area-mapping.phpを読み込み
+        if (file_exists(get_template_directory() . '/includes/area-mapping.php')) {
+            require_once get_template_directory() . '/includes/area-mapping.php';
+        }
+        
+        $description = '';
+        
+        // areaパラメータから都道府県名を取得
+        if (!empty($_GET['area'])) {
+            $area_id = intval($_GET['area']);
+            $area_mapping = oks_get_area_name_mapping();
+            
+            if (isset($area_mapping[$area_id])) {
+                $prefecture = $area_mapping[$area_id];
+                $description = $prefecture . 'の求人情報を検索できます。';
+            }
+        }
+        
+        if (!empty($description)) {
+            echo '<meta name="description" content="' . esc_attr($description) . '">' . "\n";
+        }
+    }
+}
+add_action('wp_head', 'oks_search_meta_description', 1);
