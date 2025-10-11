@@ -326,12 +326,19 @@ function oks_search_meta_description() {
         
         // areaパラメータから都道府県名を取得
         if (!empty($_GET['area'])) {
-            $area_id = intval($_GET['area']);
+            $area_ids = is_array($_GET['area']) ? $_GET['area'] : array($_GET['area']);
             $area_mapping = oks_get_area_name_mapping();
             
-            if (isset($area_mapping[$area_id])) {
-                $prefecture = $area_mapping[$area_id];
-                $description = $prefecture . 'の求人情報を検索できます。';
+            if (count($area_ids) == 1) {
+                $area_id = intval($area_ids[0]);
+                if (isset($area_mapping[$area_id])) {
+                    $prefecture = $area_mapping[$area_id];
+                    $description = $prefecture . 'の求人情報を検索できます。';
+                }
+            } elseif (count($area_ids) >= 40) {
+                $description = '全国の求人情報を検索できます。';
+            } else {
+                $description = '複数地域の求人情報を検索できます。';
             }
         }
         

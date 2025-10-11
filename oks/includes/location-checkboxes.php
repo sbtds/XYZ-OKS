@@ -230,8 +230,92 @@ function oks_enqueue_location_checkboxes_script() {
             updateSelectAllState($(this));
         });
         
-        // シンプルなフォーム送信（prefecture[]とcity[]をそのまま送信）
-        // 特別な処理は不要で、通常のフォーム送信を行う
+        // ページ読み込み時に都道府県がチェックされている場合、対応する市区町村もチェック
+        $('.js-prefecture-checkbox:checked').each(function() {
+            var prefecture = $(this).data('prefecture');
+            var container = $(this).closest('.search_select__area, .search_side__area');
+            
+            // この都道府県の市区町村をすべてチェック
+            container.find('.js-city-checkbox[data-prefecture="' + prefecture + '"]').prop('checked', true);
+        });
+        
+        // フォーム送信時にprefecture[]をarea IDに変換してシンプルなURLにする
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+            
+            var form = $(this);
+            var selectedPrefectures = [];
+            var selectedCities = [];
+            var params = new URLSearchParams();
+            
+            // 選択された都道府県を取得
+            form.find('input[name="prefecture[]"]:checked').each(function() {
+                selectedPrefectures.push($(this).val());
+            });
+            
+            // 選択された市区町村を取得
+            form.find('input[name="city[]"]:checked').each(function() {
+                var city = $(this).val();
+                var prefecture = $(this).data('prefecture');
+                
+                // 都道府県が選択されていない場合のみ市区町村を追加
+                if (!selectedPrefectures.includes(prefecture)) {
+                    selectedCities.push(city);
+                }
+            });
+            
+            // 都道府県をarea IDに変換
+            if (selectedPrefectures.length > 0) {
+                var areaIds = [];
+                selectedPrefectures.forEach(function(prefecture) {
+                    if (prefectureAreaMapping[prefecture]) {
+                        areaIds.push(prefectureAreaMapping[prefecture]);
+                    }
+                });
+                
+                // 重複削除
+                areaIds = [...new Set(areaIds)];
+                
+                // area パラメータとして追加
+                if (areaIds.length === 1) {
+                    params.append('area', areaIds[0]);
+                } else {
+                    areaIds.forEach(function(areaId) {
+                        params.append('area[]', areaId);
+                    });
+                }
+            }
+            
+            // 市区町村を追加
+            if (selectedCities.length > 0) {
+                selectedCities.forEach(function(city) {
+                    params.append('city[]', city);
+                });
+            }
+            
+            // その他のフォーム要素を追加
+            form.find('input[type="text"], input[type="hidden"], select').each(function() {
+                var name = $(this).attr('name');
+                var value = $(this).val();
+                if (name && value && name !== 'prefecture[]' && name !== 'city[]') {
+                    params.append(name, value);
+                }
+            });
+            
+            // その他のチェックボックス・ラジオボタンを追加
+            form.find('input[type="checkbox"]:checked, input[type="radio"]:checked').each(function() {
+                var name = $(this).attr('name');
+                var value = $(this).val();
+                if (name && value && name !== 'prefecture[]' && name !== 'city[]') {
+                    params.append(name, value);
+                }
+            });
+            
+            // URLを構築して遷移
+            var baseUrl = form.attr('action') || window.location.pathname;
+            var newUrl = baseUrl + (params.toString() ? '?' + params.toString() : '');
+            window.location.href = newUrl;
+        });
     });
     </script>
     <?php

@@ -6,19 +6,31 @@
  * @package OKS
  */
 
-// 検索ページの動的タイトル設定（シンプル版）
+// 検索ページの動的タイトル設定（area IDベース）
 add_filter('document_title_parts', function($title_parts) {
+    // area-mapping.phpを読み込み
+    if (file_exists(get_template_directory() . '/includes/area-mapping.php')) {
+        require_once get_template_directory() . '/includes/area-mapping.php';
+    }
+    
     $custom_title = '';
     
-    // prefecture（都道府県）パラメータ
-    if (!empty($_GET['prefecture'])) {
-        $prefectures = is_array($_GET['prefecture']) ? $_GET['prefecture'] : array($_GET['prefecture']);
+    // area IDパラメータから都道府県名を取得
+    if (!empty($_GET['area'])) {
+        $area_ids = is_array($_GET['area']) ? $_GET['area'] : array($_GET['area']);
+        $area_mapping = oks_get_area_name_mapping();
         
-        if (count($prefectures) == 1) {
-            $custom_title = $prefectures[0] . 'の求人';
-        } elseif (count($prefectures) >= 40) {
+        if (count($area_ids) == 1) {
+            // 単一の地域
+            $area_id = intval($area_ids[0]);
+            if (isset($area_mapping[$area_id])) {
+                $custom_title = $area_mapping[$area_id] . 'の求人';
+            }
+        } elseif (count($area_ids) >= 40) {
+            // 全国検索
             $custom_title = '全国の求人';
         } else {
+            // 複数地域
             $custom_title = '求人検索結果';
         }
     }
@@ -46,6 +58,28 @@ if (!empty($_GET)) {
     $search_params = $_POST;
 }
 
+// area IDをprefecture[]に変換してチェックボックス状態を復元
+$selected_prefectures_from_area = array();
+if (!empty($search_params['area'])) {
+    // area-mapping.phpを読み込み
+    require_once get_template_directory() . '/includes/area-mapping.php';
+    
+    $area_ids = is_array($search_params['area']) ? $search_params['area'] : array($search_params['area']);
+    $area_mapping = oks_get_area_name_mapping();
+    
+    foreach ($area_ids as $area_id) {
+        $area_id_int = intval($area_id);
+        if (isset($area_mapping[$area_id_int])) {
+            $selected_prefectures_from_area[] = $area_mapping[$area_id_int];
+        }
+    }
+    
+    // 重複を削除して設定
+    if (!empty($selected_prefectures_from_area)) {
+        $search_params['prefecture'] = array_unique($selected_prefectures_from_area);
+    }
+}
+
 
 // Handle pagination from URL path (e.g., /search/page/2/)
 if (!isset($search_params['paged'])) {
@@ -64,6 +98,19 @@ $search_summary = $search_handler->get_search_summary($search_params);
 // Get unique prefectures and cities from job posts
 $unique_prefectures = $search_handler->get_unique_prefectures();
 $unique_cities = $search_handler->get_unique_cities_by_prefecture();
+
+// 都道府県が選択されている場合、その県の市区町村も選択状態にする
+if (!empty($selected_prefectures_from_area) && empty($search_params['city'])) {
+    $selected_cities = array();
+    foreach ($selected_prefectures_from_area as $prefecture) {
+        if (isset($unique_cities[$prefecture])) {
+            $selected_cities = array_merge($selected_cities, $unique_cities[$prefecture]);
+        }
+    }
+    if (!empty($selected_cities)) {
+        $search_params['city'] = array_unique($selected_cities);
+    }
+}
 
 // Define custom prefecture order (from north to south)
 $prefecture_order = array(
@@ -191,7 +238,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                       <input type="checkbox" class="search_select__area_show" id="<?php echo $show_id; ?>" />
                       <input type="checkbox" class="search_select__area_check" id="<?php echo $area_id; ?>"
                         name="prefecture[]" value="<?php echo esc_attr($prefecture); ?>"
-                        <?php if (isset($search_params['prefecture']) && in_array($prefecture, $search_params['prefecture'])) echo 'checked'; ?> />
+                        <?php checked(isset($search_params['prefecture']) && in_array($prefecture, $search_params['prefecture'])); ?> />
                       <label class="search_select__area_title" for="<?php echo $area_id; ?>">
                         <span class="checkbox"></span>
                         <span class="label"><?php echo esc_html($prefecture); ?></span>
@@ -208,6 +255,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                           <label class="search_select__area_item">
                             <input type="checkbox" class="search_select__area_item_check" name="city[]"
                               value="<?php echo esc_attr($city); ?>"
+                              data-prefecture="<?php echo esc_attr($prefecture); ?>"
                               <?php if (isset($search_params['city']) && in_array($city, $search_params['city'])) echo 'checked'; ?> />
                             <span class="checkbox"></span>
                             <span class="label"><?php echo esc_html($city); ?></span>
@@ -785,6 +833,62 @@ function changePostsPerPage(value) {
     // Navigate to new URL
     window.location.href = newUrl;
 }
+
+// ページロード時にチェックボックス状態を復元
+jQuery(document).ready(function($) {
+    <?php if (!empty($search_params['area'])): ?>
+    <?php 
+    // area-mapping.phpが読み込まれていない場合は読み込む
+    if (!function_exists('oks_get_area_name_mapping')) {
+        require_once get_template_directory() . '/includes/area-mapping.php';
+    }
+    ?>
+    
+    // 検索条件パネルを開く
+    $('#search_main__panel_check').prop('checked', true);
+    
+    // 選択されたarea IDに基づいて都道府県チェックボックスを設定
+    const selectedAreas = <?php echo json_encode(is_array($search_params['area']) ? $search_params['area'] : array($search_params['area'])); ?>;
+    const areaMapping = <?php echo json_encode(oks_get_area_name_mapping()); ?>;
+    
+    console.log('Selected area IDs:', selectedAreas);
+    console.log('Area mapping:', areaMapping);
+    
+    // area IDから都道府県名を取得してチェックボックスを設定
+    selectedAreas.forEach(function(areaId) {
+        const prefecture = areaMapping[parseInt(areaId)];
+        if (prefecture) {
+            console.log('Setting checkbox for:', prefecture);
+            const prefectureCheckbox = $('input[name="prefecture[]"][value="' + prefecture + '"]');
+            prefectureCheckbox.prop('checked', true);
+            
+            // その県に属する市区町村も全てチェック
+            const prefectureContainer = prefectureCheckbox.closest('.search_select__area');
+            const cityCheckboxes = prefectureContainer.find('input[name="city[]"][data-prefecture="' + prefecture + '"]');
+            cityCheckboxes.prop('checked', true);
+            
+            console.log('Also checked', cityCheckboxes.length, 'cities for', prefecture);
+        }
+    });
+    
+    // 全国チェックボックスの状態を更新
+    if (selectedAreas.length >= 40) {
+        $('.js-select-all-areas').prop('checked', true);
+        console.log('Set all areas checkbox to checked');
+    }
+    
+    <?php endif; ?>
+    
+    // メインフォームの都道府県チェックボックスのイベントハンドラー
+    $('#search_main_area').on('change', '.search_select__area_check', function() {
+        var isChecked = $(this).prop('checked');
+        var prefecture = $(this).val();
+        var container = $(this).closest('.search_select__area');
+        
+        // この都道府県の市区町村をすべてチェック/アンチェック
+        container.find('.search_select__area_item_check[data-prefecture="' + prefecture + '"]').prop('checked', isChecked);
+    });
+});
 
 </script>
 

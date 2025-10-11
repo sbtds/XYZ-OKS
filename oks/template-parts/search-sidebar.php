@@ -569,6 +569,12 @@ jQuery(document).ready(function($) {
 
   // 初期状態の設定（ページ読み込み時にチェック状態を確認）
   updateNationalCheckbox();
+  
+  // ページ読み込み時に都道府県がチェックされている場合、対応する市区町村もチェック
+  $('#search_side_area .search_select__area_check:checked').not('#search_select__area00').each(function() {
+    var $container = $(this).closest('.search_select__area');
+    $container.find('.search_select__area_item_check').prop('checked', true);
+  });
 
   // サイドバー検索ボタンのクリックイベント
   $('#search_side_submit').on('click', function(e) {

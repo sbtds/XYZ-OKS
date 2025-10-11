@@ -531,23 +531,28 @@ class OKS_Search_Handler {
         
         $prefectures = array();
         $cities = array();
-        $areas = array();
         
-        // Handle area parameter
+        // Handle area parameter - convert to prefectures
         if (!empty($params['area'])) {
             $area_ids = is_array($params['area']) ? $params['area'] : array($params['area']);
             $area_names = oks_get_area_name_mapping();
             
             foreach ($area_ids as $area_id) {
-                if (isset($area_names[$area_id])) {
-                    $areas[] = $area_names[$area_id];
+                if (isset($area_names[intval($area_id)])) {
+                    $prefectures[] = $area_names[intval($area_id)];
                 }
             }
         }
         
+        // Handle prefecture parameter
         if (!empty($params['prefecture'])) {
-            $prefectures = is_array($params['prefecture']) ? $params['prefecture'] : array($params['prefecture']);
+            $prefecture_params = is_array($params['prefecture']) ? $params['prefecture'] : array($params['prefecture']);
+            $prefectures = array_merge($prefectures, $prefecture_params);
         }
+        
+        // Remove duplicates from prefectures
+        $prefectures = array_unique($prefectures);
+        
         if (!empty($params['city'])) {
             $cities = is_array($params['city']) ? $params['city'] : array($params['city']);
         }
