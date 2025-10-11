@@ -1,0 +1,303 @@
+@use "../common/_variables";
+
+// Contact Form 7 スタイル
+.wpcf7 {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  @include variables.res(lg) {
+    padding: 60px 40px;
+  }
+
+  // フォーム全体
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  // ラベル
+  label {
+    display: block;
+    font-size: variables.$fz16;
+    font-weight: 700;
+    color: variables.$contrast;
+    margin-bottom: 8px;
+
+    @include variables.res(lg) {
+      font-size: variables.$fz18;
+    }
+  }
+
+  // 入力フィールド共通
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    font-size: variables.$fz16;
+    color: variables.$contrast;
+    background-color: #fff;
+    border: 2px solid variables.$gray-light;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+
+    @include variables.res(lg) {
+      font-size: variables.$fz16;
+      padding: 18px 24px;
+    }
+
+    &:hover {
+      border-color: variables.$gray-dark;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: variables.$primary;
+      box-shadow: 0 0 0 4px rgba(variables.$primary, 0.1);
+    }
+
+    &::placeholder {
+      color: variables.$gray-dark;
+      opacity: 0.6;
+    }
+  }
+
+  // テキストエリア
+  textarea {
+    min-height: 150px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.6;
+  }
+
+  // 送信ボタン
+  input[type="submit"],
+  input.wpcf7-previous {
+    display: block;
+    min-width: 280px;
+
+    // margin-left: auto;
+    // margin-right: auto;
+    padding: 18px 60px;
+    font-size: variables.$fz16;
+    font-weight: 700;
+    color: #fff;
+    background-color: variables.$primary;
+    border: 2px solid variables.$primary;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    margin-top: 0;
+    appearance: none;
+    -webkit-appearance: none;
+
+    @include variables.res(lg) {
+      font-size: variables.$fz18;
+      padding: 20px 80px;
+      min-width: 280px;
+    }
+
+    &:hover {
+      background-color: darken(variables.$primary, 10%);
+      border-color: darken(variables.$primary, 10%);
+    }
+
+    &:active {
+      box-shadow: 0 2px 6px rgba(variables.$primary, 0.3);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(variables.$primary, 0.2);
+    }
+  }
+
+  input.wpcf7-previous {
+    min-width: 280px;
+
+    background-color: variables.$contrast-light;
+    border: 2px solid variables.$contrast-light;
+    color: white;
+
+    @include variables.res(lg) {
+      min-width: 200px;
+    }
+
+    &:hover {
+      background-color: darken(variables.$contrast-light, 10%);
+      border-color: darken(variables.$contrast-light, 10%);
+      box-shadow: 0 4px 12px rgba(variables.$contrast-light, 0.3);
+    }
+
+    &:active {
+      box-shadow: 0 2px 6px rgba(variables.$contrast-light, 0.3);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(variables.$contrast-light, 0.2);
+    }
+  }
+
+  .submit_wrap {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    @include variables.res(lg) {
+      flex-direction: row-reverse;
+      justify-content: center;
+    }
+
+    .wpcf7-spinner {
+      display: none;
+    }
+
+    br {
+      display: none;
+    }
+  }
+
+  // エラーメッセージ
+  .wpcf7-not-valid-tip {
+    display: block;
+    color: #dc3545;
+    font-size: variables.$fz14;
+    margin-top: 6px;
+    padding-left: 4px;
+  }
+
+  // 入力フィールドのエラー状態
+  .wpcf7-not-valid {
+    border-color: #dc3545 !important;
+
+    &:focus {
+      box-shadow: 0 0 0 4px rgba(#dc3545, 0.1);
+    }
+  }
+
+  // レスポンスメッセージ
+  .wpcf7-response-output {
+    display: block;
+    margin: 30px 0 0 !important;
+    padding: 20px 24px !important;
+    border-radius: 8px;
+    font-size: variables.$fz16;
+    text-align: center;
+    border: 2px solid;
+
+    &.wpcf7-validation-errors {
+      background-color: #fff5f5;
+      border-color: #dc3545;
+      color: #dc3545;
+    }
+
+    &.wpcf7-acceptance-missing {
+      background-color: #fff8e1;
+      border-color: #ffc107;
+      color: #856404;
+    }
+
+    &.wpcf7-mail-sent-ok {
+      background-color: #f0f8ff;
+      border-color: variables.$primary;
+      color: variables.$primary;
+    }
+
+    &.wpcf7-mail-sent-ng,
+    &.wpcf7-spam-blocked {
+      background-color: #fff5f5;
+      border-color: #dc3545;
+      color: #dc3545;
+    }
+  }
+
+  // スピナー
+  .ajax-loader {
+    visibility: hidden;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid variables.$gray-light;
+    border-radius: 50%;
+    border-top-color: variables.$primary;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 12px;
+    vertical-align: middle;
+
+    &.is-active {
+      visibility: visible;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  // フォーム要素のグループ
+  p {
+    margin: 0;
+
+    + p {
+      margin-top: 24px;
+    }
+  }
+
+  // 必須項目のアスタリスク
+  .wpcf7-form-control-wrap {
+    display: block;
+    position: relative;
+  }
+
+  // チェックボックス・ラジオボタン（将来的に追加する場合）
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+
+    + span {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}
+
+// コンタクトページ専用の追加スタイル
+.contact_page {
+  .wpcf7 {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+
+    @include variables.res(lg) {
+      padding: 80px 60px;
+    }
+  }
+
+  // ページタイトル下の説明文
+  .contact_description {
+    text-align: center;
+    margin-bottom: 40px;
+    color: variables.$gray-dark;
+    font-size: variables.$fz16;
+    line-height: 1.8;
+
+    @include variables.res(lg) {
+      margin-bottom: 60px;
+      font-size: variables.$fz18;
+    }
+  }
+}

@@ -244,6 +244,17 @@ picture {
 
   .title_section {
     margin-bottom: 0;
+    color: white;
+
+    .title {
+      display: block;
+      font-size: variables.$fz28;
+
+      font-weight: bold;
+      @include variables.res(lg) {
+        font-size: variables.$fz32;
+      }
+    }
   }
 }
 
