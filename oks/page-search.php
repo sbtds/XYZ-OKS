@@ -12,14 +12,14 @@ add_filter('document_title_parts', function($title_parts) {
     if (file_exists(get_template_directory() . '/includes/area-mapping.php')) {
         require_once get_template_directory() . '/includes/area-mapping.php';
     }
-    
+
     $custom_title = '';
-    
+
     // area IDパラメータから都道府県名を取得
     if (!empty($_GET['area'])) {
         $area_ids = is_array($_GET['area']) ? $_GET['area'] : array($_GET['area']);
         $area_mapping = oks_get_area_name_mapping();
-        
+
         if (count($area_ids) == 1) {
             // 単一の地域
             $area_id = intval($area_ids[0]);
@@ -34,17 +34,17 @@ add_filter('document_title_parts', function($title_parts) {
             $custom_title = '求人検索結果';
         }
     }
-    
+
     // keyword（キーワード）パラメータ
     if (!empty($_GET['keyword']) && empty($custom_title)) {
         $custom_title = esc_html($_GET['keyword']) . 'の求人';
     }
-    
+
     // カスタムタイトルが設定されている場合
     if (!empty($custom_title)) {
         $title_parts['title'] = $custom_title;
     }
-    
+
     return $title_parts;
 }, 99999);
 
@@ -63,17 +63,17 @@ $selected_prefectures_from_area = array();
 if (!empty($search_params['area'])) {
     // area-mapping.phpを読み込み
     require_once get_template_directory() . '/includes/area-mapping.php';
-    
+
     $area_ids = is_array($search_params['area']) ? $search_params['area'] : array($search_params['area']);
     $area_mapping = oks_get_area_name_mapping();
-    
+
     foreach ($area_ids as $area_id) {
         $area_id_int = intval($area_id);
         if (isset($area_mapping[$area_id_int])) {
             $selected_prefectures_from_area[] = $area_mapping[$area_id_int];
         }
     }
-    
+
     // 重複を削除して設定
     if (!empty($selected_prefectures_from_area)) {
         $search_params['prefecture'] = array_unique($selected_prefectures_from_area);
@@ -205,7 +205,9 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 <div class="search_main__panel_item" id="search_main_area">
                   <input type="checkbox" id="search_main__panel_subject01" />
                   <label class="search_main__panel_subject" for="search_main__panel_subject01">
-                    <span class="icon"><img src="./assets/images/page/common_icon_area.svg" alt="" /></span>
+                    <span class="icon"><img
+                        src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_icon_area.svg"
+                        alt="" /></span>
                     <span class="label">勤務地</span>
                     <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
                   </label>
@@ -278,20 +280,140 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 <div class="search_main__panel_item" id="search_main_type">
                   <input type="checkbox" id="search_main__panel_subject02" />
                   <label class="search_main__panel_subject" for="search_main__panel_subject02">
-                    <span class="icon"><img src="./assets/images/page/common_icon_type.svg" alt="" /></span>
+                    <span class="icon"><img
+                        src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_icon_type.svg"
+                        alt="" /></span>
                     <span class="label">職種</span>
                     <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
                   </label>
                   <div class="search_main__panel_block">
                     <?php
-                    // TODO: 職種の動的表示
-                    // 現在はデータがないため、職種検索機能を一時的に非表示にしています。
-                    // 実装時は $unique_industries と $unique_job_types_by_industry を使用して
-                    // 勤務地と同様の動的な職種選択機能を実装してください。
+                    // Define job types with grouped structure
+                    $job_type_groups = array(
+                        array('id' => 1, 'name' => '営業'),
+                        array('id' => 2, 'name' => '事務・受付・秘書・翻訳'),
+                        array('id' => 3, 'name' => '管理（人事・経理・総務・広報）'),
+                        array('id' => 4, 'name' => 'マーケティング・企画・カスタマーサポート'),
+                        array('id' => 5, 'name' => '製造・開発', 'sub_items' => array(
+                            '自動車・半導体・その他機械',
+                            '化学・素材',
+                            '繊維・化粧品・日用品',
+                            '食品・香料・飼料',
+                            '医療・理化学機器'
+                        )),
+                        array('id' => 10, 'name' => '物流・購買・生産管理・SCM'),
+                        array('id' => 11, 'name' => '交通・運輸・ドライバー'),
+                        array('id' => 12, 'name' => '建築・土木・設計'),
+                        array('id' => 13, 'name' => '電気・通信・インフラ'),
+                        array('id' => 14, 'name' => 'IT・Webエンジニア'),
+                        array('id' => 15, 'name' => 'クリエイティブ・デザイン・ゲーム'),
+                        array('id' => 16, 'name' => 'メディア・エンタメ'),
+                        array('id' => 17, 'name' => '医療・福祉・介護・薬局'),
+                        array('id' => 18, 'name' => '教育・保育'),
+                        array('id' => 19, 'name' => '不動産'),
+                        array('id' => 20, 'name' => '金融'),
+                        array('id' => 21, 'name' => '人材サービス'),
+                        array('id' => 22, 'name' => 'コンサルタント・士業'),
+                        array('id' => 23, 'name' => '経営・事業責任者'),
+                        array('id' => 24, 'name' => '飲食'),
+                        array('id' => 25, 'name' => '小売・流通'),
+                        array('id' => 26, 'name' => 'サービス・接客（美容・清掃・その他）'),
+                        array('id' => 27, 'name' => '公務員・団体職員・農林水産'),
+                        array('id' => 28, 'name' => '学術研究')
+                    );
+
+                    foreach ($job_type_groups as $job_type):
+                        $type_id = sprintf('search_select__type%02d', $job_type['id']);
+                        $show_id = sprintf('search_select__type_show%02d', $job_type['id']);
+
+                        // Count jobs for this job type category
+                        if (isset($job_type['sub_items'])) {
+                            // For parent categories with sub-items, count all sub-item jobs
+                            $placeholders = implode(',', array_fill(0, count($job_type['sub_items']), '%s'));
+                            $sub_item_values = array_map(function($sub) use ($job_type) {
+                                return $job_type['name'] . '（' . $sub . '）';
+                            }, $job_type['sub_items']);
+
+                            $query_args = array_merge(
+                                array("
+                                    SELECT COUNT(DISTINCT p.ID)
+                                    FROM {$wpdb->posts} p
+                                    INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+                                    WHERE p.post_type = 'job'
+                                    AND p.post_status = 'publish'
+                                    AND pm.meta_key = 'job_type'
+                                    AND pm.meta_value IN ($placeholders)
+                                "),
+                                $sub_item_values
+                            );
+
+                            $job_type_count = $wpdb->get_var($wpdb->prepare(...$query_args));
+                        } else {
+                            // For single job types
+                            $job_type_count = $wpdb->get_var($wpdb->prepare("
+                                SELECT COUNT(DISTINCT p.ID)
+                                FROM {$wpdb->posts} p
+                                INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+                                WHERE p.post_type = 'job'
+                                AND p.post_status = 'publish'
+                                AND pm.meta_key = 'job_type'
+                                AND pm.meta_value = %s
+                            ", $job_type['name']));
+                        }
                     ?>
-                    <p style="padding: 20px; text-align: center; color: #666;">
-                      職種検索機能は準備中です
-                    </p>
+                    <div class="search_select__type">
+                      <?php if (isset($job_type['sub_items'])): ?>
+                      <input type="checkbox" class="search_select__type_show" id="<?php echo $show_id; ?>" />
+                      <input type="checkbox" class="search_select__type_check" id="<?php echo $type_id; ?>"
+                        name="job_type[]" value="<?php echo esc_attr($job_type['name']); ?>"
+                        <?php checked(isset($search_params['job_type']) && in_array($job_type['name'], $search_params['job_type'])); ?> />
+                      <label class="search_select__type_title" for="<?php echo $type_id; ?>">
+                        <span class="checkbox"></span>
+                        <span class="label"><?php echo esc_html($job_type['name']); ?></span>
+                        <span class="count">(<?php echo number_format($job_type_count); ?>件)</span>
+                        <label class="arrow" for="<?php echo $show_id; ?>">
+                          <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                          <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                        </label>
+                      </label>
+                      <div class="search_select__type_menu">
+                        <div class="search_select__type_list">
+                          <?php foreach ($job_type['sub_items'] as $sub_item):
+                              $sub_item_full = $job_type['name'] . '（' . $sub_item . '）';
+                              // Count jobs for this sub-item
+                              $sub_item_count = $wpdb->get_var($wpdb->prepare("
+                                  SELECT COUNT(DISTINCT p.ID)
+                                  FROM {$wpdb->posts} p
+                                  INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+                                  WHERE p.post_type = 'job'
+                                  AND p.post_status = 'publish'
+                                  AND pm.meta_key = 'job_type'
+                                  AND pm.meta_value = %s
+                              ", $sub_item_full));
+                          ?>
+                          <label class="search_select__type_item">
+                            <input type="checkbox" class="search_select__type_item_check" name="job_type[]"
+                              value="<?php echo esc_attr($sub_item_full); ?>"
+                              data-parent="<?php echo esc_attr($job_type['name']); ?>"
+                              <?php checked(isset($search_params['job_type']) && in_array($sub_item_full, $search_params['job_type'])); ?> />
+                            <span class="checkbox"></span>
+                            <span class="label"><?php echo esc_html($sub_item); ?></span>
+                          </label>
+                          <?php endforeach; ?>
+                        </div>
+                      </div>
+                      <?php else: ?>
+                      <input type="checkbox" class="search_select__type_check" id="<?php echo $type_id; ?>"
+                        name="job_type[]" value="<?php echo esc_attr($job_type['name']); ?>"
+                        <?php checked(isset($search_params['job_type']) && in_array($job_type['name'], $search_params['job_type'])); ?> />
+                      <label class="search_select__type_title" for="<?php echo $type_id; ?>">
+                        <span class="checkbox"></span>
+                        <span class="label"><?php echo esc_html($job_type['name']); ?></span>
+                        <span class="count">(<?php echo number_format($job_type_count); ?>件)</span>
+                      </label>
+                      <?php endif; ?>
+                    </div>
+                    <?php endforeach; ?>
                   </div>
                 </div>
                 <!-- //item -->
@@ -299,7 +421,9 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 <div class="search_main__panel_item" id="search_main_income">
                   <input type="checkbox" id="search_main__panel_subject03" />
                   <label class="search_main__panel_subject" for="search_main__panel_subject03">
-                    <span class="icon"><img src="./assets/images/page/common_icon_income.svg" alt="" /></span>
+                    <span class="icon"><img
+                        src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_icon_income.svg"
+                        alt="" /></span>
                     <span class="label">給与</span>
                     <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
                   </label>
@@ -414,7 +538,9 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 <div class="search_main__panel_item" id="search_main_conditions">
                   <input type="checkbox" id="search_main__panel_subject04" />
                   <label class="search_main__panel_subject" for="search_main__panel_subject04">
-                    <span class="icon"><img src="./assets/images/page/common_icon_feature.svg" alt="" /></span>
+                    <span class="icon"><img
+                        src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_icon_feature.svg"
+                        alt="" /></span>
                     <span class="label">特徴</span>
                     <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
                   </label>
@@ -694,34 +820,34 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
           </div>
           <!-- //panel -->
 
-        <!-- list -->
-        <div class="search_main__list">
-          <?php if (!empty($search_results['posts'])): ?>
-          <?php foreach ($search_results['posts'] as $job): ?>
-          <div class="search_main__item">
-            <p class="caption">
-              <?php echo esc_html($job['industry'] . '／' . $job['job_type'] . '／' . ($job['company'] ? '非公開' : '公開')); ?>
-            </p>
-            <h2 class="title"><?php echo esc_html($job['title']); ?></h2>
-            <ul class="badges">
-              <?php if (!empty($job['conditions'])): ?>
-              <?php foreach ($job['conditions'] as $condition): ?>
-              <li class="badges_item"><span><?php echo esc_html($condition); ?></span></li>
-              <?php endforeach; ?>
-              <?php endif; ?>
-            </ul>
-            <div class="contents">
-              <dl>
-                <dt>応募資格</dt>
-                <dd><?php echo wp_kses_post(wpautop($job['h_application_requirements'])); ?></dd>
-              </dl>
-              <dl>
-                <dt>仕事内容</dt>
-                <dd><?php echo wp_kses_post(wpautop($job['job_description'])); ?></dd>
-              </dl>
-              <dl>
-                <dt>想定年収</dt>
-                <dd><?php
+          <!-- list -->
+          <div class="search_main__list">
+            <?php if (!empty($search_results['posts'])): ?>
+            <?php foreach ($search_results['posts'] as $job): ?>
+            <div class="search_main__item">
+              <p class="caption">
+                <?php echo esc_html($job['industry'] . '／' . $job['job_type'] . '／' . ($job['company'] ? '非公開' : '公開')); ?>
+              </p>
+              <h2 class="title"><?php echo esc_html($job['title']); ?></h2>
+              <ul class="badges">
+                <?php if (!empty($job['conditions'])): ?>
+                <?php foreach ($job['conditions'] as $condition): ?>
+                <li class="badges_item"><span><?php echo esc_html($condition); ?></span></li>
+                <?php endforeach; ?>
+                <?php endif; ?>
+              </ul>
+              <div class="contents">
+                <dl>
+                  <dt>応募資格</dt>
+                  <dd><?php echo wp_kses_post(wpautop($job['h_application_requirements'])); ?></dd>
+                </dl>
+                <dl>
+                  <dt>仕事内容</dt>
+                  <dd><?php echo wp_kses_post(wpautop($job['job_description'])); ?></dd>
+                </dl>
+                <dl>
+                  <dt>想定年収</dt>
+                  <dd><?php
                   if ($job['min_salary'] && $job['max_salary']) {
                     echo number_format($job['min_salary'] / 10000) . '万円～' . number_format($job['max_salary'] / 10000) . '万円';
                   } elseif ($job['min_salary']) {
@@ -732,46 +858,46 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                     echo '未設定';
                   }
                 ?></dd>
-              </dl>
-              <dl>
-                <dt>勤務地</dt>
-                <dd><?php echo esc_html($job['prefecture'] . ' ' . $job['city']); ?></dd>
-              </dl>
+                </dl>
+                <dl>
+                  <dt>勤務地</dt>
+                  <dd><?php echo esc_html($job['prefecture'] . ' ' . $job['city']); ?></dd>
+                </dl>
+              </div>
+              <div class="buttons">
+                <p class="button">
+                  <a class="button_more" href="mailto:?subject=<?php echo urlencode('求人問い合わせ: ' . $job['title']); ?>">
+                    <span class="label">この求人を問い合わせる</span>
+                    <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
+                  </a>
+                </p>
+                <p class="button">
+                  <a class="button_more secondary" href="<?php echo esc_url($job['permalink']); ?>">
+                    <span class="label">この求人の詳細をみる</span>
+                    <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
+                  </a>
+                </p>
+              </div>
             </div>
-            <div class="buttons">
-              <p class="button">
-                <a class="button_more" href="mailto:?subject=<?php echo urlencode('求人問い合わせ: ' . $job['title']); ?>">
-                  <span class="label">この求人を問い合わせる</span>
-                  <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
-                </a>
-              </p>
-              <p class="button">
-                <a class="button_more secondary" href="<?php echo esc_url($job['permalink']); ?>">
-                  <span class="label">この求人の詳細をみる</span>
-                  <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
-                </a>
-              </p>
-            </div>
+            <?php endforeach; ?>
+            <?php else: ?>
+            <p>検索条件に該当する求人が見つかりませんでした。</p>
+            <?php endif; ?>
           </div>
-          <?php endforeach; ?>
-          <?php else: ?>
-          <p>検索条件に該当する求人が見つかりませんでした。</p>
-          <?php endif; ?>
-        </div>
-        <!-- //list -->
-        <?php if ($search_results['max_num_pages'] > 1): ?>
-        <div class="search_main__nav">
-          <div class="search_main__nav_list">
-            <?php
+          <!-- //list -->
+          <?php if ($search_results['max_num_pages'] > 1): ?>
+          <div class="search_main__nav">
+            <div class="search_main__nav_list">
+              <?php
               $current_page = $search_results['current_page'];
               $max_pages = $search_results['max_num_pages'];
-              
+
               // Get current page URL without paged parameter
               $current_url = $_SERVER['REQUEST_URI'];
               // Remove existing page and paged parameters
               $current_url = preg_replace('/\/page\/\d+\//', '/', $current_url);
               $current_url = remove_query_arg('paged', $current_url);
-              
+
               // Ensure URL ends with /
               if (substr($current_url, -1) !== '/') {
                   $current_url .= '/';
@@ -804,12 +930,12 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                   echo '<p class="search_main__nav_item next"><a href="' . esc_url($next_url) . '"><i class="fa-solid fa-chevron-right"></i></a></p>';
               }
               ?>
+            </div>
           </div>
+          <?php endif; ?>
         </div>
-        <?php endif; ?>
       </div>
-    </div>
-    <?php get_template_part('template-parts/search-sidebar'); ?>
+      <?php get_template_part('template-parts/search-sidebar'); ?>
     </div>
   </section>
 </main>
@@ -817,79 +943,91 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
 
 <script>
 function changePostsPerPage(value) {
-    // Get current URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    // Update posts_per_page parameter
-    urlParams.set('posts_per_page', value);
-    
-    // Remove paged parameter to go back to page 1
-    urlParams.delete('paged');
-    
-    // Build new URL
-    const currentPath = window.location.pathname.replace(/\/page\/\d+\/?/, '/');
-    const newUrl = currentPath + (urlParams.toString() ? '?' + urlParams.toString() : '');
-    
-    // Navigate to new URL
-    window.location.href = newUrl;
+  // Get current URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // Update posts_per_page parameter
+  urlParams.set('posts_per_page', value);
+
+  // Remove paged parameter to go back to page 1
+  urlParams.delete('paged');
+
+  // Build new URL
+  const currentPath = window.location.pathname.replace(/\/page\/\d+\/?/, '/');
+  const newUrl = currentPath + (urlParams.toString() ? '?' + urlParams.toString() : '');
+
+  // Navigate to new URL
+  window.location.href = newUrl;
 }
 
 // ページロード時にチェックボックス状態を復元
 jQuery(document).ready(function($) {
-    <?php if (!empty($search_params['area'])): ?>
-    <?php 
+  <?php if (!empty($search_params['area'])): ?>
+  <?php
     // area-mapping.phpが読み込まれていない場合は読み込む
     if (!function_exists('oks_get_area_name_mapping')) {
         require_once get_template_directory() . '/includes/area-mapping.php';
     }
     ?>
-    
-    // 検索条件パネルを開く
-    $('#search_main__panel_check').prop('checked', true);
-    
-    // 選択されたarea IDに基づいて都道府県チェックボックスを設定
-    const selectedAreas = <?php echo json_encode(is_array($search_params['area']) ? $search_params['area'] : array($search_params['area'])); ?>;
-    const areaMapping = <?php echo json_encode(oks_get_area_name_mapping()); ?>;
-    
-    console.log('Selected area IDs:', selectedAreas);
-    console.log('Area mapping:', areaMapping);
-    
-    // area IDから都道府県名を取得してチェックボックスを設定
-    selectedAreas.forEach(function(areaId) {
-        const prefecture = areaMapping[parseInt(areaId)];
-        if (prefecture) {
-            console.log('Setting checkbox for:', prefecture);
-            const prefectureCheckbox = $('input[name="prefecture[]"][value="' + prefecture + '"]');
-            prefectureCheckbox.prop('checked', true);
-            
-            // その県に属する市区町村も全てチェック
-            const prefectureContainer = prefectureCheckbox.closest('.search_select__area');
-            const cityCheckboxes = prefectureContainer.find('input[name="city[]"][data-prefecture="' + prefecture + '"]');
-            cityCheckboxes.prop('checked', true);
-            
-            console.log('Also checked', cityCheckboxes.length, 'cities for', prefecture);
-        }
-    });
-    
-    // 全国チェックボックスの状態を更新
-    if (selectedAreas.length >= 40) {
-        $('.js-select-all-areas').prop('checked', true);
-        console.log('Set all areas checkbox to checked');
-    }
-    
-    <?php endif; ?>
-    
-    // メインフォームの都道府県チェックボックスのイベントハンドラー
-    $('#search_main_area').on('change', '.search_select__area_check', function() {
-        var isChecked = $(this).prop('checked');
-        var prefecture = $(this).val();
-        var container = $(this).closest('.search_select__area');
-        
-        // この都道府県の市区町村をすべてチェック/アンチェック
-        container.find('.search_select__area_item_check[data-prefecture="' + prefecture + '"]').prop('checked', isChecked);
-    });
-});
 
+  // 検索条件パネルを開く
+  $('#search_main__panel_check').prop('checked', true);
+
+  // 選択されたarea IDに基づいて都道府県チェックボックスを設定
+  const selectedAreas =
+    <?php echo json_encode(is_array($search_params['area']) ? $search_params['area'] : array($search_params['area'])); ?>;
+  const areaMapping = <?php echo json_encode(oks_get_area_name_mapping()); ?>;
+
+  console.log('Selected area IDs:', selectedAreas);
+  console.log('Area mapping:', areaMapping);
+
+  // area IDから都道府県名を取得してチェックボックスを設定
+  selectedAreas.forEach(function(areaId) {
+    const prefecture = areaMapping[parseInt(areaId)];
+    if (prefecture) {
+      console.log('Setting checkbox for:', prefecture);
+      const prefectureCheckbox = $('input[name="prefecture[]"][value="' + prefecture + '"]');
+      prefectureCheckbox.prop('checked', true);
+
+      // その県に属する市区町村も全てチェック
+      const prefectureContainer = prefectureCheckbox.closest('.search_select__area');
+      const cityCheckboxes = prefectureContainer.find('input[name="city[]"][data-prefecture="' + prefecture +
+        '"]');
+      cityCheckboxes.prop('checked', true);
+
+      console.log('Also checked', cityCheckboxes.length, 'cities for', prefecture);
+    }
+  });
+
+  // 全国チェックボックスの状態を更新
+  if (selectedAreas.length >= 40) {
+    $('.js-select-all-areas').prop('checked', true);
+    console.log('Set all areas checkbox to checked');
+  }
+
+  <?php endif; ?>
+
+  // メインフォームの都道府県チェックボックスのイベントハンドラー
+  $('#search_main_area').on('change', '.search_select__area_check', function() {
+    var isChecked = $(this).prop('checked');
+    var prefecture = $(this).val();
+    var container = $(this).closest('.search_select__area');
+
+    // この都道府県の市区町村をすべてチェック/アンチェック
+    container.find('.search_select__area_item_check[data-prefecture="' + prefecture + '"]').prop('checked',
+      isChecked);
+  });
+
+  // メインフォームの職種チェックボックスのイベントハンドラー
+  $('#search_main_type').on('change', '.search_select__type_check', function() {
+    var isChecked = $(this).prop('checked');
+    var jobType = $(this).val();
+    var container = $(this).closest('.search_select__type');
+
+    // この職種のサブアイテムをすべてチェック/アンチェック
+    container.find('.search_select__type_item_check[data-parent="' + jobType + '"]').prop('checked', isChecked);
+  });
+});
 </script>
 
 <?php get_footer(); ?>

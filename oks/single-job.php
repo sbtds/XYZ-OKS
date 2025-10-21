@@ -709,6 +709,8 @@ function get_single_job_conditions($post_id) {
         </div>
       </div>
     </div>
+
+
   </section>
 
   <section class="search_banner">
