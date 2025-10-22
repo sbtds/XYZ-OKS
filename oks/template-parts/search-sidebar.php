@@ -13,8 +13,24 @@ require_once get_template_directory() . '/includes/location-checkboxes.php';
 $search_params = array();
 if (!empty($_GET)) {
     $search_params = $_GET;
+    
+    // Ensure array parameters are always arrays (handle single values from URL)
+    $array_params = array('conditions', 'area', 'prefecture', 'city', 'job_type', 'income');
+    foreach ($array_params as $param) {
+        if (isset($search_params[$param]) && !is_array($search_params[$param])) {
+            $search_params[$param] = array($search_params[$param]);
+        }
+    }
 } elseif (!empty($_POST)) {
     $search_params = $_POST;
+    
+    // Ensure array parameters are always arrays
+    $array_params = array('conditions', 'area', 'prefecture', 'city', 'job_type', 'income');
+    foreach ($array_params as $param) {
+        if (isset($search_params[$param]) && !is_array($search_params[$param])) {
+            $search_params[$param] = array($search_params[$param]);
+        }
+    }
 }
 
 $search_handler = new OKS_Search_Handler();

@@ -165,7 +165,7 @@ get_header(); ?>
               $home_page = get_post($home_page_id);
           }
       }
-      
+
       $carousel_data = array();
       if ($home_page) {
           $carousel_data = get_field('index_carousel', $home_page->ID);
@@ -179,17 +179,17 @@ get_header(); ?>
               // Loop through item01 to item06
               for ($i = 1; $i <= 6; $i++) {
                   $item_key = sprintf('item%02d', $i);
-                  
+
                   if (isset($carousel_data[$item_key]) && !empty($carousel_data[$item_key])) {
                       $item_data = $carousel_data[$item_key];
                       $image = isset($item_data['img']) ? $item_data['img'] : null;
                       $link = isset($item_data['url']) ? $item_data['url'] : null;
-                      
+
                       if ($image || $link) {
                           // Handle different ACF image field return formats
                           $image_url = '';
                           $image_alt = 'Carousel Image';
-                          
+
                           if ($image) {
                               if (is_array($image)) {
                                   // Image returned as array
@@ -202,38 +202,37 @@ get_header(); ?>
                               }
                           }
                           ?>
-                          <div class="index_hero__slide_item swiper-slide">
-                            <?php if ($link && !empty($link['url'])) : ?>
-                              <a href="<?php echo esc_url($link['url']); ?>" 
-                                 <?php if (isset($link['target']) && $link['target']) echo 'target="' . esc_attr($link['target']) . '"'; ?>>
-                            <?php endif; ?>
-                              <p class="hover-image">
-                                <?php if ($image_url) : ?>
-                                  <img src="<?php echo esc_url($image_url); ?>" 
-                                       alt="<?php echo esc_attr($image_alt); ?>">
-                                <?php else : ?>
-                                  <img src="https://placehold.co/1100x840" alt="Placeholder">
-                                <?php endif; ?>
-                              </p>
-                            <?php if ($link && !empty($link['url'])) : ?>
-                              </a>
-                            <?php endif; ?>
-                          </div>
-                          <?php
+          <div class="index_hero__slide_item swiper-slide">
+            <?php if ($link && !empty($link['url'])) : ?>
+            <a href="<?php echo esc_url($link['url']); ?>"
+              <?php if (isset($link['target']) && $link['target']) echo 'target="' . esc_attr($link['target']) . '"'; ?>>
+              <?php endif; ?>
+              <p class="hover-image">
+                <?php if ($image_url) : ?>
+                <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>">
+                <?php else : ?>
+                <img src="https://placehold.co/1100x840" alt="Placeholder">
+                <?php endif; ?>
+              </p>
+              <?php if ($link && !empty($link['url'])) : ?>
+            </a>
+            <?php endif; ?>
+          </div>
+          <?php
                       }
                   }
               }
           } else {
               // Fallback: show placeholder content if no carousel data is set
               ?>
-              <div class="index_hero__slide_item swiper-slide">
-                <a href="#">
-                  <p class="hover-image">
-                    <img src="https://placehold.co/1100x840" alt="カルーセル画像が設定されていません">
-                  </p>
-                </a>
-              </div>
-              <?php
+          <div class="index_hero__slide_item swiper-slide">
+            <a href="#">
+              <p class="hover-image">
+                <img src="https://placehold.co/1100x840" alt="カルーセル画像が設定されていません">
+              </p>
+            </a>
+          </div>
+          <?php
           }
           ?>
         </div>
@@ -840,70 +839,101 @@ get_header(); ?>
       </h2>
       <div class="index_type__contents">
         <div class="index_type__list">
+          <?php
+          // Get the home page
+          $home_page = get_page_by_path('home');
+          if (!$home_page) {
+              // Fallback: try getting the front page
+              $home_page_id = get_option('page_on_front');
+              if ($home_page_id) {
+                  $home_page = get_post($home_page_id);
+              }
+          }
+
+          // Get the index_type group field
+          $index_type_data = array();
+          if ($home_page) {
+              $index_type_data = get_field('index_type', $home_page->ID);
+          }
+
+          // Display banners if data exists
+          if ($index_type_data && is_array($index_type_data)) {
+              // Loop through banner01 to banner15
+              for ($i = 1; $i <= 15; $i++) {
+                  $banner_key = sprintf('banner%02d', $i);
+
+                  if (isset($index_type_data[$banner_key]) && !empty($index_type_data[$banner_key])) {
+                      $banner = $index_type_data[$banner_key];
+
+                      // Check if banner has required fields (both label and link must be present)
+                      if (!empty($banner['label']) && !empty($banner['link'])) {
+                          $image = isset($banner['image']) ? $banner['image'] : null;
+                          $label = $banner['label'];
+                          $link = $banner['link'];
+
+                          // Handle different ACF image field return formats
+                          $image_url = '';
+                          $image_alt = '';
+
+                          if ($image) {
+                              if (is_array($image)) {
+                                  // Image returned as array
+                                  $image_url = isset($image['url']) ? $image['url'] : '';
+                                  $image_alt = isset($image['alt']) ? $image['alt'] : (isset($image['title']) ? $image['title'] : $label);
+                              } elseif (is_numeric($image)) {
+                                  // Image returned as ID
+                                  $image_url = wp_get_attachment_image_url($image, 'medium');
+                                  $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true) ?: $label;
+                              } elseif (is_string($image)) {
+                                  // Image returned as URL
+                                  $image_url = $image;
+                                  $image_alt = $label;
+                              }
+                          }
+                          ?>
           <div class="index_type__item">
-            <a class="index_type__inner" href="./search.html">
+            <a class="index_type__inner" href="<?php echo esc_url($link); ?>">
+              <?php if ($image_url) : ?>
               <div class="index_type__thb">
                 <p class="hover-image">
-                  <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_img.jpg" alt="">
+                  <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>">
                 </p>
               </div>
+              <?php endif; ?>
               <div class="index_type__text">
-                <p><strong>テキスト職</strong></p>
-                <p>テキスト職テキスト職</p>
+                <p><strong><?php echo esc_html($label); ?></strong></p>
               </div>
               <div class="index_type__arrow">
                 <i class="fa-solid fa-angle-right"></i>
               </div>
             </a>
           </div>
+          <?php
+                      }
+                  }
+              }
+          } else {
+              // Fallback: Show placeholder content if no ACF data is available
+              ?>
           <div class="index_type__item">
-            <a class="index_type__inner" href="./search.html">
+            <a class="index_type__inner" href="#">
               <div class="index_type__thb">
                 <p class="hover-image">
-                  <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_img.jpg" alt="">
+                  <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_img.jpg"
+                    alt="働き方バナーが設定されていません">
                 </p>
               </div>
               <div class="index_type__text">
-                <p><strong>テキスト職</strong></p>
-                <p>テキスト職テキスト職テキスト職テキスト職</p>
+                <p><strong>働き方バナーが設定されていません</strong></p>
               </div>
               <div class="index_type__arrow">
                 <i class="fa-solid fa-angle-right"></i>
               </div>
             </a>
           </div>
-          <div class="index_type__item">
-            <a class="index_type__inner" href="./search.html">
-              <div class="index_type__thb">
-                <p class="hover-image">
-                  <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_img.jpg" alt="">
-                </p>
-              </div>
-              <div class="index_type__text">
-                <p><strong>テキスト職テキスト職</strong></p>
-                <p>テキスト職テキスト職</p>
-              </div>
-              <div class="index_type__arrow">
-                <i class="fa-solid fa-angle-right"></i>
-              </div>
-            </a>
-          </div>
-          <div class="index_type__item">
-            <a class="index_type__inner" href="./search.html">
-              <div class="index_type__thb">
-                <p class="hover-image">
-                  <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_img.jpg" alt="">
-                </p>
-              </div>
-              <div class="index_type__text">
-                <p><strong>テキスト職</strong></p>
-                <p>テキスト職テキスト職</p>
-              </div>
-              <div class="index_type__arrow">
-                <i class="fa-solid fa-angle-right"></i>
-              </div>
-            </a>
-          </div>
+          <?php
+          }
+          ?>
         </div>
       </div>
     </div>
@@ -1000,20 +1030,45 @@ get_header(); ?>
       </h2>
 
       <div class="index_story__list">
+        <?php
+        // Query for story posts
+        $story_query = new WP_Query(array(
+            'post_type' => 'story',
+            'posts_per_page' => 3,
+            'orderby' => 'date',
+            'order' => 'DESC'
+        ));
 
-        <a class="index_story__item" href="#">
+        if ($story_query->have_posts()) :
+            while ($story_query->have_posts()) : $story_query->the_post();
+                // Get ACF fields
+                $story_top = get_field('story_top');
+                $story_message = get_field('story_message');
+        ?>
+        <a class="index_story__item" href="<?php the_permalink(); ?>">
           <div class="index_story__inner">
             <div class="index_story__upper">
               <p class="index_story__thb hover-image">
-                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg" alt="">
+                <?php if (has_post_thumbnail()) : ?>
+                <?php the_post_thumbnail('medium'); ?>
+                <?php else : ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg"
+                  alt="<?php echo esc_attr(get_the_title()); ?>">
+                <?php endif; ?>
               </p>
               <p class="index_story__lead"><span>テキストが入りますテキストが入ります</span></p>
             </div>
             <div class="index_story__contents">
               <div class="index_story__main">
-                <p class="en">NAME NAME</p>
-                <p class="ja">名前 名前</p>
-                <p class="caption">テキストテキスト</p>
+                <?php if (!empty($story_top['eng'])) : ?>
+                <p class="en"><?php echo esc_html($story_top['eng']); ?></p>
+                <?php endif; ?>
+                <?php if (!empty($story_top['name'])) : ?>
+                <p class="ja"><?php echo esc_html($story_top['name']); ?></p>
+                <?php endif; ?>
+                <?php if (!empty($story_top['text'])) : ?>
+                <p class="caption"><?php echo esc_html($story_top['text']); ?></p>
+                <?php endif; ?>
               </div>
               <p class="index_story__arrow">
                 <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
@@ -1021,23 +1076,29 @@ get_header(); ?>
             </div>
             <hr>
             <div class="index_story__text">
-              <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              <?php if (!empty($story_message['title'])) : ?>
+              <p><?php echo esc_html($story_message['title']); ?></p>
+              <?php endif; ?>
             </div>
           </div>
         </a>
+        <?php endwhile; wp_reset_postdata(); ?>
+        <?php else : ?>
+        <!-- Fallback if no story posts -->
         <a class="index_story__item" href="#">
           <div class="index_story__inner">
             <div class="index_story__upper">
               <p class="index_story__thb hover-image">
-                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg" alt="">
+                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg"
+                  alt="転職者ストーリー">
               </p>
-              <p class="index_story__lead"><span>テキストが入りますテキストが入ります</span></p>
+              <p class="index_story__lead"><span>転職者ストーリーが登録されていません</span></p>
             </div>
             <div class="index_story__contents">
               <div class="index_story__main">
-                <p class="en">NAME NAME</p>
-                <p class="ja">名前 名前</p>
-                <p class="caption">テキストテキスト</p>
+                <p class="en">NO STORY</p>
+                <p class="ja">ストーリーなし</p>
+                <p class="caption">転職者ストーリーを登録してください</p>
               </div>
               <p class="index_story__arrow">
                 <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
@@ -1045,39 +1106,14 @@ get_header(); ?>
             </div>
             <hr>
             <div class="index_story__text">
-              <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+              <p>転職者ストーリーが登録されていません</p>
             </div>
           </div>
         </a>
-        <a class="index_story__item" href="#">
-          <div class="index_story__inner">
-            <div class="index_story__upper">
-              <p class="index_story__thb hover-image">
-                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg" alt="">
-              </p>
-              <p class="index_story__lead"><span>テキストが入りますテキストが入ります</span></p>
-            </div>
-            <div class="index_story__contents">
-              <div class="index_story__main">
-                <p class="en">NAME NAME</p>
-                <p class="ja">名前 名前</p>
-                <p class="caption">テキストテキスト</p>
-              </div>
-              <p class="index_story__arrow">
-                <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
-              </p>
-            </div>
-            <hr>
-            <div class="index_story__text">
-              <p>テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-            </div>
-          </div>
-        </a>
-
-
+        <?php endif; ?>
       </div>
       <div class="button_section">
-        <a class="button_more" href="#">
+        <a class="button_more" href="/story/">
           <span class="label">もっと見る</span>
           <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
         </a>
