@@ -274,17 +274,7 @@ function get_single_job_conditions($post_id) {
             </dt>
             <dd>
               <div class="contents">
-                <p><?php
-                  $min_salary = get_field('min_salary');
-                  $max_salary = get_field('max_salary');
-                  if ($min_salary && $max_salary) {
-                    echo number_format($min_salary / 10000) . '万円～' . number_format($max_salary / 10000) . '万円';
-                  } elseif ($min_salary) {
-                    echo number_format($min_salary / 10000) . '万円～';
-                  } elseif ($max_salary) {
-                    echo '～' . number_format($max_salary / 10000) . '万円';
-                  }
-                ?></p>
+                <?php echo get_field('display_expected_salary'); ?>
               </div>
             </dd>
           </dl>

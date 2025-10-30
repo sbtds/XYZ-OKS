@@ -54,7 +54,7 @@ get_header();
 $search_params = array();
 if (!empty($_GET)) {
     $search_params = $_GET;
-    
+
     // Ensure array parameters are always arrays (handle single values from URL)
     $array_params = array('conditions', 'area', 'prefecture', 'city', 'job_type', 'income');
     foreach ($array_params as $param) {
@@ -64,7 +64,7 @@ if (!empty($_GET)) {
     }
 } elseif (!empty($_POST)) {
     $search_params = $_POST;
-    
+
     // Ensure array parameters are always arrays
     $array_params = array('conditions', 'area', 'prefecture', 'city', 'job_type', 'income');
     foreach ($array_params as $param) {
@@ -842,7 +842,16 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
             <?php foreach ($search_results['posts'] as $job): ?>
             <div class="search_main__item">
               <p class="caption">
-                <?php echo esc_html($job['industry'] . '／' . $job['job_type'] . '／' . ($job['company'] ? '非公開' : '公開')); ?>
+                <?php 
+                $company_status = '非公開'; // デフォルトは非公開
+                if (!empty($job['listed_company'])) {
+                    $listed_value = strtolower(trim($job['listed_company']));
+                    if ($listed_value === 'y' || $listed_value === '1' || $listed_value === 'true') {
+                        $company_status = '公開';
+                    }
+                }
+                echo esc_html($job['industry'] . '／' . $job['job_type'] . '／' . $company_status); 
+                ?>
               </p>
               <h2 class="title"><?php echo esc_html($job['title']); ?></h2>
               <ul class="badges">
@@ -863,17 +872,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                 </dl>
                 <dl>
                   <dt>想定年収</dt>
-                  <dd><?php
-                  if ($job['min_salary'] && $job['max_salary']) {
-                    echo number_format($job['min_salary'] / 10000) . '万円～' . number_format($job['max_salary'] / 10000) . '万円';
-                  } elseif ($job['min_salary']) {
-                    echo number_format($job['min_salary'] / 10000) . '万円～';
-                  } elseif ($job['max_salary']) {
-                    echo '～' . number_format($job['max_salary'] / 10000) . '万円';
-                  } else {
-                    echo '未設定';
-                  }
-                ?></dd>
+                  <dd><?php echo wp_kses_post(wpautop($job['display_expected_salary'])); ?></dd>
                 </dl>
                 <dl>
                   <dt>勤務地</dt>

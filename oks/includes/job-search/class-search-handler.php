@@ -388,6 +388,8 @@ class OKS_Search_Handler {
                     'job_description' => get_field('job_description', $post_id),
                     'h_application_requirements' => get_field('h_application_requirements', $post_id),
                     'h_stock_public' => get_field('h_stock_public', $post_id),
+                    'display_expected_salary' => get_field('display_expected_salary', $post_id),
+                    'listed_company' => get_field('listed_company', $post_id),
                     'permalink' => get_permalink($post_id),
                     'conditions' => $this->get_job_conditions($post_id),
                     'updated' => get_the_modified_date('Y-m-d', $post_id)
@@ -408,20 +410,43 @@ class OKS_Search_Handler {
         $conditions = array();
 
         $condition_fields = array(
+            'annual_holidays_120' => '年間休日120日以上',
+            'housing_allowance' => '寮・社宅・住宅手当あり',
+            'retirement_benefits' => '退職金制度',
+            'qualification_support' => '資格取得支援制度あり',
+            'maternity_leave_record' => '産休・育休・介護休暇取得実績あり',
+            'women_active' => '女性が活躍',
+            'men_active' => '男性が活躍',
+            'incentive_available' => 'インセンティブあり',
+            'ui_turn_support' => 'U・Iターン支援あり',
+            'remote_interview_ok' => 'リモート面接OK',
+            'middle_active' => 'ミドル活躍中',
+            'senior_active' => 'シニア活躍中',
+            'new_graduate' => '新卒',
+            'second_new_graduate' => '第二新卒',
+            'mid_career' => '中途採用',
+            'transportation_allowance' => '交通費支給',
+            'full_weekend_off' => '完全週休二日制',
             'weekend_holiday' => '土日祝休み',
-            'low_overtime' => '残業少なめ',
-            'remote_work' => 'リモートワーク可',
-            'car_commute' => '車通勤可',
-            'bike_commute' => '自転車通勤可',
-            'fixed_overtime_pay' => '固定残業代あり',
-            'discretionary_work' => '裁量労働制',
-            'passive_smoking' => '受動喫煙対策',
-            'contract_period' => '契約期間あり',
-            'probation_period' => '試用期間あり'
+            'low_overtime' => '残業少なめ（月20時間未満）',
+            'flex_time' => 'フレックスタイム制度あり',
+            'remote_work' => 'リモートワーク・在宅勤務制度',
+            'no_transfer' => '転勤なし',
+            'education_unnecessary' => '学歴不問',
+            'full_time_employee' => '正社員',
+            'management_position' => '管理職・マネージャー職の求人',
+            'established_10years' => '設立10年以上の会社',
+            'venture_company' => 'ベンチャー企業',
+            'job_inexperienced_ok' => '職種未経験OK',
+            'industry_inexperienced_ok' => '業種未経験OK',
+            'listed_company' => '上場企業',
+            'work_experience_unnecessary' => '社会人経験不問',
+            'it_skill_unnecessary' => 'ITスキル不問'
         );
 
         foreach ($condition_fields as $field => $label) {
-            if (get_field($field, $post_id)) {
+            $field_value = get_field($field, $post_id);
+            if ($field_value && strtolower(trim($field_value)) === 'y') {
                 $conditions[] = $label;
             }
         }
