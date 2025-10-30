@@ -729,7 +729,7 @@ class OKS_Search_Handler {
     public function get_unique_prefectures() {
         global $wpdb;
 
-        $prefectures = $wpdb->get_col($wpdb->prepare("
+        $prefectures = $wpdb->get_col("
             SELECT DISTINCT pm.meta_value
             FROM {$wpdb->posts} p
             INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
@@ -739,9 +739,35 @@ class OKS_Search_Handler {
             AND pm.meta_value != ''
             AND pm.meta_value IS NOT NULL
             ORDER BY pm.meta_value ASC
-        "));
+        ");
 
-        return $prefectures;
+        // Filter out invalid prefecture values (should be short text, not long descriptions)
+        $filtered_prefectures = array_filter($prefectures, function($prefecture) {
+            // Valid prefecture should be:
+            // 1. Less than 10 characters
+            // 2. Should not contain line breaks or excessive spaces
+            // 3. Should end with 県, 府, 都, or be 北海道
+            $prefecture = trim($prefecture);
+            
+            // Skip if too long (likely description text)
+            if (mb_strlen($prefecture) > 10) {
+                return false;
+            }
+            
+            // Skip if contains line breaks or multiple spaces
+            if (preg_match('/[\r\n]/', $prefecture) || preg_match('/\s{2,}/', $prefecture)) {
+                return false;
+            }
+            
+            // Check if it matches prefecture pattern (ends with 都道府県 or is 北海道)
+            if (preg_match('/^(北海道|.+[都道府県])$/', $prefecture)) {
+                return true;
+            }
+            
+            return false;
+        });
+
+        return array_values($filtered_prefectures);
     }
 
     /**
