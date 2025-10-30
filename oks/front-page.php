@@ -82,7 +82,7 @@ get_header(); ?>
               class="md-only">チャンスを。<br>オーケーエスは、あなたの「やってみたい」を応援します。</p>
           <div class="index_hero__main_cv">
             <div class="index_hero__main_button">
-              <a class="button_cv" href="index.html#register">
+              <a class="button_cv" href="<?php echo home_url('/entry/'); ?>">
                 <div class="contents">
                   <span class="badge">無料</span>
                   <span class="caption">登録して</span>
@@ -290,7 +290,7 @@ get_header(); ?>
         </div>
       </div>
       <div class="button_section">
-        <a class="button_more white" href="#">
+        <a class="button_more white" href="<?php echo home_url('/entry/'); ?>">
           <span class="label">まずは登録する</span>
           <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
         </a>

@@ -492,22 +492,12 @@ function get_single_job_conditions($post_id) {
               </div>
             </dd>
           </dl>
-          <hr />
-          <dl class="featured_outline__item">
-            <dt>
-              <span class="label">募集要項</span>
-              <span class="arrow"><img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
-                  alt="" /></span>
-            </dt>
-            <dd>
-              <div class="contents">
-              </div>
-            </dd>
-          </dl>
+
         </div>
         <div class="button_section">
-          <a class="button_more" href="#">
+          <a class="button_more"
+            href="https://oks.lixas-system.com/entrysheet?contact_url=<?php echo esc_attr(get_field('internal_job_id')); ?>"
+            target="_blank">
             <span class="label">この求人を問い合わせる</span>
             <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
           </a>
@@ -519,6 +509,23 @@ function get_single_job_conditions($post_id) {
       <h3 class="featured_outline__title">企業情報</h3>
       <div class="featured_outline__main">
         <div class="featured_outline__list">
+          <?php if(get_field('industry')): ?>
+          <dl class="featured_outline__item">
+            <dt>
+              <span class="label">業種</span>
+              <span class="arrow"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/featured_arrow.svg"
+                  alt="" /></span>
+            </dt>
+            <dd>
+              <div class="contents">
+                <p><?php echo get_field('industry'); ?></p>
+              </div>
+            </dd>
+          </dl>
+          <hr />
+          <?php endif; ?>
+
           <?php if(get_field('h_employee_count')): ?>
           <dl class="featured_outline__item">
             <dt>

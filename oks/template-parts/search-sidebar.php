@@ -342,185 +342,203 @@ $total_job_count = $wpdb->get_var("
           <p class="search_side__subject">こだわり条件</p>
         </div>
         <div class="search_select__conditions_list">
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="年間休日120日以上"
-              <?php if (isset($search_params['conditions']) && in_array('年間休日120日以上', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">年間休日120日以上</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="寮・社宅・住宅手当あり"
-              <?php if (isset($search_params['conditions']) && in_array('寮・社宅・住宅手当あり', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">寮・社宅・住宅手当あり</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="退職金制度"
-              <?php if (isset($search_params['conditions']) && in_array('退職金制度', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">退職金制度</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="資格取得支援制度"
-              <?php if (isset($search_params['conditions']) && in_array('資格取得支援制度', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">資格取得支援制度</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="産休・育休・介護休暇取得実績あり"
-              <?php if (isset($search_params['conditions']) && in_array('産休・育休・介護休暇取得実績あり', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">産休・育休・介護休暇取得実績あり</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="女性が活躍"
-              <?php if (isset($search_params['conditions']) && in_array('女性が活躍', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">女性が活躍</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="男性が活躍"
-              <?php if (isset($search_params['conditions']) && in_array('男性が活躍', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">男性が活躍</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="インセンティブあり"
-              <?php if (isset($search_params['conditions']) && in_array('インセンティブあり', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">インセンティブあり</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="UIターン支援あり"
-              <?php if (isset($search_params['conditions']) && in_array('UIターン支援あり', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">UIターン支援あり</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="リモート面接OK"
-              <?php if (isset($search_params['conditions']) && in_array('リモート面接OK', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">リモート面接OK</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="ミドル活躍中"
-              <?php if (isset($search_params['conditions']) && in_array('ミドル活躍中', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">ミドル活躍中</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="シニア活躍中"
-              <?php if (isset($search_params['conditions']) && in_array('シニア活躍中', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">シニア活躍中</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="新卒採用"
-              <?php if (isset($search_params['conditions']) && in_array('新卒採用', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">新卒採用</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="第二新卒採用"
-              <?php if (isset($search_params['conditions']) && in_array('第二新卒採用', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">第２新卒採用</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="中途採用"
-              <?php if (isset($search_params['conditions']) && in_array('中途採用', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">中途採用</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="固定残業代なし"
-              <?php if (isset($search_params['conditions']) && in_array('固定残業代なし', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">固定残業代なし</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="交通費支給"
-              <?php if (isset($search_params['conditions']) && in_array('交通費支給', $search_params['conditions'])) echo 'checked'; ?> />
-            <span class="checkbox"></span>
-            <span class="label">交通費支給</span>
-          </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="完全週休二日制"
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="完全週休二日制"
               <?php if (isset($search_params['conditions']) && in_array('完全週休二日制', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
-            <span class="label">完全週休2日制</span>
+            <span class="label">完全週休二日制</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="土日祝休み"
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="土日祝休み"
               <?php if (isset($search_params['conditions']) && in_array('土日祝休み', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
             <span class="label">土日祝休み</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="残業少なめ(20時間未満)"
-              <?php if (isset($search_params['conditions']) && in_array('残業少なめ(20時間未満)', $search_params['conditions'])) echo 'checked'; ?> />
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="年間休日120日以上"
+              <?php if (isset($search_params['conditions']) && in_array('年間休日120日以上', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
-            <span class="label">残業少なめ(20時間未満)</span>
+            <span class="label">年間休日120日以上</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="リモートワーク・在宅勤務制度あり"
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]"
+              value="残業少なめ（月20時間未満）"
+              <?php if (isset($search_params['conditions']) && in_array('残業少なめ（月20時間未満）', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">残業少なめ（月20時間未満）</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]"
+              value="産休・育休・介護休暇取得実績あり"
+              <?php if (isset($search_params['conditions']) && in_array('産休・育休・介護休暇取得実績あり', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">産休・育休・介護休暇取得実績あり</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]"
+              value="リモートワーク・在宅勤務制度あり"
               <?php if (isset($search_params['conditions']) && in_array('リモートワーク・在宅勤務制度あり', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
             <span class="label">リモートワーク・在宅勤務制度あり</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="転勤なし"
-              <?php if (isset($search_params['conditions']) && in_array('転勤なし', $search_params['conditions'])) echo 'checked'; ?> />
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="フレックスタイム制度あり"
+              <?php if (isset($search_params['conditions']) && in_array('フレックスタイム制度あり', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
-            <span class="label">転勤なし</span>
+            <span class="label">フレックスタイム制度あり</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="学歴不問"
-              <?php if (isset($search_params['conditions']) && in_array('学歴不問', $search_params['conditions'])) echo 'checked'; ?> />
+
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="退職金制度"
+              <?php if (isset($search_params['conditions']) && in_array('退職金制度', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
-            <span class="label">学歴不問</span>
+            <span class="label">退職金制度</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="正社員"
-              <?php if (isset($search_params['conditions']) && in_array('正社員', $search_params['conditions'])) echo 'checked'; ?> />
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="寮・社宅・住宅手当あり"
+              <?php if (isset($search_params['conditions']) && in_array('寮・社宅・住宅手当あり', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
-            <span class="label">正社員</span>
+            <span class="label">寮・社宅・住宅手当あり</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="管理職・マネージャー"
-              <?php if (isset($search_params['conditions']) && in_array('管理職・マネージャー', $search_params['conditions'])) echo 'checked'; ?> />
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="U・Iターン支援あり"
+              <?php if (isset($search_params['conditions']) && in_array('U・Iターン支援あり', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
-            <span class="label">管理職・マネージャー</span>
+            <span class="label">U・Iターン支援あり</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="設立10年以上の会社"
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="交通費支給"
+              <?php if (isset($search_params['conditions']) && in_array('交通費支給', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">交通費支給</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="固定残業代なし"
+              <?php if (isset($search_params['conditions']) && in_array('固定残業代なし', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">固定残業代なし</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="資格取得支援制度"
+              <?php if (isset($search_params['conditions']) && in_array('資格取得支援制度', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">資格取得支援制度</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="研修制度あり"
+              <?php if (isset($search_params['conditions']) && in_array('研修制度あり', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">研修制度あり</span>
+          </label>
+
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="女性活躍中"
+              <?php if (isset($search_params['conditions']) && in_array('女性活躍中', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">女性活躍中</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="ミドル活躍中"
+              <?php if (isset($search_params['conditions']) && in_array('ミドル活躍中', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">ミドル活躍中</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="シニア活躍中"
+              <?php if (isset($search_params['conditions']) && in_array('シニア活躍中', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">シニア活躍中</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="上場企業"
+              <?php if (isset($search_params['conditions']) && in_array('上場企業', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">上場企業</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="設立10年以上の会社"
               <?php if (isset($search_params['conditions']) && in_array('設立10年以上の会社', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
             <span class="label">設立10年以上の会社</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="ベンチャー企業"
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="ベンチャー企業"
               <?php if (isset($search_params['conditions']) && in_array('ベンチャー企業', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
             <span class="label">ベンチャー企業</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="車通勤可"
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="車通勤可"
               <?php if (isset($search_params['conditions']) && in_array('車通勤可', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
             <span class="label">車通勤可</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="未経験でも可"
-              <?php if (isset($search_params['conditions']) && in_array('未経験でも可', $search_params['conditions'])) echo 'checked'; ?> />
+
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="職種未経験歓迎"
+              <?php if (isset($search_params['conditions']) && in_array('職種未経験歓迎', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
-            <span class="label">未経験でも可</span>
+            <span class="label">職種未経験歓迎</span>
           </label>
-          <label class="search_select__area_item">
-            <input type="checkbox" class="search_select__area_item_check" name="conditions[]" value="上場企業"
-              <?php if (isset($search_params['conditions']) && in_array('上場企業', $search_params['conditions'])) echo 'checked'; ?> />
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="業種未経験歓迎"
+              <?php if (isset($search_params['conditions']) && in_array('業種未経験歓迎', $search_params['conditions'])) echo 'checked'; ?> />
             <span class="checkbox"></span>
-            <span class="label">上場企業</span>
+            <span class="label">業種未経験歓迎</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="社会人経験不問"
+              <?php if (isset($search_params['conditions']) && in_array('社会人経験不問', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">社会人経験不問</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="学歴不問"
+              <?php if (isset($search_params['conditions']) && in_array('学歴不問', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">学歴不問</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="ITスキル不問"
+              <?php if (isset($search_params['conditions']) && in_array('ITスキル不問', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">ITスキル不問</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="新卒採用"
+              <?php if (isset($search_params['conditions']) && in_array('新卒採用', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">新卒採用</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="第二新卒採用"
+              <?php if (isset($search_params['conditions']) && in_array('第二新卒採用', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">第二新卒採用</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="中途採用"
+              <?php if (isset($search_params['conditions']) && in_array('中途採用', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">中途採用</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="転勤なし"
+              <?php if (isset($search_params['conditions']) && in_array('転勤なし', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">転勤なし</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="正社員"
+              <?php if (isset($search_params['conditions']) && in_array('正社員', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">正社員</span>
+          </label>
+          <label class="search_select__conditions_item">
+            <input type="checkbox" class="search_select__conditions_item_check" name="conditions[]" value="契約社員"
+              <?php if (isset($search_params['conditions']) && in_array('契約社員', $search_params['conditions'])) echo 'checked'; ?> />
+            <span class="checkbox"></span>
+            <span class="label">契約社員</span>
           </label>
         </div>
       </div>

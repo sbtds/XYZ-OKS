@@ -48,7 +48,12 @@
               </a>
             </li>
             <li class="common_global__item">
-              <a href="<?php echo home_url(); ?>#register">
+              <a href="<?php echo home_url('/story/'); ?>">
+                <span class="default">転職者ストーリー</span>
+              </a>
+            </li>
+            <li class="common_global__item">
+              <a href="<?php echo home_url('/entry/'); ?>">
                 <span class="default">カンタン登録</span>
               </a>
             </li>
@@ -128,7 +133,12 @@
                   </a>
                 </li>
                 <li class="common_navigation__item">
-                  <a href="<?php echo home_url(); ?>#register">
+                  <a href="<?php echo home_url('/story/'); ?>">
+                    <span class="default hover-underline">転職者ストーリー</span>
+                  </a>
+                </li>
+                <li class="common_navigation__item">
+                  <a href="<?php echo home_url('/entry/'); ?>">
                     <span class="default hover-underline">カンタン登録</span>
                   </a>
                 </li>

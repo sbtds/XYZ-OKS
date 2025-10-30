@@ -390,6 +390,7 @@ class OKS_Search_Handler {
                     'h_stock_public' => get_field('h_stock_public', $post_id),
                     'display_expected_salary' => get_field('display_expected_salary', $post_id),
                     'listed_company' => get_field('listed_company', $post_id),
+                    'internal_job_id' => get_field('internal_job_id', $post_id),
                     'permalink' => get_permalink($post_id),
                     'conditions' => $this->get_job_conditions($post_id),
                     'updated' => get_the_modified_date('Y-m-d', $post_id)
@@ -945,28 +946,27 @@ class OKS_Search_Handler {
         
         $all_conditions = array_merge($hourly_conditions, $monthly_conditions);
         
-        // 全ての求人の給与データを取得
+        // 全ての求人の給与データを取得（給与形態も含む）
         $salary_data = $wpdb->get_results("
-            SELECT p.ID, pm.meta_value as salary
+            SELECT p.ID, 
+                   pm_salary.meta_value as salary,
+                   pm_type.meta_value as salary_type
             FROM {$wpdb->posts} p
-            INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+            INNER JOIN {$wpdb->postmeta} pm_salary ON p.ID = pm_salary.post_id
+            LEFT JOIN {$wpdb->postmeta} pm_type ON p.ID = pm_type.post_id AND pm_type.meta_key = 'salary_type'
             WHERE p.post_type = 'job'
             AND p.post_status = 'publish'
-            AND pm.meta_key = 'salary'
-            AND pm.meta_value != ''
-            AND pm.meta_value IS NOT NULL
+            AND pm_salary.meta_key = 'salary'
+            AND pm_salary.meta_value != ''
+            AND pm_salary.meta_value IS NOT NULL
         ");
         
         $matching_post_ids = array();
         
         foreach ($salary_data as $row) {
             $salary_value = $row->salary;
+            $salary_type = $row->salary_type;
             $post_id = $row->ID;
-            
-            // 給与値を解析（例: "206,000円 ～ 238,000円"）
-            $salary_range = $this->parse_salary_value($salary_value);
-            
-            if (!$salary_range) continue;
             
             foreach ($income_conditions as $condition) {
                 if (!isset($all_conditions[$condition])) continue;
@@ -974,7 +974,7 @@ class OKS_Search_Handler {
                 $condition_def = $all_conditions[$condition];
                 
                 // 条件に合致するかチェック
-                if ($this->salary_matches_condition($salary_range, $condition_def)) {
+                if ($this->salary_matches_condition_with_type($salary_value, $salary_type, $condition_def)) {
                     $matching_post_ids[] = $post_id;
                     break; // 一つでも条件に合致すれば追加
                 }
@@ -1013,6 +1013,82 @@ class OKS_Search_Handler {
         );
     }
     
+    /**
+     * Check if salary matches condition with salary type
+     */
+    private function salary_matches_condition_with_type($salary_value, $salary_type, $condition_def) {
+        // 時給の場合
+        if ($condition_def['type'] === 'hourly') {
+            // salary_typeが'時給'でない場合はfalse
+            if ($salary_type !== '時給') {
+                return false;
+            }
+            
+            // 給与値から数値を抽出
+            $salary_numbers = $this->extract_numbers_from_salary($salary_value);
+            if (empty($salary_numbers)) {
+                return false;
+            }
+            
+            // 時給の場合は最小値を基準にする
+            $hourly_wage = min($salary_numbers);
+            
+            // 最小値の条件チェック（例：1,300円以上）
+            if (isset($condition_def['min'])) {
+                if ($hourly_wage < $condition_def['min']) {
+                    return false;
+                }
+            }
+            
+            // 最大値の条件チェック（例：1,300円未満）
+            if (isset($condition_def['max'])) {
+                if ($hourly_wage >= $condition_def['max']) {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        // 月給の場合
+        if ($condition_def['type'] === 'monthly') {
+            // salary_typeが'時給'の場合はfalse
+            if ($salary_type === '時給') {
+                return false;
+            }
+            
+            // 従来のロジックを使用
+            $salary_range = $this->parse_salary_value($salary_value);
+            if (!$salary_range) {
+                return false;
+            }
+            
+            return $this->salary_matches_condition($salary_range, $condition_def);
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Extract numbers from salary string
+     */
+    private function extract_numbers_from_salary($salary_value) {
+        // 数字とカンマを抽出
+        preg_match_all('/[\d,]+/', $salary_value, $matches);
+        
+        if (empty($matches[0])) return array();
+        
+        $numbers = array();
+        foreach ($matches[0] as $match) {
+            $number = intval(str_replace(',', '', $match));
+            if ($number > 0) {
+                $numbers[] = $number;
+            }
+        }
+        
+        return $numbers;
+    }
+
     /**
      * Check if salary range matches condition
      */

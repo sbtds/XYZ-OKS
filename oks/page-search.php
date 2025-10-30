@@ -842,7 +842,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
             <?php foreach ($search_results['posts'] as $job): ?>
             <div class="search_main__item">
               <p class="caption">
-                <?php 
+                <?php
                 $company_status = '非公開'; // デフォルトは非公開
                 if (!empty($job['listed_company'])) {
                     $listed_value = strtolower(trim($job['listed_company']));
@@ -850,7 +850,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
                         $company_status = '公開';
                     }
                 }
-                echo esc_html($job['industry'] . '／' . $job['job_type'] . '／' . $company_status); 
+                echo esc_html($job['industry'] . '／' . $job['job_type'] . '／' . $company_status);
                 ?>
               </p>
               <h2 class="title"><?php echo esc_html($job['title']); ?></h2>
@@ -881,7 +881,9 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
               </div>
               <div class="buttons">
                 <p class="button">
-                  <a class="button_more" href="mailto:?subject=<?php echo urlencode('求人問い合わせ: ' . $job['title']); ?>">
+                  <a class="button_more"
+                    href="https://oks.lixas-system.com/entrysheet?contact_url=<?php echo esc_attr($job['internal_job_id']); ?>"
+                    target="_blank">
                     <span class="label">この求人を問い合わせる</span>
                     <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
                   </a>
