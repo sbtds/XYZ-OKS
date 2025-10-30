@@ -307,6 +307,11 @@ function oks_enqueue_location_checkboxes_script() {
                 var name = $(this).attr('name');
                 var value = $(this).val();
                 if (name && value && name !== 'prefecture[]' && name !== 'city[]') {
+                    // デバッグ用：conditions[]パラメータをコンソールに出力
+                    if (name === 'conditions[]') {
+                        console.log('Adding condition parameter:', name, value);
+                    }
+                    // 配列形式のname属性（conditions[]など）をそのまま使用
                     params.append(name, value);
                 }
             });
@@ -314,6 +319,11 @@ function oks_enqueue_location_checkboxes_script() {
             // URLを構築して遷移
             var baseUrl = form.attr('action') || window.location.pathname;
             var newUrl = baseUrl + (params.toString() ? '?' + params.toString() : '');
+            
+            // デバッグ用：最終的なURLをコンソールに出力
+            console.log('Form submission URL:', newUrl);
+            console.log('All parameters:', params.toString());
+            
             window.location.href = newUrl;
         });
     });

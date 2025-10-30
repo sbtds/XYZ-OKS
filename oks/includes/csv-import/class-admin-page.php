@@ -94,14 +94,20 @@ class OKS_CSV_Import_Admin_Page {
                 <div class="oks-import-notes">
                     <h3>インポート時の注意事項</h3>
                     <ul>
-                        <li>CSVファイルは必ず140列すべてが含まれている必要があります</li>
+                        <li>CSVファイルは必ず146列すべてが含まれている必要があります</li>
                         <li>1行目はヘッダー行として扱われます</li>
                         <li>大量データの場合は、処理に時間がかかる場合があります</li>
                     </ul>
                     
                     <h3>CSVファイル形式</h3>
-                    <p>新しい140列フォーマットに対応しています。詳細な項目リストは以下のファイルをご確認ください：</p>
-                    <p><strong>/includes/csv-import/csv-columns-140.txt</strong></p>
+                    <p>新しい146列フォーマットに対応しています。主要なフィールド（抜粋）:</p>
+                    <ul>
+                        <li>削除 - 削除フラグ（1で削除実行）</li>
+                        <li>社内求人ID - 必須</li>
+                        <li>表示用タイトル - 求人のタイトル</li>
+                        <li>企業 - 企業名</li>
+                        <li>全フィールドはtextarea形式で処理されます</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -134,7 +140,7 @@ class OKS_CSV_Import_Admin_Page {
         // Show results
         if ($result['success']) {
             $message = sprintf(
-                'インポートが完了しました。新規作成: %d件、更新: %d件、スキップ: %d件',
+                'インポートが完了しました。新規作成: %d件、更新: %d件、スキップ: %d件（社内求人ID未入力）',
                 $result['created'],
                 $result['updated'],
                 $result['skipped']

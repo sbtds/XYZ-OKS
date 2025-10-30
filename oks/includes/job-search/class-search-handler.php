@@ -189,44 +189,42 @@ class OKS_Search_Handler {
         if (!empty($params['conditions']) && is_array($params['conditions'])) {
             $condition_mapping = array(
                 // 休日・勤務時間
-                '完全週休二日制' => 'full_weekend_off',
+                '完全週休2日制' => 'full_weekend_off',
                 '土日祝休み' => 'weekend_holiday',
                 '年間休日120日以上' => 'annual_holidays_120',
-                '残業少なめ（月20時間未満）' => 'low_overtime',
+                '残業少なめ(20時間未満)' => 'low_overtime',
                 '産休・育休・介護休暇取得実績あり' => 'maternity_leave_record',
                 'リモートワーク・在宅勤務制度あり' => 'remote_work',
-                'フレックスタイム制度あり' => 'flex_time',
                 
                 // 福利厚生・待遇
                 '退職金制度' => 'retirement_benefits',
                 '寮・社宅・住宅手当あり' => 'housing_allowance',
-                'U・Iターン支援あり' => 'ui_turn_support',
+                'UIターン支援あり' => 'ui_turn_support',
                 '交通費支給' => 'transportation_allowance',
                 '固定残業代なし' => 'fixed_overtime_pay',
                 '資格取得支援制度' => 'qualification_support',
-                '研修制度あり' => 'probation_period',
                 
                 // 職場環境・会社
-                '女性活躍中' => 'women_active',
+                '女性が活躍' => 'women_active',
+                '男性が活躍' => 'men_active',
                 'ミドル活躍中' => 'middle_active',
                 'シニア活躍中' => 'senior_active',
-                '上場企業' => 'h_stock_public',
+                '上場企業' => 'listed_company',
                 '設立10年以上の会社' => 'established_10years',
                 'ベンチャー企業' => 'venture_company',
                 '車通勤可' => 'car_commute',
                 
                 // 応募条件・雇用形態
-                '職種未経験歓迎' => 'job_inexperienced_ok',
-                '業種未経験歓迎' => 'industry_inexperienced_ok',
-                '社会人経験不問' => 'work_experience_unnecessary',
+                '未経験でも可' => 'industry_inexperienced_ok',
                 '学歴不問' => 'education_unnecessary',
-                'ITスキル不問' => 'it_skill_unnecessary',
-                '新卒採用' => 'application_category',
-                '第二新卒採用' => 'application_category',
-                '中途採用' => 'application_category',
+                '新卒採用' => 'new_graduate_recruitment',
+                '第二新卒採用' => 'second_new_graduate',
+                '中途採用' => 'mid_career_recruitment',
                 '転勤なし' => 'transfer_possibility',
-                '正社員' => 'employment_type',
-                '契約社員' => 'employment_type',
+                '正社員' => 'full_time_employee',
+                'リモート面接OK' => 'remote_interview_ok',
+                'インセンティブあり' => 'incentive_available',
+                '管理職・マネージャー' => 'management_position',
             );
 
             foreach ($params['conditions'] as $condition_label) {
@@ -235,58 +233,55 @@ class OKS_Search_Handler {
                     
                     // 特別な処理が必要な条件
                     if ($condition_label === '固定残業代なし') {
-                        // fixed_overtime_pay が false またはない場合
+                        // fixed_overtime_pay が n、false、またはない場合
                         $args['meta_query'][] = array(
                             'relation' => 'OR',
                             array(
-                                'key' => 'fixed_overtime_pay',
+                                'key' => $field_name,
+                                'value' => 'n',
+                                'compare' => '='
+                            ),
+                            array(
+                                'key' => $field_name,
                                 'value' => 'false',
                                 'compare' => '='
                             ),
                             array(
-                                'key' => 'fixed_overtime_pay',
+                                'key' => $field_name,
+                                'value' => '0',
+                                'compare' => '='
+                            ),
+                            array(
+                                'key' => $field_name,
                                 'compare' => 'NOT EXISTS'
                             )
                         );
                     } elseif ($condition_label === '転勤なし') {
-                        // transfer_possibility が false またはない場合
+                        // transfer_possibility が n、false、0、またはない場合（転勤なしを意味）
                         $args['meta_query'][] = array(
                             'relation' => 'OR',
                             array(
-                                'key' => 'transfer_possibility',
+                                'key' => $field_name,
+                                'value' => 'n',
+                                'compare' => '='
+                            ),
+                            array(
+                                'key' => $field_name,
                                 'value' => 'false',
                                 'compare' => '='
                             ),
                             array(
-                                'key' => 'transfer_possibility',
+                                'key' => $field_name,
+                                'value' => '0',
+                                'compare' => '='
+                            ),
+                            array(
+                                'key' => $field_name,
                                 'compare' => 'NOT EXISTS'
                             )
                         );
-                    } elseif (in_array($condition_label, array('新卒採用', '第二新卒採用', '中途採用'))) {
-                        // application_category の値で判定
-                        $category_value = '';
-                        if ($condition_label === '新卒採用') {
-                            $category_value = '新卒';
-                        } elseif ($condition_label === '第二新卒採用') {
-                            $category_value = '第二新卒';
-                        } elseif ($condition_label === '中途採用') {
-                            $category_value = '中途';
-                        }
-                        
-                        $args['meta_query'][] = array(
-                            'key' => 'application_category',
-                            'value' => $category_value,
-                            'compare' => '='
-                        );
-                    } elseif (in_array($condition_label, array('正社員', '契約社員'))) {
-                        // employment_type の値で判定
-                        $args['meta_query'][] = array(
-                            'key' => 'employment_type',
-                            'value' => $condition_label,
-                            'compare' => '='
-                        );
                     } else {
-                        // 通常の条件：フィールドが1または'true'
+                        // 通常の条件：フィールドが1、'true'、または'y'
                         $args['meta_query'][] = array(
                             'relation' => 'OR',
                             array(
@@ -297,6 +292,11 @@ class OKS_Search_Handler {
                             array(
                                 'key' => $field_name,
                                 'value' => 'true',
+                                'compare' => '='
+                            ),
+                            array(
+                                'key' => $field_name,
+                                'value' => 'y',
                                 'compare' => '='
                             )
                         );

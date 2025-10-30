@@ -839,101 +839,147 @@ get_header(); ?>
       </h2>
       <div class="index_type__contents">
         <div class="index_type__list">
-          <?php
-          // Get the home page
-          $home_page = get_page_by_path('home');
-          if (!$home_page) {
-              // Fallback: try getting the front page
-              $home_page_id = get_option('page_on_front');
-              if ($home_page_id) {
-                  $home_page = get_post($home_page_id);
-              }
-          }
-
-          // Get the index_type group field
-          $index_type_data = array();
-          if ($home_page) {
-              $index_type_data = get_field('index_type', $home_page->ID);
-          }
-
-          // Display banners if data exists
-          if ($index_type_data && is_array($index_type_data)) {
-              // Loop through banner01 to banner15
-              for ($i = 1; $i <= 15; $i++) {
-                  $banner_key = sprintf('banner%02d', $i);
-
-                  if (isset($index_type_data[$banner_key]) && !empty($index_type_data[$banner_key])) {
-                      $banner = $index_type_data[$banner_key];
-
-                      // Check if banner has required fields (both label and link must be present)
-                      if (!empty($banner['label']) && !empty($banner['link'])) {
-                          $image = isset($banner['image']) ? $banner['image'] : null;
-                          $label = $banner['label'];
-                          $link = $banner['link'];
-
-                          // Handle different ACF image field return formats
-                          $image_url = '';
-                          $image_alt = '';
-
-                          if ($image) {
-                              if (is_array($image)) {
-                                  // Image returned as array
-                                  $image_url = isset($image['url']) ? $image['url'] : '';
-                                  $image_alt = isset($image['alt']) ? $image['alt'] : (isset($image['title']) ? $image['title'] : $label);
-                              } elseif (is_numeric($image)) {
-                                  // Image returned as ID
-                                  $image_url = wp_get_attachment_image_url($image, 'medium');
-                                  $image_alt = get_post_meta($image, '_wp_attachment_image_alt', true) ?: $label;
-                              } elseif (is_string($image)) {
-                                  // Image returned as URL
-                                  $image_url = $image;
-                                  $image_alt = $label;
-                              }
-                          }
-                          ?>
           <div class="index_type__item">
-            <a class="index_type__inner" href="<?php echo esc_url($link); ?>">
-              <?php if ($image_url) : ?>
-              <div class="index_type__thb">
-                <p class="hover-image">
-                  <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>">
-                </p>
-              </div>
-              <?php endif; ?>
-              <div class="index_type__text">
-                <p><strong><?php echo esc_html($label); ?></strong></p>
-              </div>
-              <div class="index_type__arrow">
-                <i class="fa-solid fa-angle-right"></i>
-              </div>
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=完全週休二日制">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon01.svg" alt="" />
+              </p>
+              <p class="index_type__text">完全週休二日制</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
             </a>
           </div>
-          <?php
-                      }
-                  }
-              }
-          } else {
-              // Fallback: Show placeholder content if no ACF data is available
-              ?>
+
           <div class="index_type__item">
-            <a class="index_type__inner" href="#">
-              <div class="index_type__thb">
-                <p class="hover-image">
-                  <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_img.jpg"
-                    alt="働き方バナーが設定されていません">
-                </p>
-              </div>
-              <div class="index_type__text">
-                <p><strong>働き方バナーが設定されていません</strong></p>
-              </div>
-              <div class="index_type__arrow">
-                <i class="fa-solid fa-angle-right"></i>
-              </div>
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=土日祝休み">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon02.svg" alt="" />
+              </p>
+              <p class="index_type__text">土日祝休み</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
             </a>
           </div>
-          <?php
-          }
-          ?>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=年間休日120日以上">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon03.svg" alt="" />
+              </p>
+              <p class="index_type__text">年間休日120日以上</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=残業少なめ%2820時間未満%29">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon04.svg" alt="" />
+              </p>
+              <p class="index_type__text">残業少なめ<span>（月20時間未満）</span></p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=産休・育休・介護休暇取得実績あり">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon05.svg" alt="" />
+              </p>
+              <p class="index_type__text">産休・育休・介護休暇取得<br>実績あり</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=リモートワーク・在宅勤務制度あり">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon06.svg" alt="" />
+              </p>
+              <p class="index_type__text">リモートワーク・在宅勤務<br>制度あり</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=フレックスタイム制度あり">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon07.svg" alt="" />
+              </p>
+              <p class="index_type__text">フレックスタイム制度あり</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=退職金制度">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon08.svg" alt="" />
+              </p>
+              <p class="index_type__text">退職金制度</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=寮・社宅・住宅手当あり">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon09.svg" alt="" />
+              </p>
+              <p class="index_type__text">寮・社宅・住宅手当あり</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=UIターン支援あり">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon10.svg" alt="" />
+              </p>
+              <p class="index_type__text">U・Iターン支援あり</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=交通費支給">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon11.svg" alt="" />
+              </p>
+              <p class="index_type__text">交通費支給</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=固定残業代なし">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon12.svg" alt="" />
+              </p>
+              <p class="index_type__text">固定残業代なし</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=資格取得支援制度">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon13.svg" alt="" />
+              </p>
+              <p class="index_type__text">資格取得支援制度</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+          <div class="index_type__item">
+            <a class="index_type__inner" href="/search/?conditions%5B%5D=研修制度あり">
+              <p class="index_type__thb"><img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/type_icon14.svg" alt="" />
+              </p>
+              <p class="index_type__text">研修制度あり</p>
+              <p class="index_type__arrow"><i class="fa-solid fa-angle-right"></i></p>
+            </a>
+          </div>
+
+
         </div>
       </div>
     </div>

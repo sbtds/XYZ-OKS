@@ -22,7 +22,7 @@ class OKS_CSV_Processor {
     private $last_errors = array();
 
     /**
-     * Expected columns
+     * Expected columns - Updated to 146 columns
      */
     private $expected_columns = array(
         '削除', '社内求人ID', '採用中', '社外求人票の企業名表示', '企業',
@@ -47,16 +47,18 @@ class OKS_CSV_Processor {
         'A求人ID（求人入手元）', 'おすすめPOINT_1', 'おすすめPOINT_2', 'おすすめPOINT_3', '年間休日120日以上',
         '寮・社宅・住宅手当あり', '退職金制度', '資格取得支援制度あり', '産休・育休・介護休暇取得実績あり', '女性が活躍',
         '男性が活躍', 'インセンティブあり', 'U・Iターン支援あり', 'リモート面接OK', 'ミドル活躍中',
-        'シニア活躍中', '交通費支給', '完全週休二日制', '土日祝休み', '残業少なめ（月20時間未満）',
-        'リモートワーク・在宅勤務制度', 'フレックスタイム制度あり', '学歴不問', '管理職・マネージャー職の求人', '設立10年以上の会社',
-        'ベンチャー企業', '職種未経験OK', '業種未経験OK', '社会人経験不問', 'ITスキル不問',
-        'H_従業員数', 'H_本社住所', 'H_URL', 'H_設立年月', 'H_株式公開',
-        'H_仕事内容', 'H_応募資格', 'H_想定年収', 'H_給与詳細', 'H_勤務地',
-        'H_勤務地詳細', 'H_アクセス', 'H_諸手当', 'H_休日休暇', 'H_勤務時間'
+        'シニア活躍中', '新卒', '第二新卒', '中途採用', '交通費支給',
+        '完全週休二日制', '土日祝休み', '残業少なめ（月20時間未満）', 'フレックスタイム制度あり', 'リモートワーク・在宅勤務制度',
+        '転勤なし', '学歴不問', '正社員', '管理職・マネージャー職の求人', '設立10年以上の会社',
+        'ベンチャー企業', '職種未経験OK', '業種未経験OK', '上場企業', '社会人経験不問',
+        'ITスキル不問', 'H_従業員数', 'H_本社住所', 'H_URL', 'H_設立年月',
+        'H_株式公開', 'H_仕事内容', 'H_応募資格', 'H_想定年収', 'H_給与詳細',
+        'H_勤務地', 'H_勤務地詳細', 'H_アクセス', 'H_諸手当', 'H_休日休暇',
+        'H_勤務時間'
     );
 
     /**
-     * Field mapping
+     * Field mapping - Updated to 146 columns
      */
     private $field_mapping = array(
         '削除' => 'deletion_flag',
@@ -170,18 +172,24 @@ class OKS_CSV_Processor {
         'リモート面接OK' => 'remote_interview_ok',
         'ミドル活躍中' => 'middle_active',
         'シニア活躍中' => 'senior_active',
+        '新卒' => 'new_graduate',
+        '第二新卒' => 'second_new_graduate',
+        '中途採用' => 'mid_career',
         '交通費支給' => 'transportation_allowance',
         '完全週休二日制' => 'full_weekend_off',
         '土日祝休み' => 'weekend_holiday',
         '残業少なめ（月20時間未満）' => 'low_overtime',
-        'リモートワーク・在宅勤務制度' => 'remote_work',
         'フレックスタイム制度あり' => 'flex_time',
+        'リモートワーク・在宅勤務制度' => 'remote_work',
+        '転勤なし' => 'no_transfer',
         '学歴不問' => 'education_unnecessary',
+        '正社員' => 'full_time_employee',
         '管理職・マネージャー職の求人' => 'management_position',
         '設立10年以上の会社' => 'established_10years',
         'ベンチャー企業' => 'venture_company',
         '職種未経験OK' => 'job_inexperienced_ok',
         '業種未経験OK' => 'industry_inexperienced_ok',
+        '上場企業' => 'listed_company',
         '社会人経験不問' => 'work_experience_unnecessary',
         'ITスキル不問' => 'it_skill_unnecessary',
         'H_従業員数' => 'h_employee_count',
@@ -202,72 +210,24 @@ class OKS_CSV_Processor {
     );
 
     /**
-     * Boolean fields
+     * All fields are now textarea type according to ACF configuration
+     * Keeping the classifications for backward compatibility but all will be processed as textarea
      */
-    private $boolean_fields = array(
-        'deletion_flag', 'recruiting_status', 'company_name_display', 'fixed_overtime_pay',
-        'discretionary_work', 'car_commute', 'bike_commute', 'passive_smoking',
-        'contract_period', 'probation_period', 'transfer_possibility', 'contract_renewal', 'renewal_limit',
-        'a_company_name_public', 'a_media_public',
-        'annual_holidays_120', 'housing_allowance', 'retirement_benefits', 'qualification_support',
-        'maternity_leave_record', 'women_active', 'men_active', 'incentive_available',
-        'ui_turn_support', 'remote_interview_ok', 'middle_active', 'senior_active',
-        'transportation_allowance', 'full_weekend_off', 'weekend_holiday', 'low_overtime',
-        'remote_work', 'flex_time', 'education_unnecessary', 'management_position',
-        'established_10years', 'venture_company', 'job_inexperienced_ok', 'industry_inexperienced_ok',
-        'work_experience_unnecessary', 'it_skill_unnecessary'
-    );
 
     /**
-     * Number fields
+     * Boolean fields (legacy - now processed as textarea)
      */
-    private $number_fields = array(
-        'min_salary', 'max_salary', 'hiring_number',
-        'a_recruitment_number', 'a_reward_rate', 'a_reward_amount'
-    );
+    private $boolean_fields = array();
 
     /**
-     * Textarea fields (multiline text)
+     * Number fields (legacy - now processed as textarea)
      */
-    private $textarea_fields = array(
-        'job_description', 'job_scope_change', 'salary_details',
-        'fixed_overtime_details', 'discretionary_work_details',
-        'avg_overtime_details', 'work_location_details', 'car_commute_details',
-        'transfer_possibility_details', 'passive_smoking_details', 'contract_period_details',
-        'probation_conditions', 'benefits', 'work_style', 'recruitment_background',
-        'public_required_conditions', 'public_welcome_conditions', 'selection_process',
-        'a_selection_details', 'public_remarks', 'a_reward_details',
-        'a_req_education_details', 'a_req_other_experience', 'a_ng_target',
-        'a_high_offer_person', 'a_recommendation_notes', 'a_interview_guarantee_details',
-        'a_public_range_details', 'h_job_content', 'h_application_requirements',
-        'h_salary_details', 'h_work_location_details', 'h_allowances', 'h_holidays',
-        // おすすめPOINT項目
-        'recommend_point_1', 'recommend_point_2', 'recommend_point_3'
-    );
+    private $number_fields = array();
 
     /**
-     * Text fields (single line text)
+     * All fields are now textarea fields according to the updated ACF configuration
      */
-    private $text_fields = array(
-        // インセンティブ、ストックオプション、料率
-        'incentive', 'stock_option', 'a_reward_rate',
-        // 日付関連
-        'salary_closing_date', 'salary_payment_date', 'a_recruitment_start_date', 'a_recruitment_end_date',
-        'h_established_date',
-        // その他のtextフィールド
-        'admin_title', 'a_job_db_display_title', 'display_title', 'industry', 'job_type',
-        'display_expected_salary', 'salary_type', 'salary', 'salary_increase', 'bonus',
-        'working_hours', 'break_time', 'avg_overtime_hours', 'holidays', 'prefecture', 'city',
-        'work_location', 'access', 'work_location_change',
-        'application_category', 'employment_type',
-        'probation_duration', 'insurance', 'work_attire', 'a_employment_period_report',
-        'a_business_category_2024', 'a_validity_period', 'a_reward_pattern',
-        'a_refund_fee', 'a_req_age', 'a_req_gender', 'a_req_nationality',
-        'a_req_companies', 'a_req_education', 'a_req_job_years', 'a_req_industry_years',
-        'a_interview_guarantee', 'a_job_source', 'a_source_job_id',
-        'h_employee_count', 'h_head_office_address', 'h_url', 'h_stock_public',
-        'h_expected_salary', 'h_work_location', 'h_access', 'h_working_hours'
-    );
+    private $textarea_fields = array();
 
     /**
      * Read CSV file
@@ -275,6 +235,9 @@ class OKS_CSV_Processor {
     public function read_csv($file_path) {
         // Clear previous errors
         $this->last_errors = array();
+        
+        // Set auto_detect_line_endings for better multiline support
+        // ini_set('auto_detect_line_endings', TRUE); // Deprecated
         $data = array();
 
         if (!file_exists($file_path) || !is_readable($file_path)) {
@@ -309,6 +272,9 @@ class OKS_CSV_Processor {
         }
 
         error_log("CSV headers count: " . count($headers));
+        error_log("Expected columns count: " . count($this->expected_columns));
+        error_log("First 5 CSV headers: " . implode(', ', array_slice($headers, 0, 5)));
+        error_log("Last 5 CSV headers: " . implode(', ', array_slice($headers, -5)));
 
         // Validate headers
         if (!$this->validate_headers($headers)) {
@@ -320,11 +286,44 @@ class OKS_CSV_Processor {
         }
 
         // Read data rows
-        $row_number = 2; // Start from 2 (header is 1)
-        while (($row = fgetcsv($handle, 0, ',', '"', '"')) !== false) {
+        $row_number = 1; // Will be incremented immediately, so start at 1
+        $valid_rows = 0;
+        $skipped_rows = 0;
+        $debug_first_row = true;
+        
+        while (!feof($handle)) {
+            $row = fgetcsv($handle, 0, ',', '"', '"');
+            if ($row === false) {
+                break;
+            }
+            $row_number++;
+            // Empty row check
+            if (empty(array_filter($row))) {
+                continue;
+            }
+            
+            // Check if this row has the expected number of columns
             if (count($row) !== count($headers)) {
-                error_log("CSV Row $row_number: Expected " . count($headers) . " columns, got " . count($row) . " columns");
-                continue; // Skip invalid rows
+                // Only log first few errors to avoid log overflow
+                if ($skipped_rows < 5) {
+                    error_log("CSV Row $row_number: Expected " . count($headers) . " columns, got " . count($row) . " columns");
+                    error_log("First field content: " . (isset($row[0]) ? substr($row[0], 0, 50) : 'EMPTY'));
+                }
+                
+                $skipped_rows++;
+                continue;
+            }
+            
+            $valid_rows++;
+            
+            // Debug first few valid rows
+            if ($debug_first_row && $valid_rows <= 3) {
+                error_log("Valid row $valid_rows debug:");
+                error_log("  Row number: $row_number");
+                error_log("  社内求人ID: " . (isset($row[1]) ? $row[1] : 'NOT SET'));
+                if ($valid_rows == 3) {
+                    $debug_first_row = false;
+                }
             }
 
             // Process multiline text fields
@@ -342,6 +341,11 @@ class OKS_CSV_Processor {
         }
 
         fclose($handle);
+        
+        // Reset auto_detect_line_endings
+        // ini_restore('auto_detect_line_endings'); // Deprecated
+
+        error_log("CSV parsing summary: Valid rows: $valid_rows, Skipped rows: $skipped_rows");
 
         if (empty($data)) {
             $error_msg = "No valid data rows found in CSV file: " . $file_path;
@@ -381,6 +385,13 @@ class OKS_CSV_Processor {
             if (!isset($headers[$i]) || trim($headers[$i]) !== trim($this->expected_columns[$i])) {
                 $error_msg = "Header mismatch at position $i. Expected: '" . $this->expected_columns[$i] . "', Got: '" . (isset($headers[$i]) ? $headers[$i] : 'NULL') . "'";
                 error_log($error_msg);
+                
+                // Add character-level debugging
+                if (isset($headers[$i])) {
+                    error_log("Expected bytes: " . bin2hex($this->expected_columns[$i]));
+                    error_log("Actual bytes: " . bin2hex($headers[$i]));
+                }
+                
                 $this->last_errors[] = $error_msg;
                 return false;
             }
@@ -413,76 +424,22 @@ class OKS_CSV_Processor {
 
     /**
      * Process field value
+     * All fields are now processed as textarea (text) according to ACF configuration
      */
     private function process_field_value($field_name, $value) {
-        // Boolean fields
-        if (in_array($field_name, $this->boolean_fields)) {
-            return $this->convert_to_boolean($value);
-        }
-
-        // Number fields
-        if (in_array($field_name, $this->number_fields)) {
-            // Extract numeric value from strings like "3人"
-            $numeric_value = preg_replace('/[^\d]/', '', $value);
-            return intval($numeric_value);
-        }
-
-        // Date fields - keep as text but validate format
-        if (in_array($field_name, array('a_recruitment_start_date', 'a_recruitment_end_date',
-                                       'salary_closing_date', 'salary_payment_date', 'h_established_date'))) {
-            // Convert date format if needed
-            if (!empty($value) && strtotime($value)) {
-                return date('Y-m-d', strtotime($value));
-            }
-            return '';
-        }
-
-        // Default: return as string
+        // All fields are now textarea type - just return trimmed text value
+        // This maintains the CSV data exactly as provided without any conversion
         return trim($value);
     }
 
     /**
-     * Convert value to boolean
+     * Convert value to boolean (legacy function - no longer used)
+     * Kept for backward compatibility
      */
     private function convert_to_boolean($value) {
-        // Trim and convert to lowercase for comparison
-        $value = trim(strtolower($value));
-
-        // Define true values
-        $true_values = array(
-            '1',
-            'true',
-            'する',
-            'あり',
-            'ok',
-            'y',
-            'yes'
-        );
-
-        // Define false values
-        $false_values = array(
-            '0',
-            'false',
-            'しない',
-            'なし',
-            'ng',
-            'n',
-            'no',
-            ''
-        );
-
-        // Check if value is in true values
-        if (in_array($value, $true_values)) {
-            return 1;
-        }
-
-        // Check if value is in false values or default to false
-        if (in_array($value, $false_values) || empty($value)) {
-            return 0;
-        }
-
-        // If value doesn't match any pattern, default to false
-        return 0;
+        // This function is no longer used since all fields are now textarea
+        // Keeping for backward compatibility only
+        return trim($value);
     }
 
     /**

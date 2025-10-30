@@ -71,9 +71,13 @@ class OKS_Job_Importer {
                     continue;
                 }
                 
+                // Check if recruiting status is '採用終了'
+                $is_recruiting_ended = isset($row['採用中']) && $row['採用中'] === '採用終了';
+                
                 // Check for internal job ID
                 if (empty($row['社内求人ID'])) {
-                    $result['errors'][$row_number] = '社内求人IDが空です';
+                    // Skip rows with empty internal job ID
+                    $result['skipped']++;
                     continue;
                 }
                 
@@ -88,7 +92,7 @@ class OKS_Job_Importer {
                         $result['skipped']++;
                     } else {
                         // Update existing job
-                        $update_result = $this->update_job($existing_job->ID, $processed_data, $row);
+                        $update_result = $this->update_job($existing_job->ID, $processed_data, $row, $is_recruiting_ended);
                         if ($update_result) {
                             $result['updated']++;
                         } else {
@@ -97,7 +101,7 @@ class OKS_Job_Importer {
                     }
                 } else {
                     // Create new job
-                    $create_result = $this->create_job($processed_data, $row);
+                    $create_result = $this->create_job($processed_data, $row, $is_recruiting_ended);
                     if ($create_result) {
                         $result['created']++;
                     } else {
@@ -106,6 +110,8 @@ class OKS_Job_Importer {
                 }
                 
             } catch (Exception $e) {
+                $error_msg = 'Row ' . $row_number . ' Exception: ' . $e->getMessage();
+                error_log($error_msg);
                 $result['errors'][$row_number] = $e->getMessage();
             }
         }
@@ -176,7 +182,7 @@ class OKS_Job_Importer {
     /**
      * Create new job
      */
-    private function create_job($data, $raw_data) {
+    private function create_job($data, $raw_data, $is_recruiting_ended = false) {
         // Prepare post data
         $post_title = !empty($data['display_title']) ? $data['display_title'] : $data['admin_title'];
         if (empty($post_title)) {
@@ -185,7 +191,7 @@ class OKS_Job_Importer {
         
         $post_data = array(
             'post_type' => 'job',
-            'post_status' => 'publish',
+            'post_status' => $is_recruiting_ended ? 'draft' : 'publish',
             'post_title' => $post_title,
             'post_content' => '',
             'post_name' => sanitize_title($data['internal_job_id']) // Set slug from internal_job_id
@@ -211,7 +217,7 @@ class OKS_Job_Importer {
     /**
      * Update existing job
      */
-    private function update_job($post_id, $data, $raw_data) {
+    private function update_job($post_id, $data, $raw_data, $is_recruiting_ended = false) {
         // Prepare post data
         $post_title = !empty($data['display_title']) ? $data['display_title'] : $data['admin_title'];
         if (empty($post_title)) {
@@ -222,7 +228,8 @@ class OKS_Job_Importer {
             'ID' => $post_id,
             'post_title' => $post_title,
             'post_content' => '',
-            'post_name' => sanitize_title($data['internal_job_id']) // Set slug from internal_job_id
+            'post_name' => sanitize_title($data['internal_job_id']), // Set slug from internal_job_id
+            'post_status' => $is_recruiting_ended ? 'draft' : 'publish'
         );
         
         // Update post

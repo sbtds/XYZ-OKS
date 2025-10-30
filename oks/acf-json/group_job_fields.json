@@ -1,2836 +1,2950 @@
-{
-    "key": "group_job_fields",
-    "title": "求人情報フィールド",
-    "fields": [
-        {
-            "key": "field_deletion_flag",
-            "label": "削除",
-            "name": "deletion_flag",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_internal_job_id",
-            "label": "社内求人ID",
-            "name": "internal_job_id",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_recruiting_status",
-            "label": "採用中",
-            "name": "recruiting_status",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_company_name_display",
-            "label": "社外求人票の企業名表示",
-            "name": "company_name_display",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_company",
-            "label": "企業",
-            "name": "company",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_admin_title",
-            "label": "管理用タイトル",
-            "name": "admin_title",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_job_db_display_title",
-            "label": "A求人DB表示タイトル",
-            "name": "a_job_db_display_title",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_display_title",
-            "label": "表示用タイトル",
-            "name": "display_title",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_industry",
-            "label": "業界",
-            "name": "industry",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_job_type",
-            "label": "職種",
-            "name": "job_type",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_job_description",
-            "label": "仕事内容",
-            "name": "job_description",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 8,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_job_scope_change",
-            "label": "業務内容の変更の範囲",
-            "name": "job_scope_change",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_min_salary",
-            "label": "最低提示年収",
-            "name": "min_salary",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_max_salary",
-            "label": "最高提示年収",
-            "name": "max_salary",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_display_expected_salary",
-            "label": "表示用_想定年収",
-            "name": "display_expected_salary",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_salary_type",
-            "label": "給与形態",
-            "name": "salary_type",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_salary",
-            "label": "給与",
-            "name": "salary",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_fixed_overtime_pay",
-            "label": "固定残業代の有無",
-            "name": "fixed_overtime_pay",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_salary_details",
-            "label": "給与詳細",
-            "name": "salary_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_fixed_overtime_details",
-            "label": "固定残業代詳細",
-            "name": "fixed_overtime_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_salary_closing_date",
-            "label": "給与締日",
-            "name": "salary_closing_date",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_salary_payment_date",
-            "label": "給与支払日",
-            "name": "salary_payment_date",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_salary_increase",
-            "label": "昇給",
-            "name": "salary_increase",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_bonus",
-            "label": "賞与",
-            "name": "bonus",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_incentive",
-            "label": "インセンティブ",
-            "name": "incentive",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_working_hours",
-            "label": "勤務時間",
-            "name": "working_hours",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_break_time",
-            "label": "休憩時間",
-            "name": "break_time",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_discretionary_work",
-            "label": "裁量労働制の有無",
-            "name": "discretionary_work",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_discretionary_work_details",
-            "label": "裁量労働制の詳細",
-            "name": "discretionary_work_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_avg_overtime_hours",
-            "label": "月平均残業時間",
-            "name": "avg_overtime_hours",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_avg_overtime_details",
-            "label": "月平均残業時間詳細",
-            "name": "avg_overtime_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_holidays",
-            "label": "休日",
-            "name": "holidays",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_prefecture",
-            "label": "勤務地_都道府県",
-            "name": "prefecture",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_city",
-            "label": "勤務地_市区町村",
-            "name": "city",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_work_location",
-            "label": "就業場所",
-            "name": "work_location",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_work_location_details",
-            "label": "就業場所詳細",
-            "name": "work_location_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_access",
-            "label": "アクセス",
-            "name": "access",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_car_commute",
-            "label": "車通勤の可否",
-            "name": "car_commute",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_car_commute_details",
-            "label": "車通勤の詳細",
-            "name": "car_commute_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_bike_commute",
-            "label": "自転車通勤の可否",
-            "name": "bike_commute",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_work_location_change",
-            "label": "就業場所の変更の範囲",
-            "name": "work_location_change",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_transfer_possibility",
-            "label": "転勤の可能性",
-            "name": "transfer_possibility",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_transfer_possibility_details",
-            "label": "転勤の可能性_詳細",
-            "name": "transfer_possibility_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_passive_smoking",
-            "label": "受動喫煙対策の有無",
-            "name": "passive_smoking",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_passive_smoking_details",
-            "label": "受動喫煙対策の詳細",
-            "name": "passive_smoking_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_application_category",
-            "label": "応募区分",
-            "name": "application_category",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_employment_type",
-            "label": "雇用形態",
-            "name": "employment_type",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_contract_period",
-            "label": "契約期間の定めの有無",
-            "name": "contract_period",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_contract_period_details",
-            "label": "契約期間の詳細",
-            "name": "contract_period_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_contract_renewal",
-            "label": "契約の更新",
-            "name": "contract_renewal",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_renewal_limit",
-            "label": "契約更新の上限",
-            "name": "renewal_limit",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_probation_period",
-            "label": "試用期間の有無",
-            "name": "probation_period",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_probation_duration",
-            "label": "試用期間",
-            "name": "probation_duration",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_probation_conditions",
-            "label": "試用期間中の条件",
-            "name": "probation_conditions",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_insurance",
-            "label": "加入保険",
-            "name": "insurance",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_benefits",
-            "label": "手当・福利厚生",
-            "name": "benefits",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_stock_option",
-            "label": "ストックオプション",
-            "name": "stock_option",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_work_style",
-            "label": "働き方",
-            "name": "work_style",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_recruitment_background",
-            "label": "募集背景",
-            "name": "recruitment_background",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_work_attire",
-            "label": "勤務時の服装",
-            "name": "work_attire",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_hiring_number",
-            "label": "採用人数",
-            "name": "hiring_number",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_public_required_conditions",
-            "label": "公開用_必須条件",
-            "name": "public_required_conditions",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_public_welcome_conditions",
-            "label": "公開用_歓迎条件",
-            "name": "public_welcome_conditions",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_selection_process",
-            "label": "選考フロー",
-            "name": "selection_process",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_selection_details",
-            "label": "A選考フロー詳細情報",
-            "name": "a_selection_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_public_remarks",
-            "label": "公開用_備考",
-            "name": "public_remarks",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_employment_period_report",
-            "label": "A雇用期間（事業報告書用）",
-            "name": "a_employment_period_report",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_recruitment_start_date",
-            "label": "A募集開始日（事業報告書用）",
-            "name": "a_recruitment_start_date",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_recruitment_end_date",
-            "label": "A募集終了日（事業報告書用）",
-            "name": "a_recruitment_end_date",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_recruitment_number",
-            "label": "A募集人数（事業報告書用）",
-            "name": "a_recruitment_number",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_business_category_2024",
-            "label": "A取扱業務等の区分(2024)（事業報告書用）",
-            "name": "a_business_category_2024",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_validity_period",
-            "label": "A有効期間",
-            "name": "a_validity_period",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_reward_pattern",
-            "label": "A報酬パターン",
-            "name": "a_reward_pattern",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_reward_rate",
-            "label": "A報酬割合（料率）",
-            "name": "a_reward_rate",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_reward_amount",
-            "label": "A報酬金額（定額）",
-            "name": "a_reward_amount",
-            "aria-label": "",
-            "type": "number",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_reward_details",
-            "label": "A報酬詳細",
-            "name": "a_reward_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_refund_fee",
-            "label": "A返金手数料",
-            "name": "a_refund_fee",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_req_age",
-            "label": "A応募条件（年齢）",
-            "name": "a_req_age",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_req_gender",
-            "label": "A応募条件（性別）",
-            "name": "a_req_gender",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_req_nationality",
-            "label": "A応募条件（国籍）",
-            "name": "a_req_nationality",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_req_companies",
-            "label": "A応募条件（経験社数）",
-            "name": "a_req_companies",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_req_education",
-            "label": "A応募条件（学歴）",
-            "name": "a_req_education",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_req_education_details",
-            "label": "A応募条件（学歴詳細）",
-            "name": "a_req_education_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_req_job_years",
-            "label": "A応募条件（職種経験年数）",
-            "name": "a_req_job_years",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_req_industry_years",
-            "label": "A応募条件（業種経験年数）",
-            "name": "a_req_industry_years",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_req_other_experience",
-            "label": "A応募条件（その他求める経験）",
-            "name": "a_req_other_experience",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_ng_target",
-            "label": "A_NG対象",
-            "name": "a_ng_target",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_high_offer_person",
-            "label": "A内定の可能性が高い人",
-            "name": "a_high_offer_person",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_recommendation_notes",
-            "label": "A推薦時の留意事項",
-            "name": "a_recommendation_notes",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_interview_guarantee",
-            "label": "A面接確約条件",
-            "name": "a_interview_guarantee",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_interview_guarantee_details",
-            "label": "A面接確約条件詳細",
-            "name": "a_interview_guarantee_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_company_name_public",
-            "label": "A社名公開可否",
-            "name": "a_company_name_public",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_a_media_public",
-            "label": "A媒体公開可否",
-            "name": "a_media_public",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_a_public_range_details",
-            "label": "A公開可能範囲の詳細",
-            "name": "a_public_range_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_a_job_source",
-            "label": "A求人入手元",
-            "name": "a_job_source",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_a_source_job_id",
-            "label": "A求人ID（求人入手元）",
-            "name": "a_source_job_id",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_recommend_point_1",
-            "label": "おすすめPOINT_1",
-            "name": "recommend_point_1",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_recommend_point_2",
-            "label": "おすすめPOINT_2",
-            "name": "recommend_point_2",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_recommend_point_3",
-            "label": "おすすめPOINT_3",
-            "name": "recommend_point_3",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_annual_holidays_120",
-            "label": "年間休日120日以上",
-            "name": "annual_holidays_120",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_housing_allowance",
-            "label": "寮・社宅・住宅手当あり",
-            "name": "housing_allowance",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_retirement_benefits",
-            "label": "退職金制度",
-            "name": "retirement_benefits",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_qualification_support",
-            "label": "資格取得支援制度あり",
-            "name": "qualification_support",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_maternity_leave_record",
-            "label": "産休・育休・介護休暇取得実績あり",
-            "name": "maternity_leave_record",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_women_active",
-            "label": "女性が活躍",
-            "name": "women_active",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_men_active",
-            "label": "男性が活躍",
-            "name": "men_active",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_incentive_available",
-            "label": "インセンティブあり",
-            "name": "incentive_available",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_ui_turn_support",
-            "label": "U・Iターン支援あり",
-            "name": "ui_turn_support",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_remote_interview_ok",
-            "label": "リモート面接OK",
-            "name": "remote_interview_ok",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_middle_active",
-            "label": "ミドル活躍中",
-            "name": "middle_active",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_senior_active",
-            "label": "シニア活躍中",
-            "name": "senior_active",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_transportation_allowance",
-            "label": "交通費支給",
-            "name": "transportation_allowance",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_full_weekend_off",
-            "label": "完全週休二日制",
-            "name": "full_weekend_off",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_weekend_holiday",
-            "label": "土日祝休み",
-            "name": "weekend_holiday",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_low_overtime",
-            "label": "残業少なめ（月20時間未満）",
-            "name": "low_overtime",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_remote_work",
-            "label": "リモートワーク・在宅勤務制度",
-            "name": "remote_work",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_flex_time",
-            "label": "フレックスタイム制度あり",
-            "name": "flex_time",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_education_unnecessary",
-            "label": "学歴不問",
-            "name": "education_unnecessary",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_management_position",
-            "label": "管理職・マネージャー職の求人",
-            "name": "management_position",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_established_10years",
-            "label": "設立10年以上の会社",
-            "name": "established_10years",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_venture_company",
-            "label": "ベンチャー企業",
-            "name": "venture_company",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_job_inexperienced_ok",
-            "label": "職種未経験OK",
-            "name": "job_inexperienced_ok",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_industry_inexperienced_ok",
-            "label": "業種未経験OK",
-            "name": "industry_inexperienced_ok",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_work_experience_unnecessary",
-            "label": "社会人経験不問",
-            "name": "work_experience_unnecessary",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_it_skill_unnecessary",
-            "label": "ITスキル不問",
-            "name": "it_skill_unnecessary",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 0,
-            "ui": 1,
-            "message": "",
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_h_employee_count",
-            "label": "H_従業員数",
-            "name": "h_employee_count",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_h_head_office_address",
-            "label": "H_本社住所",
-            "name": "h_head_office_address",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_h_url",
-            "label": "H_URL",
-            "name": "h_url",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_h_established_date",
-            "label": "H_設立年月",
-            "name": "h_established_date",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_h_stock_public",
-            "label": "H_株式公開",
-            "name": "h_stock_public",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_h_job_content",
-            "label": "H_仕事内容",
-            "name": "h_job_content",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_h_application_requirements",
-            "label": "H_応募資格",
-            "name": "h_application_requirements",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_h_expected_salary",
-            "label": "H_想定年収",
-            "name": "h_expected_salary",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_h_salary_details",
-            "label": "H_給与詳細",
-            "name": "h_salary_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_h_work_location",
-            "label": "H_勤務地",
-            "name": "h_work_location",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_h_work_location_details",
-            "label": "H_勤務地詳細",
-            "name": "h_work_location_details",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_h_access",
-            "label": "H_アクセス",
-            "name": "h_access",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_h_allowances",
-            "label": "H_諸手当",
-            "name": "h_allowances",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_h_holidays",
-            "label": "H_休日休暇",
-            "name": "h_holidays",
-            "aria-label": "",
-            "type": "textarea",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "rows": 4,
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_h_working_hours",
-            "label": "H_勤務時間",
-            "name": "h_working_hours",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "",
-            "required": false,
-            "conditional_logic": false,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        }
-    ],
-    "location": [
-        [
+[
+    {
+        "key": "group_job_fields",
+        "title": "求人情報フィールド",
+        "fields": [
             {
-                "param": "post_type",
-                "operator": "==",
-                "value": "job"
+                "key": "field_deletion_flag",
+                "label": "削除",
+                "name": "deletion_flag",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_internal_job_id",
+                "label": "社内求人ID",
+                "name": "internal_job_id",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_recruiting_status",
+                "label": "採用中",
+                "name": "recruiting_status",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_company_name_display",
+                "label": "社外求人票の企業名表示",
+                "name": "company_name_display",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_company",
+                "label": "企業",
+                "name": "company",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_admin_title",
+                "label": "管理用タイトル",
+                "name": "admin_title",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_job_db_display_title",
+                "label": "A求人DB表示タイトル",
+                "name": "a_job_db_display_title",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_display_title",
+                "label": "表示用タイトル",
+                "name": "display_title",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_industry",
+                "label": "業界",
+                "name": "industry",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_job_type",
+                "label": "職種",
+                "name": "job_type",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_job_description",
+                "label": "仕事内容",
+                "name": "job_description",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_job_scope_change",
+                "label": "業務内容の変更の範囲",
+                "name": "job_scope_change",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_min_salary",
+                "label": "最低提示年収",
+                "name": "min_salary",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_max_salary",
+                "label": "最高提示年収",
+                "name": "max_salary",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_display_expected_salary",
+                "label": "表示用_想定年収",
+                "name": "display_expected_salary",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_salary_type",
+                "label": "給与形態",
+                "name": "salary_type",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_salary",
+                "label": "給与",
+                "name": "salary",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_fixed_overtime_pay",
+                "label": "固定残業代の有無",
+                "name": "fixed_overtime_pay",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_salary_details",
+                "label": "給与詳細",
+                "name": "salary_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_fixed_overtime_details",
+                "label": "固定残業代詳細",
+                "name": "fixed_overtime_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_salary_closing_date",
+                "label": "給与締日",
+                "name": "salary_closing_date",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_salary_payment_date",
+                "label": "給与支払日",
+                "name": "salary_payment_date",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_salary_increase",
+                "label": "昇給",
+                "name": "salary_increase",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_bonus",
+                "label": "賞与",
+                "name": "bonus",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_incentive",
+                "label": "インセンティブ",
+                "name": "incentive",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_working_hours",
+                "label": "勤務時間",
+                "name": "working_hours",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_break_time",
+                "label": "休憩時間",
+                "name": "break_time",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_discretionary_work",
+                "label": "裁量労働制の有無",
+                "name": "discretionary_work",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_discretionary_work_details",
+                "label": "裁量労働制の詳細",
+                "name": "discretionary_work_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_avg_overtime_hours",
+                "label": "月平均残業時間",
+                "name": "avg_overtime_hours",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_avg_overtime_details",
+                "label": "月平均残業時間詳細",
+                "name": "avg_overtime_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_holidays",
+                "label": "休日",
+                "name": "holidays",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_prefecture",
+                "label": "勤務地_都道府県",
+                "name": "prefecture",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_city",
+                "label": "勤務地_市区町村",
+                "name": "city",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_work_location",
+                "label": "就業場所",
+                "name": "work_location",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_work_location_details",
+                "label": "就業場所詳細",
+                "name": "work_location_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_access",
+                "label": "アクセス",
+                "name": "access",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_car_commute",
+                "label": "車通勤の可否",
+                "name": "car_commute",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_car_commute_details",
+                "label": "車通勤の詳細",
+                "name": "car_commute_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_bike_commute",
+                "label": "自転車通勤の可否",
+                "name": "bike_commute",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_work_location_change",
+                "label": "就業場所の変更の範囲",
+                "name": "work_location_change",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_transfer_possibility",
+                "label": "転勤の可能性",
+                "name": "transfer_possibility",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_transfer_possibility_details",
+                "label": "転勤の可能性_詳細",
+                "name": "transfer_possibility_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_passive_smoking",
+                "label": "受動喫煙対策の有無",
+                "name": "passive_smoking",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_passive_smoking_details",
+                "label": "受動喫煙対策の詳細",
+                "name": "passive_smoking_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_application_category",
+                "label": "応募区分",
+                "name": "application_category",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_employment_type",
+                "label": "雇用形態",
+                "name": "employment_type",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_contract_period",
+                "label": "契約期間の定めの有無",
+                "name": "contract_period",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_contract_period_details",
+                "label": "契約期間の詳細",
+                "name": "contract_period_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_contract_renewal",
+                "label": "契約の更新",
+                "name": "contract_renewal",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_renewal_limit",
+                "label": "契約更新の上限",
+                "name": "renewal_limit",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_probation_period",
+                "label": "試用期間の有無",
+                "name": "probation_period",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_probation_duration",
+                "label": "試用期間",
+                "name": "probation_duration",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_probation_conditions",
+                "label": "試用期間中の条件",
+                "name": "probation_conditions",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_insurance",
+                "label": "加入保険",
+                "name": "insurance",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_benefits",
+                "label": "手当・福利厚生",
+                "name": "benefits",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_stock_option",
+                "label": "ストックオプション",
+                "name": "stock_option",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_work_style",
+                "label": "働き方",
+                "name": "work_style",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_recruitment_background",
+                "label": "募集背景",
+                "name": "recruitment_background",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_work_attire",
+                "label": "勤務時の服装",
+                "name": "work_attire",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_hiring_number",
+                "label": "採用人数",
+                "name": "hiring_number",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_public_required_conditions",
+                "label": "公開用_必須条件",
+                "name": "public_required_conditions",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_public_welcome_conditions",
+                "label": "公開用_歓迎条件",
+                "name": "public_welcome_conditions",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_selection_process",
+                "label": "選考フロー",
+                "name": "selection_process",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_selection_details",
+                "label": "A選考フロー詳細情報",
+                "name": "a_selection_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_public_remarks",
+                "label": "公開用_備考",
+                "name": "public_remarks",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_employment_period_report",
+                "label": "A雇用期間（事業報告書用）",
+                "name": "a_employment_period_report",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_recruitment_start_date",
+                "label": "A募集開始日（事業報告書用）",
+                "name": "a_recruitment_start_date",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_recruitment_end_date",
+                "label": "A募集終了日（事業報告書用）",
+                "name": "a_recruitment_end_date",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_recruitment_number",
+                "label": "A募集人数（事業報告書用）",
+                "name": "a_recruitment_number",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_business_category_2024",
+                "label": "A取扱業務等の区分(2024)（事業報告書用）",
+                "name": "a_business_category_2024",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_validity_period",
+                "label": "A有効期間",
+                "name": "a_validity_period",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_reward_pattern",
+                "label": "A報酬パターン",
+                "name": "a_reward_pattern",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_reward_rate",
+                "label": "A報酬割合（料率）",
+                "name": "a_reward_rate",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_reward_amount",
+                "label": "A報酬金額（定額）",
+                "name": "a_reward_amount",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_reward_details",
+                "label": "A報酬詳細",
+                "name": "a_reward_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_refund_fee",
+                "label": "A返金手数料",
+                "name": "a_refund_fee",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_req_age",
+                "label": "A応募条件（年齢）",
+                "name": "a_req_age",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_req_gender",
+                "label": "A応募条件（性別）",
+                "name": "a_req_gender",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_req_nationality",
+                "label": "A応募条件（国籍）",
+                "name": "a_req_nationality",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_req_companies",
+                "label": "A応募条件（経験社数）",
+                "name": "a_req_companies",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_req_education",
+                "label": "A応募条件（学歴）",
+                "name": "a_req_education",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_req_education_details",
+                "label": "A応募条件（学歴詳細）",
+                "name": "a_req_education_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_req_job_years",
+                "label": "A応募条件（職種経験年数）",
+                "name": "a_req_job_years",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_req_industry_years",
+                "label": "A応募条件（業種経験年数）",
+                "name": "a_req_industry_years",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_req_other_experience",
+                "label": "A応募条件（その他求める経験）",
+                "name": "a_req_other_experience",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_ng_target",
+                "label": "A_NG対象",
+                "name": "a_ng_target",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_high_offer_person",
+                "label": "A内定の可能性が高い人",
+                "name": "a_high_offer_person",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_recommendation_notes",
+                "label": "A推薦時の留意事項",
+                "name": "a_recommendation_notes",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_interview_guarantee",
+                "label": "A面接確約条件",
+                "name": "a_interview_guarantee",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_interview_guarantee_details",
+                "label": "A面接確約条件詳細",
+                "name": "a_interview_guarantee_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_company_name_public",
+                "label": "A社名公開可否",
+                "name": "a_company_name_public",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_media_public",
+                "label": "A媒体公開可否",
+                "name": "a_media_public",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_public_range_details",
+                "label": "A公開可能範囲の詳細",
+                "name": "a_public_range_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_job_source",
+                "label": "A求人入手元",
+                "name": "a_job_source",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_a_source_job_id",
+                "label": "A求人ID（求人入手元）",
+                "name": "a_source_job_id",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_recommend_point_1",
+                "label": "おすすめPOINT_1",
+                "name": "recommend_point_1",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_recommend_point_2",
+                "label": "おすすめPOINT_2",
+                "name": "recommend_point_2",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_recommend_point_3",
+                "label": "おすすめPOINT_3",
+                "name": "recommend_point_3",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_annual_holidays_120",
+                "label": "年間休日120日以上",
+                "name": "annual_holidays_120",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_housing_allowance",
+                "label": "寮・社宅・住宅手当あり",
+                "name": "housing_allowance",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_retirement_benefits",
+                "label": "退職金制度",
+                "name": "retirement_benefits",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_qualification_support",
+                "label": "資格取得支援制度あり",
+                "name": "qualification_support",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_maternity_leave_record",
+                "label": "産休・育休・介護休暇取得実績あり",
+                "name": "maternity_leave_record",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_women_active",
+                "label": "女性が活躍",
+                "name": "women_active",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_men_active",
+                "label": "男性が活躍",
+                "name": "men_active",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_incentive_available",
+                "label": "インセンティブあり",
+                "name": "incentive_available",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_ui_turn_support",
+                "label": "U・Iターン支援あり",
+                "name": "ui_turn_support",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_remote_interview_ok",
+                "label": "リモート面接OK",
+                "name": "remote_interview_ok",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_middle_active",
+                "label": "ミドル活躍中",
+                "name": "middle_active",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_senior_active",
+                "label": "シニア活躍中",
+                "name": "senior_active",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_new_graduate",
+                "label": "新卒",
+                "name": "new_graduate",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_second_new_graduate",
+                "label": "第二新卒",
+                "name": "second_new_graduate",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_mid_career",
+                "label": "中途採用",
+                "name": "mid_career",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_transportation_allowance",
+                "label": "交通費支給",
+                "name": "transportation_allowance",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_full_weekend_off",
+                "label": "完全週休二日制",
+                "name": "full_weekend_off",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_weekend_holiday",
+                "label": "土日祝休み",
+                "name": "weekend_holiday",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_low_overtime",
+                "label": "残業少なめ（月20時間未満）",
+                "name": "low_overtime",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_flex_time",
+                "label": "フレックスタイム制度あり",
+                "name": "flex_time",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_remote_work",
+                "label": "リモートワーク・在宅勤務制度",
+                "name": "remote_work",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_no_transfer",
+                "label": "転勤なし",
+                "name": "no_transfer",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_education_unnecessary",
+                "label": "学歴不問",
+                "name": "education_unnecessary",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_regular_employee",
+                "label": "正社員",
+                "name": "regular_employee",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_management_position",
+                "label": "管理職・マネージャー職の求人",
+                "name": "management_position",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_established_10years",
+                "label": "設立10年以上の会社",
+                "name": "established_10years",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_venture_company",
+                "label": "ベンチャー企業",
+                "name": "venture_company",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_job_inexperienced_ok",
+                "label": "職種未経験OK",
+                "name": "job_inexperienced_ok",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_industry_inexperienced_ok",
+                "label": "業種未経験OK",
+                "name": "industry_inexperienced_ok",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_listed_company",
+                "label": "上場企業",
+                "name": "listed_company",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_work_experience_unnecessary",
+                "label": "社会人経験不問",
+                "name": "work_experience_unnecessary",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_it_skill_unnecessary",
+                "label": "ITスキル不問",
+                "name": "it_skill_unnecessary",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_employee_count",
+                "label": "H_従業員数",
+                "name": "h_employee_count",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_head_office_address",
+                "label": "H_本社住所",
+                "name": "h_head_office_address",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_url",
+                "label": "H_URL",
+                "name": "h_url",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_established_date",
+                "label": "H_設立年月",
+                "name": "h_established_date",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_stock_public",
+                "label": "H_株式公開",
+                "name": "h_stock_public",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_job_content",
+                "label": "H_仕事内容",
+                "name": "h_job_content",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_application_requirements",
+                "label": "H＿応募資格",
+                "name": "h_application_requirements",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_expected_salary",
+                "label": "H_想定年収",
+                "name": "h_expected_salary",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_salary_details",
+                "label": "H＿給与詳細",
+                "name": "h_salary_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_work_location",
+                "label": "H_勤務地",
+                "name": "h_work_location",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_work_location_details",
+                "label": "H_勤務地詳細",
+                "name": "h_work_location_details",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_access",
+                "label": "H_アクセス",
+                "name": "h_access",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_allowances",
+                "label": "H_諸手当",
+                "name": "h_allowances",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_holidays",
+                "label": "H_休日休暇",
+                "name": "h_holidays",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
+            },
+            {
+                "key": "field_h_working_hours",
+                "label": "H_勤務時間",
+                "name": "h_working_hours",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": false,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "rows": 1,
+                "default_value": "",
+                "new_lines": "br",
+                "maxlength": "",
+                "placeholder": ""
             }
-        ]
-    ],
-    "menu_order": 0,
-    "position": "acf_after_title",
-    "style": "seamless",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": [
-        "the_content"
-    ],
-    "active": true,
-    "description": "",
-    "show_in_rest": 0,
-    "modified": 1759912916
-}
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "job"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "acf_after_title",
+        "style": "seamless",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": [
+            "the_content"
+        ],
+        "active": true,
+        "description": "",
+        "show_in_rest": 0,
+        "display_title": "",
+        "modified": 1761725288
+    }
+]
