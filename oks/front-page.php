@@ -364,96 +364,97 @@ get_header(); ?>
             </label>
             <div class="search_select__menu">
               <div class="search_select__menu_list">
-                <div class="search_select__type">
-                  <input type="checkbox" class="search_select__type_show" id="search_select__type_show01">
-                  <input type="checkbox" class="search_select__type_check" id="search_select__type01" name="type"
-                    value="製造・技術">
-                  <label class="search_select__type_title" for="search_select__type01">
-                    <span class="checkbox"></span>
-                    <span class="label">製造・技術</span>
-                    <span class="count">(123,456件)</span>
-                    <label class="arrow" for="search_select__type_show01">
-                      <span class="plus"><i class="fa-solid fa-plus"></i></span>
-                      <span class="minus"><i class="fa-solid fa-minus"></i></span>
-                    </label>
-                  </label>
-                  <div class="search_select__type_menu">
-                    <div class="search_select__type_list">
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type"
-                          value="機械オペレーター機械オペレーション機械オペレーター機械オペレーション">
-                        <span class="checkbox"></span>
-                        <span class="label">機械オペレーター機械オペレーション機械オペレーター機械オペレーション</span>
-                      </label>
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type"
-                          value="機械オペレーター(機械オペレーション)">
-                        <span class="checkbox"></span>
-                        <span class="label">機械オペレーター(機械オペレーション)</span>
-                      </label>
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type" value="組立・加工">
-                        <span class="checkbox"></span>
-                        <span class="label">組立・加工</span>
-                      </label>
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type" value="製造（電気・電子・機械）">
-                        <span class="checkbox"></span>
-                        <span class="label">製造（電気・電子・機械）</span>
-                      </label>
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type" value="検査・検品">
-                        <span class="checkbox"></span>
-                        <span class="label">検査・検品</span>
-                      </label>
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type"
-                          value="製造・技能工（化学・医療・食品）">
-                        <span class="checkbox"></span>
-                        <span class="label">製造・技能工（化学・医療・食品）</span>
-                      </label>
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type" value="食品製造">
-                        <span class="checkbox"></span>
-                        <span class="label">食品製造</span>
-                      </label>
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type" value="その他（化学・医療・食品）">
-                        <span class="checkbox"></span>
-                        <span class="label">その他（化学・医療・食品）</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
+                <?php
+                // Define job type groups with their sub-items (matching the search_side_type structure)
+                $job_type_groups = array(
+                    array(
+                        'name' => '営業・販売・サービス',
+                        'sub_items' => array('営業', '飲食', '小売・流通', 'サービス・接客（美容・清掃・その他）')
+                    ),
+                    array(
+                        'name' => '事務・管理・企画',
+                        'sub_items' => array('事務・受付・秘書・翻訳', '管理（人事・経理・総務・広報）', 'マーケティング・企画・カスタマーサポート')
+                    ),
+                    array(
+                        'name' => '製造・開発・技術',
+                        'sub_items' => array(
+                            '製造・開発（自動車・半導体・その他機械）',
+                            '製造・開発（化学・素材）',
+                            '製造・開発（繊維・化粧品・日用品）',
+                            '製造・開発（食品・香料・飼料）',
+                            '製造・開発（医療・理化学機器）',
+                            '建築・土木・設計',
+                            '電気・通信・インフラ'
+                        )
+                    ),
+                    array(
+                        'name' => 'IT・クリエイティブ',
+                        'sub_items' => array('IT・Webエンジニア', 'クリエイティブ・デザイン・ゲーム', 'メディア・エンタメ')
+                    ),
+                    array(
+                        'name' => '医療・福祉・教育',
+                        'sub_items' => array('医療・福祉・介護・薬局', '教育・保育', '公務員・団体職員・農林水産', '学術研究')
+                    ),
+                    array(
+                        'name' => '物流・購買・運転',
+                        'sub_items' => array('物流・購買・生産管理・SCM', '交通・運輸・ドライバー')
+                    ),
+                    array(
+                        'name' => '専門職・その他',
+                        'sub_items' => array('不動産', '金融', '人材サービス', 'コンサルタント・士業', '経営・事業責任者')
+                    )
+                );
 
-                <div class="search_select__type">
-                  <input type="checkbox" class="search_select__type_show" id="search_select__type_show02">
-                  <input type="checkbox" class="search_select__type_check" id="search_select__type02" name="type"
-                    value="物流・配送・軽作業">
-                  <label class="search_select__type_title" for="search_select__type02">
+                global $wpdb;
+                foreach ($job_type_groups as $index => $group):
+                    $group_index = $index + 1;
+                    $show_id = sprintf('search_select__type_show%02d', $group_index);
+                    $type_id = sprintf('search_select__type%02d', $group_index);
+
+                    // Count jobs for this group (all sub-items)
+                    $placeholders = implode(',', array_fill(0, count($group['sub_items']), '%s'));
+                    $query_args = array_merge(
+                        array("
+                            SELECT COUNT(DISTINCT p.ID)
+                            FROM {$wpdb->posts} p
+                            INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
+                            WHERE p.post_type = 'job'
+                            AND p.post_status = 'publish'
+                            AND pm.meta_key = 'job_type'
+                            AND pm.meta_value IN ($placeholders)
+                        "),
+                        $group['sub_items']
+                    );
+
+                    $group_count = $wpdb->get_var($wpdb->prepare(...$query_args));
+                ?>
+                <div class="search_select__area">
+                  <input type="checkbox" class="search_select__area_show" id="<?php echo $show_id; ?>" />
+                  <input type="checkbox" class="search_select__area_check" id="<?php echo $type_id; ?>"
+                    name="job_type[]" value="<?php echo esc_attr($group['name']); ?>" />
+                  <label class="search_select__area_title" for="<?php echo $type_id; ?>">
                     <span class="checkbox"></span>
-                    <span class="label">物流・配送・軽作業</span>
-                    <span class="count">(456件)</span>
-                    <label class="arrow" for="search_select__type_show02">
+                    <span class="label"><?php echo esc_html($group['name']); ?></span>
+                    <span class="count">(<?php echo number_format($group_count); ?>件)</span>
+                    <label class="arrow" for="<?php echo $show_id; ?>">
                       <span class="plus"><i class="fa-solid fa-plus"></i></span>
                       <span class="minus"><i class="fa-solid fa-minus"></i></span>
                     </label>
                   </label>
-                  <div class="search_select__type_menu">
-                    <div class="search_select__type_list">
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type" value="仕分け・梱包・ピッキング">
+                  <div class="search_select__area_menu">
+                    <div class="search_select__area_list">
+                      <?php foreach ($group['sub_items'] as $sub_item): ?>
+                      <label class="search_select__area_item">
+                        <input type="checkbox" class="search_select__area_item_check" name="job_type[]"
+                          value="<?php echo esc_attr($sub_item); ?>" />
                         <span class="checkbox"></span>
-                        <span class="label">仕分け・梱包・ピッキング</span>
+                        <span class="label"><?php echo esc_html($sub_item); ?></span>
                       </label>
-                      <label class="search_select__type_item">
-                        <input type="checkbox" class="search_select__type_item_check" name="type" value="フォークリフト">
-                        <span class="checkbox"></span>
-                        <span class="label">フォークリフト</span>
-                      </label>
+                      <?php endforeach; ?>
                     </div>
                   </div>
                 </div>
+                <?php endforeach; ?>
               </div>
             </div>
           </div>
@@ -1090,6 +1091,15 @@ get_header(); ?>
                 // Get ACF fields
                 $story_top = get_field('story_top');
                 $story_message = get_field('story_message');
+                
+                // story_block01〜06を取得（タイトルがある場合のみ）
+                $story_blocks = array();
+                for ($i = 1; $i <= 6; $i++) {
+                  $block = get_field('story_block' . str_pad($i, 2, '0', STR_PAD_LEFT));
+                  if ($block && !empty($block['title'])) {
+                    $story_blocks[] = $block;
+                  }
+                }
         ?>
         <a class="index_story__item" href="<?php the_permalink(); ?>">
           <div class="index_story__inner">
@@ -1102,7 +1112,9 @@ get_header(); ?>
                   alt="<?php echo esc_attr(get_the_title()); ?>">
                 <?php endif; ?>
               </p>
-              <p class="index_story__lead"><span>テキストが入りますテキストが入ります</span></p>
+              <?php if (!empty($story_top['catch'])) : ?>
+              <p class="index_story__lead"><span><?php echo wp_kses_post($story_top['catch']); ?></span></p>
+              <?php endif; ?>
             </div>
             <div class="index_story__contents">
               <div class="index_story__main">
@@ -1122,8 +1134,8 @@ get_header(); ?>
             </div>
             <hr>
             <div class="index_story__text">
-              <?php if (!empty($story_message['title'])) : ?>
-              <p><?php echo esc_html($story_message['title']); ?></p>
+              <?php if (!empty($story_blocks) && isset($story_blocks[0]['title'])) : ?>
+              <p><?php echo esc_html($story_blocks[0]['title']); ?></p>
               <?php endif; ?>
             </div>
           </div>
@@ -1481,5 +1493,48 @@ get_header(); ?>
     </div>
   </section>
 </main>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  // Front page job type checkbox handling
+  $('.search_select__menu').on('change', '.search_select__area_check', function() {
+    var $this = $(this);
+    var isChecked = $this.is(':checked');
+    var $container = $this.closest('.search_select__area');
+
+    // Toggle all sub-items in this group
+    $container.find('.search_select__area_item_check').prop('checked', isChecked);
+  });
+
+  // Individual sub-item checkbox handling for front page
+  $('.search_select__menu').on('change', '.search_select__area_item_check', function() {
+    var $container = $(this).closest('.search_select__area');
+    var $groupCheckbox = $container.find('.search_select__area_check');
+    var $subItemCheckboxes = $container.find('.search_select__area_item_check');
+    var checkedSubItems = $subItemCheckboxes.filter(':checked').length;
+    var totalSubItems = $subItemCheckboxes.length;
+
+    // Update group checkbox state based on sub-items
+    if (checkedSubItems === 0) {
+      $groupCheckbox.prop('checked', false).prop('indeterminate', false);
+    } else if (checkedSubItems === totalSubItems) {
+      $groupCheckbox.prop('checked', true).prop('indeterminate', false);
+    } else {
+      $groupCheckbox.prop('checked', false).prop('indeterminate', true);
+    }
+  });
+
+  // Arrow click handling for show/hide functionality
+  $('.search_select__menu').on('click', '.arrow', function(e) {
+    e.preventDefault();
+    var $arrow = $(this);
+    var showId = $arrow.attr('for');
+    var $showCheckbox = $('#' + showId);
+
+    // Toggle the show checkbox
+    $showCheckbox.prop('checked', !$showCheckbox.is(':checked'));
+  });
+});
+</script>
 
 <?php get_footer(); ?>

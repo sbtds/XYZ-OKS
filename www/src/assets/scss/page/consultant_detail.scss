@@ -40,6 +40,10 @@
       height: 100%;
       object-fit: cover;
     }
+
+    &.round {
+      border-radius: 12px;
+    }
   }
 
   &__main {
@@ -62,6 +66,24 @@
       // width: 295px;
       flex: 1 1 100%;
       margin: 0;
+    }
+
+    .catch {
+      line-height: 3.6;
+      span {
+        font-size: variables.$fz16;
+        font-weight: bold;
+        display: inline;
+        padding: 7px 8px;
+        line-height: 2;
+        letter-spacing: 0.05em;
+        color: white;
+        background: variables.$primary;
+        // font-size: 14px;
+        letter-spacing: 0.2em;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
+      }
     }
 
     .en {
@@ -141,7 +163,6 @@
         font-size: variables.$fz32;
       }
     }
-
     .contents {
       display: flex;
       flex-direction: column;
@@ -160,6 +181,13 @@
     @include variables.res(lg) {
       gap: 40px;
       margin-top: 40px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+      @include variables.res(lg) {
+        margin-top: 0;
+      }
     }
 
     .title {
@@ -194,6 +222,48 @@
         }
         img {
           width: 100%;
+        }
+      }
+    }
+    h3.title {
+      font-size: variables.$fz20;
+      @include variables.res(lg) {
+        font-size: variables.$fz24;
+      }
+
+      .arrow {
+        width: min(14vw, 100px);
+
+        @include variables.res(lg) {
+          width: 100px;
+        }
+      }
+    }
+    h4.title {
+      font-size: variables.$fz16;
+      @include variables.res(lg) {
+        font-size: variables.$fz20;
+      }
+
+      .arrow {
+        width: min(12vw, 80px);
+
+        @include variables.res(lg) {
+          width: 80px;
+        }
+      }
+    }
+    h5.title {
+      font-size: variables.$fz14;
+      @include variables.res(lg) {
+        font-size: variables.$fz18;
+      }
+
+      .arrow {
+        width: min(10vw, 60px);
+
+        @include variables.res(lg) {
+          width: 60px;
         }
       }
     }

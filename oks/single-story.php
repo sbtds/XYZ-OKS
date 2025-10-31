@@ -10,9 +10,9 @@ get_header(); ?>
 <main class="page_main">
   <div class="page_title bg-primary">
     <h1 class="title_section h55">
-      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_title_sp.svg" class="sp-only"
+      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/story_title_sp.svg" class="sp-only"
         alt="転職者ストーリー">
-      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_title.svg" class="pc-only"
+      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/story_title.svg" class="pc-only"
         alt="転職者ストーリー">
     </h1>
   </div>
@@ -20,7 +20,7 @@ get_header(); ?>
   <?php if (have_posts()) : while (have_posts()) : the_post();
     // ACFフィールドを取得
     $story_top = get_field('story_top');
-    $story_message = get_field('story_message');
+    // $story_message = get_field('story_message');
 
     // story_block01〜06を取得（タイトルがある場合のみ）
     $story_blocks = array();
@@ -36,18 +36,16 @@ get_header(); ?>
     <!-- コンサルタント基本情報 -->
     <section class="consultant_top">
       <?php if (has_post_thumbnail()) : ?>
-      <p class="consultant_top__thb">
+      <p class="consultant_top__thb round">
         <?php the_post_thumbnail('large'); ?>
-      </p>
-      <?php else : ?>
-      <p class="consultant_top__thb">
-        <img src="https://placehold.co/400x400" alt="<?php echo esc_attr(get_the_title()); ?>">
       </p>
       <?php endif; ?>
 
       <div class="consultant_top__main">
-        <?php if (!empty($story_top['eng'])) : ?>
-        <p class="en"><?php echo esc_html($story_top['eng']); ?></p>
+        <?php if (!empty($story_top['catch'])) : ?>
+        <p class="catch">
+          <span><?php echo wp_kses_post($story_top['catch']); ?></span>
+        </p>
         <?php endif; ?>
 
         <?php if (!empty($story_top['name'])) : ?>
@@ -76,32 +74,20 @@ get_header(); ?>
     </section>
 
     <section class="consultant_main">
-      <!-- メッセージセクション -->
-      <?php if (!empty($story_message['title']) || !empty($story_message['text'])) : ?>
-      <div class="consultant_main__intro">
-        <?php if (!empty($story_message['title'])) : ?>
-        <h2 class="title"><?php echo esc_html($story_message['title']); ?></h2>
-        <?php endif; ?>
-
-        <?php if (!empty($story_message['text'])) : ?>
-        <div class="contents">
-          <p><?php echo nl2br(esc_html($story_message['text'])); ?></p>
-        </div>
-        <?php endif; ?>
-      </div>
-      <?php endif; ?>
-
       <!-- コンサルタントブロックセクション -->
       <?php if (!empty($story_blocks)) : ?>
       <div class="consultant_main__contents">
         <?php foreach ($story_blocks as $block) : ?>
         <div class="consultant_main__item">
-          <h3 class="title">
+          <?php
+          $heading_tag = !empty($block['title_size']) ? $block['title_size'] : 'h3';
+          ?>
+          <<?php echo $heading_tag; ?> class="title">
             <span class="label"><?php echo esc_html($block['title']); ?></span>
             <span class="arrow"><img
                 src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/page_title_arrow.svg"
                 alt=""></span>
-          </h3>
+          </<?php echo $heading_tag; ?>>
           <?php if (!empty($block['text'])) : ?>
           <div class="contents">
             <?php
