@@ -1323,7 +1323,7 @@
                     </div>
                   </div>
                   <p class="search_select__x"><i class="fa-solid fa-xmark"></i></p>
-                  <div class="search_select__box">
+                  <div class="search_select__box" id="search_side_type">
                     <div class="search_select__inner">
                       <input type="checkbox" class="search_select__check" id="search_select__box02" />
                       <label class="search_select__button" for="search_select__box02">
@@ -1345,87 +1345,267 @@
                       </label>
                       <div class="search_select__menu">
                         <div class="search_select__menu_list">
-                          <div class="search_select__type">
-                            <input type="checkbox" class="search_select__type_show" id="search_select__type_show01" />
-                            <input type="checkbox" class="search_select__type_check" id="search_select__type01" name="type" value="製造・技術" />
-                            <label class="search_select__type_title" for="search_select__type01">
+                          <div class="search_select__area">
+                            <input type="checkbox" class="search_select__area_show" id="search_select__type_show01" />
+                            <input type="checkbox" class="search_select__area_check" id="search_select__type01" name="type" value="営業・販売・サービス" />
+                            <label class="search_select__area_title" for="search_select__type01">
                               <span class="checkbox"></span>
-                              <span class="label">製造・技術</span>
-                              <span class="count">(123,456件)</span>
+                              <span class="label">営業・販売・サービス</span>
+                              <span class="count">(00000件)</span>
                               <label class="arrow" for="search_select__type_show01">
                                 <span class="plus"><i class="fa-solid fa-plus"></i></span>
                                 <span class="minus"><i class="fa-solid fa-minus"></i></span>
                               </label>
                             </label>
-                            <div class="search_select__type_menu">
-                              <div class="search_select__type_list">
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="機械オペレーター機械オペレーション機械オペレーター機械オペレーション" />
+                            <div class="search_select__area_menu">
+                              <div class="search_select__area_list">
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="営業" />
                                   <span class="checkbox"></span>
-                                  <span class="label">機械オペレーター機械オペレーション機械オペレーター機械オペレーション</span>
+                                  <span class="label">営業</span>
                                 </label>
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="機械オペレーター(機械オペレーション)" />
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="飲食" />
                                   <span class="checkbox"></span>
-                                  <span class="label">機械オペレーター(機械オペレーション)</span>
+                                  <span class="label">飲食</span>
                                 </label>
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="組立・加工" />
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="小売・流通" />
                                   <span class="checkbox"></span>
-                                  <span class="label">組立・加工</span>
+                                  <span class="label">小売・流通</span>
                                 </label>
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="製造（電気・電子・機械）" />
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="サービス・接客（美容・清掃・その他）" />
                                   <span class="checkbox"></span>
-                                  <span class="label">製造（電気・電子・機械）</span>
-                                </label>
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="検査・検品" />
-                                  <span class="checkbox"></span>
-                                  <span class="label">検査・検品</span>
-                                </label>
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="製造・技能工（化学・医療・食品）" />
-                                  <span class="checkbox"></span>
-                                  <span class="label">製造・技能工（化学・医療・食品）</span>
-                                </label>
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="食品製造" />
-                                  <span class="checkbox"></span>
-                                  <span class="label">食品製造</span>
-                                </label>
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="その他（化学・医療・食品）" />
-                                  <span class="checkbox"></span>
-                                  <span class="label">その他（化学・医療・食品）</span>
+                                  <span class="label">サービス・接客（美容・清掃・その他）</span>
                                 </label>
                               </div>
                             </div>
                           </div>
 
-                          <div class="search_select__type">
-                            <input type="checkbox" class="search_select__type_show" id="search_select__type_show02" />
-                            <input type="checkbox" class="search_select__type_check" id="search_select__type02" name="type" value="物流・配送・軽作業" />
-                            <label class="search_select__type_title" for="search_select__type02">
+                          <div class="search_select__area">
+                            <input type="checkbox" class="search_select__area_show" id="search_select__type_show02" />
+                            <input type="checkbox" class="search_select__area_check" id="search_select__type02" name="type" value="事務・管理・企画" />
+                            <label class="search_select__area_title" for="search_select__type02">
                               <span class="checkbox"></span>
-                              <span class="label">物流・配送・軽作業</span>
-                              <span class="count">(456件)</span>
+                              <span class="label">事務・管理・企画</span>
+                              <span class="count">(00000件)</span>
                               <label class="arrow" for="search_select__type_show02">
                                 <span class="plus"><i class="fa-solid fa-plus"></i></span>
                                 <span class="minus"><i class="fa-solid fa-minus"></i></span>
                               </label>
                             </label>
-                            <div class="search_select__type_menu">
-                              <div class="search_select__type_list">
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="仕分け・梱包・ピッキング" />
+                            <div class="search_select__area_menu">
+                              <div class="search_select__area_list">
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="事務・受付・秘書・翻訳" />
                                   <span class="checkbox"></span>
-                                  <span class="label">仕分け・梱包・ピッキング</span>
+                                  <span class="label">事務・受付・秘書・翻訳</span>
                                 </label>
-                                <label class="search_select__type_item">
-                                  <input type="checkbox" class="search_select__type_item_check" name="type" value="フォークリフト" />
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="管理（人事・経理・総務・広報）" />
                                   <span class="checkbox"></span>
-                                  <span class="label">フォークリフト</span>
+                                  <span class="label">管理（人事・経理・総務・広報）</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="マーケティング・企画・カスタマーサポート" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">マーケティング・企画・カスタマーサポート</span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="search_select__area">
+                            <input type="checkbox" class="search_select__area_show" id="search_select__type_show03" />
+                            <input type="checkbox" class="search_select__area_check" id="search_select__type03" name="type" value="製造・開発・技術" />
+                            <label class="search_select__area_title" for="search_select__type03">
+                              <span class="checkbox"></span>
+                              <span class="label">製造・開発・技術</span>
+                              <span class="count">(00000件)</span>
+                              <label class="arrow" for="search_select__type_show03">
+                                <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                                <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                              </label>
+                            </label>
+                            <div class="search_select__area_menu">
+                              <div class="search_select__area_list">
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="製造・開発（自動車・半導体・その他機械）" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">製造・開発（自動車・半導体・その他機械）</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="製造・開発（化学・素材）" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">製造・開発（化学・素材）</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="製造・開発（繊維・化粧品・日用品）" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">製造・開発（繊維・化粧品・日用品）</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="製造・開発（食品・香料・飼料）" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">製造・開発（食品・香料・飼料）</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="製造・開発（医療・理化学機器）" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">製造・開発（医療・理化学機器）</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="建築・土木・設計" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">建築・土木・設計</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="電気・通信・インフラ" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">電気・通信・インフラ</span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="search_select__area">
+                            <input type="checkbox" class="search_select__area_show" id="search_select__type_show04" />
+                            <input type="checkbox" class="search_select__area_check" id="search_select__type04" name="type" value="IT・クリエイティブ" />
+                            <label class="search_select__area_title" for="search_select__type04">
+                              <span class="checkbox"></span>
+                              <span class="label">IT・クリエイティブ</span>
+                              <span class="count">(00000件)</span>
+                              <label class="arrow" for="search_select__type_show04">
+                                <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                                <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                              </label>
+                            </label>
+                            <div class="search_select__area_menu">
+                              <div class="search_select__area_list">
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="IT・Webエンジニア" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">IT・Webエンジニア</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="クリエイティブ・デザイン・ゲーム" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">クリエイティブ・デザイン・ゲーム</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="メディア・エンタメ" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">メディア・エンタメ</span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="search_select__area">
+                            <input type="checkbox" class="search_select__area_show" id="search_select__type_show05" />
+                            <input type="checkbox" class="search_select__area_check" id="search_select__type05" name="type" value="医療・福祉・教育" />
+                            <label class="search_select__area_title" for="search_select__type05">
+                              <span class="checkbox"></span>
+                              <span class="label">医療・福祉・教育</span>
+                              <span class="count">(00000件)</span>
+                              <label class="arrow" for="search_select__type_show05">
+                                <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                                <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                              </label>
+                            </label>
+                            <div class="search_select__area_menu">
+                              <div class="search_select__area_list">
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="医療・福祉・介護・薬局" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">医療・福祉・介護・薬局</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="教育・保育" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">教育・保育</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="公務員・団体職員・農林水産" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">公務員・団体職員・農林水産</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="学術研究" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">学術研究</span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="search_select__area">
+                            <input type="checkbox" class="search_select__area_show" id="search_select__type_show06" />
+                            <input type="checkbox" class="search_select__area_check" id="search_select__type06" name="type" value="物流・購買・運転" />
+                            <label class="search_select__area_title" for="search_select__type06">
+                              <span class="checkbox"></span>
+                              <span class="label">物流・購買・運転</span>
+                              <span class="count">(00000件)</span>
+                              <label class="arrow" for="search_select__type_show06">
+                                <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                                <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                              </label>
+                            </label>
+                            <div class="search_select__area_menu">
+                              <div class="search_select__area_list">
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="物流・購買・生産管理・SCM" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">物流・購買・生産管理・SCM</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="交通・運輸・ドライバー" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">交通・運輸・ドライバー</span>
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="search_select__area">
+                            <input type="checkbox" class="search_select__area_show" id="search_select__type_show07" />
+                            <input type="checkbox" class="search_select__area_check" id="search_select__type07" name="type" value="専門職・その他" />
+                            <label class="search_select__area_title" for="search_select__type07">
+                              <span class="checkbox"></span>
+                              <span class="label">専門職・その他</span>
+                              <span class="count">(00000件)</span>
+                              <label class="arrow" for="search_select__type_show07">
+                                <span class="plus"><i class="fa-solid fa-plus"></i></span>
+                                <span class="minus"><i class="fa-solid fa-minus"></i></span>
+                              </label>
+                            </label>
+                            <div class="search_select__area_menu">
+                              <div class="search_select__area_list">
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="不動産" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">不動産</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="金融" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">金融</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="人材サービス" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">人材サービス</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="コンサルタント・士業" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">コンサルタント・士業</span>
+                                </label>
+                                <label class="search_select__area_item">
+                                  <input type="checkbox" class="search_select__area_item_check" name="type" value="経営・事業責任者" />
+                                  <span class="checkbox"></span>
+                                  <span class="label">経営・事業責任者</span>
                                 </label>
                               </div>
                             </div>

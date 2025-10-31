@@ -147,129 +147,92 @@ $total_job_count = $wpdb->get_var("
           <div class="search_select__menu">
             <div class="search_select__menu_list">
               <?php
-              // Define job types with grouped structure (same as in page-search.php)
+              // Define job type groups with their sub-items (matching the HTML structure)
               $job_type_groups = array(
-                  array('id' => 1, 'name' => '営業'),
-                  array('id' => 2, 'name' => '事務・受付・秘書・翻訳'),
-                  array('id' => 3, 'name' => '管理（人事・経理・総務・広報）'),
-                  array('id' => 4, 'name' => 'マーケティング・企画・カスタマーサポート'),
-                  array('id' => 5, 'name' => '製造・開発', 'sub_items' => array(
-                      '自動車・半導体・その他機械',
-                      '化学・素材',
-                      '繊維・化粧品・日用品',
-                      '食品・香料・飼料',
-                      '医療・理化学機器'
-                  )),
-                  array('id' => 10, 'name' => '物流・購買・生産管理・SCM'),
-                  array('id' => 11, 'name' => '交通・運輸・ドライバー'),
-                  array('id' => 12, 'name' => '建築・土木・設計'),
-                  array('id' => 13, 'name' => '電気・通信・インフラ'),
-                  array('id' => 14, 'name' => 'IT・Webエンジニア'),
-                  array('id' => 15, 'name' => 'クリエイティブ・デザイン・ゲーム'),
-                  array('id' => 16, 'name' => 'メディア・エンタメ'),
-                  array('id' => 17, 'name' => '医療・福祉・介護・薬局'),
-                  array('id' => 18, 'name' => '教育・保育'),
-                  array('id' => 19, 'name' => '不動産'),
-                  array('id' => 20, 'name' => '金融'),
-                  array('id' => 21, 'name' => '人材サービス'),
-                  array('id' => 22, 'name' => 'コンサルタント・士業'),
-                  array('id' => 23, 'name' => '経営・事業責任者'),
-                  array('id' => 24, 'name' => '飲食'),
-                  array('id' => 25, 'name' => '小売・流通'),
-                  array('id' => 26, 'name' => 'サービス・接客（美容・清掃・その他）'),
-                  array('id' => 27, 'name' => '公務員・団体職員・農林水産'),
-                  array('id' => 28, 'name' => '学術研究')
+                  array(
+                      'name' => '営業・販売・サービス',
+                      'sub_items' => array('営業', '飲食', '小売・流通', 'サービス・接客（美容・清掃・その他）')
+                  ),
+                  array(
+                      'name' => '事務・管理・企画',
+                      'sub_items' => array('事務・受付・秘書・翻訳', '管理（人事・経理・総務・広報）', 'マーケティング・企画・カスタマーサポート')
+                  ),
+                  array(
+                      'name' => '製造・開発・技術',
+                      'sub_items' => array(
+                          '製造・開発（自動車・半導体・その他機械）',
+                          '製造・開発（化学・素材）',
+                          '製造・開発（繊維・化粧品・日用品）',
+                          '製造・開発（食品・香料・飼料）',
+                          '製造・開発（医療・理化学機器）',
+                          '建築・土木・設計',
+                          '電気・通信・インフラ'
+                      )
+                  ),
+                  array(
+                      'name' => 'IT・クリエイティブ',
+                      'sub_items' => array('IT・Webエンジニア', 'クリエイティブ・デザイン・ゲーム', 'メディア・エンタメ')
+                  ),
+                  array(
+                      'name' => '医療・福祉・教育',
+                      'sub_items' => array('医療・福祉・介護・薬局', '教育・保育', '公務員・団体職員・農林水産', '学術研究')
+                  ),
+                  array(
+                      'name' => '物流・購買・運転',
+                      'sub_items' => array('物流・購買・生産管理・SCM', '交通・運輸・ドライバー')
+                  ),
+                  array(
+                      'name' => '専門職・その他',
+                      'sub_items' => array('不動産', '金融', '人材サービス', 'コンサルタント・士業', '経営・事業責任者')
+                  )
               );
 
-              foreach ($job_type_groups as $index => $job_type):
-                  $type_id = sprintf('search_select__type_side%02d', $index + 1);
-                  $show_id = sprintf('search_select__type_side_show%02d', $index + 1);
+              foreach ($job_type_groups as $index => $group):
+                  $group_index = $index + 1;
+                  $show_id = sprintf('search_select__type_show%02d', $group_index);
+                  $type_id = sprintf('search_select__type%02d', $group_index);
 
-                  // Count jobs for this job type category
-                  if (isset($job_type['sub_items'])) {
-                      // For parent categories with sub-items, count all sub-item jobs
-                      $placeholders = implode(',', array_fill(0, count($job_type['sub_items']), '%s'));
-                      $sub_item_values = array_map(function($sub) use ($job_type) {
-                          return $job_type['name'] . '（' . $sub . '）';
-                      }, $job_type['sub_items']);
-
-                      $query_args = array_merge(
-                          array("
-                              SELECT COUNT(DISTINCT p.ID)
-                              FROM {$wpdb->posts} p
-                              INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
-                              WHERE p.post_type = 'job'
-                              AND p.post_status = 'publish'
-                              AND pm.meta_key = 'job_type'
-                              AND pm.meta_value IN ($placeholders)
-                          "),
-                          $sub_item_values
-                      );
-
-                      $job_type_count = $wpdb->get_var($wpdb->prepare(...$query_args));
-                  } else {
-                      // For single job types
-                      $job_type_count = $wpdb->get_var($wpdb->prepare("
+                  // Count jobs for this group (all sub-items)
+                  $placeholders = implode(',', array_fill(0, count($group['sub_items']), '%s'));
+                  $query_args = array_merge(
+                      array("
                           SELECT COUNT(DISTINCT p.ID)
                           FROM {$wpdb->posts} p
                           INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
                           WHERE p.post_type = 'job'
                           AND p.post_status = 'publish'
                           AND pm.meta_key = 'job_type'
-                          AND pm.meta_value = %s
-                      ", $job_type['name']));
-                  }
+                          AND pm.meta_value IN ($placeholders)
+                      "),
+                      $group['sub_items']
+                  );
+
+                  $group_count = $wpdb->get_var($wpdb->prepare(...$query_args));
               ?>
-              <div class="search_select__type">
-                <?php if (isset($job_type['sub_items'])): ?>
-                <input type="checkbox" class="search_select__type_show" id="<?php echo $show_id; ?>" />
-                <input type="checkbox" class="search_select__type_check" id="<?php echo $type_id; ?>" name="job_type[]"
-                  value="<?php echo esc_attr($job_type['name']); ?>"
-                  <?php checked(isset($search_params['job_type']) && in_array($job_type['name'], $search_params['job_type'])); ?> />
-                <label class="search_select__type_title" for="<?php echo $type_id; ?>">
+              <div class="search_select__area">
+                <input type="checkbox" class="search_select__area_show" id="<?php echo $show_id; ?>" />
+                <input type="checkbox" class="search_select__area_check" id="<?php echo $type_id; ?>" name="job_type[]" value="<?php echo esc_attr($group['name']); ?>" />
+                <label class="search_select__area_title" for="<?php echo $type_id; ?>">
                   <span class="checkbox"></span>
-                  <span class="label"><?php echo esc_html($job_type['name']); ?></span>
-                  <span class="count">(<?php echo number_format($job_type_count); ?>件)</span>
+                  <span class="label"><?php echo esc_html($group['name']); ?></span>
+                  <span class="count">(<?php echo number_format($group_count); ?>件)</span>
                   <label class="arrow" for="<?php echo $show_id; ?>">
                     <span class="plus"><i class="fa-solid fa-plus"></i></span>
                     <span class="minus"><i class="fa-solid fa-minus"></i></span>
                   </label>
                 </label>
-                <div class="search_select__type_menu">
-                  <div class="search_select__type_list">
-                    <?php foreach ($job_type['sub_items'] as $sub_item):
-                          $sub_item_full = $job_type['name'] . '（' . $sub_item . '）';
-                          // Count jobs for this sub-item
-                          $sub_item_count = $wpdb->get_var($wpdb->prepare("
-                              SELECT COUNT(DISTINCT p.ID)
-                              FROM {$wpdb->posts} p
-                              INNER JOIN {$wpdb->postmeta} pm ON p.ID = pm.post_id
-                              WHERE p.post_type = 'job'
-                              AND p.post_status = 'publish'
-                              AND pm.meta_key = 'job_type'
-                              AND pm.meta_value = %s
-                          ", $sub_item_full));
-                      ?>
-                    <label class="search_select__type_item">
-                      <input type="checkbox" class="search_select__type_item_check" name="job_type[]"
-                        value="<?php echo esc_attr($sub_item_full); ?>"
-                        <?php checked(isset($search_params['job_type']) && in_array($sub_item_full, $search_params['job_type'])); ?> />
+                <div class="search_select__area_menu">
+                  <div class="search_select__area_list">
+                    <?php foreach ($group['sub_items'] as $sub_item): ?>
+                    <label class="search_select__area_item">
+                      <input type="checkbox" class="search_select__area_item_check" name="job_type[]" value="<?php echo esc_attr($sub_item); ?>" 
+                        <?php checked(isset($search_params['job_type']) && in_array($sub_item, $search_params['job_type'])); ?> />
                       <span class="checkbox"></span>
                       <span class="label"><?php echo esc_html($sub_item); ?></span>
                     </label>
                     <?php endforeach; ?>
                   </div>
                 </div>
-                <?php else: ?>
-                <input type="checkbox" class="search_select__type_check" id="<?php echo $type_id; ?>" name="job_type[]"
-                  value="<?php echo esc_attr($job_type['name']); ?>"
-                  <?php checked(isset($search_params['job_type']) && in_array($job_type['name'], $search_params['job_type'])); ?> />
-                <label class="search_select__type_title" for="<?php echo $type_id; ?>">
-                  <span class="checkbox"></span>
-                  <span class="label"><?php echo esc_html($job_type['name']); ?></span>
-                  <span class="count">(<?php echo number_format($job_type_count); ?>件)</span>
-                </label>
-                <?php endif; ?>
               </div>
               <?php endforeach; ?>
             </div>
@@ -634,7 +597,44 @@ jQuery(document).ready(function($) {
     $container.find('.search_select__area_item_check').prop('checked', true);
   });
 
-  // Note: Job type checkbox handling is now done by the bundled JavaScript
+  // Job type checkbox handling for search_side_type
+  $('#search_side_type').on('change', '.search_select__area_check', function() {
+    var $this = $(this);
+    var isChecked = $this.is(':checked');
+    var $container = $this.closest('.search_select__area');
+
+    // Toggle all sub-items in this group
+    $container.find('.search_select__area_item_check').prop('checked', isChecked);
+  });
+
+  // Individual sub-item checkbox handling
+  $('#search_side_type').on('change', '.search_select__area_item_check', function() {
+    var $container = $(this).closest('.search_select__area');
+    var $groupCheckbox = $container.find('.search_select__area_check');
+    var $subItemCheckboxes = $container.find('.search_select__area_item_check');
+    var checkedSubItems = $subItemCheckboxes.filter(':checked').length;
+    var totalSubItems = $subItemCheckboxes.length;
+
+    // Update group checkbox state based on sub-items
+    if (checkedSubItems === 0) {
+      $groupCheckbox.prop('checked', false).prop('indeterminate', false);
+    } else if (checkedSubItems === totalSubItems) {
+      $groupCheckbox.prop('checked', true).prop('indeterminate', false);
+    } else {
+      $groupCheckbox.prop('checked', false).prop('indeterminate', true);
+    }
+  });
+
+  // Arrow click handling for show/hide functionality
+  $('#search_side_type').on('click', '.arrow', function(e) {
+    e.preventDefault();
+    var $arrow = $(this);
+    var showId = $arrow.attr('for');
+    var $showCheckbox = $('#' + showId);
+    
+    // Toggle the show checkbox
+    $showCheckbox.prop('checked', !$showCheckbox.is(':checked'));
+  });
 
 
   // サイドバー検索ボタンのクリックイベント
