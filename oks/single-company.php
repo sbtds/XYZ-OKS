@@ -43,7 +43,7 @@ get_header(); ?>
       </p>
       <?php else : ?>
       <p class="featured_top__thb">
-        <img src="https://placehold.co/550x360" alt="">
+        <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=550x360" alt="">
       </p>
       <?php endif; ?>
 

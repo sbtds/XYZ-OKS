@@ -205,7 +205,7 @@
                 <?php if (has_post_thumbnail()) : ?>
                 <?php the_post_thumbnail('thumbnail', array('alt' => get_the_title())); ?>
                 <?php else : ?>
-                <img class="" src="https://placehold.co/140x100" alt="<?php the_title(); ?>" />
+                <img class="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=140x100" alt="<?php the_title(); ?>" />
                 <?php endif; ?>
               </span>
               <span class="label"><?php the_title(); ?></span>

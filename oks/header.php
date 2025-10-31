@@ -58,7 +58,7 @@
               </a>
             </li>
             <li class="common_global__item">
-              <a href="<?php echo get_post_type_archive_link('company'); ?>">
+              <a href="<?php echo home_url('company'); ?>">
                 <span class="default">注目企業</span>
               </a>
             </li>
@@ -143,7 +143,7 @@
                   </a>
                 </li>
                 <li class="common_navigation__item">
-                  <a href="<?php echo get_post_type_archive_link('company'); ?>">
+                  <a href="<?php echo home_url('company'); ?>">
                     <span class="default hover-underline">注目企業</span>
                   </a>
                 </li>

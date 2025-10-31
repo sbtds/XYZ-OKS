@@ -1,7 +1,7 @@
 <aside class="useful_side">
   <div class="useful_side__button">
     <div class="button">
-      <a class="button_side" href="<?php echo home_url('/#register'); ?>">
+      <a class="button_side" href="<?php echo home_url('/entry/'); ?>">
         <span class="label">会員登録</span>
       </a>
       <p class="text">
@@ -35,7 +35,7 @@
             <?php if (has_post_thumbnail($manual_post->ID)) : ?>
             <?php echo get_the_post_thumbnail($manual_post->ID, 'thumbnail'); ?>
             <?php else : ?>
-            <img src="https://placehold.co/55x50" alt="<?php echo esc_attr($manual_post->post_title); ?>">
+            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" alt="<?php echo esc_attr($manual_post->post_title); ?>">
             <?php endif; ?>
           </span>
           <span class="label"><?php echo esc_html($manual_post->post_title); ?></span>
@@ -46,7 +46,7 @@
       else : ?>
       <li class="item">
         <a href="<?php echo home_url('/'); ?>">
-          <span class="thb hover-image"><img src="https://placehold.co/55x50" alt="履歴書の書き方"></span>
+          <span class="thb hover-image"><img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" alt="履歴書の書き方"></span>
           <span class="label">履歴書の書き方</span>
           <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
         </a>
@@ -76,7 +76,7 @@
             <?php if (has_post_thumbnail($popular_post->ID)) : ?>
             <?php echo get_the_post_thumbnail($popular_post->ID, 'thumbnail'); ?>
             <?php else : ?>
-            <img src="https://placehold.co/55x50" alt="<?php echo esc_attr($popular_post->post_title); ?>">
+            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" alt="<?php echo esc_attr($popular_post->post_title); ?>">
             <?php endif; ?>
           </span>
           <span class="label"><?php echo esc_html($popular_post->post_title); ?></span>
@@ -87,7 +87,7 @@
       else : ?>
       <li class="item">
         <a href="<?php echo home_url('/'); ?>">
-          <span class="thb hover-image"><img src="https://placehold.co/55x50" alt="記事タイトル"></span>
+          <span class="thb hover-image"><img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" alt="記事タイトル"></span>
           <span class="label">記事タイトル</span>
           <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
         </a>
@@ -119,7 +119,7 @@
             <?php if (has_post_thumbnail($feature_post->ID)) : ?>
             <?php echo get_the_post_thumbnail($feature_post->ID, 'medium'); ?>
             <?php else : ?>
-            <img src="https://placehold.co/260x140" alt="<?php echo esc_attr($feature_post->post_title); ?>">
+            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" alt="<?php echo esc_attr($feature_post->post_title); ?>">
             <?php endif; ?>
           </span>
         </a>
@@ -130,7 +130,7 @@
         <h4 class="subject">特集記事</h4>
         <a class="banner" href="<?php echo home_url('/'); ?>">
           <span class="image hover-image">
-            <img src="https://placehold.co/260x140" alt="特集記事">
+            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" alt="特集記事">
           </span>
         </a>
       </li>

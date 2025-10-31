@@ -41,7 +41,7 @@ get_header(); ?>
       </p>
       <?php else : ?>
       <p class="consultant_top__thb">
-        <img src="https://placehold.co/400x400" alt="<?php echo esc_attr(get_the_title()); ?>">
+        <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=400x400" alt="<?php echo esc_attr(get_the_title()); ?>">
       </p>
       <?php endif; ?>
 

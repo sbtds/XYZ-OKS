@@ -1,7 +1,5 @@
 <?php
 /**
- * FAQ一覧テンプレート
- *
  * @package OKS
  */
 
@@ -10,16 +8,28 @@ get_header(); ?>
 <main class="page_main">
   <div class="page_title bg-primary">
     <h1 class="title_section">
-      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/faq_title_sp.svg" class="sp-only" alt="Q&amp;A">
-      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/faq_title.svg" class="pc-only" alt="Q&amp;A">
+      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/faq_title_sp.svg" class="sp-only"
+        alt="Q&amp;A">
+      <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/faq_title.svg" class="pc-only"
+        alt="Q&amp;A">
     </h1>
   </div>
-  
+
   <section class="index_faq faq_index">
     <div class="index_faq__container container-base">
-      <?php if (have_posts()) : ?>
+      <?php
+      // FAQ投稿タイプのクエリを作成
+      $args = array(
+        'post_type' => 'faq',
+        'posts_per_page' => -1,
+        'orderby' => 'date',
+        'order' => 'DESC'
+      );
+      $faq_query = new WP_Query($args);
+      
+      if ($faq_query->have_posts()) : ?>
       <div class="index_faq__list">
-        <?php while (have_posts()) : the_post(); ?>
+        <?php while ($faq_query->have_posts()) : $faq_query->the_post(); ?>
         <label class="index_faq__item">
           <input type="checkbox" />
           <div class="index_faq__item_head">
@@ -33,16 +43,18 @@ get_header(); ?>
           <div class="index_faq__item_body">
             <span class="icon">A</span>
             <div class="contents">
-              <?php 
+              <?php
               // グーテンベルグエディターの内容をそのまま表示
-              the_content(); 
+              the_content();
               ?>
             </div>
           </div>
         </label>
         <?php endwhile; ?>
       </div>
-      <?php else : ?>
+      <?php 
+      wp_reset_postdata();
+      else : ?>
       <div class="no-results">
         <p>FAQが見つかりませんでした。</p>
       </div>

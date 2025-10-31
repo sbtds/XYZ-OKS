@@ -211,7 +211,9 @@ get_header(); ?>
                 <?php if ($image_url) : ?>
                 <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>">
                 <?php else : ?>
-                <img src="https://placehold.co/1100x840" alt="Placeholder">
+                <img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=1100x840"
+                  alt="Placeholder">
                 <?php endif; ?>
               </p>
               <?php if ($link && !empty($link['url'])) : ?>
@@ -228,7 +230,9 @@ get_header(); ?>
           <div class="index_hero__slide_item swiper-slide">
             <a href="#">
               <p class="hover-image">
-                <img src="https://placehold.co/1100x840" alt="カルーセル画像が設定されていません">
+                <img
+                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=1100x840"
+                  alt="カルーセル画像が設定されていません">
               </p>
             </a>
           </div>
@@ -671,7 +675,8 @@ get_header(); ?>
       </h2>
       <div class="index_recommend__contents">
         <div class="index_recommend__list">
-          <a class="index_recommend__item" href="./search_detail.html">
+          <a class="index_recommend__item"
+            href="<?php echo home_url('/search/?job_type%5B%5D=事務・管理・企画&job_type%5B%5D=事務・受付・秘書・翻訳&job_type%5B%5D=管理（人事・経理・総務・広報）&job_type%5B%5D=マーケティング・企画・カスタマーサポート'); ?>">
             <p class="index_recommend__image hover-image">
               <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img01.jpg"
                 alt="営業職のイメージ">
@@ -681,7 +686,8 @@ get_header(); ?>
                 alt="営業職">
             </h3>
           </a>
-          <a class="index_recommend__item" href="./search_detail.html">
+          <a class="index_recommend__item"
+            href="<?php echo home_url('/search/?job_type%5B%5D=製造・開発・技術&job_type%5B%5D=製造・開発（自動車・半導体・その他機械）&job_type%5B%5D=製造・開発（化学・素材）&job_type%5B%5D=製造・開発（繊維・化粧品・日用品）&job_type%5B%5D=製造・開発（食品・香料・飼料）&job_type%5B%5D=製造・開発（医療・理化学機器）&job_type%5B%5D=建築・土木・設計&job_type%5B%5D=電気・通信・インフラ'); ?>">
             <p class="index_recommend__image hover-image">
               <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img02.jpg"
                 alt="技術職のイメージ">
@@ -691,7 +697,8 @@ get_header(); ?>
                 alt="技術職">
             </h3>
           </a>
-          <a class="index_recommend__item" href="./search_detail.html">
+          <a class="index_recommend__item"
+            href="<?php echo home_url('/search/?job_type%5B%5D=事務・管理・企画&job_type%5B%5D=事務・受付・秘書・翻訳&job_type%5B%5D=管理（人事・経理・総務・広報）&job_type%5B%5D=マーケティング・企画・カスタマーサポート'); ?>">
             <p class="index_recommend__image hover-image">
               <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img03.jpg"
                 alt="経理・財務職のイメージ">
@@ -1016,7 +1023,9 @@ get_header(); ?>
               <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('medium'); ?>
               <?php else : ?>
-              <img src="https://placehold.co/320x320" alt="<?php echo esc_attr(get_the_title()); ?>">
+              <img
+                src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=320x320"
+                alt="<?php echo esc_attr(get_the_title()); ?>">
               <?php endif; ?>
             </p>
             <div class="index_consultant__main">
@@ -1091,7 +1100,7 @@ get_header(); ?>
                 // Get ACF fields
                 $story_top = get_field('story_top');
                 $story_message = get_field('story_message');
-                
+
                 // story_block01〜06を取得（タイトルがある場合のみ）
                 $story_blocks = array();
                 for ($i = 1; $i <= 6; $i++) {
@@ -1405,7 +1414,8 @@ get_header(); ?>
             <?php if ($company_thumbnail) : ?>
             <?php echo $company_thumbnail; ?>
             <?php else : ?>
-            <img src="https://placehold.co/480x630" alt="<?php echo esc_attr($company_name); ?>">
+            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=480x630"
+              alt="<?php echo esc_attr($company_name); ?>">
             <?php endif; ?>
           </p>
           <div class="index_featured__contents">
@@ -1469,7 +1479,8 @@ get_header(); ?>
             <?php if (has_post_thumbnail()) : ?>
             <?php the_post_thumbnail('medium'); ?>
             <?php else : ?>
-            <img src="https://placehold.co/320x240" alt="<?php echo esc_attr(get_the_title()); ?>">
+            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=320x240"
+              alt="<?php echo esc_attr(get_the_title()); ?>">
             <?php endif; ?>
           </p>
           <div class="index_useful__main">

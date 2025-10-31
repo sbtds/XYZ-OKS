@@ -1,7 +1,5 @@
 <?php
 /**
- * コンサルタント一覧テンプレート
- *
  * @package OKS
  */
 
@@ -19,9 +17,19 @@ get_header(); ?>
 
   <section class="index_consultant consultant_list">
     <div class="index_consultant__container">
-      <?php if (have_posts()) : ?>
+      <?php
+      // コンサルタント投稿タイプのクエリを作成
+      $args = array(
+        'post_type' => 'consultant',
+        'posts_per_page' => -1,
+        'orderby' => 'date',
+        'order' => 'DESC'
+      );
+      $consultant_query = new WP_Query($args);
+
+      if ($consultant_query->have_posts()) : ?>
       <div class="index_consultant__list">
-        <?php while (have_posts()) : the_post();
+        <?php while ($consultant_query->have_posts()) : $consultant_query->the_post();
           // ACFフィールドを取得
           $consultant_top = get_field('consultant_top');
 
@@ -34,7 +42,7 @@ get_header(); ?>
               <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('medium'); ?>
               <?php else : ?>
-              <img src="https://placehold.co/320x320" alt="<?php echo esc_attr(get_the_title()); ?>">
+              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=320x320" alt="<?php echo esc_attr(get_the_title()); ?>">
               <?php endif; ?>
             </p>
             <div class="index_consultant__main">
@@ -74,7 +82,9 @@ get_header(); ?>
         <?php endwhile; ?>
       </div>
 
-      <?php else : ?>
+      <?php
+      wp_reset_postdata();
+      else : ?>
       <div class="no-results">
         <p>コンサルタントが見つかりませんでした。</p>
       </div>

@@ -5,7 +5,7 @@
  * @package OKS
  */
 
-get_header(); 
+get_header();
 
 $term = get_queried_object(); // 現在のタームを取得
 ?>
@@ -17,7 +17,7 @@ $term = get_queried_object(); // 現在のタームを取得
       <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/featured_title.svg" class="pc-only" alt="注目企業">
     </h1>
   </div>
-  
+
   <section class="featured_index">
     <div class="featured_index__container">
       <div class="featured_index__area">
@@ -26,8 +26,8 @@ $term = get_queried_object(); // 現在のタームを取得
           <span class="label"><?php echo esc_html($term->name); ?></span>
           <span class="arrow"><img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/section_title_arrow.svg" alt=""></span>
         </h2>
-        
-        <?php 
+
+        <?php
         // company投稿タイプのみに制限するためのカスタムクエリ
         $args = array(
           'post_type' => 'company',
@@ -41,10 +41,10 @@ $term = get_queried_object(); // 現在のタームを取得
           'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
         );
         $company_query = new WP_Query($args);
-        
+
         if ($company_query->have_posts()) : ?>
           <div class="featured_index__list">
-            <?php while ($company_query->have_posts()) : $company_query->the_post(); 
+            <?php while ($company_query->have_posts()) : $company_query->the_post();
               $company_top = get_field('company_top');
             ?>
               <a class="featured_index__item" href="<?php the_permalink(); ?>">
@@ -71,13 +71,13 @@ $term = get_queried_object(); // 現在のタームを取得
                   <?php if (has_post_thumbnail()) : ?>
                     <?php the_post_thumbnail('thumbnail'); ?>
                   <?php else : ?>
-                    <img src="https://placehold.co/170x110" alt="<?php the_title_attribute(); ?>">
+                    <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=170x110" alt="<?php the_title_attribute(); ?>">
                   <?php endif; ?>
                 </div>
               </a>
             <?php endwhile; ?>
           </div>
-          
+
           <!-- ページネーション -->
           <div class="pagination">
             <?php
@@ -95,12 +95,12 @@ $term = get_queried_object(); // 現在のタームを取得
           </div>
         <?php else : ?>
           <p>現在、<?php echo esc_html($term->name); ?>の注目企業はありません。</p>
-        <?php endif; 
-        
+        <?php endif;
+
         // クエリをリセット
         wp_reset_postdata();
         ?>
-        
+
         <div class="button_section">
           <a class="button_more" href="<?php echo get_post_type_archive_link('company'); ?>">
             <span class="label">注目企業一覧へ戻る</span>

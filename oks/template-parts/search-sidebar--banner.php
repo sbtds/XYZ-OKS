@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Part: Search Sidebar Banner
- * 
+ *
  * Banner section for search sidebar - shows on search page, single job page, and single post page
  *
  * @package OKS
@@ -32,7 +32,7 @@ if ($show_banners) : ?>
           <?php if (has_post_thumbnail($feature_post->ID)) : ?>
           <?php echo get_the_post_thumbnail($feature_post->ID, 'medium'); ?>
           <?php else : ?>
-          <img src="https://placehold.co/260x140" alt="<?php echo esc_attr($feature_post->post_title); ?>">
+          <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" alt="<?php echo esc_attr($feature_post->post_title); ?>">
           <?php endif; ?>
         </span>
       </a>
@@ -43,7 +43,7 @@ if ($show_banners) : ?>
       <h4 class="subject">特集記事</h4>
       <a class="banner" href="<?php echo home_url('/'); ?>">
         <span class="image hover-image">
-          <img src="https://placehold.co/260x140" alt="特集記事">
+          <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" alt="特集記事">
         </span>
       </a>
     </li>

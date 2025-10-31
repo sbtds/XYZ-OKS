@@ -61,7 +61,7 @@
                 </a>
               </li>
               <li class="common_footer__item">
-                <a href="<?php echo get_post_type_archive_link('company'); ?>">
+                <a href="<?php echo home_url('company'); ?>">
                   <span class="icon"><i class="fa-solid fa-angle-right"></i></span>
                   <span class="default hover-underline">注目企業</span>
                 </a>
