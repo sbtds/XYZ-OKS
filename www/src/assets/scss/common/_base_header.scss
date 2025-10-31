@@ -49,6 +49,9 @@
     height: 32px;
 
     @include variables.res(lg) {
+      height: 45px;
+    }
+    @media screen and (min-width: 1200px) {
       height: 54px;
     }
 

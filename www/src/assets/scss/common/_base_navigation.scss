@@ -63,7 +63,7 @@
   &__list {
     display: flex;
     // justify-content: space-between;
-    gap: 18px;
+    gap: 12px;
 
     //fade
     transition: opacity 250ms, visibility 0s ease 250ms;
@@ -73,6 +73,12 @@
 
     // display: none;
     display: flex;
+    // font-size: 0.9rem;
+
+    @media screen and (min-width: 1200px) {
+      gap: 18px;
+      // font-size: 1rem;
+    }
     // @include lg(){
     //   display: flex;
     // }
