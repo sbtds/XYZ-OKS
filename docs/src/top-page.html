@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>トップページ更新 - OKSテーマ マニュアル</title>
+    <link rel="stylesheet" href="./assets/scss/style.scss" />
+  </head>
+  <body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- ヘッダー -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <h1 class="text-xl md:text-2xl font-bold text-gray-900">OKSテーマ マニュアル</h1>
+        <button id="menu-toggle" class="lg:hidden p-2 rounded-md hover:bg-gray-100">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="flex-1 flex relative">
+      <!-- デスクトップサイドバー -->
+      <aside class="hidden lg:block w-64 bg-white shadow-lg">
+        <nav class="p-6">
+          <ul class="space-y-2">
+            <li><a href="./index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">扉ページ</a></li>
+            <li><a href="./top-page.html" class="block px-4 py-2 text-gray-700 bg-gray-100 rounded font-semibold">トップページ更新</a></li>
+            <li><a href="./jobs.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お仕事</a></li>
+            <li><a href="./useful-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お役立ち情報</a></li>
+            <li><a href="./consultant.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">コンサルタント</a></li>
+            <li><a href="./featured-companies.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">注目企業</a></li>
+            <li><a href="./faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">よくあるご質問</a></li>
+            <li><a href="./success-stories.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">転職者ストーリー</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- モバイルサイドバー -->
+      <div id="mobile-menu" class="lg:hidden fixed inset-0 z-50 flex transform -translate-x-full transition-transform duration-300">
+        <aside class="w-64 bg-white shadow-lg">
+          <div class="p-4 border-b">
+            <button id="menu-close" class="p-2 rounded-md hover:bg-gray-100">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <nav class="p-6">
+            <ul class="space-y-2">
+              <li><a href="./index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">扉ページ</a></li>
+              <li><a href="./top-page.html" class="block px-4 py-2 text-gray-700 bg-gray-100 rounded font-semibold">トップページ更新</a></li>
+              <li><a href="./jobs.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お仕事</a></li>
+              <li><a href="./useful-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お役立ち情報</a></li>
+              <li><a href="./consultant.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">コンサルタント</a></li>
+              <li><a href="./featured-companies.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">注目企業</a></li>
+              <li><a href="./faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">よくあるご質問</a></li>
+              <li><a href="./success-stories.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">転職者ストーリー</a></li>
+            </ul>
+          </nav>
+        </aside>
+        <div class="flex-1 bg-black bg-opacity-50" onclick="document.getElementById('mobile-menu').classList.add('-translate-x-full')"></div>
+      </div>
+
+      <!-- メインコンテンツ -->
+      <main class="flex-1 p-4 md:p-8">
+        <div class="max-w-4xl">
+          <div class="bg-white rounded-lg shadow p-4 md:p-8">
+            <h2 class="heading-2">トップページ更新</h2>
+
+            <section class="mb-12">
+              <h3 class="heading-3">カーソル下画像、リンクの編集</h3>
+              <img src="./assets/img/placeholder.svg" alt="キャプチャ画像" class="w-full max-w-2xl mb-6 border border-gray-300 rounded" />
+
+              <div class="space-y-8">
+                <!-- ステップ1 -->
+                <div class="border-l-4 border-blue-500 pl-6">
+                  <h4 class="text-lg md:text-xl font-semibold mb-3 flex flex-wrap items-center">
+                    <span class="step-number">1</span>
+                    編集画面、サイドナビ「固定ページ」→「HOME」を編集
+                  </h4>
+                  <img src="./assets/img/placeholder.svg" alt="編集画面のキャプチャ" class="w-full max-w-2xl mb-4 border border-gray-300 rounded" />
+                  <p class="text-gray-700 leading-relaxed">
+                    WordPress管理画面にログイン後、<span class="text-emphasis">左側のメニューから「固定ページ」</span>をクリックします。 固定ページ一覧から<span class="text-emphasis">「HOME」</span
+                    >を見つけて、 <a href="#" class="link">「編集」リンク</a>をクリックしてください。
+                    <span class="text-note">※権限がない場合は管理者にお問い合わせください。</span>
+                  </p>
+                </div>
+
+                <!-- ステップ2 -->
+                <div class="border-l-4 border-blue-500 pl-6">
+                  <h4 class="text-lg md:text-xl font-semibold mb-3 flex flex-wrap items-center">
+                    <span class="step-number">2</span>
+                    カーソル下画像をクリック
+                  </h4>
+                  <img src="./assets/img/placeholder.svg" alt="カーソル下画像のキャプチャ" class="w-full max-w-2xl mb-4 border border-gray-300 rounded" />
+                  <p class="text-gray-700 leading-relaxed">
+                    編集画面内で変更したい画像の上にカーソルを合わせ、
+                    <span class="text-important">画像をクリック</span>すると編集オプションが表示されます。 「画像を編集」または「置換」を選択して、新しい画像をアップロードしてください。
+                    <span class="text-note">※推奨画像サイズ: 1920×600px</span>
+                  </p>
+
+                  <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-4">
+                    <p class="text-yellow-700">
+                      <span class="text-emphasis">注意:</span>
+                      画像のファイルサイズは2MB以下にしてください。大きすぎると表示が遅くなります。
+                    </p>
+                  </div>
+                </div>
+
+                <!-- ステップ3 -->
+                <div class="border-l-4 border-blue-500 pl-6">
+                  <h4 class="text-lg md:text-xl font-semibold mb-3 flex flex-wrap items-center">
+                    <span class="step-number">3</span>
+                    リンクの編集
+                  </h4>
+                  <img src="./assets/img/placeholder.svg" alt="リンク編集のキャプチャ" class="w-full max-w-2xl mb-4 border border-gray-300 rounded" />
+                  <p class="text-gray-700 leading-relaxed">
+                    リンクを編集する場合は、テキストを選択して<span class="text-emphasis">リンクボタン</span>をクリックします。 URLを入力し、新しいタブで開く場合は<span class="text-emphasis"
+                      >「新しいタブで開く」</span
+                    >にチェックを入れてください。
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section class="mt-8 pt-8 border-t border-gray-200">
+              <h3 class="heading-3">関連項目</h3>
+              <ul class="space-y-2">
+                <li><a href="./jobs.html" class="link">お仕事の登録方法</a></li>
+                <li><a href="./useful-info.html" class="link">お役立ち情報の投稿方法</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-4">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-sm">&copy; 2024 OKSテーマ マニュアル</p>
+      </div>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

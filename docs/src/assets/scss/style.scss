@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* カスタムコンポーネント */
+@layer components {
+  /* テキスト装飾クラス */
+  .text-emphasis {
+    @apply font-bold text-gray-900;
+  }
+
+  .text-important {
+    @apply text-red-600 font-semibold;
+  }
+
+  .text-note {
+    @apply text-gray-500;
+  }
+
+  .link {
+    @apply text-blue-600 hover:text-blue-800 underline;
+  }
+
+  /* ステップ番号 */
+  .step-number {
+    @apply inline-flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-sm font-bold mr-2;
+  }
+
+  /* 見出しスタイル */
+  .heading-2 {
+    @apply text-xl md:text-2xl font-bold text-white bg-blue-600 px-4 md:px-6 py-3 md:py-4 mb-6 rounded-sm;
+  }
+
+  .heading-3 {
+    @apply text-lg md:text-xl font-semibold text-gray-800 mb-4 flex items-center;
+  }
+
+  .heading-3::before {
+    content: "";
+    @apply inline-block w-1 h-6 bg-blue-500 mr-3;
+  }
+}
