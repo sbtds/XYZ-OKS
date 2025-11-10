@@ -1,0 +1,39 @@
+<aside class="hidden lg:block w-64 bg-white shadow-lg">
+  <nav class="p-6">
+    <ul class="space-y-2">
+      <li><a href="./index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">扉ページ</a></li>
+      <li><a href="./top-page.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">トップページ更新</a></li>
+      <li><a href="./jobs.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お仕事</a></li>
+      <li><a href="./useful-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お役立ち情報</a></li>
+      <li><a href="./consultant.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">コンサルタント</a></li>
+      <li><a href="./featured-companies.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">注目企業</a></li>
+      <li><a href="./faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">よくあるご質問</a></li>
+      <li><a href="./success-stories.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">転職者ストーリー</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<div id="mobile-menu" class="lg:hidden fixed inset-0 z-50 flex transform -translate-x-full transition-transform duration-300">
+  <aside class="w-64 bg-white shadow-lg">
+    <div class="p-4 border-b">
+      <button id="menu-close" class="p-2 rounded-md hover:bg-gray-100">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <nav class="p-6">
+      <ul class="space-y-2">
+        <li><a href="./index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">扉ページ</a></li>
+        <li><a href="./top-page.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">トップページ更新</a></li>
+        <li><a href="./jobs.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お仕事</a></li>
+        <li><a href="./useful-info.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お役立ち情報</a></li>
+        <li><a href="./consultant.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">コンサルタント</a></li>
+        <li><a href="./featured-companies.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">注目企業</a></li>
+        <li><a href="./faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">よくあるご質問</a></li>
+        <li><a href="./success-stories.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">転職者ストーリー</a></li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="flex-1 bg-black bg-opacity-50" onclick="document.getElementById('mobile-menu').classList.add('-translate-x-full')"></div>
+</div>

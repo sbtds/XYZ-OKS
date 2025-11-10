@@ -1,7 +1,6 @@
 console.log('OKS Theme Documentation loaded');
 
-// サイドバーのアクティブリンクハイライト
-document.addEventListener('DOMContentLoaded', function() {
+function initializeApp() {
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('nav a');
     
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // モバイルメニューの制御
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuClose = document.getElementById('menu-close');
@@ -31,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // モバイルメニューの外側をクリックしたら閉じる
     if (mobileMenu) {
         mobileMenu.addEventListener('click', function(e) {
             if (e.target === mobileMenu) {
@@ -39,4 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+}
+
+document.addEventListener('includesLoaded', initializeApp);
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('[data-include]')) {
+        return;
+    }
+    initializeApp();
 });
