@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>トップページ更新 - OKSテーマ マニュアル</title>
+    <link rel="stylesheet" href="./assets/scss/style.scss" />
+  </head>
+  <body class="bg-gray-50 min-h-screen flex flex-col">
+    <div data-include="header.html"></div>
+
+    <div class="flex-1 flex relative">
+      <div class="contents" data-include="aside.html"></div>
+
+      <!-- メインコンテンツ -->
+      <main class="flex-1 p-4 md:p-8">
+        <!-- <nav class="mb-6 flex gap-3 flex-wrap">
+          <a href="#section01" class="px-8 py-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-bold text-xl">カルーセルの編集</a>
+          <a href="#section02" class="px-8 py-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-bold text-xl">注目企業</a>
+        </nav> -->
+
+        <div class="max-w-4xl space-y-20">
+          <div class="bg-white rounded-md shadow p-4 md:p-8">
+            <div class="prose max-w-none">
+              <h3 class="heading-3">編集メニュー</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <a class="border border-gray-200 rounded-md p-4" href="#section01">
+                  <h4 class="font-semibold mb-2">注目企業詳細</h4>
+                  <p class="text-sm text-gray-600">注目企業ページの作成方法</p>
+                </a>
+                <a class="border border-gray-200 rounded-md p-4" href="#section02">
+                  <h4 class="font-semibold mb-2">公開中の求人情報</h4>
+                  <p class="text-sm text-gray-600">注目企業ページの「公開中の求人情報 」</p>
+                </a>
+                <a class="border border-gray-200 rounded-md p-4" href="#section03">
+                  <h4 class="font-semibold mb-2">会社概要</h4>
+                  <p class="text-sm text-gray-600">注目企業ページの「会社概要」</p>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4" id="section01">
+            <h2 class="heading-2 rounded-md">注目企業詳細</h2>
+            <div class="bg-white rounded-md shadow p-4 md:p-8">
+              <section class="mb-12">
+                <img src="./assets/img/cmp-section01-img00.png" alt="キャプチャ画像" class="w-full mb-20 border border-gray-300 rounded" />
+                <!-- 1400x1000px jpg -->
+                <div class="space-y-20">
+                  <!-- ステップ1 -->
+                  <div class="border-l-4 border-blue-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number">1</span>
+                      サイドナビ「注目企業」→「新規注目企業を追加」をクリック
+                    </h3>
+                    <img src="./assets/img/cmp-section01-img01.png" alt="編集画面のキャプチャ" class="w-full mb-4 border border-gray-300 rounded" />
+                    <p class="text-gray-700 leading-relaxed">
+                      左側のメニューから<span class="text-emphasis">「注目企業」</span>をクリックします。 <br />
+                      ページ上部<span class="text-emphasis">「新規注目企業を追加」</span>をクリックしてください。<br />
+                      <span class="text-note">※権限がない場合は管理者にお問い合わせください。</span>
+                    </p>
+                  </div>
+
+                  <!-- ステップ2 -->
+                  <div class="border-l-4 border-blue-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number">2</span>
+                      注目企業の内容を入力
+                    </h3>
+                    <img src="./assets/img/cmp-section01-img02.png" alt="カルーセル画像のキャプチャ" class="w-full mb-4 border border-gray-300 rounded" />
+                    <div class="text-gray-700 leading-relaxed mb-10">
+                      <p class="flex text-emphasis"><span class="text-blue-600 text-xl inline-block">❶：</span><span>編集用タイトル</span></p>
+                      <p class="mt-1">フロントには表示されない編集用タイトルです。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❶：</span><span>注目企業トップ</span></p>
+                      <p class="mt-1">注目企業の概要を入力。詳細ページ・一覧ページに表示されます。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❷：</span><span>コンサルタントからのコメント</span></p>
+                      <p class="mt-1">注目企業のメッセージを入力。詳細ページに表示されます。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❸：</span><span>ブロック 1〜6</span></p>
+                      <p class="mt-1">注目企業の詳細を入力。詳細ページに表示されます。<br /></p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                      <p class="text-yellow-700">
+                        <span class="text-emphasis">注意:</span>
+                        ブロックは6ブロックまで設定可能です。
+                      </p>
+                    </div>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❹：</span><span>エリア選択</span></p>
+                      <p class="mt-1">注目企業のエリアを選択。詳細ページ・一覧ページに表示されます。<br /><span class="font-bold">新規エリアを追加</span>でエリア追加も可能です。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❺：</span><span>アイキャッチ画像</span></p>
+                      <p class="mt-1">注目企業のアイキャッチ設定。詳細ページ・一覧ページに表示されます。</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- <section class="mt-8 pt-8 border-t border-gray-200">
+                <h3 class="heading-3">関連項目</h3>
+                <ul class="space-y-2">
+                  <li><a href="./jobs.html" class="link">お仕事の登録方法</a></li>
+                  <li><a href="./useful-info.html" class="link">お役立ち情報の投稿方法</a></li>
+                </ul>
+              </section> -->
+            </div>
+          </div>
+
+          <div class="space-y-4" id="section02">
+            <h2 class="heading-2 rounded-md">公開中の求人情報</h2>
+            <div class="bg-white rounded-md shadow p-4 md:p-8">
+              <section class="mb-12">
+                <img src="./assets/img/cmp-section02-img00.png" alt="キャプチャ画像" class="w-full mb-20 border border-gray-300 rounded" />
+                <!-- 1400x1000px jpg -->
+                <div class="space-y-20">
+                  <!-- ステップ1 -->
+                  <div class="border-l-4 border-blue-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number">1</span>
+                      公開中の求人情報を入力
+                    </h3>
+                    <img src="./assets/img/cmp-section02-img01.png" alt="カルーセル画像のキャプチャ" class="w-full mb-4 border border-gray-300 rounded" />
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span>タイトル下説明文</span></p>
+                      <p class="mt-1">公開中の求人情報の説明文を入力。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span>公開集の求人情報</span></p>
+                      <p class="mt-1">公開集の求人情報を選択。求人がない場合は、このセクションごと表示されません。</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- <section class="mt-8 pt-8 border-t border-gray-200">
+                <h3 class="heading-3">関連項目</h3>
+                <ul class="space-y-2">
+                  <li><a href="./jobs.html" class="link">お仕事の登録方法</a></li>
+                  <li><a href="./useful-info.html" class="link">お役立ち情報の投稿方法</a></li>
+                </ul>
+              </section> -->
+            </div>
+          </div>
+
+          <div class="space-y-4" id="section03">
+            <h2 class="heading-2 rounded-md">会社概要</h2>
+            <div class="bg-white rounded-md shadow p-4 md:p-8">
+              <section class="mb-12">
+                <img src="./assets/img/cmp-section03-img00.png" alt="キャプチャ画像" class="w-full mb-20 border border-gray-300 rounded" />
+                <!-- 1400x1000px jpg -->
+                <div class="space-y-20">
+                  <!-- ステップ1 -->
+                  <div class="border-l-4 border-blue-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number">1</span>
+                      会社概要を入力
+                    </h3>
+                    <img src="./assets/img/cmp-section03-img01.png" alt="カルーセル画像のキャプチャ" class="w-full mb-4 border border-gray-300 rounded" />
+
+                    <!-- <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span>タイトル下説明文</span></p>
+                      <p class="mt-1">公開中の求人情報の説明文を入力。</p>
+                    </div>-->
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span>会社概要ブロック 1〜10</span></p>
+                      <p class="mt-1">会社概要を入力。詳細ページに表示されます。<br /></p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                      <p class="text-yellow-700">
+                        <span class="text-emphasis">注意:</span>
+                        ブロックは10ブロックまで設定可能です。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- <section class="mt-8 pt-8 border-t border-gray-200">
+                <h3 class="heading-3">関連項目</h3>
+                <ul class="space-y-2">
+                  <li><a href="./jobs.html" class="link">お仕事の登録方法</a></li>
+                  <li><a href="./useful-info.html" class="link">お役立ち情報の投稿方法</a></li>
+                </ul>
+              </section> -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div data-include="footer.html"></div>
+
+    <script src="./assets/js/loadIncludes.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

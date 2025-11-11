@@ -76,7 +76,9 @@ get_header(); ?>
               </p>
               <?php endif; ?>
               <div class="featured_index__main">
-                <p class="name"><?php the_title(); ?></p>
+                <?php if (!empty($company_top['name'])) : ?>
+                <p class="name"><?php echo esc_html($company_top['name']); ?></p>
+                <?php endif; ?>
                 <?php if (!empty($company_top['text'])) : ?>
                 <p class="desc"><?php echo mb_substr(strip_tags($company_top['text']), 0, 50); ?>...</p>
                 <?php endif; ?>
@@ -88,7 +90,9 @@ get_header(); ?>
               <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('thumbnail'); ?>
               <?php else : ?>
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=170x110" alt="<?php the_title_attribute(); ?>">
+              <img
+                src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=170x110"
+                alt="<?php the_title_attribute(); ?>">
               <?php endif; ?>
             </div>
           </a>

@@ -43,7 +43,8 @@ get_header(); ?>
       </p>
       <?php else : ?>
       <p class="featured_top__thb">
-        <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=550x360" alt="">
+        <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=550x360"
+          alt="">
       </p>
       <?php endif; ?>
 
@@ -181,8 +182,8 @@ get_header(); ?>
               $job_type = get_field('job_type', $job->ID);
               $employment_type = get_field('employment_type', $job->ID);
               $work_location = get_field('work_location', $job->ID);
-              $min_salary = get_field('min_salary', $job->ID);
-              $max_salary = get_field('max_salary', $job->ID);
+              $salary = get_field('salary', $job->ID);
+              // $max_salary = get_field('max_salary', $job->ID);
               $working_hours = get_field('working_hours', $job->ID);
             ?>
         <div class="featured_recruit__item">
@@ -203,21 +204,12 @@ get_header(); ?>
               </li>
               <?php endif; ?>
 
-              <?php if ($min_salary || $max_salary) : ?>
+              <?php if ($salary) : ?>
               <li class="item">
                 <span class="icon"><img
                     src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_icon_yen.svg"
                     alt=""></span>
-                <p class="text">
-                  <?php
-                          if ($min_salary && $max_salary) {
-                            echo number_format($min_salary / 10000) . '万円〜' . number_format($max_salary / 10000) . '万円';
-                          } elseif ($min_salary) {
-                            echo number_format($min_salary / 10000) . '万円〜';
-                          } elseif ($max_salary) {
-                            echo '〜' . number_format($max_salary / 10000) . '万円';
-                          }
-                          ?>
+                <p class="text"><?php echo esc_html($salary); ?>
                 </p>
               </li>
               <?php endif; ?>
@@ -227,7 +219,7 @@ get_header(); ?>
                 <span class="icon"><img
                     src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_icon_time.svg"
                     alt=""></span>
-                <p class="text"><?php echo esc_html($working_hours); ?></p>
+                <p class="text"><?php echo $working_hours; ?></p>
               </li>
               <?php endif; ?>
             </ul>
