@@ -241,7 +241,7 @@ class OKS_CSV_Processor {
         $data = array();
 
         if (!file_exists($file_path) || !is_readable($file_path)) {
-            $error_msg = "CSV file not found or not readable: " . $file_path;
+            $error_msg = "CSVファイルが見つからないか、読み取りできません: " . $file_path;
             error_log($error_msg);
             $this->last_errors[] = $error_msg;
             return false;
@@ -249,7 +249,7 @@ class OKS_CSV_Processor {
 
         $handle = fopen($file_path, 'r');
         if ($handle === false) {
-            $error_msg = "Failed to open CSV file: " . $file_path;
+            $error_msg = "CSVファイルを開けませんでした: " . $file_path;
             error_log($error_msg);
             $this->last_errors[] = $error_msg;
             return false;
@@ -265,7 +265,7 @@ class OKS_CSV_Processor {
         $headers = fgetcsv($handle, 0, ',', '"', '"');
         if (!$headers) {
             fclose($handle);
-            $error_msg = "Failed to read CSV headers from: " . $file_path;
+            $error_msg = "CSVファイルのヘッダー行を読み取れませんでした: " . $file_path;
             error_log($error_msg);
             $this->last_errors[] = $error_msg;
             return false;
@@ -279,7 +279,7 @@ class OKS_CSV_Processor {
         // Validate headers
         if (!$this->validate_headers($headers)) {
             fclose($handle);
-            $error_msg = "CSV headers validation failed. Expected: " . count($this->expected_columns) . ", Got: " . count($headers);
+            $error_msg = "CSVファイルのヘッダー検証に失敗しました。必要な列数: " . count($this->expected_columns) . "、実際の列数: " . count($headers);
             error_log($error_msg);
             $this->last_errors[] = $error_msg;
             return false;
@@ -348,7 +348,7 @@ class OKS_CSV_Processor {
         error_log("CSV parsing summary: Valid rows: $valid_rows, Skipped rows: $skipped_rows");
 
         if (empty($data)) {
-            $error_msg = "No valid data rows found in CSV file: " . $file_path;
+            $error_msg = "CSVファイルに有効なデータ行が見つかりませんでした: " . $file_path;
             error_log($error_msg);
             $this->last_errors[] = $error_msg;
             return false;
@@ -367,14 +367,14 @@ class OKS_CSV_Processor {
         $extra_columns = array_diff($headers, $this->expected_columns);
 
         if (!empty($missing_columns)) {
-            $error_msg = "Missing CSV columns: " . implode(', ', $missing_columns);
+            $error_msg = "CSVファイルに必要な列が不足しています: " . implode(', ', $missing_columns);
             error_log($error_msg);
             $this->last_errors[] = $error_msg;
             return false;
         }
 
         if (!empty($extra_columns)) {
-            $error_msg = "Extra CSV columns: " . implode(', ', $extra_columns);
+            $error_msg = "CSVファイルに不要な列が含まれています: " . implode(', ', $extra_columns);
             error_log($error_msg);
             $this->last_errors[] = $error_msg;
             return false;
@@ -383,7 +383,7 @@ class OKS_CSV_Processor {
         // Compare each header for exact match
         for ($i = 0; $i < count($this->expected_columns); $i++) {
             if (!isset($headers[$i]) || trim($headers[$i]) !== trim($this->expected_columns[$i])) {
-                $error_msg = "Header mismatch at position $i. Expected: '" . $this->expected_columns[$i] . "', Got: '" . (isset($headers[$i]) ? $headers[$i] : 'NULL') . "'";
+                $error_msg = "ヘッダーの位置 $i が一致しません。必要: '" . $this->expected_columns[$i] . "'、実際: '" . (isset($headers[$i]) ? $headers[$i] : 'NULL') . "'";
                 error_log($error_msg);
                 
                 // Add character-level debugging

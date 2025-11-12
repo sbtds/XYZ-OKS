@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>トップページ更新 - OKSテーマ マニュアル</title>
+    <link rel="stylesheet" href="./assets/scss/style.scss" />
+  </head>
+  <body class="bg-gray-50 min-h-screen flex flex-col">
+    <div data-include="header.html"></div>
+
+    <div class="flex-1 flex relative">
+      <div class="contents" data-include="aside.html"></div>
+
+      <!-- メインコンテンツ -->
+      <main class="flex-1 p-4 md:p-8">
+        <!-- <nav class="mb-6 flex gap-3 flex-wrap">
+          <a href="#section01" class="px-8 py-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-bold text-xl">カルーセルの編集</a>
+          <a href="#section02" class="px-8 py-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-bold text-xl">注目企業</a>
+        </nav> -->
+
+        <div class="max-w-4xl space-y-20">
+          <div class="bg-white rounded-md shadow p-4 md:p-8">
+            <div class="prose max-w-none">
+              <h3 class="heading-3">編集メニュー</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <a class="border border-gray-200 rounded-md p-4" href="#section01">
+                  <h4 class="font-semibold mb-2">お仕事登録</h4>
+                  <p class="text-sm text-gray-600">CSV一括登録について</p>
+                </a>
+                <a class="border border-gray-200 rounded-md p-4" href="#section02">
+                  <h4 class="font-semibold mb-2">エラー対応</h4>
+                  <p class="text-sm text-gray-600">一括登録のエラー対応</p>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4" id="section01">
+            <h2 class="heading-2 rounded-md">お仕事情報登録</h2>
+            <div class="bg-white rounded-md shadow p-4 md:p-8">
+              <section class="mb-12">
+                <img src="./assets/img/job-section01-img00.png" alt="キャプチャ画像" class="w-full mb-20 border border-gray-300 rounded" />
+                <!-- 1400x1000px jpg -->
+                <div class="space-y-20">
+                  <!-- ステップ1 -->
+                  <div class="border-l-4 border-blue-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number">1</span>
+                      サイドナビ「お仕事」→「CSVインポート」をクリック
+                    </h3>
+                    <img src="./assets/img/job-section01-img01.png" alt="編集画面のキャプチャ" class="w-full mb-4 border border-gray-300 rounded" />
+                    <!-- <p class="text-gray-700 leading-relaxed">
+                      左側のメニューから<span class="text-emphasis">「お仕事 -> CSVインポート」</span>をクリックします。 <br />
+                      ページ上部<span class="text-emphasis">「ファイルを選択」</span>をクリックしてCSVファイルをアップロードしてください。<br />
+                      <span class="text-emphasis">「インポート開始」</span>をクリックすると一括登録が開始されます。
+                      <span class="text-note">※権限がない場合は管理者にお問い合わせください。</span>
+                    </p> -->
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❶：</span><span>求人情報CSVインポート</span></p>
+                      <p class="mt-1">左側のメニューから<span class="text-emphasis">「お仕事 -> CSVインポート」</span>をクリックします。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❷：</span><span>CSVファイルの選択</span></p>
+                      <p class="mt-1"><span class="text-emphasis">「ファイルを選択」</span>をクリックしてCSVファイルをアップロードしてください。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❸：</span><span>インポート開始</span></p>
+                      <p class="mt-1"><span class="text-emphasis">「インポート開始」</span>をクリックすると一括登録が開始されます。</p>
+                    </div>
+                    <img src="./assets/img/job-section01-img02.png" alt="編集画面のキャプチャ" class="w-full mb-4 border border-gray-300 rounded" />
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span>インポート完了</span></p>
+                      <p class="mt-1"><span class="text-emphasis">「インポートが完了しました。」</span>と表示され、お仕事一覧にインポートされた投稿が表示されます。</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- <section class="mt-8 pt-8 border-t border-gray-200">
+                <h3 class="heading-3">関連項目</h3>
+                <ul class="space-y-2">
+                  <li><a href="./job.html" class="link">お仕事の登録方法</a></li>
+                  <li><a href="./useful-info.html" class="link">お役立ち情報の投稿方法</a></li>
+                </ul>
+              </section> -->
+            </div>
+          </div>
+
+          <div class="space-y-4" id="section02">
+            <h2 class="heading-2 rounded-md">エラー対応</h2>
+            <div class="bg-white rounded-md shadow p-4 md:p-8">
+              <section class="mb-12">
+                <img src="./assets/img/job-section02-img00.png" alt="キャプチャ画像" class="w-full mb-6 border border-gray-300 rounded" />
+                <p class="mb-12">
+                  インポートエラーが発生した場合、上記の<span class="text-red-600 inline-block">赤枠の箇所にエラー内容が表示</span>されます。<br />
+                  それぞれのエラー対応は以下になります。
+                </p>
+                <!-- 1400x1000px jpg -->
+                <div class="space-y-20">
+                  <!-- ステップ1 -->
+                  <div class="border-l-4 border-red-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number bg-red-500">1</span>
+                      CSVファイルに必要な列が不足しています: [列名]
+                    </h3>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 inline-block">原因</span></p>
+                      <p class="flex">
+                        <span class="inline-block">・</span
+                        ><span>CSVファイルに必須の列が含まれていません。<a href="./assets/csv/job.csv" target="_blank" class="underline hover:no-underline">項目確認用.csv</a></span>
+                      </p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-2">
+                      <p class="flex text-emphasis"><span class="text-blue-600 inline-block">対応方法</span></p>
+                      <!-- </div> -->
+                      <!-- <div class="text-gray-700 leading-relaxed mb-4"> -->
+                      <p class="flex"><span class="inline-block">・</span><span>CSVの1行目（ヘッダー行）に不足している列名を正確に追加してください。</span></p>
+                      <p class="flex">
+                        <span class="inline-block">・</span
+                        ><span>列名は大文字・小文字、全角・半角、スペースなども完全一致する必要があります。<br />例）全角 -> 半角：H＿応募資格 -> H_応募資格, H＿給与詳細 -> H_給与詳細</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- ステップ1 -->
+                  <div class="border-l-4 border-red-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number bg-red-500">2</span>
+                      CSVファイルに不要な列が含まれています: [列名]
+                    </h3>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 inline-block">原因</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>システムが想定していない列がCSVファイルに含まれています。</span></p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-2">
+                      <p class="flex text-emphasis"><span class="text-blue-600 inline-block">対応方法</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>エラーメッセージに表示された不要な列をCSVファイルから削除してください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>列名のスペルミスや表記揺れがないか確認してください。</span></p>
+                      <p class="flex">
+                        <span class="inline-block">・</span><span>正しい列名は全146列です。<a href="./assets/csv/job.csv" target="_blank" class="underline hover:no-underline">項目確認用.csv</a></span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- ステップ3 -->
+                  <div class="border-l-4 border-red-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number bg-red-500">3</span>
+                      CSVファイルのヘッダー検証に失敗しました。必要な列数: 146、実際の列数: [数値]
+                    </h3>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 inline-block">原因</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>CSVファイルの列数が146列と一致していません。</span></p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-2">
+                      <p class="flex text-emphasis"><span class="text-blue-600 inline-block">対応方法</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>CSVファイルの列数を確認してください（必須: 146列）。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>列が多い場合: 不要な列を削除してください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>列が少ない場合: 不足している列を追加してください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>Excel等で編集している場合、列の結合や削除がないか確認してください。</span></p>
+                    </div>
+                  </div>
+
+                  <!-- ステップ4 -->
+                  <div class="border-l-4 border-red-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number bg-red-500">4</span>
+                      ヘッダーの位置 [数値] が一致しません。必要: '[列名]'、実際: '[列名]'
+                    </h3>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 inline-block">原因</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>列の順序が正しくないか、列名が完全一致していません。</span></p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-2">
+                      <p class="flex text-emphasis"><span class="text-blue-600 inline-block">対応方法</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>列の順序を正しい順番に並べ替えてください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>列名の表記を完全一致させてください（スペース、全角/半角、記号なども含む）。</span></p>
+                      <p class="flex">
+                        <span class="inline-block">・</span
+                        ><span
+                          >テンプレートCSVファイル（<a href="./assets/csv/job.csv" target="_blank" class="underline hover:no-underline">項目確認用.csv</a
+                          >）から列の順序をコピーすることを推奨します。</span
+                        >
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- ステップ5 -->
+                  <div class="border-l-4 border-red-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number bg-red-500">5</span>
+                      CSVファイルが見つからないか、読み取りできません
+                    </h3>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 inline-block">原因</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>ファイルが存在しないか、アクセス権限がありません。</span></p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-2">
+                      <p class="flex text-emphasis"><span class="text-blue-600 inline-block">対応方法</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>ファイルパスを確認してください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>ファイルが存在し、読み取り可能か確認してください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>もう一度ファイルを選択し直してください。</span></p>
+                    </div>
+                  </div>
+
+                  <!-- ステップ6 -->
+                  <div class="border-l-4 border-red-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number bg-red-500">6</span>
+                      CSVファイルを開けませんでした
+                    </h3>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 inline-block">原因</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>ファイルが破損しているか、形式が正しくありません。</span></p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-2">
+                      <p class="flex text-emphasis"><span class="text-blue-600 inline-block">対応方法</span></p>
+                      <p class="flex">
+                        <span class="inline-block">・</span
+                        ><span>ファイルが破損していないか確認してください。<a href="./assets/csv/job.csv" target="_blank" class="underline hover:no-underline">項目確認用.csv</a></span>
+                      </p>
+                      <p class="flex"><span class="inline-block">・</span><span>CSV形式（UTF-8 BOM付き）で保存されているか確認してください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>Excelで開いて「名前を付けて保存」→「CSV UTF-8（コンマ区切り）」で再保存してください。</span></p>
+                    </div>
+                  </div>
+
+                  <!-- ステップ7 -->
+                  <div class="border-l-4 border-red-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number bg-red-500">7</span>
+                      CSVファイルのヘッダー行を読み取れませんでした
+                    </h3>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 inline-block">原因</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>ファイルの1行目（ヘッダー行）が破損しているか、形式が正しくありません。</span></p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-2">
+                      <p class="flex text-emphasis"><span class="text-blue-600 inline-block">対応方法</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>1行目にヘッダー（列名）が正しく入力されているか確認してください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>CSV形式（UTF-8 BOM付き）で保存されているか確認してください。</span></p>
+                      <p class="flex">
+                        <span class="inline-block">・</span
+                        ><span
+                          >テンプレートCSVファイル（<a href="./assets/csv/job.csv" target="_blank" class="underline hover:no-underline">項目確認用.csv</a>）のヘッダー行をコピーしてください。</span
+                        >
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- ステップ8 -->
+                  <div class="border-l-4 border-red-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number bg-red-500">8</span>
+                      CSVファイルに有効なデータ行が見つかりませんでした
+                    </h3>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 inline-block">原因</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>ヘッダー行以外にデータが入力されていません。</span></p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-2">
+                      <p class="flex text-emphasis"><span class="text-blue-600 inline-block">対応方法</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>2行目以降にデータが入力されているか確認してください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>空行だけでなく、実際のデータが含まれているか確認してください。</span></p>
+                      <p class="flex"><span class="inline-block">・</span><span>各行の列数が146列と一致しているか確認してください。</span></p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- <section class="mt-8 pt-8 border-t border-gray-200">
+                <h3 class="heading-3">関連項目</h3>
+                <ul class="space-y-2">
+                  <li><a href="./job.html" class="link">お仕事の登録方法</a></li>
+                  <li><a href="./useful-info.html" class="link">お役立ち情報の投稿方法</a></li>
+                </ul>
+              </section> -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div data-include="footer.html"></div>
+
+    <script src="./assets/js/loadIncludes.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
