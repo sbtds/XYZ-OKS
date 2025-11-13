@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>お役立ち情報 - OKSテーマ マニュアル</title>
+    <link rel="stylesheet" href="./assets/scss/style.scss" />
+  </head>
+  <body class="bg-gray-50 min-h-screen flex flex-col">
+    <div data-include="header.html"></div>
+
+    <div class="flex-1 flex relative">
+      <div class="contents" data-include="aside.html"></div>
+
+      <!-- メインコンテンツ -->
+      <main class="flex-1 p-4 md:p-8">
+        <!-- <nav class="mb-6 flex gap-3 flex-wrap">
+          <a href="#section01" class="px-8 py-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-bold text-xl">カルーセルの編集</a>
+          <a href="#section02" class="px-8 py-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-bold text-xl">お役立ち情報</a>
+        </nav> -->
+
+        <div class="max-w-4xl space-y-20">
+          <div class="bg-white rounded-md shadow p-4 md:p-8">
+            <div class="prose max-w-none">
+              <h3 class="heading-3">編集メニュー</h3>
+              <div class="grid md:grid-cols-2 gap-4">
+                <a class="border border-gray-200 rounded-md p-4" href="#section01">
+                  <h4 class="font-semibold mb-2">お役立ち情報詳細</h4>
+                  <p class="text-sm text-gray-600">お役立ち情報ページの作成方法</p>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4" id="section01">
+            <h2 class="heading-2 rounded-md">お役立ち情報詳細</h2>
+            <div class="bg-white rounded-md shadow p-4 md:p-8">
+              <section class="mb-12">
+                <img src="./assets/img/use-section01-img00.png" alt="キャプチャ画像" class="w-full mb-20 border border-gray-300 rounded" />
+                <!-- 1400x1000px jpg -->
+                <div class="space-y-20">
+                  <!-- ステップ1 -->
+                  <div class="border-l-4 border-blue-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number">1</span>
+                      サイドナビ「お役立ち情報」→「新規お役立ち情報を追加」をクリック
+                    </h3>
+                    <img src="./assets/img/use-section01-img01.png" alt="編集画面のキャプチャ" class="w-full mb-4 border border-gray-300 rounded" />
+                    <p class="text-gray-700 leading-relaxed">
+                      左側のメニューから<span class="text-emphasis">「お役立ち情報」</span>をクリックします。 <br />
+                      ページ上部<span class="text-emphasis">「お役立ち情報を追加」</span>をクリックしてください。<br />
+                      <span class="text-note">※権限がない場合は管理者にお問い合わせください。</span>
+                    </p>
+                  </div>
+
+                  <!-- ステップ2 -->
+                  <div class="border-l-4 border-blue-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number">2</span>
+                      お役立ち情報の内容を入力
+                    </h3>
+                    <img src="./assets/img/use-section01-img02.png" alt="カルーセル画像のキャプチャ" class="w-full mb-4 border border-gray-300 rounded" />
+                    <!-- <div class="text-gray-700 leading-relaxed mb-10">
+                      <p class="flex text-emphasis"><span class="text-blue-600 text-xl inline-block">❶：</span><span>編集用タイトル</span></p>
+                      <p class="mt-1">フロントには表示されない編集用タイトルです。</p>
+                    </div> -->
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❶：</span><span>記事タイトル</span></p>
+                      <p class="mt-1">お役立ち情報の記事タイトルを入力。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❷：</span><span>段落タイトル</span></p>
+                      <p class="mt-1">
+                        お役立ち情報の段落タイトルを入力。<br />
+                        タイトルレベルを「<span class="font-bold">H2</span>」に設定すると、自動で「<span class="font-bold">記事まとめ(要約)</span>」にリストされます。
+                      </p>
+                      <img src="./assets/img/use-section01-img022.png" alt="カルーセル画像のキャプチャ" class="w-full mb-4 border border-gray-300 rounded mt-2" />
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❸：</span><span>記事本文</span></p>
+                      <p class="mt-1">お役立ち情報の記事本文を入力。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❹：</span><span>アイキャッチ画像</span></p>
+                      <p class="mt-1">お役立ち情報のアイキャッチ設定。詳細ページ・一覧ページに表示されます。</p>
+                    </div>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❺：</span><span>スラッグについて</span></p>
+                      <p class="mt-1">お役立ち情報の「スラッグ」は、Wordpressの「投稿」を利用しています。<br />スラッグが自動で設定されるため<span class="text-red-600">設定変更できません</span>。</p>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❻：</span><span>カテゴリー</span></p>
+                      <p class="mt-1">お役立ち情報のカテゴリー設定</p>
+                      <p class="flex text-emphasis mt-2">
+                        <span class="text-red-600 inline-block">必読！転職完全マニュアル：</span>
+                        <span>サイドメニュー「必読！転職完全マニュアル」に表示されます。</span>
+                      </p>
+                      <p class="flex text-emphasis mt-2">
+                        <span class="text-red-600 inline-block">人気記事：</span>
+                        <span>サイドメニュー「人気記事」に表示されます。</span>
+                      </p>
+                      <p class="flex flex-col text-emphasis mt-2">
+                        <span class="text-red-600 inline-block">特集：</span>
+                        <span>
+                          サイドメニュー「特集」に記事タイトルとアイキャッチが表示されます。<br />
+                          お役立ち情報上部の「カルーセル」にアイキャッチが表示されます。<br />
+                          お役立ち情報下部の「特集記事」に表示されます。
+                        </span>
+                      </p>
+                      <img src="./assets/img/use-section01-img023.png" alt="カルーセル画像のキャプチャ" class="w-full mb-4 border border-gray-300 rounded mt-2" />
+                    </div>
+
+                    <div class="text-gray-700 leading-relaxed mb-4">
+                      <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❼：</span><span>タグ</span></p>
+                      <p class="mt-1">お役立ち情報のタグ設定</p>
+                    </div>
+                  </div>
+
+                  <!-- ステップ3 -->
+                  <div class="border-l-4 border-blue-500 pl-6">
+                    <h3 class="text-lg md:text-xl font-semibold mb-6 flex flex-wrap items-center">
+                      <span class="step-number">3</span>
+                      カテゴリー・タグの追加
+                    </h3>
+                    <img src="./assets/img/use-section01-img03.png" alt="カルーセル画像のキャプチャ" class="w-full mb-4 border border-gray-300 rounded" />
+                    <div class="text-gray-700 leading-relaxed mb-10">
+                      <p class="flex text-emphasis"><span>カテゴリー名・スラッグを入力</span></p>
+                      <p class="mt-1">名前、スラッグを入力「<span class="font-bold">カテゴリーを追加</span>」をクリックします。</p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                      <p class="text-yellow-700">
+                        <span class="text-emphasis">注意:</span>
+                        初期設定の以下のカテゴリーは<span class="font-bold text-red-600">削除しないでください</span>。<br />
+                        <span class="font-bold">・人気記事（popular）</span><br />
+                        <span class="font-bold">・必読！転職完全マニュアル（manual）</span><br />
+                        <span class="font-bold">・特集（feature）</span>
+                      </p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                      <p class="text-yellow-700">
+                        <span class="text-emphasis">注意:</span>
+                        スラッグは英語大文字は小文字に自動で変換されて表示されます。
+                      </p>
+                    </div>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                      <p class="text-yellow-700">
+                        <span class="text-emphasis">注意:</span>
+                        スラッグは一意である必要があります。<br />すでにある文字列を入力した場合、xxxx-01のように連番が自動で追加されます。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- <section class="mt-8 pt-8 border-t border-gray-200">
+                <h3 class="heading-3">関連項目</h3>
+                <ul class="space-y-2">
+                  <li><a href="./job.html" class="link">お仕事の登録方法</a></li>
+                  <li><a href="./useful-info.html" class="link">お役立ち情報の投稿方法</a></li>
+                </ul>
+              </section> -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div data-include="footer.html"></div>
+
+    <script src="./assets/js/loadIncludes.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
