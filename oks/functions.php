@@ -96,6 +96,13 @@ if (file_exists(get_template_directory() . '/includes/comment-disable/comment-di
 }
 
 /**
+ * Include FAQ functionality
+ */
+if (file_exists(get_template_directory() . '/includes/faq/faq-loader.php')) {
+    require_once get_template_directory() . '/includes/faq/faq-loader.php';
+}
+
+/**
  * 投稿ラベルを「お役立ち情報」に変更（管理画面のみ）
  */
 function oks_change_post_labels() {
