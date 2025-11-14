@@ -17,6 +17,7 @@ yarn-error.log*
 # Build output
 www/dist/
 www/stats.json
+docs/dist/
 
 www/.claude
 .claude/
