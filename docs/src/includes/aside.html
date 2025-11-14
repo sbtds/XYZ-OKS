@@ -1,39 +1,108 @@
-<aside class="hidden lg:block w-64 bg-white shadow-lg">
-  <nav class="p-6">
-    <ul class="space-y-2">
-      <li><a href="./index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">扉ページ</a></li>
-      <li><a href="./top.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">トップページ更新</a></li>
-      <li><a href="./job.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お仕事</a></li>
-      <li><a href="./useful.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お役立ち情報</a></li>
-      <li><a href="./consultant.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">コンサルタント</a></li>
-      <li><a href="./company.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">注目企業</a></li>
-      <li><a href="./faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">よくあるご質問</a></li>
-      <li><a href="./story.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">転職者ストーリー</a></li>
-    </ul>
-  </nav>
-</aside>
-
-<div id="mobile-menu" class="lg:hidden fixed inset-0 z-50 flex transform -translate-x-full transition-transform duration-300">
-  <aside class="w-64 bg-white shadow-lg">
-    <div class="p-4 border-b">
-      <button id="menu-close" class="p-2 rounded-md hover:bg-gray-100">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+<nav id="sidebar" class="hidden md:flex flex-col w-64 bg-gray-800 fixed md:relative h-screen z-50 transition-transform duration-300 ease-in-out -translate-x-full md:translate-x-0">
+  <div class="flex items-center justify-between px-4 md:px-6 h-16 bg-gray-900 flex-shrink-0 h-[60px]">
+    <span class="text-white font-bold uppercase">MENU</span>
+    <button id="closeSidebar" class="absolute right-0 md:hidden text-white hover:text-gray-300 px-5">
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div class="flex flex-col flex-1 overflow-y-auto">
+    <nav class="flex-1 px-2 py-4 bg-gray-800">
+      <a href="./index.html" class="font-bold flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700 rounded">
+        <svg class="h-2 w-2 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8" stroke-width="4" />
         </svg>
-      </button>
-    </div>
-    <nav class="p-6">
-      <ul class="space-y-2">
-        <li><a href="./index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">扉ページ</a></li>
-        <li><a href="./top.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">トップページ更新</a></li>
-        <li><a href="./job.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お仕事</a></li>
-        <li><a href="./useful.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">お役立ち情報</a></li>
-        <li><a href="./consultant.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">コンサルタント</a></li>
-        <li><a href="./company.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">注目企業</a></li>
-        <li><a href="./faq.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">よくあるご質問</a></li>
-        <li><a href="./story.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">転職者ストーリー</a></li>
-      </ul>
+        扉ページ
+      </a>
+
+      <div class="mt-2">
+        <button class="flex items-center justify-between w-full px-4 py-2 text-gray-100 hover:bg-gray-700 rounded submenu-toggle">
+          <span class="flex items-center font-bold"> トップページ更新 </span>
+          <svg class="h-4 w-4 transition-transform submenu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="submenu hidden pl-6 mt-1 space-y-1">
+          <a href="./top.html#section01" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">カルーセル</a>
+          <a href="./top.html#section02" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">注目企業</a>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <button class="flex items-center justify-between w-full px-4 py-2 text-gray-100 hover:bg-gray-700 rounded submenu-toggle">
+          <span class="flex items-center font-bold"> お仕事 </span>
+          <svg class="h-4 w-4 transition-transform submenu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="submenu hidden pl-6 mt-1 space-y-1">
+          <a href="./job.html#section01" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">お仕事登録</a>
+          <a href="./job.html#section02" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">エラー対応</a>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <button class="flex items-center justify-between w-full px-4 py-2 text-gray-100 hover:bg-gray-700 rounded submenu-toggle">
+          <span class="flex items-center font-bold"> コンサルタント </span>
+          <svg class="h-4 w-4 transition-transform submenu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="submenu hidden pl-6 mt-1 space-y-1">
+          <a href="./consultant.html#section01" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">コンサルタント</a>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <button class="flex items-center justify-between w-full px-4 py-2 text-gray-100 hover:bg-gray-700 rounded submenu-toggle">
+          <span class="flex items-center font-bold"> 転職者ストーリー </span>
+          <svg class="h-4 w-4 transition-transform submenu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="submenu hidden pl-6 mt-1 space-y-1">
+          <a href="./story.html#section01" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">転職者ストーリー詳細</a>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <button class="flex items-center justify-between w-full px-4 py-2 text-gray-100 hover:bg-gray-700 rounded submenu-toggle">
+          <span class="flex items-center font-bold"> 注目企業 </span>
+          <svg class="h-4 w-4 transition-transform submenu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="submenu hidden pl-6 mt-1 space-y-1">
+          <a href="./company.html#section01" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">注目企業詳細</a>
+          <a href="./company.html#section02" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">公開中の求人情報</a>
+          <a href="./company.html#section03" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">会社概要</a>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <button class="flex items-center justify-between w-full px-4 py-2 text-gray-100 hover:bg-gray-700 rounded submenu-toggle">
+          <span class="flex items-center font-bold"> お役立ち情報 </span>
+          <svg class="h-4 w-4 transition-transform submenu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="submenu hidden pl-6 mt-1 space-y-1">
+          <a href="./useful.html#section01" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">お役立ち情報詳細</a>
+        </div>
+      </div>
+
+      <div class="mt-2">
+        <button class="flex items-center justify-between w-full px-4 py-2 text-gray-100 hover:bg-gray-700 rounded submenu-toggle">
+          <span class="flex items-center font-bold"> よくあるご質問 </span>
+          <svg class="h-4 w-4 transition-transform submenu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="submenu hidden pl-6 mt-1 space-y-1">
+          <a href="./faq.html#section01" class="block px-4 py-2 text-md text-gray-300 hover:bg-gray-700 rounded">よくある質問</a>
+        </div>
+      </div>
     </nav>
-  </aside>
-  <div class="flex-1 bg-black bg-opacity-50" onclick="document.getElementById('mobile-menu').classList.add('-translate-x-full')"></div>
-</div>
+  </div>
+</nav>

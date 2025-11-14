@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="./assets/scss/style.scss" />
   </head>
   <body class="bg-gray-50 min-h-screen flex flex-col">
-    <div data-include="header.html"></div>
-
-    <div class="flex-1 flex relative">
+    <div class="flex h-screen bg-gray-100">
+      <!-- sidebar -->
       <div class="contents" data-include="aside.html"></div>
 
-      <!-- メインコンテンツ -->
-      <main class="flex-1 p-4 md:p-8">
+      <!-- Main content -->
+      <main class="flex flex-col flex-1 overflow-y-auto">
+        <div data-include="header.html"></div>
+
+        <div class="p-4 md:p-8">
         <!-- <nav class="mb-6 flex gap-3 flex-wrap">
           <a href="#section01" class="px-8 py-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-bold text-xl">カルーセルの編集</a>
-          <a href="#section02" class="px-8 py-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-bold text-xl">注目企業</a>
+          <a href="#section02" class="px-8 py-4 bg-blue-500 text-white rounded hover:bg-blue-600 transition font-bold text-xl">転職者ストーリー</a>
         </nav> -->
 
-        <div class="max-w-4xl space-y-20">
+        <div class="max-w-[1060px] space-y-20">
           <div class="bg-white rounded-md shadow p-4 md:p-8">
             <div class="prose max-w-none">
               <h3 class="heading-3">編集メニュー</h3>
@@ -33,7 +35,7 @@
           </div>
 
           <div class="space-y-4" id="section01">
-            <h2 class="heading-2 rounded-md">転職者ストーリー詳細</h2>
+            <h2 class="heading-2">転職者ストーリー詳細</h2>
             <div class="bg-white rounded-md shadow p-4 md:p-8">
               <section class="mb-12">
                 <img src="./assets/img/story-section01-img00.png" alt="キャプチャ画像" class="w-full mb-20 border border-gray-300 rounded" />
@@ -70,7 +72,7 @@
                     </div>
                     <div class="text-gray-700 leading-relaxed mb-4">
                       <p class="flex text-emphasis"><span class="text-red-600 text-xl inline-block">❷：</span><span>ブロック 1〜6</span></p>
-                      <p class="mt-1">注目企業の詳細を入力。詳細ページに表示されます。<br /><span class="font-bold">タイトルサイズ</span>の変更が可能です。</p>
+                      <p class="mt-1">転職者ストーリーの詳細を入力。詳細ページに表示されます。<br /><span class="font-bold">タイトルサイズ</span>の変更が可能です。</p>
                     </div>
                     <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
                       <p class="text-yellow-700">
@@ -137,9 +139,6 @@
         </div>
       </main>
     </div>
-
-    <div data-include="footer.html"></div>
-
     <script src="./assets/js/loadIncludes.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>

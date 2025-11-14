@@ -1,6 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Helvetica Neue", "Noto Sans", "Noto Sans CJK JP", Helvetica, Arial, "メイリオ", Meiryo,
+      "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  }
+}
 
 /* カスタムコンポーネント */
 @layer components {
@@ -23,12 +32,27 @@
 
   /* ステップ番号 */
   .step-number {
-    @apply inline-flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-sm font-bold mr-2;
+    @apply inline-flex items-center justify-center w-8 h-8 bg-slate-800 text-white rounded-sm font-bold mr-2;
   }
 
   /* 見出しスタイル */
   .heading-2 {
-    @apply text-xl md:text-2xl font-bold text-white bg-blue-600 px-4 md:px-6 py-3 md:py-4 mb-6 rounded-sm;
+    @apply text-2xl md:text-2xl font-bold pt-4 pb-4 mb-6 border-b border-slate-600 flex items-center gap-3;
+  }
+
+  /* 見出し2の代替案1: 左ボーダー + シンプル */
+  .heading-2-alt1 {
+    @apply text-xl md:text-2xl font-bold text-gray-800 border-l-4 border-slate-800 pl-4 mb-6;
+  }
+
+  /* 見出し2の代替案2: 下線のみ */
+  .heading-2-alt2 {
+    @apply text-xl md:text-2xl font-bold text-gray-800 pb-2 mb-6 border-b-2 border-slate-800;
+  }
+
+  /* 見出し2の代替案3: ミニマル */
+  .heading-2-alt3 {
+    @apply text-xl md:text-2xl font-bold text-gray-800 mb-6;
   }
 
   .heading-3 {
@@ -37,6 +61,6 @@
 
   .heading-3::before {
     content: "";
-    @apply inline-block w-1 h-6 bg-blue-500 mr-3;
+    @apply inline-block w-1 h-4 bg-slate-800 mr-3;
   }
 }

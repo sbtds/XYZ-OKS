@@ -7,54 +7,65 @@
     <link rel="stylesheet" href="./assets/scss/style.scss" />
   </head>
   <body class="bg-gray-50 min-h-screen flex flex-col">
-    <div data-include="header.html"></div>
-
-    <div class="flex-1 flex relative">
+    <div class="flex h-screen bg-gray-100">
+      <!-- sidebar -->
       <div class="contents" data-include="aside.html"></div>
 
-      <!-- メインコンテンツ -->
-      <main class="flex-1 p-4 md:p-8">
-        <div class="max-w-4xl">
+      <!-- Main content -->
+      <main class="flex flex-col flex-1 overflow-y-auto">
+        <div data-include="header.html"></div>
+
+        <div class="p-4 md:p-8">
+        <div class="max-w-[1060px]">
           <div class="bg-white rounded-lg shadow p-4 md:p-8">
-            <h2 class="heading-2">OKSテーマ マニュアルへようこそ</h2>
+            <h2 class="heading-2">OKSテーマ マニュアル</h2>
 
             <div class="prose max-w-none">
               <p class="text-lg text-gray-700 mb-6">このマニュアルでは、OKSテーマの各機能の使い方や更新方法について詳しく説明します。 左のメニューから、知りたい項目を選択してください。</p>
 
-              <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-6">
+              <!-- <div class="bg-blue-50 border-l-4 border-blue-400 p-4 my-6">
                 <p class="text-blue-700">
                   <span class="text-emphasis">重要:</span>
                   更新作業を行う前に、必ずバックアップを取得してください。
                 </p>
-              </div>
+              </div> -->
 
-              <h3 class="heading-3 mt-8">カテゴリー一覧</h3>
+              <h3 class="heading-3 mt-8">ページ一覧</h3>
               <div class="grid md:grid-cols-2 gap-4">
-                <div class="border border-gray-200 rounded-lg p-4">
+                <a href="./top.html" class="border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition">
                   <h4 class="font-semibold mb-2">トップページ更新</h4>
                   <p class="text-sm text-gray-600">トップページのスライダーやコンテンツの更新方法</p>
-                </div>
-                <div class="border border-gray-200 rounded-lg p-4">
+                </a>
+                <a href="./job.html" class="border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition">
                   <h4 class="font-semibold mb-2">お仕事</h4>
                   <p class="text-sm text-gray-600">求人情報の登録・編集・削除方法</p>
-                </div>
-                <div class="border border-gray-200 rounded-lg p-4">
-                  <h4 class="font-semibold mb-2">お役立ち情報</h4>
-                  <p class="text-sm text-gray-600">お役立ち記事の投稿・管理方法</p>
-                </div>
-                <div class="border border-gray-200 rounded-lg p-4">
+                </a>
+                <a href="./consultant.html" class="border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition">
                   <h4 class="font-semibold mb-2">コンサルタント</h4>
                   <p class="text-sm text-gray-600">コンサルタント情報の登録・更新方法</p>
-                </div>
+                </a>
+                <a href="./story.html" class="border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition">
+                  <h4 class="font-semibold mb-2">転職者ストーリー</h4>
+                  <p class="text-sm text-gray-600">転職者ストーリーの登録・更新方法</p>
+                </a>
+                <a href="./company.html" class="border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition">
+                  <h4 class="font-semibold mb-2">注目企業</h4>
+                  <p class="text-sm text-gray-600">注目企業情報の登録・更新方法</p>
+                </a>
+                <a href="./useful.html" class="border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition">
+                  <h4 class="font-semibold mb-2">お役立ち情報</h4>
+                  <p class="text-sm text-gray-600">お役立ち記事の投稿・管理方法</p>
+                </a>
+                <a href="./faq.html" class="border border-gray-200 rounded-lg p-4 hover:border-blue-400 transition">
+                  <h4 class="font-semibold mb-2">よくあるご質問</h4>
+                  <p class="text-sm text-gray-600">よくあるご質問の登録・更新方法</p>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </main>
     </div>
-
-    <div data-include="footer.html"></div>
-
     <script src="./assets/js/loadIncludes.js"></script>
     <script src="./assets/js/main.js"></script>
   </body>
