@@ -838,7 +838,7 @@ $unique_salary_types = $search_handler->get_unique_salary_types();
               <div class="buttons">
                 <p class="button">
                   <a class="button_more"
-                    href="https://oks.lixas-system.com/entrysheet?contact_url=<?php echo esc_attr($job['internal_job_id']); ?>"
+                    href="https://oks.lixas-system.com/entrysheet?contact_url=<?php echo esc_attr($job['internal_job_id']); ?>&contact_from=tenshoku-site"
                     target="_blank">
                     <span class="label">この求人を問い合わせる</span>
                     <span class="icon"><i class="fa-solid fa-angle-right"></i></span>

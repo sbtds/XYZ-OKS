@@ -496,7 +496,7 @@ function get_single_job_conditions($post_id) {
         </div>
         <div class="button_section">
           <a class="button_more"
-            href="https://oks.lixas-system.com/entrysheet?contact_url=<?php echo esc_attr(get_field('internal_job_id')); ?>"
+            href="https://oks.lixas-system.com/entrysheet?contact_url=<?php echo esc_attr(get_field('internal_job_id')); ?>&contact_from=tenshoku-site"
             target="_blank">
             <span class="label">この求人を問い合わせる</span>
             <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
