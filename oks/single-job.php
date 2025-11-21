@@ -713,7 +713,11 @@ function get_single_job_conditions($post_id) {
   <section class="search_banner">
     <div class="search_banner__container">
       <p class="search_banner__image">
-        <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_image.jpg" alt="" />
+        <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_image_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_image.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/search_banner_image.jpg" loading="lazy" />
+            </picture>
       </p>
       <div class="search_banner__main">
         <h3 class="title">

@@ -53,8 +53,11 @@ get_header(); ?>
                 <?php if (has_post_thumbnail()) : ?>
                 <?php the_post_thumbnail('medium'); ?>
                 <?php else : ?>
-                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg"
-                  alt="<?php echo esc_attr(get_the_title()); ?>">
+                <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg" loading="lazy" />
+            </picture>">
                 <?php endif; ?>
               </p>
               <?php if (!empty($story_top['catch'])) : ?>

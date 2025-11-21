@@ -41,7 +41,11 @@ get_header(); ?>
       </p>
       <?php else : ?>
       <p class="consultant_top__thb">
-        <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=400x400" alt="<?php echo esc_attr(get_the_title()); ?>">
+        <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=400x400" loading="lazy" />
+            </picture>">
       </p>
       <?php endif; ?>
 

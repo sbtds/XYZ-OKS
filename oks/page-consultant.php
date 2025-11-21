@@ -42,7 +42,11 @@ get_header(); ?>
               <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('medium'); ?>
               <?php else : ?>
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=320x320" alt="<?php echo esc_attr(get_the_title()); ?>">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=320x320" loading="lazy" />
+            </picture>">
               <?php endif; ?>
             </p>
             <div class="index_consultant__main">

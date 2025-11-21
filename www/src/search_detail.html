@@ -582,7 +582,15 @@
         <section class="search_banner">
           <div class="search_banner__container">
             <p class="search_banner__image">
-              <img src="./assets/images/page/search_banner_image.jpg" alt="" />
+              <picture>
+              <source srcset="./assets/images/page/search_banner_image_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="./assets/images/page/search_banner_image.webp" type="image/webp" />
+              <picture>
+              <source srcset="./assets/images/page/search_banner_image_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="./assets/images/page/search_banner_image.webp" type="image/webp" />
+              <img alt="" src="./assets/images/page/search_banner_image.jpg" loading="lazy" />
+            </picture>
+            </picture>
             </p>
             <div class="search_banner__main">
               <h3 class="title">

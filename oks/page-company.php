@@ -72,7 +72,11 @@ get_header(); ?>
               </p>
               <?php else : ?>
               <p class="featured_index__thb hover-image">
-                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img01.jpg" alt="">
+                <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img01.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img01.jpg" loading="lazy" />
+            </picture>
               </p>
               <?php endif; ?>
               <div class="featured_index__main">
@@ -90,9 +94,11 @@ get_header(); ?>
               <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('thumbnail'); ?>
               <?php else : ?>
-              <img
-                src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=170x110"
-                alt="<?php the_title_attribute(); ?>">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=170x110" loading="lazy" />
+            </picture>">
               <?php endif; ?>
             </div>
           </a>

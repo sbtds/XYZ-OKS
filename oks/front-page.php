@@ -63,13 +63,25 @@ get_header(); ?>
     <div class="index_hero__main">
       <div class="index_hero__main_visual">
         <p class="image01">
-          <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img01.jpg" alt="">
+          <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img01.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img01.jpg" loading="lazy" />
+            </picture>
         </p>
         <p class="image02">
-          <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img02.jpg" alt="">
+          <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img02_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img02.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img02.jpg" loading="lazy" />
+            </picture>
         </p>
         <p class="image03">
-          <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img03.jpg" alt="">
+          <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img03_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img03.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/hero_img03.jpg" loading="lazy" />
+            </picture>
         </p>
       </div>
       <div class="index_hero__main_contents">
@@ -211,9 +223,11 @@ get_header(); ?>
                 <?php if ($image_url) : ?>
                 <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($image_alt); ?>">
                 <?php else : ?>
-                <img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=1100x840"
-                  alt="Placeholder">
+                <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="Placeholder" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=1100x840" loading="lazy" />
+            </picture>
                 <?php endif; ?>
               </p>
               <?php if ($link && !empty($link['url'])) : ?>
@@ -230,9 +244,11 @@ get_header(); ?>
           <div class="index_hero__slide_item swiper-slide">
             <a href="#">
               <p class="hover-image">
-                <img
-                  src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=1100x840"
-                  alt="カルーセル画像が設定されていません">
+                <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="カルーセル画像が設定されていません" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=1100x840" loading="lazy" />
+            </picture>
               </p>
             </a>
           </div>
@@ -256,8 +272,11 @@ get_header(); ?>
         <div class="index_reason__item">
           <div class="index_reason__inner">
             <p class="index_reason__image">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img01.jpg?311*311"
-                alt="">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img01.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img01.jpg?311*311" loading="lazy" />
+            </picture>
               <span class="number">
                 <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_num01.svg"
                   alt="01">
@@ -269,8 +288,11 @@ get_header(); ?>
         <div class="index_reason__item">
           <div class="index_reason__inner">
             <p class="index_reason__image">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img02.jpg?311*311"
-                alt="">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img02_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img02.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img02.jpg?311*311" loading="lazy" />
+            </picture>
               <span class="number">
                 <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_num02.svg"
                   alt="02">
@@ -282,8 +304,11 @@ get_header(); ?>
         <div class="index_reason__item">
           <div class="index_reason__inner">
             <p class="index_reason__image">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img03.jpg?311*311"
-                alt="">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img03_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img03.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_img03.jpg?311*311" loading="lazy" />
+            </picture>
               <span class="number">
                 <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/reason_num03.svg"
                   alt="03">
@@ -678,8 +703,11 @@ get_header(); ?>
           <a class="index_recommend__item"
             href="<?php echo home_url('/search/?job_type%5B%5D=事務・管理・企画&job_type%5B%5D=事務・受付・秘書・翻訳&job_type%5B%5D=管理（人事・経理・総務・広報）&job_type%5B%5D=マーケティング・企画・カスタマーサポート'); ?>">
             <p class="index_recommend__image hover-image">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img01.jpg"
-                alt="営業職のイメージ">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img01.webp" type="image/webp" />
+              <img alt="営業職のイメージ" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img01.jpg" loading="lazy" />
+            </picture>
             </p>
             <h3 class="index_recommend__subject">
               <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_sub01.svg"
@@ -689,8 +717,11 @@ get_header(); ?>
           <a class="index_recommend__item"
             href="<?php echo home_url('/search/?job_type%5B%5D=製造・開発・技術&job_type%5B%5D=製造・開発（自動車・半導体・その他機械）&job_type%5B%5D=製造・開発（化学・素材）&job_type%5B%5D=製造・開発（繊維・化粧品・日用品）&job_type%5B%5D=製造・開発（食品・香料・飼料）&job_type%5B%5D=製造・開発（医療・理化学機器）&job_type%5B%5D=建築・土木・設計&job_type%5B%5D=電気・通信・インフラ'); ?>">
             <p class="index_recommend__image hover-image">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img02.jpg"
-                alt="技術職のイメージ">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img02_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img02.webp" type="image/webp" />
+              <img alt="技術職のイメージ" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img02.jpg" loading="lazy" />
+            </picture>
             </p>
             <h3 class="index_recommend__subject">
               <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_sub02.svg"
@@ -700,8 +731,11 @@ get_header(); ?>
           <a class="index_recommend__item"
             href="<?php echo home_url('/search/?job_type%5B%5D=事務・管理・企画&job_type%5B%5D=事務・受付・秘書・翻訳&job_type%5B%5D=管理（人事・経理・総務・広報）&job_type%5B%5D=マーケティング・企画・カスタマーサポート'); ?>">
             <p class="index_recommend__image hover-image">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img03.jpg"
-                alt="経理・財務職のイメージ">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img03_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img03.webp" type="image/webp" />
+              <img alt="経理・財務職のイメージ" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_img03.jpg" loading="lazy" />
+            </picture>
             </p>
             <h3 class="index_recommend__subject">
               <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/recommend_sub03.svg"
@@ -1023,9 +1057,11 @@ get_header(); ?>
               <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('medium'); ?>
               <?php else : ?>
-              <img
-                src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=320x320"
-                alt="<?php echo esc_attr(get_the_title()); ?>">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=320x320" loading="lazy" />
+            </picture>">
               <?php endif; ?>
             </p>
             <div class="index_consultant__main">
@@ -1117,8 +1153,11 @@ get_header(); ?>
                 <?php if (has_post_thumbnail()) : ?>
                 <?php the_post_thumbnail('medium'); ?>
                 <?php else : ?>
-                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg"
-                  alt="<?php echo esc_attr(get_the_title()); ?>">
+                <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg" loading="lazy" />
+            </picture>">
                 <?php endif; ?>
               </p>
               <?php if (!empty($story_top['catch'])) : ?>
@@ -1156,8 +1195,11 @@ get_header(); ?>
           <div class="index_story__inner">
             <div class="index_story__upper">
               <p class="index_story__thb hover-image">
-                <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg"
-                  alt="転職者ストーリー">
+                <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.webp" type="image/webp" />
+              <img alt="転職者ストーリー" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/story_img01.jpg" loading="lazy" />
+            </picture>
               </p>
               <p class="index_story__lead"><span>転職者ストーリーが登録されていません</span></p>
             </div>
@@ -1290,7 +1332,11 @@ get_header(); ?>
               </div>
             </div>
             <p class="index_flow__thb">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img01.jpg" alt="">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img01.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img01.jpg" loading="lazy" />
+            </picture>
             </p>
           </div>
           <div class="index_flow__box">
@@ -1310,7 +1356,11 @@ get_header(); ?>
               </div>
             </div>
             <p class="index_flow__thb">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img02.jpg" alt="">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img02_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img02.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img02.jpg" loading="lazy" />
+            </picture>
             </p>
           </div>
           <div class="index_flow__box">
@@ -1334,7 +1384,11 @@ get_header(); ?>
               </div>
             </div>
             <p class="index_flow__thb">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img03.jpg" alt="">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img03_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img03.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img03.jpg" loading="lazy" />
+            </picture>
             </p>
           </div>
           <div class="index_flow__box">
@@ -1352,7 +1406,11 @@ get_header(); ?>
               </div>
             </div>
             <p class="index_flow__thb">
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img04.jpg" alt="">
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img04_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img04.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/flow_img04.jpg" loading="lazy" />
+            </picture>
             </p>
           </div>
         </div>
@@ -1414,8 +1472,11 @@ get_header(); ?>
             <?php if ($company_thumbnail) : ?>
             <?php echo $company_thumbnail; ?>
             <?php else : ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=480x630"
-              alt="<?php echo esc_attr($company_name); ?>">
+            <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=480x630" loading="lazy" />
+            </picture>">
             <?php endif; ?>
           </p>
           <div class="index_featured__contents">
@@ -1479,8 +1540,11 @@ get_header(); ?>
             <?php if (has_post_thumbnail()) : ?>
             <?php the_post_thumbnail('medium'); ?>
             <?php else : ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=320x240"
-              alt="<?php echo esc_attr(get_the_title()); ?>">
+            <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=320x240" loading="lazy" />
+            </picture>">
             <?php endif; ?>
           </p>
           <div class="index_useful__main">

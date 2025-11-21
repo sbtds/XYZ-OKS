@@ -35,7 +35,11 @@
             <?php if (has_post_thumbnail($manual_post->ID)) : ?>
             <?php echo get_the_post_thumbnail($manual_post->ID, 'thumbnail'); ?>
             <?php else : ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" alt="<?php echo esc_attr($manual_post->post_title); ?>">
+            <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" loading="lazy" />
+            </picture>post_title); ?>">
             <?php endif; ?>
           </span>
           <span class="label"><?php echo esc_html($manual_post->post_title); ?></span>
@@ -46,7 +50,11 @@
       else : ?>
       <li class="item">
         <a href="<?php echo home_url('/'); ?>">
-          <span class="thb hover-image"><img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" alt="履歴書の書き方"></span>
+          <span class="thb hover-image"><picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="履歴書の書き方" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" loading="lazy" />
+            </picture></span>
           <span class="label">履歴書の書き方</span>
           <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
         </a>
@@ -76,7 +84,11 @@
             <?php if (has_post_thumbnail($popular_post->ID)) : ?>
             <?php echo get_the_post_thumbnail($popular_post->ID, 'thumbnail'); ?>
             <?php else : ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" alt="<?php echo esc_attr($popular_post->post_title); ?>">
+            <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" loading="lazy" />
+            </picture>post_title); ?>">
             <?php endif; ?>
           </span>
           <span class="label"><?php echo esc_html($popular_post->post_title); ?></span>
@@ -87,7 +99,11 @@
       else : ?>
       <li class="item">
         <a href="<?php echo home_url('/'); ?>">
-          <span class="thb hover-image"><img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" alt="記事タイトル"></span>
+          <span class="thb hover-image"><picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="記事タイトル" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=55x50" loading="lazy" />
+            </picture></span>
           <span class="label">記事タイトル</span>
           <span class="icon"><i class="fa-solid fa-chevron-right"></i></span>
         </a>
@@ -119,7 +135,11 @@
             <?php if (has_post_thumbnail($feature_post->ID)) : ?>
             <?php echo get_the_post_thumbnail($feature_post->ID, 'medium'); ?>
             <?php else : ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" alt="<?php echo esc_attr($feature_post->post_title); ?>">
+            <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" loading="lazy" />
+            </picture>post_title); ?>">
             <?php endif; ?>
           </span>
         </a>
@@ -130,7 +150,11 @@
         <h4 class="subject">特集記事</h4>
         <a class="banner" href="<?php echo home_url('/'); ?>">
           <span class="image hover-image">
-            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" alt="特集記事">
+            <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="特集記事" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" loading="lazy" />
+            </picture>
           </span>
         </a>
       </li>

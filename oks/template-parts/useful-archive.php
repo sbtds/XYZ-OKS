@@ -44,8 +44,11 @@
               <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('large', array('alt' => get_the_title())); ?>
               <?php else : ?>
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01.jpg"
-                alt="<?php the_title(); ?>" />
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01.jpg" loading="lazy" />
+            </picture>" />
               <?php endif; ?>
             </p>
           </a>
@@ -97,8 +100,11 @@
               <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('medium', array('alt' => get_the_title())); ?>
               <?php else : ?>
-              <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01.jpg"
-                alt="<?php the_title(); ?>" />
+              <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01.jpg" loading="lazy" />
+            </picture>" />
               <?php endif; ?>
             </p>
           </a>
@@ -162,8 +168,11 @@
             <?php if (has_post_thumbnail()) : ?>
             <?php the_post_thumbnail('large', array('alt' => get_the_title())); ?>
             <?php else : ?>
-            <img src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01.jpg"
-              alt="<?php the_title(); ?>" />
+            <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/index/useful_img01.jpg" loading="lazy" />
+            </picture>" />
             <?php endif; ?>
           </p>
           <div class="index_useful__main">
@@ -205,7 +214,11 @@
                 <?php if (has_post_thumbnail()) : ?>
                 <?php the_post_thumbnail('thumbnail', array('alt' => get_the_title())); ?>
                 <?php else : ?>
-                <img class="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=140x100" alt="<?php the_title(); ?>" />
+                <picture>
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
+              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
+              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=140x100" class="" loading="lazy" />
+            </picture>" />
                 <?php endif; ?>
               </span>
               <span class="label"><?php the_title(); ?></span>
