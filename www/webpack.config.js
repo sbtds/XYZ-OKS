@@ -33,6 +33,7 @@ const plugins = [
         from: "src/assets/images",
         to: "assets/images",
         noErrorOnMissing: true,
+        context: "src/assets/images",
         globOptions: {
           ignore: ["**/.DS_Store"],
         },
@@ -232,12 +233,11 @@ module.exports = {
         type: "asset/resource",
         generator: {
           filename: (pathData) => {
-            // src/assets/images/以下のパス構造を維持
             const relativePath = path.relative(
-              path.resolve(__dirname, "src"),
+              path.resolve(__dirname, "src/assets"),
               pathData.filename
             );
-            return relativePath;
+            return `assets/${relativePath}`;
           },
         },
       },

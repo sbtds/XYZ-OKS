@@ -34,8 +34,8 @@ const config = {
     },
     {
       suffix: "md",
-      width: 960,
-      quality: 85,
+      width: 450,
+      quality: 82,
     },
   ],
 };
