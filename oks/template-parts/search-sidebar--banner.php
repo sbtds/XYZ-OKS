@@ -8,7 +8,8 @@
  */
 
 // Check if we should display banners on current page
-$show_banners = is_single() || is_page('search') || is_singular('job');
+// $show_banners = is_single() || is_page('search') || is_singular('job');
+$show_banners = is_single() || is_singular('job');
 
 if ($show_banners) : ?>
 <div class="useful_side__bottom">
@@ -33,10 +34,14 @@ if ($show_banners) : ?>
           <?php echo get_the_post_thumbnail($feature_post->ID, 'medium'); ?>
           <?php else : ?>
           <picture>
-              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
-              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
-              <img alt="" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" loading="lazy" />
-            </picture>post_title); ?>">
+            <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp"
+              media="(max-width: 1119px)" type="image/webp" />
+            <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp"
+              type="image/webp" />
+            <img alt=""
+              src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140"
+              loading="lazy" />
+          </picture>post_title); ?>">
           <?php endif; ?>
         </span>
       </a>
@@ -48,10 +53,14 @@ if ($show_banners) : ?>
       <a class="banner" href="<?php echo home_url('/'); ?>">
         <span class="image hover-image">
           <picture>
-              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp" media="(max-width: 1119px)" type="image/webp" />
-              <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp" type="image/webp" />
-              <img alt="特集記事" src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140" loading="lazy" />
-            </picture>
+            <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb_md.webp"
+              media="(max-width: 1119px)" type="image/webp" />
+            <source srcset="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.webp"
+              type="image/webp" />
+            <img alt="特集記事"
+              src="<?php echo get_template_directory_uri(); ?>/dist/assets/images/page/common_thumb.jpg?size=260x140"
+              loading="lazy" />
+          </picture>
         </span>
       </a>
     </li>
